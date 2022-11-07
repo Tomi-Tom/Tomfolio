@@ -14,7 +14,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h2>
-          <Link href={"test"}>Debilus</Link>
+          <Link href={"test"}>Test Link to Test Page</Link>
         </h2>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>

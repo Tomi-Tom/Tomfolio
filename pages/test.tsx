@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 export default function test() {
     return (
@@ -6,7 +7,10 @@ export default function test() {
             <Head>
                 <title>Tom Test</title>
             </Head>
-            <h2>My Big Test</h2>
+            <h1>My Big Test</h1>
+            <Link href={"/"}>
+                <h2>Return Home</h2>
+            </Link>
         </div>
     )
 }
