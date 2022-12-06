@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
+import Navbar from '../components/layout/Navbar';
 
 export default function Home() {
   return (
@@ -11,6 +12,8 @@ export default function Home() {
         <meta name="description" content="The galery of Tomi-Tom" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
+      <Navbar />
 
       <main className={styles.main}>
         <h2>
