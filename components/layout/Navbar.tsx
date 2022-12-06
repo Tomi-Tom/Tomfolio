@@ -1,26 +1,21 @@
+export default Navbar;
 import React from 'react';
-import Link from 'next/link';
+import './Navbar.css';
 
 const Navbar = () => {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link href="/">
-            <a>Accueil</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/about">
-            <a>À propos</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/contact">
-            <a>Contact</a>
-          </Link>
-        </li>
-      </ul>
+      <div className="navbar-grid">
+        <Link href="/">
+          <div>Accueil</div>
+        </Link>
+        <Link href="/about">
+          <div>À propos</div>
+        </Link>
+        <Link href="/contact">
+          <div>Contact</div>
+        </Link>
+      </div>
     </nav>
   );
 }
