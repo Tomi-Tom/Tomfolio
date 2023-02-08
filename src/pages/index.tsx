@@ -16,7 +16,7 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
-          <div className={"lightSection"}>
+          <div className={"darkSection"}>
             <div className={styles.main}>
               <div className={styles.description}>
                 <p>
@@ -125,7 +125,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className={"darkSection"}>
+          <div className={"lightSection"}>
             <div className={styles.main}>
               <div className={styles.description}>
                 <p>
