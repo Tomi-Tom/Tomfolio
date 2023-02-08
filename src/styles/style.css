@@ -33,8 +33,7 @@ body
         transform: rotateX(-30deg) rotateY(180deg);
     }
 }
-.cube div
-{
+.cube div {
     position: absolute;
     top: 0;
     left: 0;
@@ -42,6 +41,7 @@ body
     height: 100%;
     transform-style: preserve-3d;
 }
+
 .i1
 {
     position: absolute;
@@ -49,8 +49,8 @@ body
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(#151510, #eb9e2c);
-    transform: rotateY(calc(90deg * 1)) translateZ(calc(var(--s)/2));
+    background: linear-gradient(#151510, #a6701e);
+    transform: rotateY(calc(90deg * 2)) translateZ(calc(var(--s)/2));
 }
 .i2
 {
@@ -59,8 +59,8 @@ body
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(#151510, #eb9e2c);
-    transform: rotateY(calc(90deg * 2)) translateZ(calc(var(--s)/2));
+    background: linear-gradient(#151510, #a6701e);
+    transform: rotateY(calc(90deg * 3)) translateZ(calc(var(--s)/2));
 }
 .i3
 {
@@ -69,19 +69,10 @@ body
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(#151510, #eb9e2c);
-    transform: rotateY(calc(90deg * 3)) translateZ(calc(var(--s)/2));
-}
-.i4
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(#151510, #eb9e2c);
+    background: linear-gradient(#151510, #a6701e);
     transform: rotateY(calc(90deg * 4)) translateZ(calc(var(--s)/2));
 }
+
 .top
 {
     position: absolute;

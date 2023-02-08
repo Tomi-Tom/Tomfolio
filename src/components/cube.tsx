@@ -9,7 +9,6 @@ export default function Cube({size}: { size: string }) {
                 <span className={`i1`}/>
                 <span className={`i2`}/>
                 <span className={`i3`}/>
-                <span className={`i4`}/>
             </div>
         </div>
     );
