@@ -1,6 +1,6 @@
 export default function Cube({size}: { size: string }) {
     if (typeof document !== 'undefined') {
-        document.documentElement.style.setProperty('--size', size);
+        document.documentElement.style.setProperty('--sizeCube', size);
     }
     return (
         <div className="cube">
