@@ -40,7 +40,7 @@ export default function Home() {
           </div>
         </div>
 
-        <Cube/>
+        <Cube size={'200px'}/>
 
         <div className={styles.center}>
           <Image
