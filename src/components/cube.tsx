@@ -1,12 +1,15 @@
-export default function Cube() {
+export default function Cube({size}: { size: string }) {
+    if (typeof document !== 'undefined') {
+        document.documentElement.style.setProperty('--size', size);
+    }
     return (
-        <div className="cube" style={{ "--size": "400px" }}>
+        <div className="cube">
             <div className="top"></div>
             <div>
-                <span style={{ "--index": 0 }}></span>
-                <span style={{ "--index": 1 }}></span>
-                <span style={{ "--index": 2 }}></span>
-                <span style={{ "--index": 3 }}></span>
+                <span className={`i1`}/>
+                <span className={`i2`}/>
+                <span className={`i3`}/>
+                <span className={`i4`}/>
             </div>
         </div>
     );
