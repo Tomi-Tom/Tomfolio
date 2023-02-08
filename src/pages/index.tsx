@@ -18,8 +18,8 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
+            This is the very begining of the
+            <code className={styles.code}> Tomfolio</code>
           </p>
           <div>
             <a
