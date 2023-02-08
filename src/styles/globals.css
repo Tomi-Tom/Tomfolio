@@ -105,3 +105,17 @@ a {
     color-scheme: dark;
   }
 }
+
+.darkSection
+{
+  width: 100%;
+  height: 100%;
+  background: #302b34;
+}
+
+.lightSection
+{
+  width: 100%;
+  height: 100%;
+  background: #3f3944;
+}
