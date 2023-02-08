@@ -14,7 +14,7 @@ body
 }
 .cube
 {
-    --s: var(--size, 100px);
+    --s: var(--sizeCube, 100px);
     position: relative;
     width: var(--s);
     height: var(--s);
