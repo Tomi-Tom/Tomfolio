@@ -14,6 +14,7 @@ body
 }
 .cube
 {
+    --s: var(--size, 10px);
     position: relative;
     width: var(--s);
     height: var(--s);
@@ -43,6 +44,7 @@ body
 }
 .cube div span
 {
+    --i: var(--index, 10px);
     position: absolute;
     top: 0;
     left: 0;
