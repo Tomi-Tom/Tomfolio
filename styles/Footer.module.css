@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #302B34;
+  color: #ede7e2;
+  padding: 3rem 0;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.link {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  color: #ede7e2;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+  fill: #ede7e2;
+}

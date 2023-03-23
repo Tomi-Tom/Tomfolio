@@ -1,0 +1,23 @@
+/* Reset styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a default font size and family */
+html,
+body {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Set default link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
