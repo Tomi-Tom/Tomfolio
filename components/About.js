@@ -5,16 +5,27 @@ export default function About() {
         <section id={"about"} className={styles.section}>
             <div className={styles.container}>
                 <h2 className={styles.heading}>About Me</h2>
+                <br/><br/>
                 <p className={styles.paragraph}>
-                    Hi, I'm Tom Bariteau-Peter, a fullstack developer with a passion for creating elegant solutions to complex problems. With over 5 years of experience in the industry, I've had the opportunity to work on a wide range of projects, from small startups to large corporations.
+                    Hello Everyone,
                 </p>
                 <br/>
                 <p className={styles.paragraph}>
-                    My areas of expertise include React, Node.js, MongoDB, and MySQL. I'm also familiar with Agile development methodologies and have experience working in cross-functional teams. Whether it's building a new application from scratch or maintaining an existing codebase, I'm always up for a challenge.
+                    My name is Tom and I am a 22-year-old web developer who is highly motivated, dedicated, and passionate about my work. I have developed my skills in various programming languages, including C, Python, C++, Haskell, Javascript, Typescript, React, Next, Go, Html, and Css.
+                </p>
+                <p className={styles.paragraph}>
+                    With my experience and expertise, I am confident that I can help businesses and individuals create outstanding web-based solutions. Whether it is developing a complex web application, designing a responsive website, or optimizing user experience, I can handle it all with ease.
                 </p>
                 <br/>
                 <p className={styles.paragraph}>
-                    When I'm not coding, you can usually find me hiking in the mountains or reading a good book. Thanks for stopping by my portfolio website, and feel free to reach out if you have any questions or would like to work together on a project!
+                    As a developer, I understand the importance of staying up-to-date with the latest trends and technologies in the industry. That is why I am always looking for new challenges and opportunities to learn and grow as a professional.
+                </p>
+                <br/>
+                <p className={styles.paragraph}>
+                    If you are looking for a skilled and dedicated web developer who is committed to delivering exceptional results, look no further. I am excited to hear about your project and discuss how I can help you achieve your goals.
+                </p>
+                <p className={styles.paragraph}>
+                    Thank you for considering me.
                 </p>
             </div>
         </section>

@@ -10,8 +10,10 @@
 }
 
 .title {
-  margin-bottom: 40px;
-  color: #ede7e2;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #eb9e2c;
   text-align: center;
 }
 
