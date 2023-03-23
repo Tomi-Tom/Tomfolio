@@ -5,6 +5,7 @@ export default function Projects() {
         <section id="projects" className={styles.projects}>
             <div className={styles.container}>
                 <h2 className={styles.title}>Featured Projects</h2>
+                <br/><br/><br/>
                 <div className={styles.grid}>
                     <div className={styles.card}>
                         <img src="/ChatProject.png" alt="Project 1" />
