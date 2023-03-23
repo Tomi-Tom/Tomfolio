@@ -16,8 +16,8 @@
 }
 
 .container img {
-  width: 3%;
-  height: 3%;
+  width: 3rem;
+  height: 3rem;
   transition: transform 0.3s ease-in-out;
 }
 
