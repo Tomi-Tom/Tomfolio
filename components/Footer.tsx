@@ -1,16 +1,17 @@
 import styles from '../styles/Footer.module.css';
-export default function Footer() {
+
+export default function Footer(): JSX.Element {
     return (
-        <footer id={"footer"} className={styles.footer}>
+        <footer id="footer" className={styles.footer}>
             <div className={styles.container}>
                 <div>
                     <a href="https://github.com/Tomi-Tom" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <img src={"/Github.png"}/>
+                        <img src={"/Github.png"} alt="GitHub" />
                     </a>
                 </div>
                 <div>
                     <a href="https://www.linkedin.com/in/tom-bp/" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <img src={"/Linkedin.png"}/>
+                        <img src={"/Linkedin.png"} alt="LinkedIn" />
                     </a>
                 </div>
             </div>
@@ -21,12 +22,12 @@ export default function Footer() {
             <div className={styles.container}>
                 <div>
                     <a href="https://www.linkedin.com/in/tom-bp/" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <img src={"/Linkedin.png"}/>
+                        <img src={"/Linkedin.png"} alt="LinkedIn" />
                     </a>
                 </div>
                 <div>
                     <a href="https://github.com/Tomi-Tom" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <img src={"/Github.png"}/>
+                        <img src={"/Github.png"} alt="GitHub" />
                     </a>
                 </div>
             </div>

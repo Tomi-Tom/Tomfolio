@@ -1,7 +1,7 @@
 import styles from '../styles/NavBar.module.css';
 import Link from 'next/link';
 
-export default function NavBar() {
+export default function NavBar(): JSX.Element {
     return (
         <nav className={styles.nav}>
             <div className={styles.container}>
