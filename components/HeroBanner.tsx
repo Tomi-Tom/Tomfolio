@@ -1,6 +1,6 @@
 import styles from '../styles/HeroBanner.module.css';
 
-export default function HeroBanner() {
+export default function HeroBanner(): JSX.Element {
     return (
         <section className={styles.hero}>
             <div className={styles.container}>
