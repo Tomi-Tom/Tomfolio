@@ -11,24 +11,45 @@ interface Project {
 const projectsList: Project[] = [
     {
         id: 1,
-        image: "/ChatProject.png",
-        title: "Project 1",
-        description: "Description of Project 1",
-        link: "https://github.com/project1"
+        image: "/AREA.png",
+        title: "AREA",
+        description: "An innovative project that establishes a direct link between action and reaction through various services.",
+        link: "https://area.rezar.fr/"
     },
     {
         id: 2,
-        image: "/ShopProject.png",
-        title: "Project 2",
-        description: "Description of Project 2",
-        link: "https://github.com/project2"
+        image: "/Rustracer.png",
+        title: "Rustracer",
+        description: "A Rust-based Raytracer project delivering advanced rendering capabilities.",
+        link: "https://github.com/Tomi-Tom/Rustracer"
     },
     {
         id: 3,
-        image: "/ManageProject.png",
+        image: "/WIP.png",
         title: "Project 3",
         description: "Description of Project 3",
         link: "https://github.com/project3"
+    },
+    {
+        id: 4,
+        image: "/WIP.png",
+        title: "Project 4",
+        description: "Description of Project 4",
+        link: "https://github.com/project4"
+    },
+    {
+        id: 5,
+        image: "/WIP.png",
+        title: "Project 5",
+        description: "Description of Project 5",
+        link: "https://github.com/project5"
+    },
+    {
+        id: 6,
+        image: "/WIP.png",
+        title: "Project 6",
+        description: "Description of Project 6",
+        link: "https://github.com/project4"
     }
 ];
 
