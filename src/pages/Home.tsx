@@ -1,0 +1,117 @@
+import { ReactElement } from 'react'
+import Layout from '../components/Layout'
+
+export default function Home(): ReactElement {
+  return (
+    <Layout>
+      <div className="flex flex-col items-center justify-center h-full">
+        <h1 className="text-4xl">Welcome to My App</h1>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+        <p className="text-lg">This is the home page</p>
+      </div>
+    </Layout>
+  )
+}
