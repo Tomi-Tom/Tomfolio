@@ -10,7 +10,7 @@ export default function HomePage(): ReactElement {
         <img
           src={transition}
           alt=""
-          className="absolute bottom-0 w-full h-auto object-cover"
+          className="absolute bottom-0 w-auto h-full object-cover"
         />
         <div className="flex flex-col relative z-10 text-white text-center justify-center items-center space-y-4">
           <img
