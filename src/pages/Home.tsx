@@ -18,8 +18,8 @@ export default function HomePage(): ReactElement {
             alt="Tom BP"
             className="w-60 h-60 rounded-full"
           />
-          <h1 className="text-9xl font-bold">TOM BP</h1>
-          <p className="text-4xl">Fullstack Developer/Designer</p>
+          <h1 className="text-8xl sm:text-9xl font-bold">TOM BP</h1>
+          <p className="text-2xl sm:text-4xl">Fullstack Developer/Designer</p>
         </div>
       </div>
       <div className="flex flex-col items-center justify-center h-full min-h-screen relative"></div>
