@@ -1,4 +1,5 @@
-import React, { ReactElement, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import type { ReactElement } from 'react'
 import logo from '../../assets/logo.png'
 
 export default function Navbar(): ReactElement {
@@ -126,7 +127,7 @@ export default function Navbar(): ReactElement {
 
   return (
     <nav
-      className={`bg-background-2 border-gray-200 text-text-2 fixed top-0 left-0 w-full z-50 ${
+      className={`bg-background-2 text-text-2 fixed top-0 left-0 w-full z-50 border-b border-border-1 ${
         visible ? '' : 'transform -translate-y-full'
       } transition-transform duration-300`}
     >
