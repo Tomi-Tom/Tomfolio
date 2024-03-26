@@ -1,11 +1,31 @@
-import { ReactElement } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import transition from '../../assets/transition.png'
 
 export default function HeroBanner(): ReactElement {
+  const [scrollOpacity, setScrollOpacity] = useState(1)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      const maxScroll = 500 // Adjust this value according to your needs
+      const opacity = 1 - scrollPosition / maxScroll
+      setScrollOpacity(opacity < 0 ? 0 : opacity) // Ensure opacity doesn't go below 0
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <>
       <div className="flex flex-col items-center justify-center h-full min-h-screen relative">
-        <div className="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat opacity-50" />
+        <div
+          className="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat"
+          style={{ opacity: scrollOpacity }}
+        />
         <img
           src={transition}
           alt=""
