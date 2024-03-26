@@ -7,7 +7,7 @@ export default function HeroBanner(): ReactElement {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      const maxScroll = 500 // Adjust this value according to your needs
+      const maxScroll = window.innerHeight * 0.9
       const opacity = 1 - scrollPosition / maxScroll
       setScrollOpacity(opacity < 0 ? 0 : opacity) // Ensure opacity doesn't go below 0
     }
