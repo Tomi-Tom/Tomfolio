@@ -76,7 +76,7 @@ export default function SeoulTimerPage(): ReactElement {
             <p className="text-4xl font-light p-2">Time left until departure</p>
             <p className="text-8xl font-extrabold p-8">
               {Math.floor(timeLeft / (1000 * 60 * 60 * 24))} Days |{' '}
-              {Math.floor((timeLeft / (1000 * 60 * 60)) % 24) >= 10 ? '' : '0'}:
+              {Math.floor((timeLeft / (1000 * 60 * 60)) % 24) >= 10 ? '' : '0'}
               {Math.floor((timeLeft / (1000 * 60 * 60)) % 24)}:
               {Math.floor((timeLeft / (1000 * 60)) % 60) >= 10 ? '' : '0'}
               {Math.floor((timeLeft / (1000 * 60)) % 60)}:
