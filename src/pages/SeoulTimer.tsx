@@ -64,7 +64,7 @@ export default function SeoulTimerPage(): ReactElement {
                 {
                   x: Math.random() * 1000,
                   y: Math.random() * 1000,
-                  size: Math.random() * 100,
+                  size: 30 + Math.random() * 50,
                   speed: Math.random() * 10,
                   img: krFlag,
                 },
