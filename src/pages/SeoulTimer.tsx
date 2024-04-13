@@ -13,7 +13,7 @@ type particule = {
 }
 
 export default function SeoulTimerPage(): ReactElement {
-  const departure = new Date('2024-08-23')
+  const departure = new Date('2024-08-22')
   const [timeLeft, setTimeLeft] = useState(
     departure.getTime() - new Date().getTime()
   )
