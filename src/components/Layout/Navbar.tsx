@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { ReactElement } from 'react'
 import logo from '../../assets/logo.png'
+import krFlag from '../../assets/kr-flag.jpg'
 
 export default function Navbar(): ReactElement {
   const [prevScrollPos, setPrevScrollPos] = useState(0)
@@ -132,19 +133,30 @@ export default function Navbar(): ReactElement {
       } transition-transform duration-300`}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
-        <a
-          href="https://www.linkedin.com/in/tom-bp/"
-          className="flex items-center space-x-3"
-        >
-          <img
-            src={logo}
-            alt="logo"
-            className="w-16 h-16 hover:scale-105 transition-transform duration-300"
-          />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap hidden sm:block">
-            Tomfolio
-          </span>
-        </a>
+        <div className="flex items-center space-x-3">
+          <div className="group relative w-16 h-16">
+            <a href="/" className="flex items-center space-x-3">
+              <div className="absolute w-16 h-16 bg-background-2 rounded-xl top-0 left-0 z-0 group-hover:translate-x-3 transition-transform duration-300">
+                <img
+                  src={logo}
+                  alt="logo"
+                  className=" w-16 h-16 hover:scale-105"
+                />
+              </div>
+            </a>
+            <a href={'/seoul'}>
+              <div className=" pt-4 w-12 h-auto bg-background-2 rounded-xl z-0 group-hover:-translate-x-10 group-hover:-rotate-6 transition-transform duration-300">
+                <img src={krFlag} alt="Korea Flag" className="w-12 h-auto" />
+              </div>
+            </a>
+          </div>
+          <a href="/" className="pl-4">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap hidden sm:block">
+              Tomfolio
+            </span>
+          </a>
+        </div>
+
         <div
           className="hidden w-full md:block md:w-auto flex-row"
           id="navbar-default"

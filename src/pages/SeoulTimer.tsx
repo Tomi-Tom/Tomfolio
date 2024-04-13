@@ -2,6 +2,7 @@
 
 import { ReactElement, useEffect, useState } from 'react'
 import Layout from '../components/Layout'
+// @ts-ignore
 import krFlag from '../assets/kr-flag.jpg'
 
 type particule = {
