@@ -11,7 +11,7 @@ const GameGrid: React.FC<GameGridProps> = ({
   cells,
   handleCellClick,
 }) => {
-  const height = window.innerHeight
+  const height = window.innerHeight - 100
 
   function isLeftMouseButtonPressed(event) {
     return event.buttons === 1
