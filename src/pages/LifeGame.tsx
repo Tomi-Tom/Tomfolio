@@ -62,6 +62,14 @@ export default function LifeGamePage(): ReactElement {
               if (x === 0 && y === 0) {
                 continue
               }
+              if (
+                i + x < 0 ||
+                i + x >= border ||
+                j + y < 0 ||
+                j + y >= border
+              ) {
+                continue
+              }
               if (gridcells[i + x] && gridcells[i + x][j + y]) {
                 neighbors++
               }
