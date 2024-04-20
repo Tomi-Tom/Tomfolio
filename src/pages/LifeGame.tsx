@@ -153,9 +153,19 @@ export default function LifeGamePage(): ReactElement {
     setSpeed(newSpeed > 0 ? newSpeed : 0.02)
   }
 
+  const handleSoup = () => {
+    const newCells = []
+    for (let i = 0; i < border; i++) {
+      for (let j = 0; j < border; j++) {
+        newCells.push(Math.random() > 0.5)
+      }
+    }
+    setCells(newCells)
+  }
+
   return (
     <Layout>
-      <div className="flex items-center justify-center h-screen flex-col gap-4 mt-24">
+      <div className="flex items-center justify-center h-screen flex-col gap-4 mb-24 mt-36">
         <div className="flex flex-row gap-4">
           <div className="flex flex-col gap-4">
             <GameGrid
@@ -174,6 +184,7 @@ export default function LifeGamePage(): ReactElement {
               handleDecrease={handleDecrease}
               handleIncreaseSpeed={handleIncreaseSpeed}
               handleDecreaseSpeed={handleDecreaseSpeed}
+              handleSoup={handleSoup}
             />
           </div>
           <Stats generations={generations} population={population} />

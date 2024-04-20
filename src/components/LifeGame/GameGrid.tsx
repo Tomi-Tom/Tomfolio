@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 interface GameGridProps {
   border: number
@@ -11,6 +11,8 @@ const GameGrid: React.FC<GameGridProps> = ({
   cells,
   handleCellClick,
 }) => {
+  const height = window.innerHeight
+
   function isLeftMouseButtonPressed(event) {
     return event.buttons === 1
   }
@@ -29,8 +31,8 @@ const GameGrid: React.FC<GameGridProps> = ({
             key={i}
             className={`${state ? 'bg-gray-300' : 'bg-background-2'}`}
             style={{
-              width: (800 - 1 * border) / border,
-              height: (800 - 1 * border) / border,
+              width: (height - 1 * border) / border,
+              height: (height - 1 * border) / border,
               marginRight: 1,
               marginBottom: 1,
             }}
