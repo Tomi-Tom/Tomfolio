@@ -17,17 +17,17 @@ const Stats: React.FC<StatsProps> = ({ generations, population }) => {
           'justify-center items-center w-full bg-background-2 rounded-t-2xl p-4 pb-6'
         }
       >
-        <h1 className={'text-2xl text-center font-bold text-text-2 uppercase'}>
+        <h1 className={'text-4xl text-center font-bold text-text-2 uppercase'}>
           Stats
         </h1>
       </div>
       <div className={'flex flex-row gap-4'}>
-        <p className={'text-text-2'}>Generations:</p>
-        <p className={'text-text-2'}>{generations}</p>
+        <p className={'text-text-2 text-xl font-bold'}>Generations:</p>
+        <p className={'text-text-2 text-xl'}>{generations}</p>
       </div>
       <div className={'flex flex-row gap-4'}>
-        <p className={'text-text-2'}>Population:</p>
-        <p className={'text-text-2'}>{population}</p>
+        <p className={'text-text-2 text-xl font-bold'}>Population:</p>
+        <p className={'text-text-2 text-xl'}>{population}</p>
       </div>
     </div>
   )
