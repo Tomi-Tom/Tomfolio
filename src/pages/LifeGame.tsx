@@ -155,7 +155,7 @@ export default function LifeGamePage(): ReactElement {
 
   return (
     <Layout>
-      <div className="flex items-center justify-center h-screen flex-col gap-4 mt-8">
+      <div className="flex items-center justify-center h-screen flex-col gap-4 mt-24">
         <div className="flex flex-row gap-4">
           <div className="flex flex-col gap-4">
             <GameGrid

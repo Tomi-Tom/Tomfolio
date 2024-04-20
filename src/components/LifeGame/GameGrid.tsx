@@ -29,8 +29,8 @@ const GameGrid: React.FC<GameGridProps> = ({
             key={i}
             className={`${state ? 'bg-gray-300' : 'bg-background-2'}`}
             style={{
-              width: (1100 - 1 * border) / border,
-              height: (1100 - 1 * border) / border,
+              width: (800 - 1 * border) / border,
+              height: (800 - 1 * border) / border,
               marginRight: 1,
               marginBottom: 1,
             }}
