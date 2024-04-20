@@ -21,6 +21,7 @@ const Controls: React.FC<ControlsProps> = ({
   handleDecrease,
   handleIncreaseSpeed,
   handleDecreaseSpeed,
+  handleSoup,
 }) => {
   return (
     <div className="flex flex-col gap-4">
@@ -68,6 +69,12 @@ const Controls: React.FC<ControlsProps> = ({
           onMouseDown={handleIncreaseSpeed}
         >
           Speed Up
+        </button>
+        <button
+          className={'bg-background-2 text-white px-4 py-2 rounded'}
+          onClick={handleSoup}
+        >
+          Soup
         </button>
       </div>
     </div>
