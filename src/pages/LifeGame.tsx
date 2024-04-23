@@ -128,7 +128,7 @@ export default function LifeGamePage(): ReactElement {
   }
 
   const handleDecrease = () => {
-    setBorder(border - 1)
+    setBorder(border - 10)
 
     const newCells = []
     for (let i = 0; i < border - 1; i++) {
@@ -140,7 +140,7 @@ export default function LifeGamePage(): ReactElement {
   }
 
   const handleIncrease = () => {
-    setBorder(border + 1)
+    setBorder(border + 10)
 
     const newCells = []
     for (let i = 0; i < border + 1; i++) {
