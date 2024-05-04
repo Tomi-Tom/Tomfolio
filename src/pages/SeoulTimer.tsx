@@ -2,7 +2,6 @@
 
 import { ReactElement, useEffect, useState } from 'react'
 import Layout from '../components/Layout'
-// @ts-ignore
 import krFlag from '../assets/kr-flag.jpg'
 
 type particule = {
@@ -58,7 +57,7 @@ export default function SeoulTimerPage(): ReactElement {
       <div className="relative min-w-screen min-h-screen flex items-center justify-center pb-64">
         <div className="flex w-full h-full px-56 pb-24 pt-36 z-10 items-center justify-center">
           <div
-            className="w-full h-full justify-center items-center text-center bg-black rounded-2xl p-8 bg-opacity-15 shadow-2xl hover:translate-y-8 transform transition duration-500 cursor-pointer active:scale-105"
+            className="select-none w-full h-full justify-center items-center text-center bg-black rounded-2xl p-8 bg-opacity-15 shadow-2xl hover:translate-y-8 transform transition duration-500 cursor-pointer active:scale-105"
             onClick={() => {
               setParticles([
                 ...particles,
