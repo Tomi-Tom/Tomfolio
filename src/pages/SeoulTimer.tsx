@@ -55,9 +55,9 @@ export default function SeoulTimerPage(): ReactElement {
         />
       </div>
       <div className="relative min-w-screen min-h-screen flex items-center justify-center pb-64">
-        <div className="flex w-full h-full px-56 pb-24 pt-36 z-10 items-center justify-center">
+        <div className="flex size-full px-48 pb-24 pt-36 z-10 items-center justify-center max-lg:px-8">
           <div
-            className="select-none w-full h-full justify-center items-center text-center bg-black rounded-2xl p-8 bg-opacity-15 shadow-2xl hover:translate-y-8 transform transition duration-500 cursor-pointer active:scale-105"
+            className="select-none size-full justify-center items-center text-center bg-black rounded-2xl p-8 bg-opacity-15 shadow-2xl hover:translate-y-8 transform transition duration-500 cursor-pointer active:scale-105"
             onClick={() => {
               setParticles([
                 ...particles,
@@ -73,15 +73,24 @@ export default function SeoulTimerPage(): ReactElement {
           >
             <h1 className="text-6xl font-bold">Seoul Timer</h1>
             <p className="text-4xl font-light p-2">Time left until departure</p>
-            <p className="text-8xl font-extrabold p-8">
-              {Math.floor(timeLeft / (1000 * 60 * 60 * 24))} Days |{' '}
-              {Math.floor((timeLeft / (1000 * 60 * 60)) % 24) >= 10 ? '' : '0'}
-              {Math.floor((timeLeft / (1000 * 60 * 60)) % 24)}:
-              {Math.floor((timeLeft / (1000 * 60)) % 60) >= 10 ? '' : '0'}
-              {Math.floor((timeLeft / (1000 * 60)) % 60)}:
-              {Math.floor((timeLeft / 1000) % 60) >= 10 ? '' : '0'}
-              {Math.floor((timeLeft / 1000) % 60)}
-            </p>
+            <div className="flex flex-row max-lg:flex-col">
+              <p className="text-8xl font-extrabold p-8 max-lg:text-5xl">
+                {Math.floor(timeLeft / (1000 * 60 * 60 * 24))} Days
+              </p>
+              <p className="text-8xl font-extrabold p-8 max-lg:hidden">
+                {' |'}
+              </p>
+              <p className="text-8xl font-extrabold p-8 max-lg:text-5xl">
+                {Math.floor((timeLeft / (1000 * 60 * 60)) % 24) >= 10
+                  ? ''
+                  : '0'}
+                {Math.floor((timeLeft / (1000 * 60 * 60)) % 24)}:
+                {Math.floor((timeLeft / (1000 * 60)) % 60) >= 10 ? '' : '0'}
+                {Math.floor((timeLeft / (1000 * 60)) % 60)}:
+                {Math.floor((timeLeft / 1000) % 60) >= 10 ? '' : '0'}
+                {Math.floor((timeLeft / 1000) % 60)}
+              </p>
+            </div>
           </div>
         </div>
       </div>
