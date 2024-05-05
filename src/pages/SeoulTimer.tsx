@@ -57,7 +57,7 @@ export default function SeoulTimerPage(): ReactElement {
       <div className="min-w-screen relative flex min-h-screen items-center justify-center pb-64">
         <div className="z-10 flex size-full items-center justify-center px-48 pb-24 pt-36 max-lg:px-8">
           <div
-            className="size-full transform cursor-pointer select-none items-center justify-center rounded-2xl bg-black bg-opacity-15 p-8 text-center shadow-2xl transition duration-500 hover:translate-y-8 active:scale-105"
+            className="size-full transform cursor-pointer select-none items-center justify-center rounded-2xl  bg-black bg-opacity-15 p-8 text-center text-center shadow-2xl transition duration-500 hover:translate-y-8 active:scale-105"
             onClick={() => {
               setParticles([
                 ...particles,
@@ -71,16 +71,21 @@ export default function SeoulTimerPage(): ReactElement {
               ])
             }}
           >
+            <img
+              src={krFlag}
+              alt="Korea Flag"
+              className="sm-hidden h-full w-full rounded-2xl object-cover pb-4 shadow-2xl sm:hidden"
+            />
             <h1 className="text-6xl font-bold">Seoul Timer</h1>
             <p className="p-2 text-4xl font-light">Time left until departure</p>
-            <div className="flex flex-row max-lg:flex-col">
-              <p className="p-8 text-8xl font-extrabold max-lg:text-5xl">
+            <div className="flex w-full flex-row items-center justify-center">
+              <p className="px-8 text-8xl font-extrabold max-lg:text-5xl">
                 {Math.floor(timeLeft / (1000 * 60 * 60 * 24))} Days
               </p>
-              <p className="p-8 text-8xl font-extrabold max-lg:hidden">
+              <p className="px-8 text-8xl font-extrabold max-lg:hidden">
                 {' |'}
               </p>
-              <p className="p-8 text-8xl font-extrabold max-lg:text-5xl">
+              <p className="px-8 text-8xl font-extrabold max-lg:text-5xl">
                 {Math.floor((timeLeft / (1000 * 60 * 60)) % 24) >= 10
                   ? ''
                   : '0'}
