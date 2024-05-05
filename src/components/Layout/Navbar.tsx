@@ -33,7 +33,7 @@ export default function Navbar(): ReactElement {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="h-6 w-6"
         >
           <path
             strokeLinecap="round"
@@ -53,7 +53,7 @@ export default function Navbar(): ReactElement {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="h-6 w-6"
         >
           <path
             strokeLinecap="round"
@@ -74,7 +74,7 @@ export default function Navbar(): ReactElement {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="h-6 w-6"
         >
           <path
             strokeLinecap="round"
@@ -94,7 +94,7 @@ export default function Navbar(): ReactElement {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="h-6 w-6"
         >
           <path
             strokeLinecap="round"
@@ -114,7 +114,7 @@ export default function Navbar(): ReactElement {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="h-6 w-6"
         >
           <path
             strokeLinecap="round"
@@ -128,45 +128,45 @@ export default function Navbar(): ReactElement {
 
   return (
     <nav
-      className={`bg-background-2 text-text-2 fixed top-0 left-0 w-full z-50 border-b border-border-1 ${
-        visible ? '' : 'transform -translate-y-full'
+      className={`fixed left-0 top-0 z-50 w-full border-b border-border-1 bg-background-2 text-text-2 ${
+        visible ? '' : '-translate-y-full transform'
       } transition-transform duration-300`}
     >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+      <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-2">
         <div className="flex items-center space-x-3">
-          <div className="group relative w-16 h-16">
+          <div className="group relative h-16 w-16">
             <a href="/" className="flex items-center space-x-3">
-              <div className="absolute w-16 h-16 bg-background-2 rounded-xl top-0 left-0 z-0 group-hover:translate-x-3 transition-transform duration-300">
+              <div className="absolute left-0 top-0 z-0 h-16 w-16 rounded-xl bg-background-2 transition-transform duration-300 group-hover:translate-x-3">
                 <img
                   src={logo}
                   alt="logo"
-                  className=" w-16 h-16 hover:scale-105"
+                  className=" h-16 w-16 hover:scale-105"
                 />
               </div>
             </a>
             <a href={'/seoul'}>
-              <div className=" pt-4 w-12 h-auto bg-background-2 rounded-xl z-0 group-hover:-translate-x-10 group-hover:-rotate-6 transition-transform duration-300">
-                <img src={krFlag} alt="Korea Flag" className="w-12 h-auto" />
+              <div className=" z-0 h-auto w-12 rounded-xl bg-background-2 pt-4 transition-transform duration-300 group-hover:-translate-x-10 group-hover:-rotate-6">
+                <img src={krFlag} alt="Korea Flag" className="h-auto w-12" />
               </div>
             </a>
           </div>
           <a href="/" className="pl-4">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap hidden sm:block">
+            <span className="hidden self-center whitespace-nowrap text-2xl font-semibold sm:block">
               Tomfolio
             </span>
           </a>
         </div>
 
         <div
-          className="hidden w-full md:block md:w-auto flex-row"
+          className="hidden w-full flex-row md:block md:w-auto"
           id="navbar-default"
         >
-          <ul className="font-medium flex p-4 md:p-0 border-gray-100 rounded-lg flex-row space-x-8 mt-0 border-0">
+          <ul className="mt-0 flex flex-row space-x-8 rounded-lg border-0 border-gray-100 p-4 font-medium md:p-0">
             {links.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className="block rounded hover:text-interactive-3 p-0 hover:translate-y-1 transition-transform duration-300 hover:animate-pulse"
+                  className="block rounded p-0 transition-transform duration-300 hover:translate-y-1 hover:animate-pulse hover:text-interactive-3"
                 >
                   {link.name}
                 </a>
@@ -174,14 +174,14 @@ export default function Navbar(): ReactElement {
             ))}
           </ul>
         </div>
-        <div className="block md:hidden relative">
+        <div className="relative block md:hidden">
           <button
-            className="flex items-center px-3 py-2 rounded text-text-2"
+            className="flex items-center rounded px-3 py-2 text-text-2"
             id="navbar-toggle"
             onClick={(): void => setIsMenuOpen(!isMenuOpen)}
           >
             <svg
-              className="w-12 h-12 fill-text-2 hover:fill-interactive-3 transition-colors duration-300"
+              className="h-12 w-12 fill-text-2 transition-colors duration-300 hover:fill-interactive-3"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
@@ -192,18 +192,18 @@ export default function Navbar(): ReactElement {
           <div
             className={`${
               isMenuOpen ? 'opacity-100' : 'opacity-0'
-            } absolute top-16 right-0 w-auto bg-background-1 rounded-lg transition-all duration-300`}
+            } absolute right-0 top-16 w-auto rounded-lg bg-background-1 transition-all duration-300`}
           >
             {isMenuOpen && (
-              <ul className="flex flex-col p-4 space-y-4">
+              <ul className="flex flex-col space-y-4 p-4">
                 {links.map((link) => (
                   <li key={link.name}>
-                    <div className="text-lg flex flex-row items-center hover:text-interactive-3">
+                    <div className="flex flex-row items-center text-lg hover:text-interactive-3">
                       <a
                         href={link.href}
-                        className="flex flex-row rounded hover:text-interactive- hover:translate-y-1 transition-transform duration-300 hover:animate-pulse p-1"
+                        className="hover:text-interactive- flex flex-row rounded p-1 transition-transform duration-300 hover:translate-y-1 hover:animate-pulse"
                       >
-                        <div className="fill-interactive-3 mr-2">
+                        <div className="mr-2 fill-interactive-3">
                           {link.icon}
                         </div>
                         {link.name}

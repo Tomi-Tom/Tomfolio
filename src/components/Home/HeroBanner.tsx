@@ -21,7 +21,7 @@ export default function HeroBanner(): ReactElement {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-full min-h-screen relative">
+      <div className="relative flex h-full min-h-screen flex-col items-center justify-center">
         <div
           className="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat"
           style={{ opacity: scrollOpacity }}
@@ -29,15 +29,15 @@ export default function HeroBanner(): ReactElement {
         <img
           src={transition}
           alt=""
-          className="absolute bottom-0 w-auto h-full object-cover"
+          className="absolute bottom-0 h-full w-auto object-cover"
         />
-        <div className="flex flex-col relative z-10 text-white text-center justify-center items-center space-y-4">
+        <div className="relative z-10 flex flex-col items-center justify-center space-y-4 text-center text-white">
           <img
             src="https://media.licdn.com/dms/image/D4E03AQHV-wzd1vvQSw/profile-displayphoto-shrink_800_800/0/1710503993631?e=1717027200&v=beta&t=VpbDhWqFcB6Al6uUYqvDNmE68Z6G0X5DcOktFW21GZE"
             alt="Tom BP"
-            className="w-60 h-60 rounded-full"
+            className="h-60 w-60 rounded-full"
           />
-          <h1 className="text-8xl sm:text-9xl font-bold">TOM BP</h1>
+          <h1 className="text-8xl font-bold sm:text-9xl">TOM BP</h1>
           <p className="text-2xl sm:text-4xl">Fullstack Developer/Designer</p>
         </div>
       </div>

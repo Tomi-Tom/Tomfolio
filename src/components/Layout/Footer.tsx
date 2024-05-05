@@ -19,23 +19,14 @@ export default function Footer(): ReactElement {
     },
   ]
   return (
-    <div className="bottom-0 left-0 h-16 bg-background-2 text-white flex items-center justify-center border-t border-border-1">
-      <div className="flex flex-row  justify-between items-center px-20 space-x-96">
-        <a href="/" className="flex items-center">
-          <img src={logo} alt="logo" className=" w-16 h-16 hover:scale-105" />
-        </a>
-        <p className={'px-60'}>© 2021 Tomi Tom</p>
-        <div className="flex flex-row space-x-4">
-          {links.map((link) => (
-            <a
-              href={link.href}
-              className="hover:text-interactive-3"
-              key={link.alt}
-            >
-              <img src={link.icon} alt={link.alt} className="w-8 h-8" />
-            </a>
-          ))}
-        </div>
+    <div className="bottom-0 left-0 flex h-16 flex-row items-center justify-between border-t border-border-1 bg-background-2 text-white">
+      <img src={logo} alt="Tomfolio" className="ml-4 h-10 w-10" />
+      <div className="mr-4 flex flex-row items-center justify-between space-x-4">
+        {links.map((link) => (
+          <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+            <img src={link.icon} alt={link.alt} className="h-6 w-6" />
+          </a>
+        ))}
       </div>
     </div>
   )
