@@ -51,13 +51,13 @@ export default function SeoulTimerPage(): ReactElement {
         <img
           src={krFlag}
           alt="Korea Flag"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover max-lg:hidden"
         />
       </div>
       <div className="min-w-screen relative flex min-h-screen items-center justify-center pb-64">
         <div className="z-10 flex size-full items-center justify-center px-48 pb-24 pt-36 max-lg:px-8">
           <div
-            className="size-full transform cursor-pointer select-none items-center justify-center rounded-2xl  bg-black bg-opacity-15 p-8 text-center text-center shadow-2xl transition duration-500 hover:translate-y-8 active:scale-105"
+            className="size-full transform cursor-pointer select-none items-center justify-center rounded-2xl  bg-black bg-opacity-15 p-8 text-center shadow-2xl transition duration-500 hover:translate-y-8 active:scale-105"
             onClick={() => {
               setParticles([
                 ...particles,
