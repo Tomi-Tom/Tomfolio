@@ -39,7 +39,7 @@ export default function NotFound(): ReactElement {
   }, [])
 
   return (
-    <div className="bg-background-1 text-text-2 min-h-screen min-w-screen justify-center items-center flex flex-col relative">
+    <div className="min-w-screen relative flex min-h-screen flex-col items-center justify-center bg-background-1 text-text-2">
       {meteors.map((meteor, index) => (
         <div
           key={index}
@@ -54,7 +54,7 @@ export default function NotFound(): ReactElement {
           }}
         />
       ))}
-      <div className="flex flex-row space-x-4 max-w-screen-xl mx-auto justify-between">
+      <div className="mx-auto flex max-w-screen-xl flex-row justify-between space-x-4">
         <h1 className="text-9xl font-extrabold">4</h1>
         <h1
           className={`text-9xl font-extrabold ${meteors.length == 42 ? 'animate-pulse cursor-pointer text-interactive-3' : ''}`}
@@ -65,16 +65,16 @@ export default function NotFound(): ReactElement {
         <h1 className="text-9xl font-extrabold">4</h1>
       </div>
       <h2 className="text-4xl font-bold">Page Not Found</h2>
-      <div className="space-x-4 flex flex-row items-center justify-center text-white rounded-md mt-12">
+      <div className="mt-12 flex flex-row items-center justify-center space-x-4 rounded-md text-white">
         <button
-          className="bg-interactive-1 px-4 py-2 rounded-md text-text-2 hover:bg-interactive-2 cursor-pointer hover:translate-y-1.5 transform transition"
+          className="transform cursor-pointer rounded-md bg-interactive-1 px-4 py-2 text-text-2 transition hover:translate-y-1.5 hover:bg-interactive-2"
           onClick={() => window.location.replace('/')}
         >
           Go Home
         </button>
         <h1 className="text-2xl">Or</h1>
         <button
-          className="bg-interactive-1 px-4 py-2 rounded-md text-text-2 hover:bg-interactive-2 cursor-pointer hover:translate-y-1.5 transform transition"
+          className="transform cursor-pointer rounded-md bg-interactive-1 px-4 py-2 text-text-2 transition hover:translate-y-1.5 hover:bg-interactive-2"
           onClick={
             meteors.length == 42
               ? () => {
