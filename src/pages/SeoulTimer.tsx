@@ -79,13 +79,13 @@ export default function SeoulTimerPage(): ReactElement {
             <h1 className="text-6xl font-bold">Seoul Timer</h1>
             <p className="p-2 text-4xl font-light">Time left until departure</p>
             <div className="flex w-full flex-row items-center justify-center py-8 max-lg:flex-col">
-              <p className="px-8 text-8xl font-extrabold max-lg:text-5xl">
+              <p className="px-8 text-8xl font-extrabold max-lg:text-4xl">
                 {Math.floor(timeLeft / (1000 * 60 * 60 * 24))} Days
               </p>
               <p className="px-8 text-8xl font-extrabold max-lg:hidden">
                 {' |'}
               </p>
-              <p className="px-8 text-8xl font-extrabold max-lg:text-5xl">
+              <p className="px-8 text-8xl font-extrabold max-lg:text-4xl">
                 {Math.floor((timeLeft / (1000 * 60 * 60)) % 24) >= 10
                   ? ''
                   : '0'}
