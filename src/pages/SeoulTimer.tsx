@@ -47,17 +47,17 @@ export default function SeoulTimerPage(): ReactElement {
 
   return (
     <Layout>
-      <div className="absolute top-0 left-0 w-full h-full opacity-5">
+      <div className="absolute left-0 top-0 h-full w-full opacity-5">
         <img
           src={krFlag}
           alt="Korea Flag"
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
         />
       </div>
-      <div className="relative min-w-screen min-h-screen flex items-center justify-center pb-64">
-        <div className="flex size-full px-48 pb-24 pt-36 z-10 items-center justify-center max-lg:px-8">
+      <div className="min-w-screen relative flex min-h-screen items-center justify-center pb-64">
+        <div className="z-10 flex size-full items-center justify-center px-48 pb-24 pt-36 max-lg:px-8">
           <div
-            className="select-none size-full justify-center items-center text-center bg-black rounded-2xl p-8 bg-opacity-15 shadow-2xl hover:translate-y-8 transform transition duration-500 cursor-pointer active:scale-105"
+            className="size-full transform cursor-pointer select-none items-center justify-center rounded-2xl bg-black bg-opacity-15 p-8 text-center shadow-2xl transition duration-500 hover:translate-y-8 active:scale-105"
             onClick={() => {
               setParticles([
                 ...particles,
@@ -72,15 +72,15 @@ export default function SeoulTimerPage(): ReactElement {
             }}
           >
             <h1 className="text-6xl font-bold">Seoul Timer</h1>
-            <p className="text-4xl font-light p-2">Time left until departure</p>
+            <p className="p-2 text-4xl font-light">Time left until departure</p>
             <div className="flex flex-row max-lg:flex-col">
-              <p className="text-8xl font-extrabold p-8 max-lg:text-5xl">
+              <p className="p-8 text-8xl font-extrabold max-lg:text-5xl">
                 {Math.floor(timeLeft / (1000 * 60 * 60 * 24))} Days
               </p>
-              <p className="text-8xl font-extrabold p-8 max-lg:hidden">
+              <p className="p-8 text-8xl font-extrabold max-lg:hidden">
                 {' |'}
               </p>
-              <p className="text-8xl font-extrabold p-8 max-lg:text-5xl">
+              <p className="p-8 text-8xl font-extrabold max-lg:text-5xl">
                 {Math.floor((timeLeft / (1000 * 60 * 60)) % 24) >= 10
                   ? ''
                   : '0'}
@@ -94,7 +94,7 @@ export default function SeoulTimerPage(): ReactElement {
           </div>
         </div>
       </div>
-      <div className="absolute top-0 left-0 w-full h-full">
+      <div className="absolute left-0 top-0 h-full w-full">
         {particles.map((particle, index) => (
           <img
             key={index}

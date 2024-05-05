@@ -6,7 +6,7 @@ export default function CVPage(): ReactElement {
   return (
     <Layout>
       <div className="relative w-full">
-        <div className="flex w-full h-auto px-56 pb-24 pt-36  z-10">
+        <div className="z-10 flex h-auto w-full px-56 pb-24  pt-36">
           <img src={CV} alt="CV front" />
         </div>
       </div>
