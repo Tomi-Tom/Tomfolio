@@ -25,57 +25,65 @@ const Controls: React.FC<ControlsProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-4">
-      <div className={'flex flex-row gap-4'}>
-        <button
-          className={'rounded bg-background-2 px-4 py-2 text-white'}
-          onClick={handleNextStep}
-        >
-          Next Step
-        </button>
-        <button
-          className={'rounded bg-background-2 px-4 py-2 text-white'}
-          onClick={handleDecrease}
-        >
-          -
-        </button>
-        <button className={'text-text-2'}>{border}</button>
-        <button
-          className={'rounded bg-background-2 px-4 py-2 text-white'}
-          onClick={handleIncrease}
-        >
-          +
-        </button>
-        <button
-          className={'rounded bg-background-2 px-4 py-2 text-white'}
-          onClick={handlePlay}
-        >
-          {playing ? 'Pause' : 'Play'}
-        </button>
-        <button
-          className={'rounded bg-background-2 px-4 py-2 text-white'}
-          onClick={handleReset}
-        >
-          Reset
-        </button>
-        <button
-          className={'rounded bg-background-2 px-4 py-2 text-white'}
-          onMouseDown={handleDecreaseSpeed}
-        >
-          Speed Down
-        </button>
-        <button className={'text-text-2'}>{speed}</button>
-        <button
-          className={'rounded bg-background-2 px-4 py-2 text-white'}
-          onMouseDown={handleIncreaseSpeed}
-        >
-          Speed Up
-        </button>
-        <button
-          className={'rounded bg-background-2 px-4 py-2 text-white'}
-          onClick={handleSoup}
-        >
-          Soup
-        </button>
+      <div
+        className={'flex flex-row gap-4 max-lg:flex-col max-lg:items-center'}
+      >
+        <div className={'flex flex-row gap-4 '}>
+          <button
+            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            onClick={handleNextStep}
+          >
+            Next Step
+          </button>
+          <button
+            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            onClick={handleDecrease}
+          >
+            -
+          </button>
+          <button className={'text-text-2'}>{border}</button>
+          <button
+            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            onClick={handleIncrease}
+          >
+            +
+          </button>
+        </div>
+        <div className={'flex flex-row gap-4'}>
+          <button
+            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            onClick={handlePlay}
+          >
+            {playing ? 'Pause' : 'Play'}
+          </button>
+          <button
+            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            onClick={handleReset}
+          >
+            Reset
+          </button>
+          <button
+            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            onClick={handleSoup}
+          >
+            Soup
+          </button>
+        </div>
+        <div className={'flex flex-row gap-4'}>
+          <button
+            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            onMouseDown={handleDecreaseSpeed}
+          >
+            Speed Down
+          </button>
+          <button className={'text-text-2'}>{speed}</button>
+          <button
+            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            onMouseDown={handleIncreaseSpeed}
+          >
+            Speed Up
+          </button>
+        </div>
       </div>
     </div>
   )
