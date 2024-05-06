@@ -82,7 +82,10 @@ export default function SeoulTimerPage(): ReactElement {
               className="sm-hidden h-full w-full rounded-2xl object-cover pb-4 shadow-2xl sm:hidden"
             />
             <h1 className="text-6xl font-bold">Seoul Timer</h1>
-            <p className="p-2 text-4xl font-light">Time left until departure</p>
+            <p className="p-2 text-4xl font-light">
+              Time left until departure (For the real ones, you know who you
+              are)
+            </p>
             <div className="flex w-full flex-row items-center justify-center py-8 max-lg:flex-col">
               <p className="px-8 text-8xl font-extrabold max-lg:text-4xl">
                 {Math.floor(timeLeft / (1000 * 60 * 60 * 24))} Days
@@ -126,7 +129,7 @@ export default function SeoulTimerPage(): ReactElement {
             />
             <h1 className="text-4xl font-bold">Seoul Timer</h1>
             <p className="p-2 text-2xl font-light">
-              Time left until departure for the first squad
+              Time left until departure for the first squad Bouuuuuuuuuuuuuuh
             </p>
             <div className="flex w-full flex-row items-center justify-center py-8 max-lg:flex-col">
               <p className="px-8 text-6xl font-extrabold max-lg:text-4xl">
