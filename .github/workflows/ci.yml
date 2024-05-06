@@ -35,7 +35,7 @@ jobs:
           node-version: '18.x'
           cache: 'npm'
       - run: npm install
-      - run: npm run lint
+      - run: eslint .
 
   Prettier:
     runs-on: ubuntu-latest
@@ -47,4 +47,4 @@ jobs:
           node-version: '18.x'
           cache: 'npm'
       - run: npm install
-      - run: npm run format
+      - run: prettier --check .
