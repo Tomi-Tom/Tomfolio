@@ -5,8 +5,8 @@ import CV from '../assets/CV.png'
 export default function CVPage(): ReactElement {
   return (
     <Layout>
-      <div className="relative w-full">
-        <div className="z-10 flex h-auto w-full px-56 pb-24  pt-36">
+      <div className="relative flex h-full w-full flex-col items-center justify-center">
+        <div className="z-10 flex h-auto w-full pt-20">
           <img src={CV} alt="CV front" />
         </div>
       </div>
