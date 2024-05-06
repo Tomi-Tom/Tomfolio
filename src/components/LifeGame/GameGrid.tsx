@@ -19,7 +19,10 @@ const GameGrid: React.FC<GameGridProps> = ({
       gridcells[i].push(cells[i * border + j])
     }
   }
-  const canvasWidth = window.innerHeight - 100
+  const canvasWidth =
+    window.innerHeight < window.innerWidth
+      ? window.innerHeight - 50
+      : window.innerWidth - 50
   const cellSize = canvasWidth / border
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const GameGrid: React.FC<GameGridProps> = ({
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <>
       <canvas
         ref={canvasRef}
         width={canvasWidth}
@@ -67,7 +70,7 @@ const GameGrid: React.FC<GameGridProps> = ({
         onClick={handleCanvasClick}
         style={{ border: '2px solid' }}
       />
-    </div>
+    </>
   )
 }
 
