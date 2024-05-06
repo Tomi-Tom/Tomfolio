@@ -9,7 +9,7 @@ const Stats: React.FC<StatsProps> = ({ generations, population }) => {
   return (
     <div
       className={
-        'flex w-96 flex-col gap-4 rounded-2xl border border-background-2'
+        'flex w-full flex-col gap-4 rounded-2xl border border-background-2'
       }
     >
       <div
@@ -21,13 +21,15 @@ const Stats: React.FC<StatsProps> = ({ generations, population }) => {
           Stats
         </h1>
       </div>
-      <div className={'flex flex-row gap-4'}>
-        <p className={'text-xl font-bold text-text-2'}>Generations:</p>
-        <p className={'text-xl text-text-2'}>{generations}</p>
-      </div>
-      <div className={'flex flex-row gap-4'}>
-        <p className={'text-xl font-bold text-text-2'}>Population:</p>
-        <p className={'text-xl text-text-2'}>{population}</p>
+      <div className={'flex flex-col gap-4 p-4'}>
+        <div className={'flex flex-row gap-4'}>
+          <p className={'text-xl font-bold text-text-2'}>Generations:</p>
+          <p className={'text-xl text-text-2'}>{generations}</p>
+        </div>
+        <div className={'flex flex-row gap-4'}>
+          <p className={'text-xl font-bold text-text-2'}>Population:</p>
+          <p className={'text-xl text-text-2'}>{population}</p>
+        </div>
       </div>
     </div>
   )
