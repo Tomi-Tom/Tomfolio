@@ -106,7 +106,7 @@ const Card = ({ title, description, image, link, github }) => {
               <button
                 className="dui-button dui-button-primary border-primary rounded-xl bg-gray-50 px-2 py-1 text-background-2 hover:bg-interactive-1 hover:text-gray-50 hover:underline"
                 onClick={(): void => {
-                  window.location.href = link
+                  window.open(link)
                 }}
               >
                 Visit
@@ -119,7 +119,7 @@ const Card = ({ title, description, image, link, github }) => {
             <button
               className="dui-button dui-button-primary border-primary group-hover:bg-primary rounded-xl bg-gray-50 px-2 py-1 text-background-2 hover:bg-interactive-1 hover:text-gray-50"
               onClick={(): void => {
-                window.location.href = github
+                window.open(github)
               }}
             >
               Github
