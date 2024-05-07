@@ -77,8 +77,8 @@ import React from 'react'
 
 const Card = ({ title, description, image, link, github }) => {
   return (
-    <div className="group h-56 min-w-64">
-      <div className="size-full rounded-xl border border-border-1 bg-gray-500 text-center transition-all duration-300 group-hover:-translate-y-5 group-hover:scale-110 group-hover:shadow-lg">
+    <div className="group relative h-56 min-w-64">
+      <div className="size-full rounded-xl border border-border-1 bg-interactive-1 transition-all duration-300 group-hover:-translate-y-5 group-hover:scale-110 group-hover:bg-interactive-2 group-hover:shadow-lg">
         <div
           className="relative h-3/5 w-full cursor-pointer overflow-hidden rounded-t-xl bg-background-1"
           onClick={(): void => {
@@ -97,7 +97,7 @@ const Card = ({ title, description, image, link, github }) => {
             {description}
           </p>
         </div>
-        <div className="flex justify-center gap-4 rounded-b-xl p-2 opacity-0 transition-all duration-300 group-hover:-translate-y-11 group-hover:opacity-100">
+        <div className="absolute bottom-0 left-1/4 flex justify-center gap-4 rounded-b-xl p-2 opacity-0 transition-all duration-300 group-hover:-translate-y-2 group-hover:opacity-100">
           {link ? (
             <button
               className="dui-button dui-button-primary border-primary rounded-xl border bg-gray-50 px-2 py-1 text-background-2 hover:bg-interactive-1 hover:text-gray-50 hover:underline"
