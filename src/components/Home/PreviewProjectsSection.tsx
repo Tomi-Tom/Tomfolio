@@ -69,17 +69,11 @@ export default function PresentationSection(): ReactElement {
         </p>
         <div
           className={
-            'grid justify-between gap-8 max-lg:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'
+            'grid justify-between gap-16 max-lg:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'
           }
         >
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className="min-h-56 min-w-64 items-center justify-center rounded-xl border border-border-1 bg-background-1 text-center"
-            >
-              <p>Project : {project.title}</p>
-              <img src={project.image} alt={project.title} />
-            </div>
+            <Card key={index} {...project} />
           ))}
         </div>
         <button
@@ -92,6 +86,22 @@ export default function PresentationSection(): ReactElement {
         >
           See More..
         </button>
+      </div>
+    </div>
+  )
+}
+
+const Card = ({ title, description, image, link, github }) => {
+  return (
+    <div className="group h-56 min-w-64">
+      <div className="size-full rounded-xl border border-border-1 bg-gray-500 text-center transition-all duration-300 group-hover:-translate-y-5 group-hover:scale-110 group-hover:shadow-lg">
+        <div className="relative h-2/3 w-full overflow-hidden rounded-t-xl bg-gray-50">
+          <img src={image} alt={title} className="h-full w-full object-cover" />
+        </div>
+        <div className="p-4">
+          <h2 className="text-xl font-bold">{title}</h2>
+          <p className="text-sm">{description}</p>
+        </div>
       </div>
     </div>
   )
