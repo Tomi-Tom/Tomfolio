@@ -33,32 +33,12 @@ export default function PresentationSection(): ReactElement {
       github: 'https://github.com/Tomi-Tom/Dante-Star',
     },
     {
-      title: 'Project 5',
-      description: 'This is a project I worked on',
-      image: 'https://via.placeholder.com/150',
-      link: 'https://www.google.com',
-      github: 'https://www.github.com',
-    },
-    {
-      title: 'Project 6',
-      description: 'This is another project I worked on',
-      image: 'https://via.placeholder.com/150',
-      link: 'https://www.google.com',
-      github: 'https://www.github.com',
-    },
-    {
-      title: 'Project 7',
-      description: 'This is a project I worked on',
-      image: 'https://via.placeholder.com/150',
-      link: 'https://www.google.com',
-      github: 'https://www.github.com',
-    },
-    {
-      title: 'Project 8',
-      description: 'This is another project I worked on',
-      image: 'https://via.placeholder.com/150',
-      link: 'https://www.google.com',
-      github: 'https://www.github.com',
+      title: 'AbstractVM',
+      description: 'A stack based virtual machine in C++',
+      image:
+        'https://www.designnominees.com/application/upload/Apps/2023/05/vm-calculator-11.png',
+      link: null,
+      github: 'https://github.com/Tomi-Tom/AbstractVM',
     },
   ]
 
