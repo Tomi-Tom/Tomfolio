@@ -44,7 +44,7 @@ export default function PresentationSection(): ReactElement {
 
   return (
     <div className="relative flex h-auto flex-col items-center justify-center p-8 sm:p-32">
-      <div className="relative flex h-full w-full flex-col items-center justify-center space-y-4 rounded-2xl bg-background-2 p-8 shadow-lg sm:p-32">
+      <div className="relative flex h-full w-full flex-col items-center justify-center space-y-4 rounded-2xl bg-background-2 p-8 shadow-lg sm:p-16">
         <h1 className="text-3xl font-bold">Here are some of my projects</h1>
         <p className="text-xl font-light">
           This is a list of projects I have worked on
@@ -60,7 +60,7 @@ export default function PresentationSection(): ReactElement {
         </div>
         <button
           className={
-            'dui-button dui-button-primary absolute bottom-2 right-4 mt-4 hover:text-interactive-2 hover:underline'
+            'dui-button dui-button-primary absolute bottom-4 right-8 mt-4 hover:text-interactive-2 hover:underline'
           }
           onClick={(): void => {
             window.location.href = '/projects'
