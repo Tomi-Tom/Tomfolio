@@ -12,6 +12,7 @@ export default function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/CV" element={<CV />} />
       <Route path="/seoul" element={<SeoulTimerPage />} />
+      <Route path="/서울" element={<SeoulTimerPage />} />
       <Route path="/lifegame" element={<LifeGame />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
