@@ -60,13 +60,13 @@ export default function SeoulTimerPage(): ReactElement {
           style={{ filter: 'blur(10px)' }}
         />
       </div>
-      <div className="relative flex size-full flex-col items-center justify-center pb-64">
+      <div className="relative flex size-full flex-col items-center justify-center overflow-hidden pb-64 max-lg:p-8">
         <div
-          className="z-10 flex size-full items-center justify-center px-16 pb-24 pt-36 max-lg:px-8"
+          className="z-10 flex items-center justify-center px-16 pb-24 pt-36 max-lg:p-16"
           style={{ width: '1440px' }}
         >
           <div
-            className="bg-black size-full transform cursor-pointer select-none items-center justify-center rounded-2xl bg-opacity-15 p-8 text-center shadow-lg transition duration-500 hover:translate-y-8 hover:shadow-sm active:scale-105"
+            className="bg-black transform cursor-pointer select-none items-center justify-center rounded-2xl border border-background-primary bg-opacity-15 p-8 text-center shadow-lg transition duration-500 hover:translate-y-8 hover:shadow-sm active:scale-105 max-lg:px-2"
             onClick={() => {
               setParticles([
                 ...particles,
@@ -80,13 +80,9 @@ export default function SeoulTimerPage(): ReactElement {
               ])
             }}
           >
-            <img
-              src={krFlag}
-              alt="Korea Flag"
-              className="sm-hidden h-full w-full rounded-2xl object-cover pb-4 shadow-lg hover:shadow-none sm:hidden"
-            />
-            <h1 className="text-6xl font-bold">Seoul Timer</h1>
-            <p className="p-2 text-4xl font-light">
+            <h1 className="font-bold max-lg:hidden">Seoul Timer</h1>
+            <h2 className="font-bold lg:hidden">Seoul Timer</h2>
+            <p className="max-lg:body-tiny body-bold-large p-2">
               Time left until departure (For the real ones, you know who you
               are)
             </p>
@@ -111,11 +107,11 @@ export default function SeoulTimerPage(): ReactElement {
           </div>
         </div>
         <div
-          className="z-10 flex size-full items-center justify-center px-32 pb-24 pt-36 max-lg:px-8"
+          className="z-10 flex items-center justify-center px-32 pb-24 pt-36 max-lg:p-16"
           style={{ width: '1440px' }}
         >
           <div
-            className="bg-black size-full transform cursor-pointer select-none items-center justify-center rounded-2xl bg-opacity-15 p-8 text-center shadow-lg transition duration-500 hover:translate-y-8 hover:shadow-sm active:scale-105"
+            className="bg-black transform cursor-pointer select-none items-center justify-center rounded-2xl border border-background-primary bg-opacity-15 p-8 text-center shadow-lg transition duration-500 hover:translate-y-8 hover:shadow-sm active:scale-105 max-lg:px-2"
             onClick={() => {
               setParticles([
                 ...particles,
@@ -129,13 +125,8 @@ export default function SeoulTimerPage(): ReactElement {
               ])
             }}
           >
-            <img
-              src={krFlag}
-              alt="Korea Flag"
-              className="sm-hidden h-full w-full rounded-2xl object-cover pb-4 shadow-lg sm:hidden"
-            />
-            <h1 className="text-4xl font-bold">Seoul Timer</h1>
-            <p className="p-2 text-2xl font-light">
+            <h2 className="font-bold">Seoul Timer</h2>
+            <p className="max-lg:body-tiny body-bold-large p-2">
               Time left until departure for the first squad Bouuuuuuuuuuuuuuh
             </p>
             <div className="flex w-full flex-row items-center justify-center py-8 max-lg:flex-col">
