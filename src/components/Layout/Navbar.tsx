@@ -33,7 +33,9 @@ export default function Navbar(): ReactElement {
         className={'z-40 flex items-center justify-between'}
         style={{ width: '1440px' }}
       >
-        <img src={Logo} alt="Logo" className="h-14 w-14" />
+        <a href="/" className="flex items-center">
+          <img src={Logo} alt="Logo" className="h-14 w-14" />
+        </a>
         <div className={'body-default flex space-x-12 max-lg:hidden'}>
           {links.map((link) => (
             <a
