@@ -61,7 +61,7 @@ export default function ServicesSection(): ReactElement {
         <div className={'flex w-full items-center justify-center'}>
           <div
             className={
-              'grid grid-cols-3  gap-8 py-32 max-xl:grid-cols-2 max-lg:grid-cols-1'
+              'grid grid-cols-3  gap-8 py-32 max-xl:grid-cols-2 max-sm:grid-cols-1'
             }
           >
             {services.map((service, index) => (
