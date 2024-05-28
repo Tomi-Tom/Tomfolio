@@ -2,6 +2,9 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    fill: {
+      current: 'currentColor',
+    },
     colors: {
       neutral: {
         white: '#FFFFFF',

@@ -1,13 +1,15 @@
 import { ReactElement } from 'react'
 import Layout from '../components/Layout'
-import HeroBanner from '../components/Home/heroBanner'
+import HeroBannerSection from '../components/Home/heroBannerSection'
+import PresentationSection from '../components/Home/PresentationSection'
+import ServicesSection from '../components/Home/ServicesSection'
 
 export default function HomePage(): ReactElement {
   return (
     <Layout>
-      <body className="min-h-screen bg-background-tertiary">
-        <HeroBanner />
-      </body>
+      <HeroBannerSection />
+      <PresentationSection />
+      <ServicesSection />
     </Layout>
   )
 }

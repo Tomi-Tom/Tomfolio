@@ -2,17 +2,17 @@ import { ReactElement } from 'react'
 import Button from '../Custom/Button'
 import BlurPhoto from '../../assets/PhotoBlur.png'
 
-export default function HeroBanner(): ReactElement {
+export default function HeroBannerSection(): ReactElement {
   return (
     <section
-      className={'flex select-none justify-center bg-background-primary'}
+      className={'flex w-full select-none justify-center bg-background-primary'}
     >
       <div
-        className="relative flex h-164 items-center justify-between pl-36"
+        className="h-164 relative flex items-center justify-between pl-36"
         style={{ width: '1440px' }}
       >
         <div className={'flex h-full flex-col'}>
-          <div className={'flex h-full items-center'}>
+          <div className={' flex h-full items-center'}>
             <div className={'h-2/3 space-y-2'}>
               <p className="body-large">Hi There</p>
               <h3 className="font-bold">I am Developer |</h3>
@@ -23,11 +23,12 @@ export default function HeroBanner(): ReactElement {
             </div>
           </div>
         </div>
-        <div className={'relative z-30 h-full w-1/2'}>
+        <div className={'relative h-full w-1/2'}>
           <img
             src={BlurPhoto}
             alt="blurry background"
-            className=" absolute bottom-0 h-160 w-112"
+            className=" h-160 w-112 absolute bottom-0"
+            style={{ filter: 'blur(1px)' }}
           />
         </div>
         <div className={'absolute bottom-8 left-12 flex items-center px-24'}>

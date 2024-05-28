@@ -60,6 +60,26 @@
     line-height: 30px;
     font-weight: 700;
   }
+
+  .huge {
+    font-size: 120px;
+    line-height: 50px;
+    font-weight: 700;
+  }
+
+  .icon-blue {
+    fill: blue;
+  }
+
+  .icon-red {
+    fill: red;
+  }
+
+  .icon-green {
+    fill: green;
+  }
+
+
 }
 
 h1,
