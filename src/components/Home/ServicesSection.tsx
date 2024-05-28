@@ -49,7 +49,7 @@ export default function ServicesSection(): ReactElement {
   return (
     <section className={'flex select-none justify-center'}>
       <div
-        className=" relative flex flex-col justify-between px-32 py-24 text-neutral-white"
+        className=" relative flex flex-col justify-between overflow-hidden px-32 py-24 text-neutral-white max-lg:items-center max-lg:justify-center max-lg:px-8"
         style={{ width: '1440px' }}
       >
         <img
@@ -57,26 +57,32 @@ export default function ServicesSection(): ReactElement {
           alt="services"
           className={'left-54 absolute top-14'}
         />
-        <h3 className={'text-4xl font-bold'}>My Services</h3>
-        <div className={'grid grid-cols-3 gap-8 py-32'}>
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className={
-                'flex h-64 w-96 rounded-lg bg-background-secondary shadow-lg transition-all duration-300 hover:translate-y-3 hover:bg-orange-900 hover:shadow-none'
-              }
-            >
+        <h3 className={'text-4xl font-bold '}>My Services</h3>
+        <div className={'flex w-full items-center justify-center'}>
+          <div
+            className={
+              'grid grid-cols-3  gap-8 py-32 max-xl:grid-cols-2 max-lg:grid-cols-1'
+            }
+          >
+            {services.map((service, index) => (
               <div
+                key={index}
                 className={
-                  'text flex flex-col items-start justify-center p-12 '
+                  'flex h-64 w-96 rounded-lg bg-background-secondary shadow-lg transition-all duration-300 hover:translate-y-3 hover:bg-orange-900 hover:shadow-none max-lg:w-80'
                 }
               >
-                <img src={service.icon} alt="icon" width={78} height={78} />
-                <h4 className={'body-bold-large'}>{service.name}</h4>
-                <p className={'body-small pt-4'}>{service.description}</p>
+                <div
+                  className={
+                    'text flex flex-col items-start justify-center p-12 '
+                  }
+                >
+                  <img src={service.icon} alt="icon" width={78} height={78} />
+                  <h4 className={'body-bold-large'}>{service.name}</h4>
+                  <p className={'body-small pt-4'}>{service.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

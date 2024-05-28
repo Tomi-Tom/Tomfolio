@@ -27,11 +27,11 @@ export default function Navbar(): ReactElement {
   return (
     <header className="sticky top-0 z-30 flex h-20 w-full select-none justify-center bg-background-primary px-4">
       <div
-        className={'z-40 flex items-center justify-between'}
+        className={'z-40 flex items-center justify-between overflow-hidden'}
         style={{ width: '1440px' }}
       >
         <img src={Logo} alt="Logo" className="h-14 w-14" />
-        <div className={'body-default flex space-x-12'}>
+        <div className={'body-default flex space-x-12 max-lg:hidden'}>
           {links.map((link) => (
             <a
               key={link.route}

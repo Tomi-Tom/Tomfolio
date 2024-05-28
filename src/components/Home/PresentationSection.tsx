@@ -6,15 +6,19 @@ export default function PresentationSection(): ReactElement {
   return (
     <section className={'flex select-none justify-center'}>
       <div
-        className="relative flex h-180 px-32 py-24"
+        className="h-180 relative flex overflow-hidden px-32 py-24 max-lg:px-16"
         style={{ width: '1440px' }}
       >
-        <div className={'flex h-full w-156 overflow-hidden bg-orange-800'}>
+        <div
+          className={
+            'w-156 flex h-full overflow-hidden bg-orange-800 max-lg:hidden'
+          }
+        >
           <img src={Photo} alt="presentation" />
         </div>
         <div
           className={
-            'flex h-full w-full flex-col space-y-6 pl-20 text-neutral-white'
+            'flex h-full w-full flex-col space-y-6 pl-20 text-neutral-white max-lg:pl-0'
           }
         >
           <p className={'body-bold-default text-orange-800'}>Who am I?</p>

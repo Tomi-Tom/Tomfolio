@@ -8,7 +8,7 @@ export default function HeroBannerSection(): ReactElement {
       className={'flex w-full select-none justify-center bg-background-primary'}
     >
       <div
-        className="relative flex h-164 items-center justify-between pl-36"
+        className="h-164 relative flex items-center justify-between overflow-hidden pl-36"
         style={{ width: '1440px' }}
       >
         <div className={'flex h-full flex-col'}>
@@ -27,7 +27,7 @@ export default function HeroBannerSection(): ReactElement {
           <img
             src={BlurPhoto}
             alt="blurry background"
-            className=" absolute bottom-0 h-160 w-112"
+            className=" h-160 w-112 absolute bottom-0"
             style={{ filter: 'blur(1px)' }}
           />
         </div>
