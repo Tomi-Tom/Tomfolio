@@ -60,7 +60,7 @@ export default function SeoulTimerPage(): ReactElement {
           style={{ filter: 'blur(10px)' }}
         />
       </div>
-      <div className="relative flex size-full flex-col items-center justify-center pb-64">
+      <div className="relative flex size-full flex-col items-center justify-center overflow-hidden pb-64">
         <div
           className="z-10 flex size-full items-center justify-center px-16 pb-24 pt-36 max-lg:px-8"
           style={{ width: '1440px' }}
@@ -80,13 +80,8 @@ export default function SeoulTimerPage(): ReactElement {
               ])
             }}
           >
-            <img
-              src={krFlag}
-              alt="Korea Flag"
-              className="sm-hidden h-full w-full rounded-2xl object-cover pb-4 shadow-lg hover:shadow-none sm:hidden"
-            />
             <h1 className="text-6xl font-bold">Seoul Timer</h1>
-            <p className="p-2 text-4xl font-light">
+            <p className="p-2 text-4xl font-light max-sm:hidden">
               Time left until departure (For the real ones, you know who you
               are)
             </p>
@@ -129,13 +124,8 @@ export default function SeoulTimerPage(): ReactElement {
               ])
             }}
           >
-            <img
-              src={krFlag}
-              alt="Korea Flag"
-              className="sm-hidden h-full w-full rounded-2xl object-cover pb-4 shadow-lg sm:hidden"
-            />
             <h1 className="text-4xl font-bold">Seoul Timer</h1>
-            <p className="p-2 text-2xl font-light">
+            <p className="p-2 text-2xl font-light max-sm:hidden">
               Time left until departure for the first squad Bouuuuuuuuuuuuuuh
             </p>
             <div className="flex w-full flex-row items-center justify-center py-8 max-lg:flex-col">
