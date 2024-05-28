@@ -8,7 +8,7 @@ export default function HeroBannerSection(): ReactElement {
       className={'flex w-full select-none justify-center bg-background-primary'}
     >
       <div
-        className="h-164 relative flex items-center justify-between overflow-hidden pl-36"
+        className="relative flex h-164 items-center justify-between overflow-hidden pl-36 max-lg:px-8"
         style={{ width: '1440px' }}
       >
         <div className={'flex h-full flex-col'}>
@@ -23,25 +23,43 @@ export default function HeroBannerSection(): ReactElement {
             </div>
           </div>
         </div>
-        <div className={'relative h-full w-1/2'}>
+        <div className={'relative h-full w-1/2 max-lg:hidden'}>
           <img
             src={BlurPhoto}
             alt="blurry background"
-            className=" h-160 w-112 absolute bottom-0"
+            className=" absolute bottom-0 h-160 w-112 max-xl:right-0"
             style={{ filter: 'blur(1px)' }}
           />
         </div>
-        <div className={'absolute bottom-8 left-12 flex items-center px-24'}>
+        <img
+          src={BlurPhoto}
+          alt="blurry background"
+          className="absolute bottom-0 h-full opacity-65 lg:hidden"
+          style={{ filter: 'blur(5px)' }}
+        />
+        <div
+          className={
+            'absolute bottom-8 left-12 flex items-center px-24 max-lg:left-8 max-lg:flex-col max-lg:items-start max-lg:space-y-4 max-lg:px-0'
+          }
+        >
           <div className={'space-y-1'}>
             <p className={'body-bold-default'}>Email</p>
             <p className={'body-small'}>bariteaupeter.tom@gmail.com</p>
           </div>
-          <div className={'ml-8 mr-4 h-16 w-0.5 bg-neutral-white'} />
-          <div className={'space-y-1'}>
+          <div
+            className={
+              'ml-8 mr-4 h-16 w-0.5 bg-neutral-white max-lg:m-0 max-lg:hidden'
+            }
+          />
+          <div className={'space-y-1 '}>
             <p className={'body-bold-default'}>Phone</p>
             <p className={'body-small'}>(+33)6 67 57 06 24</p>
           </div>
-          <div className={'ml-8 mr-4 h-16 w-0.5 bg-neutral-white'} />
+          <div
+            className={
+              'ml-8 mr-4 h-16 w-0.5 bg-neutral-white max-lg:m-0 max-lg:hidden'
+            }
+          />
           <div className={'space-y-1'}>
             <p className={'body-bold-default'}>Email</p>
             <p className={'body-small'}>Issy Les Moulineaux, France</p>

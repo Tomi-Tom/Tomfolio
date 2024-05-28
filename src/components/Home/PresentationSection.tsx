@@ -6,12 +6,12 @@ export default function PresentationSection(): ReactElement {
   return (
     <section className={'flex select-none justify-center'}>
       <div
-        className="h-180 relative flex overflow-hidden px-32 py-24 max-lg:px-16"
+        className=" relative flex overflow-hidden px-32 py-24 max-lg:px-8"
         style={{ width: '1440px' }}
       >
         <div
           className={
-            'w-156 flex h-full overflow-hidden bg-orange-800 max-lg:hidden'
+            'flex h-full w-156 overflow-hidden bg-orange-800 max-lg:hidden'
           }
         >
           <img src={Photo} alt="presentation" />
@@ -35,20 +35,20 @@ export default function PresentationSection(): ReactElement {
             Pellentesque tempor risus ut scelerisque maximus.
           </p>
           <div className={'h-0.5 w-full bg-neutral-grey_1'} />
-          <div className={'grid grid-cols-2 gap-4 py-5'}>
-            <div className={'flex '}>
+          <div className={'grid grid-cols-2 gap-4 py-5 max-lg:grid-cols-1'}>
+            <div className={'flex'}>
               <p className={'body-bold-small'}>Name:</p>
               <p className={'body-small ml-5'}>Tom Bariteau-Peter</p>
             </div>
-            <div className={'flex '}>
+            <div className={'flex'}>
               <p className={'body-bold-small'}>Email:</p>
               <p className={'body-small ml-8'}>bariteaupeter.tom@gmail.com</p>
             </div>
-            <div className={'flex '}>
+            <div className={'flex'}>
               <p className={'body-bold-small'}>Phone:</p>
               <p className={'body-small ml-4'}>(+33)6 67 57 06 24</p>
             </div>
-            <div className={'flex '}>
+            <div className={'flex'}>
               <p className={'body-bold-small'}>Location:</p>
               <p className={'body-small ml-4'}>Issy Les Moulineaux, France</p>
             </div>
