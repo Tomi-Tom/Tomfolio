@@ -49,7 +49,7 @@ export default function ServicesSection(): ReactElement {
   return (
     <section className={'flex select-none justify-center'}>
       <div
-        className=" relative flex flex-col justify-between overflow-hidden px-32 py-24 text-neutral-white max-lg:items-center max-lg:justify-center max-lg:px-8"
+        className=" relative flex flex-col justify-between overflow-hidden px-32 py-24 text-neutral-white max-lg:items-center max-lg:justify-center max-lg:px-0"
         style={{ width: '1440px' }}
       >
         <img
@@ -61,7 +61,7 @@ export default function ServicesSection(): ReactElement {
         <div className={'flex w-full items-center justify-center'}>
           <div
             className={
-              'grid grid-cols-3  gap-8 py-32 max-xl:grid-cols-2 max-sm:grid-cols-1'
+              'grid grid-cols-3 gap-8 py-32 max-xl:grid-cols-2 max-sm:grid-cols-1'
             }
           >
             {services.map((service, index) => (
