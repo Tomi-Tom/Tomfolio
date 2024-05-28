@@ -1,17 +1,15 @@
 import { ReactElement } from 'react'
 import Layout from '../components/Layout'
-import HeroBanner from '../components/Home/HeroBanner'
+import HeroBannerSection from '../components/Home/heroBannerSection'
 import PresentationSection from '../components/Home/PresentationSection'
-import PreviewProjectsSection from '../components/Home/PreviewProjectsSection'
-import ClientsReviewsSection from '../components/Home/ClientsReviewsSection'
+import ServicesSection from '../components/Home/ServicesSection'
 
 export default function HomePage(): ReactElement {
   return (
     <Layout>
-      <HeroBanner />
+      <HeroBannerSection />
       <PresentationSection />
-      <PreviewProjectsSection />
-      <ClientsReviewsSection />
+      <ServicesSection />
     </Layout>
   )
 }

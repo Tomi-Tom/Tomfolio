@@ -2,9 +2,9 @@ name: Basic CI
 
 on:
   push:
-    branches: ['main']
+    branches: [ 'main' ]
   pull_request:
-    branches: ['main']
+    branches: [ 'main' ]
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [ 18.x ]
 
     steps:
       - uses: actions/checkout@v4
@@ -46,4 +46,4 @@ jobs:
           node-version: '18.x'
           cache: 'npm'
       - run: npm install
-      - run: npx prettier --check src
+      - run: npm run format

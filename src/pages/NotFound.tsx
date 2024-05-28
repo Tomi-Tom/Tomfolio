@@ -39,7 +39,7 @@ export default function NotFound(): ReactElement {
   }, [])
 
   return (
-    <div className="min-w-screen relative flex min-h-screen flex-col items-center justify-center bg-background-1 text-text-2">
+    <div className="min-w-screen text-text-2 relative flex min-h-screen select-none flex-col items-center justify-center bg-background-tertiary text-neutral-white">
       {meteors.map((meteor, index) => (
         <div
           key={index}
@@ -57,24 +57,24 @@ export default function NotFound(): ReactElement {
       <div className="mx-auto flex max-w-screen-xl flex-row justify-between space-x-4">
         <h1 className="text-9xl font-extrabold">4</h1>
         <h1
-          className={`text-9xl font-extrabold ${meteors.length == 42 ? 'animate-pulse cursor-pointer text-interactive-3' : ''}`}
+          className={`text-9xl font-extrabold ${meteors.length == 42 ? 'animate-pulse cursor-pointer text-orange-900' : ''}`}
           onClick={meteors.length == 42 ? createMeteor : () => {}}
         >
           0
         </h1>
         <h1 className="text-9xl font-extrabold">4</h1>
       </div>
-      <h2 className="text-4xl font-bold">Page Not Found</h2>
-      <div className="mt-12 flex flex-row items-center justify-center space-x-4 rounded-md text-white">
+      <h2 className="text-4xl font-bold">Page Not Found </h2>
+      <div className=" mt-12 flex flex-row items-center justify-center space-x-4 rounded-md">
         <button
-          className="transform cursor-pointer rounded-md bg-interactive-1 px-4 py-2 text-text-2 transition hover:translate-y-1.5 hover:bg-interactive-2"
+          className="transform cursor-pointer rounded-md bg-orange-900 px-4 py-2 transition hover:translate-y-1.5 hover:bg-orange-800"
           onClick={() => window.location.replace('/')}
         >
           Go Home
         </button>
         <h1 className="text-2xl">Or</h1>
         <button
-          className="transform cursor-pointer rounded-md bg-interactive-1 px-4 py-2 text-text-2 transition hover:translate-y-1.5 hover:bg-interactive-2"
+          className="transform cursor-pointer rounded-md bg-orange-900 px-4 py-2 transition hover:translate-y-1.5 hover:bg-orange-800"
           onClick={
             meteors.length == 42
               ? () => {
