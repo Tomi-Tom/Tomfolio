@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src/ --ext .vue,.ts",
-    "lint:fix": "eslint src/ --ext .vue,.ts --fix",
+    "lint": "eslint src/ --ext .tsx,.ts",
+    "lint:fix": "eslint src/ --ext .tsx,.ts --fix",
     "format": "prettier src/ --check",
     "format:fix": "prettier src/ --write"
   },
