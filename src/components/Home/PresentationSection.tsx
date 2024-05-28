@@ -6,10 +6,10 @@ export default function PresentationSection(): ReactElement {
   return (
     <section className={'flex select-none justify-center'}>
       <div
-        className="h-180 relative flex px-32 py-24"
+        className="relative flex h-180 px-32 py-24"
         style={{ width: '1440px' }}
       >
-        <div className={'w-156 flex h-full overflow-hidden bg-orange-800'}>
+        <div className={'flex h-full w-156 overflow-hidden bg-orange-800'}>
           <img src={Photo} alt="presentation" />
         </div>
         <div
