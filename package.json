@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/ --ext .vue,.ts",
+    "lint:fix": "eslint src/ --ext .vue,.ts --fix",
+    "format": "prettier src/ --check",
+    "format:fix": "prettier src/ --write"
   },
   "dependencies": {
     "clsx": "^2.1.1",

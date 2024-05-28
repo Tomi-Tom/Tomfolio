@@ -30,20 +30,20 @@ const Controls: React.FC<ControlsProps> = ({
       >
         <div className={'flex flex-row gap-4 '}>
           <button
-            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            className={'bg-background-2 text-white rounded px-4 py-2'}
             onClick={handleNextStep}
           >
             Next Step
           </button>
           <button
-            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            className={'bg-background-2 text-white rounded px-4 py-2'}
             onClick={handleDecrease}
           >
             -
           </button>
           <button className={'text-text-2'}>{border}</button>
           <button
-            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            className={'bg-background-2 text-white rounded px-4 py-2'}
             onClick={handleIncrease}
           >
             +
@@ -51,19 +51,19 @@ const Controls: React.FC<ControlsProps> = ({
         </div>
         <div className={'flex flex-row gap-4'}>
           <button
-            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            className={'bg-background-2 text-white rounded px-4 py-2'}
             onClick={handlePlay}
           >
             {playing ? 'Pause' : 'Play'}
           </button>
           <button
-            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            className={'bg-background-2 text-white rounded px-4 py-2'}
             onClick={handleReset}
           >
             Reset
           </button>
           <button
-            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            className={'bg-background-2 text-white rounded px-4 py-2'}
             onClick={handleSoup}
           >
             Soup
@@ -71,14 +71,14 @@ const Controls: React.FC<ControlsProps> = ({
         </div>
         <div className={'flex flex-row gap-4'}>
           <button
-            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            className={'bg-background-2 text-white rounded px-4 py-2'}
             onMouseDown={handleDecreaseSpeed}
           >
             Speed Down
           </button>
           <button className={'text-text-2'}>{speed}</button>
           <button
-            className={'rounded bg-background-2 px-4 py-2 text-white'}
+            className={'bg-background-2 text-white rounded px-4 py-2'}
             onMouseDown={handleIncreaseSpeed}
           >
             Speed Up
