@@ -39,7 +39,7 @@ export default function NotFound(): ReactElement {
   }, [])
 
   return (
-    <div className="min-w-screen text-text-2 relative flex min-h-screen flex-col items-center justify-center bg-background-tertiary text-neutral-white">
+    <div className="min-w-screen text-text-2 relative flex min-h-screen select-none flex-col items-center justify-center bg-background-tertiary text-neutral-white">
       {meteors.map((meteor, index) => (
         <div
           key={index}
