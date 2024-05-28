@@ -12,37 +12,37 @@ export default function ServicesSection(): ReactElement {
     {
       name: 'Web Development',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus.',
+        'I will build your website from scratch using the latest technologies.',
       icon: WebDevelopmentIcon,
     },
     {
       name: 'Web Design',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus.',
+        'I will design your website with the best user experience in mind.',
       icon: WebDesignIcon,
     },
     {
       name: 'Design Trend',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus.',
+        'I will keep your website up to date with the latest design trends.',
       icon: DesignTrendIcon,
     },
     {
       name: 'Customer Support',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus.',
+        'I will provide you with the best customer support after the project is done.',
       icon: CustomerSupportIcon,
     },
     {
       name: 'Branding',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus.',
+        'I will help you build your brand identity and make it stand out.',
       icon: BrandingIcon,
     },
     {
       name: 'SEO Consultant',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus.',
+        'I will help you optimize your website for search engines and get more traffic.',
       icon: SeoConsultantIcon,
     },
   ]
