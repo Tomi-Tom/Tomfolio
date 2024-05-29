@@ -61,7 +61,7 @@ export default function HeroBannerSection(): ReactElement {
             }
           />
           <div className={'space-y-1'}>
-            <p className={'body-bold-default'}>Email</p>
+            <p className={'body-bold-default'}>Location</p>
             <p className={'body-small'}>Issy Les Moulineaux, France</p>
           </div>
         </div>
