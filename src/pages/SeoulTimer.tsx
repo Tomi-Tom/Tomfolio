@@ -66,7 +66,7 @@ export default function SeoulTimerPage(): ReactElement {
           style={{ width: '1440px' }}
         >
           <div
-            className="bg-black transform cursor-pointer select-none items-center justify-center rounded-2xl border border-background-primary bg-opacity-15 p-8 text-center shadow-lg transition duration-500 hover:translate-y-8 hover:shadow-sm active:scale-105 max-lg:px-2"
+            className="bg-black transform cursor-pointer select-none items-center justify-center rounded-2xl border border-background-primary bg-background-secondary bg-opacity-25 p-8 text-center shadow-lg backdrop-blur transition duration-500 hover:translate-y-8 hover:shadow-sm active:scale-105 max-lg:px-2"
             onClick={() => {
               setParticles([
                 ...particles,
@@ -111,7 +111,7 @@ export default function SeoulTimerPage(): ReactElement {
           style={{ width: '1440px' }}
         >
           <div
-            className="bg-black transform cursor-pointer select-none items-center justify-center rounded-2xl border border-background-primary bg-opacity-15 p-8 text-center shadow-lg transition duration-500 hover:translate-y-8 hover:shadow-sm active:scale-105 max-lg:px-2"
+            className="bg-black transform cursor-pointer select-none items-center justify-center rounded-2xl border border-background-primary bg-background-secondary bg-opacity-25 p-8 text-center shadow-lg backdrop-blur transition duration-500 hover:translate-y-8 hover:shadow-sm active:scale-105 max-lg:px-2"
             onClick={() => {
               setParticles([
                 ...particles,
