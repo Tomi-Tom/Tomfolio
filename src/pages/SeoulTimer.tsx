@@ -16,16 +16,16 @@ export default function SeoulTimerPage(): ReactElement {
   const departure = new Date('2024-08-22T21:00:00')
   const departure2 = new Date('2024-07-25T12:00:00')
   const [timeLeft, setTimeLeft] = useState(
-    departure.getTime() - new Date().getTime()
+    new Date().getTime() - departure.getTime()
   )
   const [timeLeft2, setTimeLeft2] = useState(
-    departure2.getTime() - new Date().getTime()
+    new Date().getTime() - departure2.getTime()
   )
   const [particles, setParticles] = useState<particule[]>([])
 
   setInterval(() => {
-    setTimeLeft(departure.getTime() - new Date().getTime())
-    setTimeLeft2(departure2.getTime() - new Date().getTime())
+    setTimeLeft(new Date().getTime() - departure.getTime())
+    setTimeLeft2(new Date().getTime() - departure2.getTime())
   }, 1000)
 
   useEffect(() => {
@@ -83,8 +83,7 @@ export default function SeoulTimerPage(): ReactElement {
             <h1 className="font-bold max-lg:hidden">Seoul Timer</h1>
             <h2 className="font-bold lg:hidden">Seoul Timer</h2>
             <p className="max-lg:body-tiny body-bold-large p-2">
-              Time left until departure (For the real ones, you know who you
-              are)
+              Léa / Reza / Tom
             </p>
             <div className="flex w-full flex-row items-center justify-center py-8 max-lg:flex-col">
               <p className="px-8 text-8xl font-extrabold max-lg:text-4xl">
@@ -127,7 +126,7 @@ export default function SeoulTimerPage(): ReactElement {
           >
             <h2 className="font-bold">Seoul Timer</h2>
             <p className="max-lg:body-tiny body-bold-large p-2">
-              Time left until departure for the first squad Bouuuuuuuuuuuuuuh
+              Dorian / Florian
             </p>
             <div className="flex w-full flex-row items-center justify-center py-8 max-lg:flex-col">
               <p className="px-8 text-6xl font-extrabold max-lg:text-4xl">
