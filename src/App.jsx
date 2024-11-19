@@ -4,6 +4,7 @@ import NotFound from './pages/NotFound'
 import SeoulTimerPage from './pages/SeoulTimer'
 import LifeGame from './pages/LifeGame'
 import MiniAppPage from './pages/MiniApp'
+import LoveTimerPage from './pages/LoveTimer'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <Route path="/miniapps" element={<MiniAppPage />} />
       <Route path="/seoul" element={<SeoulTimerPage />} />
       <Route path="/서울" element={<SeoulTimerPage />} />
+      <Route path="/love" element={<LoveTimerPage />} />
       <Route path="/lifegame" element={<LifeGame />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
