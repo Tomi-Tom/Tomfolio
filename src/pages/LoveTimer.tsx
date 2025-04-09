@@ -78,7 +78,7 @@ export default function LoveTimerPage(): ReactElement {
             <h1 className="font-bold max-lg:hidden">Seoul Timer</h1>
             <h2 className="font-bold lg:hidden">Seoul Timer</h2>
             <p className="max-lg:body-tiny body-bold-large p-2">
-              Avant l'arrivée de mon amour en Corée
+              Avant le retour en France dans les bras de ma chérie
             </p>
             <div className="flex w-full flex-row items-center justify-center py-8 max-lg:flex-col">
               <p className="px-8 text-8xl font-extrabold max-lg:text-4xl">
