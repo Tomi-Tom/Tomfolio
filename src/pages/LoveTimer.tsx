@@ -13,7 +13,7 @@ type particule = {
 }
 
 export default function LoveTimerPage(): ReactElement {
-  const departure = new Date('2025-07-04T18:10:00')
+  const departure = new Date('2025-07-04T11:10:00')
   const [timeLeft, setTimeLeft] = useState(
     departure.getTime() - new Date().getTime()
   )
