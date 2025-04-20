@@ -3,6 +3,21 @@ import { motion } from 'framer-motion'
 import Layout from '../components/Layout'
 import CV from '../assets/CV.png'
 
+type Experience = {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  highlights?: string[];
+}
+
+type Education = {
+  degree: string;
+  institution: string;
+  year: string;
+  description: string;
+}
+
 export default function Resume(): ReactElement {
   const skills = [
     { 
@@ -39,37 +54,66 @@ export default function Resume(): ReactElement {
 
   const experiences = [
     {
-      role: 'Senior Web Developer',
-      company: 'Tech Solutions Inc.',
-      period: '2022 - Present',
-      description: 'Lead developer for multiple client projects, focusing on responsive design and performance optimization.'
+      role: 'Freelance Fullstack Developer',
+      company: 'SUNVER',
+      period: '2024',
+      description: 'Developed the core features of the SUNVER application. Represented the product at the Food Hotel Tech 2024 trade show.',
+      highlights: ['Core application development', 'Product representation at industry trade shows']
     },
     {
-      role: 'UI/UX Designer',
-      company: 'Creative Studio',
-      period: '2019 - 2022',
-      description: 'Designed user interfaces for web and mobile applications with a focus on user experience and accessibility.'
+      role: 'Freelance Frontend Developer & Designer',
+      company: 'LibertAI',
+      period: '2024',
+      description: 'Led the redesign of the company\'s landing page. Responsible for frontend development and UI/UX design.',
+      highlights: ['Landing page redesign', 'UI/UX design', 'Frontend development']
     },
     {
-      role: 'Frontend Developer',
-      company: 'Digital Agency',
-      period: '2017 - 2019',
-      description: 'Developed responsive websites and web applications using modern JavaScript frameworks.'
+      role: 'AER – Mentor and Evaluator',
+      company: 'Ionis STM (ASTEK)',
+      period: '2022 - 2024',
+      description: 'Mentored and evaluated 1st and 2nd year students at Ionis STM. Provided guidance on software engineering projects and coursework.',
+      highlights: ['Student mentoring', 'Project evaluation', 'Technical guidance']
+    },
+    {
+      role: 'Fullstack Developer',
+      company: 'Diabolecom',
+      period: '2022',
+      description: 'Worked on the development and improvement of internal tools using React JS/TS. Built a custom plugin (Webcallback) and collaborated across multiple teams.',
+      highlights: ['React JS/TS development', 'Custom plugin creation', 'Cross-team collaboration']
+    },
+    {
+      role: 'Fundraising Recruiter',
+      company: 'Trico',
+      period: '2019',
+      description: 'Recruited donors for various NGOs (e.g. Amnesty International, Croix-Rouge).',
+      highlights: ['Donor recruitment', 'NGO representation', 'Public engagement']
     }
   ]
 
   const education = [
     {
-      degree: 'Master of Computer Science',
-      institution: 'University of Technology',
-      year: '2017',
-      description: 'Specialized in Web Technologies and User Interface Design.'
+      degree: 'Master\'s-level program in Software Engineering',
+      institution: 'Epitech Paris',
+      year: '2021 - 2026',
+      description: 'Advanced software engineering program with project-based learning approach.'
     },
     {
-      degree: 'Bachelor of Design',
-      institution: 'Design Institute',
-      year: '2015',
-      description: 'Focused on Digital Design and Interactive Media.'
+      degree: 'Peer-to-peer programming school',
+      institution: '42 Paris',
+      year: '2019 - 2021',
+      description: 'Self-directed learning with a focus on software development and peer collaboration.'
+    },
+    {
+      degree: 'Preparatory year in Physics, Chemistry, and Engineering Sciences',
+      institution: 'Université Pierre et Marie Curie (Jussieu)',
+      year: '2018 - 2019',
+      description: 'Foundation studies in physical sciences and engineering principles.'
+    },
+    {
+      degree: 'Science Baccalauréat with specialization in Computer Science (ISN)',
+      institution: 'Lycée Eugène Ionesco',
+      year: '2015 - 2018',
+      description: 'French High School Diploma with focus on computer science and programming.'
     }
   ]
 
@@ -134,7 +178,31 @@ export default function Resume(): ReactElement {
                         <span className="text-orange-500">{exp.company}</span>
                         <span className="text-neutral-grey_1">{exp.period}</span>
                       </div>
-                      <p>{exp.description}</p>
+                      <p className="mb-3">{exp.description}</p>
+                      {exp.highlights && (
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {exp.highlights.map((highlight, i) => (
+                            <motion.span 
+                              key={i}
+                              className="rounded-full bg-background-primary px-3 py-1 text-sm text-neutral-grey_1"
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ 
+                                delay: 0.3 + (index * 0.1) + (i * 0.05),
+                                type: "spring",
+                                stiffness: 300
+                              }}
+                              whileHover={{ 
+                                scale: 1.1,
+                                backgroundColor: '#FF8F00',
+                                color: 'white'
+                              }}
+                            >
+                              {highlight}
+                            </motion.span>
+                          ))}
+                        </div>
+                      )}
                     </motion.div>
                   ))}
                 </div>

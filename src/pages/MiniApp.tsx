@@ -23,6 +23,24 @@ export default function MiniAppPage(): ReactElement {
       description: 'An implementation of Conway\'s Game of Life with interactive controls.',
       link: '/lifegame',
       images: ['/logo.png']
+    },
+    {
+      title: 'Memory Game',
+      description: 'A card matching memory game with multiple difficulty levels.',
+      link: '/memory',
+      images: ['/logo.png']
+    },
+    {
+      title: 'Weather App',
+      description: 'Check current weather conditions around the world with this interactive demo.',
+      link: '/weather',
+      images: ['/logo.png']
+    },
+    {
+      title: 'Pomodoro Timer',
+      description: 'Boost your productivity with the Pomodoro Technique time management method.',
+      link: '/pomodoro',
+      images: ['/logo.png']
     }
   ]
 
