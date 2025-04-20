@@ -581,7 +581,7 @@ export default function MoodTracker(): ReactElement {
                     </motion.div>
                   ) : (
                     <div className="bg-background-secondary rounded-xl p-8 text-center">
-                      <p className="text-neutral-grey_1 mb-4">
+                      <p className="text-white mb-4">
                         No entry for this date. 
                       </p>
                       <motion.button
@@ -702,7 +702,7 @@ export default function MoodTracker(): ReactElement {
                 <h3 className="text-xl font-bold text-orange-500 mb-4">Patterns & Insights</h3>
                 
                 {entries.length < 3 ? (
-                  <div className="flex flex-col items-center justify-center h-40 text-neutral-grey_1">
+                  <div className="flex flex-col items-center justify-center h-40 text-white">
                     <p className="mb-4 text-center">
                       Add at least 3 entries to see patterns and insights.
                     </p>
