@@ -54,13 +54,6 @@ export default function Resume(): ReactElement {
 
   const experiences = [
     {
-      role: 'Freelance Fullstack Developer',
-      company: 'SUNVER',
-      period: '2024',
-      description: 'Developed the core features of the SUNVER application. Represented the product at the Food Hotel Tech 2024 trade show.',
-      highlights: ['Core application development', 'Product representation at industry trade shows']
-    },
-    {
       role: 'Freelance Frontend Developer & Designer',
       company: 'LibertAI',
       period: '2024',
@@ -68,15 +61,23 @@ export default function Resume(): ReactElement {
       highlights: ['Landing page redesign', 'UI/UX design', 'Frontend development']
     },
     {
+      role: 'Freelance Fullstack Developer',
+      company: 'SUNVER',
+      period: '2024',
+      description: 'Developed the core features of the SUNVER application. Represented the product at the Food Hotel Tech 2024 trade show.',
+      highlights: ['Core application development', 'Product representation at industry trade shows']
+    },
+    
+    {
       role: 'AER – Mentor and Evaluator',
       company: 'Ionis STM (ASTEK)',
-      period: '2022 - 2024',
+      period: '2023 - 2024',
       description: 'Mentored and evaluated 1st and 2nd year students at Ionis STM. Provided guidance on software engineering projects and coursework.',
       highlights: ['Student mentoring', 'Project evaluation', 'Technical guidance']
     },
     {
       role: 'Fullstack Developer',
-      company: 'Diabolecom',
+      company: 'Diabolocom',
       period: '2022',
       description: 'Worked on the development and improvement of internal tools using React JS/TS. Built a custom plugin (Webcallback) and collaborated across multiple teams.',
       highlights: ['React JS/TS development', 'Custom plugin creation', 'Cross-team collaboration']
@@ -84,7 +85,7 @@ export default function Resume(): ReactElement {
     {
       role: 'Fundraising Recruiter',
       company: 'Trico',
-      period: '2019',
+      period: '2018 - 2019',
       description: 'Recruited donors for various NGOs (e.g. Amnesty International, Croix-Rouge).',
       highlights: ['Donor recruitment', 'NGO representation', 'Public engagement']
     }
@@ -106,13 +107,13 @@ export default function Resume(): ReactElement {
     {
       degree: 'Preparatory year in Physics, Chemistry, and Engineering Sciences',
       institution: 'Université Pierre et Marie Curie (Jussieu)',
-      year: '2018 - 2019',
+      year: '2017 - 2018',
       description: 'Foundation studies in physical sciences and engineering principles.'
     },
     {
       degree: 'Science Baccalauréat with specialization in Computer Science (ISN)',
       institution: 'Lycée Eugène Ionesco',
-      year: '2015 - 2018',
+      year: '2014 - 2017',
       description: 'French High School Diploma with focus on computer science and programming.'
     }
   ]
@@ -188,7 +189,6 @@ export default function Resume(): ReactElement {
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ 
-                                delay: 0.3 + (index * 0.1) + (i * 0.05),
                                 type: "spring",
                                 stiffness: 300
                               }}
@@ -258,7 +258,6 @@ export default function Resume(): ReactElement {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ 
-                              delay: 0.5 + (index * 0.1) + (techIndex * 0.05),
                               type: "spring",
                               stiffness: 300
                             }}
