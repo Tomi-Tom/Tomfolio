@@ -7,6 +7,9 @@ import MiniAppPage from './pages/MiniApp'
 import LoveTimerPage from './pages/LoveTimer'
 import Resume from './pages/Resume'
 import Contact from './pages/Contact'
+import MemoryGame from './pages/MemoryGame'
+import WeatherApp from './pages/WeatherApp'
+import PomodoroTimer from './pages/PomodoroTimer'
 
 export default function App() {
   return (
@@ -19,6 +22,9 @@ export default function App() {
       <Route path="/서울" element={<SeoulTimerPage />} />
       <Route path="/love" element={<LoveTimerPage />} />
       <Route path="/lifegame" element={<LifeGame />} />
+      <Route path="/memory" element={<MemoryGame />} />
+      <Route path="/weather" element={<WeatherApp />} />
+      <Route path="/pomodoro" element={<PomodoroTimer />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
