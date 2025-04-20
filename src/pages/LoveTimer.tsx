@@ -19,9 +19,13 @@ export default function LoveTimerPage(): ReactElement {
   )
   const [particles, setParticles] = useState<particule[]>([])
 
-  setInterval(() => {
-    setTimeLeft(departure.getTime() - new Date().getTime())
-  }, 1000)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(departure.getTime() - new Date().getTime())
+    }, 1000)
+    
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const maxHeigth = window.innerHeight
@@ -75,8 +79,8 @@ export default function LoveTimerPage(): ReactElement {
               ])
             }}
           >
-            <h1 className="font-bold max-lg:hidden">Seoul Timer</h1>
-            <h2 className="font-bold lg:hidden">Seoul Timer</h2>
+            <h1 className="font-bold max-lg:hidden">Love Timer</h1>
+            <h2 className="font-bold lg:hidden">Love Timer</h2>
             <p className="max-lg:body-tiny body-bold-large p-2">
               Avant le retour en France dans les bras de ma chérie
             </p>

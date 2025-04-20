@@ -3,20 +3,6 @@ import { motion } from 'framer-motion'
 import Layout from '../components/Layout'
 import CV from '../assets/CV.png'
 
-type Experience = {
-  role: string;
-  company: string;
-  period: string;
-  description: string;
-  highlights?: string[];
-}
-
-type Education = {
-  degree: string;
-  institution: string;
-  year: string;
-  description: string;
-}
 
 export default function Resume(): ReactElement {
   const skills = [
