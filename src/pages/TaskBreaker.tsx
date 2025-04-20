@@ -337,7 +337,7 @@ export default function TaskBreaker(): ReactElement {
               {/* Tasks List */}
               <div className="bg-background-secondary rounded-xl p-4 min-h-[400px] max-h-[600px] overflow-y-auto">
                 {filteredTasks.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-40 text-neutral-grey_1">
+                  <div className="flex flex-col items-center justify-center h-40 text-white">
                     <p className="mb-4">No tasks found</p>
                     <motion.button
                       onClick={() => setShowNewTaskForm(true)}
