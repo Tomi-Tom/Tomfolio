@@ -1,0 +1,249 @@
+import { ReactElement } from 'react'
+import { motion } from 'framer-motion'
+import Layout from '../components/Layout'
+import CV from '../assets/CV.png'
+
+export default function Resume(): ReactElement {
+  const skills = [
+    { 
+      name: 'Frontend Development',
+      technologies: ['React', 'TypeScript', 'JavaScript', 'HTML/CSS'],
+      description: 'Building responsive web interfaces with modern frameworks and best practices'
+    },
+    { 
+      name: 'UI/UX Design',
+      technologies: ['Figma', 'Adobe XD', 'Sketch', 'Wireframing'],
+      description: 'Creating user-centered designs focused on accessibility and intuitive interactions'
+    },
+    { 
+      name: 'Backend Development',
+      technologies: ['Node.js', 'Express', 'MongoDB', 'REST APIs'],
+      description: 'Developing scalable server-side applications and APIs'
+    },
+    { 
+      name: 'CSS Frameworks',
+      technologies: ['Tailwind CSS', 'Bootstrap', 'SCSS', 'Styled Components'],
+      description: 'Implementing responsive designs with modern CSS frameworks'
+    },
+    { 
+      name: 'Animation & Interaction',
+      technologies: ['Framer Motion', 'GSAP', 'CSS Animations'],
+      description: 'Creating engaging motion design and interactive elements'
+    },
+    { 
+      name: 'Version Control & Deployment',
+      technologies: ['Git', 'GitHub', 'CI/CD', 'Vercel', 'Netlify'],
+      description: 'Managing code and deploying applications using modern workflows'
+    }
+  ]
+
+  const experiences = [
+    {
+      role: 'Senior Web Developer',
+      company: 'Tech Solutions Inc.',
+      period: '2022 - Present',
+      description: 'Lead developer for multiple client projects, focusing on responsive design and performance optimization.'
+    },
+    {
+      role: 'UI/UX Designer',
+      company: 'Creative Studio',
+      period: '2019 - 2022',
+      description: 'Designed user interfaces for web and mobile applications with a focus on user experience and accessibility.'
+    },
+    {
+      role: 'Frontend Developer',
+      company: 'Digital Agency',
+      period: '2017 - 2019',
+      description: 'Developed responsive websites and web applications using modern JavaScript frameworks.'
+    }
+  ]
+
+  const education = [
+    {
+      degree: 'Master of Computer Science',
+      institution: 'University of Technology',
+      year: '2017',
+      description: 'Specialized in Web Technologies and User Interface Design.'
+    },
+    {
+      degree: 'Bachelor of Design',
+      institution: 'Design Institute',
+      year: '2015',
+      description: 'Focused on Digital Design and Interactive Media.'
+    }
+  ]
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 20
+      }
+    }
+  }
+
+  return (
+    <Layout>
+      <div className="min-h-screen py-24">
+        <motion.div 
+          className="container mx-auto px-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div 
+            className="mb-16 text-center"
+            variants={itemVariants}
+          >
+            <h1 className="mb-4 text-4xl font-bold text-orange-800">My Resume</h1>
+            <p className="mx-auto max-w-2xl text-lg">
+              A summary of my professional experience, skills, and education.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <motion.div variants={itemVariants}>
+              <div className="mb-12">
+                <h2 className="mb-6 border-b border-neutral-grey_1 pb-2 text-2xl font-bold text-orange-800">
+                  Professional Experience
+                </h2>
+                <div className="space-y-8">
+                  {experiences.map((exp, index) => (
+                    <motion.div 
+                      key={index}
+                      className="rounded-lg bg-background-secondary p-6 shadow-lg transition-all duration-300 hover:shadow-orange-800/20"
+                      variants={itemVariants}
+                      whileHover={{ y: -5 }}
+                    >
+                      <h3 className="text-xl font-bold">{exp.role}</h3>
+                      <div className="mb-2 flex justify-between">
+                        <span className="text-orange-500">{exp.company}</span>
+                        <span className="text-neutral-grey_1">{exp.period}</span>
+                      </div>
+                      <p>{exp.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h2 className="mb-6 border-b border-neutral-grey_1 pb-2 text-2xl font-bold text-orange-800">
+                  Education
+                </h2>
+                <div className="space-y-8">
+                  {education.map((edu, index) => (
+                    <motion.div 
+                      key={index}
+                      className="rounded-lg bg-background-secondary p-6 shadow-lg transition-all duration-300 hover:shadow-orange-800/20"
+                      variants={itemVariants}
+                      whileHover={{ y: -5 }}
+                    >
+                      <h3 className="text-xl font-bold">{edu.degree}</h3>
+                      <div className="mb-2 flex justify-between">
+                        <span className="text-orange-500">{edu.institution}</span>
+                        <span className="text-neutral-grey_1">{edu.year}</span>
+                      </div>
+                      <p>{edu.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <div className="mb-12">
+                <h2 className="mb-6 border-b border-neutral-grey_1 pb-2 text-2xl font-bold text-orange-800">
+                  Skills
+                </h2>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  {skills.map((skill, index) => (
+                    <motion.div 
+                      key={index}
+                      className="rounded-lg bg-background-secondary p-6 shadow-lg"
+                      variants={itemVariants}
+                      whileHover={{ 
+                        y: -5,
+                        transition: { type: "spring", stiffness: 300 }
+                      }}
+                    >
+                      <h3 className="mb-2 text-xl font-bold text-orange-500">{skill.name}</h3>
+                      <p className="mb-4 text-sm text-neutral-grey_1">{skill.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {skill.technologies.map((tech, techIndex) => (
+                          <motion.span 
+                            key={techIndex}
+                            className="rounded-full bg-background-primary px-3 py-1 text-sm"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ 
+                              delay: 0.5 + (index * 0.1) + (techIndex * 0.05),
+                              type: "spring",
+                              stiffness: 300
+                            }}
+                            whileHover={{ 
+                              scale: 1.1,
+                              backgroundColor: '#FF8F00',
+                              color: 'white'
+                            }}
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h2 className="mb-6 border-b border-neutral-grey_1 pb-2 text-2xl font-bold text-orange-800">
+                  Download CV
+                </h2>
+                <div className="flex justify-center">
+                  <motion.div 
+                    className="relative overflow-hidden rounded-lg shadow-xl"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    <img 
+                      src={CV} 
+                      alt="CV Preview" 
+                      className="max-h-[600px] w-auto object-contain" 
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                      <motion.button 
+                        className="rounded-lg bg-gradient-to-r from-orange-800 to-orange-500 px-6 py-3 font-bold text-white shadow-lg"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          // This would typically be a download link for the CV
+                          alert('CV download functionality would be implemented here')
+                        }}
+                      >
+                        Download CV
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+    </Layout>
+  )
+}
