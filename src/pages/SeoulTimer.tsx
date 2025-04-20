@@ -16,17 +16,21 @@ export default function SeoulTimerPage(): ReactElement {
   const departure = new Date('2024-08-22T21:00:00')
   const departure2 = new Date('2024-07-25T12:00:00')
   const [timeLeft, setTimeLeft] = useState(
-    new Date().getTime() - departure.getTime()
+    departure.getTime() - new Date().getTime()
   )
   const [timeLeft2, setTimeLeft2] = useState(
-    new Date().getTime() - departure2.getTime()
+    departure2.getTime() - new Date().getTime()
   )
   const [particles, setParticles] = useState<particule[]>([])
 
-  setInterval(() => {
-    setTimeLeft(new Date().getTime() - departure.getTime())
-    setTimeLeft2(new Date().getTime() - departure2.getTime())
-  }, 1000)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(departure.getTime() - new Date().getTime())
+      setTimeLeft2(departure2.getTime() - new Date().getTime())
+    }, 1000)
+    
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const maxHeigth = window.innerHeight
