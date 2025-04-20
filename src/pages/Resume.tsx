@@ -13,7 +13,7 @@ export default function Resume(): ReactElement {
     },
     { 
       name: 'UI/UX Design',
-      technologies: ['Figma', 'Adobe XD', 'Sketch', 'Wireframing'],
+      technologies: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
       description: 'Creating user-centered designs focused on accessibility and intuitive interactions'
     },
     { 
@@ -33,7 +33,7 @@ export default function Resume(): ReactElement {
     },
     { 
       name: 'Version Control & Deployment',
-      technologies: ['Git', 'GitHub', 'CI/CD', 'Vercel', 'Netlify'],
+      technologies: ['Git', 'GitHub', 'CI/CD', 'Vercel'],
       description: 'Managing code and deploying applications using modern workflows'
     }
   ]
@@ -43,14 +43,14 @@ export default function Resume(): ReactElement {
       role: 'Freelance Frontend Developer & Designer',
       company: 'LibertAI',
       period: '2024',
-      description: 'Led the redesign of the company\'s landing page. Responsible for frontend development and UI/UX design.',
+      description: 'participate in the redesign of the company\'s wesbsite. Responsible for frontend development and UI/UX design.',
       highlights: ['Landing page redesign', 'UI/UX design', 'Frontend development']
     },
     {
       role: 'Freelance Fullstack Developer',
       company: 'SUNVER',
       period: '2024',
-      description: 'Developed the core features of the SUNVER application. Represented the product at the Food Hotel Tech 2024 trade show.',
+      description: 'Developed core features of the SUNVER application. Represented the product at the Food Hotel Tech 2024',
       highlights: ['Core application development', 'Product representation at industry trade shows']
     },
     
