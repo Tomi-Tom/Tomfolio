@@ -27,7 +27,7 @@ export default function HeroBannerSection(): ReactElement {
       } else if (textIndex === 0) {
         setIsDeleting(false)
       }
-    }
+    } 
 
     const typingTimer = setTimeout(typeWriter, typingSpeed)
     return () => clearTimeout(typingTimer)
@@ -105,7 +105,7 @@ export default function HeroBannerSection(): ReactElement {
             
             <motion.div variants={itemVariants}>
               <h2 className="text-neutral-white font-medium mb-1 text-3xl">
-                {typedText}<span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-accent-400`}>|</span>
+                {typedText}<span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-orange-800`}>|</span>
               </h2>
               <p className="text-body-large text-neutral-grey_1 max-w-lg">
                 Turning complex ideas into elegant, user-friendly interfaces and applications. Making technology more human, one pixel at a time.
