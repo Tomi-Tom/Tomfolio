@@ -141,7 +141,6 @@ export default function ServicesSection(): ReactElement {
 
   return (
     <section className="py-24 bg-background-tertiary relative overflow-hidden" ref={sectionRef}>
-      {/* Background pattern */}
       <div className="absolute inset-0 opacity-100 mix-blend-soft-light" 
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -220,7 +219,6 @@ export default function ServicesSection(): ReactElement {
                   </div>
                 </div>
                 
-                {/* Decorative background shapes */}
                 <div className={`absolute top-0 right-0 w-32 h-32 -mt-16 -mr-16 rounded-full ${colorScheme.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                 <div className={`absolute bottom-0 left-0 w-24 h-24 -mb-12 -ml-12 rounded-full ${colorScheme.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100`}></div>
               </motion.div>
