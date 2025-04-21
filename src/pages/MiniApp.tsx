@@ -165,7 +165,7 @@ export default function MiniAppPage(): ReactElement {
               {filteredApps.map((app, index) => (
                 <motion.div
                   key={index}
-                  className="card card-hover overflow-hidden border border-background-secondary/40 shadow-lg"
+                  className="card card-hover overflow-hidden border border-background-secondary/40 shadow-lg rounded-2xl bg-background-secondary/90"
                   variants={itemVariants}
                   whileHover={{ 
                     y: -5, 
@@ -181,9 +181,9 @@ export default function MiniAppPage(): ReactElement {
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.4 }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background-tertiary via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background-secondary via-transparent to-transparent" />
                     <div className="absolute top-3 right-3">
-                      <span className={`text-caption text-xs px-2 py-1 sm:px-3 sm:py-1 rounded-full border ${getCategoryColor(app.category)}`}>
+                      <span className={`text-caption text-xs px-2 py-1 sm:px-3 sm:py-1 rounded-full border bg-background-primary hover:border-orange-800 hover:text-orange-800 transition-all ${getCategoryColor(app.category)}`}>
                         {app.category === 'adhd' ? 'ADHD Tools' : 
                           app.category === 'personal' ? 'Personal' : 
                           app.category === 'games' ? 'Game' : 'Utility'}
