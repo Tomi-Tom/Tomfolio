@@ -47,8 +47,7 @@ export default function Navbar(): ReactElement {
       transition={{ type: 'spring', stiffness: 120, damping: 20 }}
     >
       <div
-        className={'z-40 flex items-center justify-between'}
-        style={{ width: '1440px' }}
+        className={'z-40 flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8'}
       >
         <motion.a 
           href="/" 
@@ -90,7 +89,7 @@ export default function Navbar(): ReactElement {
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
-                className={'absolute right-0 top-full flex flex-col rounded-xl bg-background-secondary'}
+                className={'absolute right-0 top-full mt-2 flex flex-col rounded-xl bg-background-secondary shadow-lg border border-background-primary/20 overflow-hidden'}
                 initial={{ opacity: 0, y: -10, height: 0 }}
                 animate={{ opacity: 1, y: 0, height: 'auto' }}
                 exit={{ opacity: 0, y: -10, height: 0 }}
@@ -100,7 +99,7 @@ export default function Navbar(): ReactElement {
                   <motion.a
                     key={link.route}
                     href={link.route}
-                    className="text-text-2 my-2 ml-8 mr-16 w-full text-lg hover:text-orange-800"
+                    className="px-6 py-3 w-full text-lg text-neutral-white hover:bg-primary-500/20 transition-colors"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ 
                       opacity: 1, 
