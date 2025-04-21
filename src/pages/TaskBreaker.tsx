@@ -379,9 +379,9 @@ export default function TaskBreaker(): ReactElement {
                                 )}
                               </div>
                               <div>
-                                <h3 className={`font-medium ${task.completedAt ? 'line-through text-neutral-grey_1' : ''}`}>
+                                <h4 className={`${task.completedAt ? 'line-through text-neutral-grey_1' : ''}`}>
                                   {task.title}
-                                </h3>
+                                </h4>
                                 <p className="text-xs text-neutral-grey_1">
                                   {task.steps.length} steps • {task.steps.filter(s => s.isCompleted).length} completed
                                 </p>
