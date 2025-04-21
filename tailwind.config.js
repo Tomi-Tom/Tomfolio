@@ -14,7 +14,7 @@ export default {
       },
       background: {
         primary: '#2A2A2A',
-        secondary: '#161616',
+        secondary: '#1A1A1A',
         tertiary: '#101010',
       },
       orange: {
