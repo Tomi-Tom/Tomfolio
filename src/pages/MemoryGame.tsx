@@ -2,7 +2,6 @@ import { ReactElement, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Layout from '../components/Layout';
 
-// Define card interface
 interface Card {
   id: number;
   matched: boolean;
@@ -10,7 +9,6 @@ interface Card {
   icon: string;
 }
 
-// Icons for cards
 const icons = [
   '🚀', '🌟', '🌈', '🎮', '🎨', '🎵', '🍕', '🏆',
   '🦄', '🌍', '🏖️', '💎'
@@ -26,7 +24,6 @@ export default function MemoryGame(): ReactElement {
   const [gameWon, setGameWon] = useState(false);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
 
-  // Create and shuffle cards based on difficulty
   const createCards = (difficulty: 'easy' | 'medium' | 'hard') => {
     let selectedIcons: string[];
     
@@ -44,7 +41,6 @@ export default function MemoryGame(): ReactElement {
         selectedIcons = icons.slice(0, 8);
     }
     
-    // Create pairs of cards
     const cardPairs = [...selectedIcons, ...selectedIcons]
       .map((icon, index) => ({
         id: index,
@@ -53,14 +49,12 @@ export default function MemoryGame(): ReactElement {
         icon
       }));
     
-    // Shuffle cards
     const shuffledCards = cardPairs
       .sort(() => Math.random() - 0.5);
     
     return shuffledCards;
   };
 
-  // Start new game
   const startNewGame = (difficulty: 'easy' | 'medium' | 'hard') => {
     setDifficulty(difficulty);
     setFirstChoice(null);
@@ -71,7 +65,6 @@ export default function MemoryGame(): ReactElement {
     setGameWon(false);
   };
 
-  // Handle card click
   const handleChoice = (card: Card) => {
     if (disabled || card.flipped || card.matched) return;
     
@@ -84,7 +77,6 @@ export default function MemoryGame(): ReactElement {
     firstChoice ? setSecondChoice(card) : setFirstChoice(card);
   };
 
-  // Effect for checking matches
   useEffect(() => {
     if (firstChoice && secondChoice) {
       setDisabled(true);
@@ -101,7 +93,6 @@ export default function MemoryGame(): ReactElement {
         );
         resetTurn();
       } else {
-        // Not a match, flip back after delay
         setTimeout(() => {
           setCards(prevCards => 
             prevCards.map(card => 
@@ -116,7 +107,6 @@ export default function MemoryGame(): ReactElement {
     }
   }, [firstChoice, secondChoice]);
 
-  // Reset choices & increase turn count
   const resetTurn = () => {
     setFirstChoice(null);
     setSecondChoice(null);
@@ -124,7 +114,6 @@ export default function MemoryGame(): ReactElement {
     setDisabled(false);
   };
 
-  // Check if game is won
   useEffect(() => {
     const pairsToMatch = difficulty === 'easy' ? 6 : (difficulty === 'medium' ? 8 : 12);
     if (matches === pairsToMatch) {
@@ -132,7 +121,6 @@ export default function MemoryGame(): ReactElement {
     }
   }, [matches, difficulty]);
 
-  // Start game on component mount
   useEffect(() => {
     startNewGame('medium');
   }, []);
@@ -206,7 +194,6 @@ export default function MemoryGame(): ReactElement {
                 whileTap={!card.flipped && !card.matched ? { scale: 0.95 } : {}}
               >
                 <div className="relative w-full h-full">
-                  {/* Front side */}
                   <motion.div
                     className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-700 to-orange-900 rounded-xl"
                     initial={{ rotateY: 0 }}
@@ -216,10 +203,9 @@ export default function MemoryGame(): ReactElement {
                     }}
                     transition={{ duration: 0.6, ease: "easeInOut" }}
                   >
-                    <span className="text-2xl text-orange-800">?</span>
+                    <span className="text-6xl text-orange-800">?</span>
                   </motion.div>
                   
-                  {/* Back side with icon */}
                   <motion.div
                     className="absolute inset-0 flex items-center justify-center bg-background-primary rounded-xl"
                     initial={{ rotateY: 180 }}
@@ -227,16 +213,15 @@ export default function MemoryGame(): ReactElement {
                       rotateY: card.flipped ? 0 : 180,
                       opacity: card.flipped ? 1 : 0
                     }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
-                    <span className="text-3xl">{card.icon}</span>
+                    <span className="text-6xl">{card.icon}</span>
                   </motion.div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Victory Modal */}
           <AnimatePresence>
             {gameWon && (
               <motion.div

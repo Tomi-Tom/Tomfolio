@@ -55,7 +55,6 @@ export default function PresentationSection(): ReactElement {
   }
   
   const handleDownloadCV = () => {
-    // Create a temporary link to download the CV
     const link = document.createElement('a');
     link.href = CV;
     link.download = 'Tom_Bariteau_Peter_CV.png';

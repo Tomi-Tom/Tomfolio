@@ -11,7 +11,6 @@ export default function HeroBannerSection(): ReactElement {
   const [isDeleting, setIsDeleting] = useState(false)
   const [showCursor, setShowCursor] = useState(true)
 
-  // Typing animation effect
   useEffect(() => {
     const typingSpeed = isDeleting ? 50 : 100
     const delayBetweenWords = 2000
@@ -24,7 +23,6 @@ export default function HeroBannerSection(): ReactElement {
         setTypedText(fullText.substring(0, textIndex - 1))
         setTextIndex(textIndex - 1)
       } else if (textIndex === fullText.length) {
-        // Start deleting after a delay
         setTimeout(() => setIsDeleting(true), delayBetweenWords)
       } else if (textIndex === 0) {
         setIsDeleting(false)
@@ -35,15 +33,12 @@ export default function HeroBannerSection(): ReactElement {
     return () => clearTimeout(typingTimer)
   }, [textIndex, isDeleting])
 
-  // Blinking cursor effect
   useEffect(() => {
     const cursorTimer = setInterval(() => {
       setShowCursor(prev => !prev)
     }, 500)
     return () => clearInterval(cursorTimer)
   }, [])
-
-  // Animations variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,7 +78,6 @@ export default function HeroBannerSection(): ReactElement {
 
   return (
     <section className="w-full bg-gradient-to-b from-background-primary to-background-secondary relative overflow-hidden">
-      {/* Background pattern */}
       <div className="absolute inset-0 opacity-5 mix-blend-soft-light pointer-events-none" 
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -141,7 +135,6 @@ export default function HeroBannerSection(): ReactElement {
               <div className="flex -space-x-2">
                 {[1, 2, 3].map((i) => (
                   <div key={i} className={`w-10 h-10 rounded-full border-2 border-background-primary bg-accent-${i * 100 + 200}`}>
-                    {/* Avatar placeholder circles */}
                   </div>
                 ))}
               </div>
@@ -155,7 +148,6 @@ export default function HeroBannerSection(): ReactElement {
             initial="hidden"
             animate="visible"
           >
-            {/* Decorative elements */}
             <div className="absolute w-64 h-64 md:w-80 md:h-80 bg-accent-500/10 rounded-full -top-10 -right-10 blur-2xl"></div>
             <div className="absolute w-72 h-72 md:w-96 md:h-96 bg-primary-500/15 rounded-full -bottom-20 -left-20 blur-3xl"></div>
             
@@ -177,7 +169,6 @@ export default function HeroBannerSection(): ReactElement {
                 className="w-full h-auto rounded-2xl object-cover shadow-xl"
               />
               
-              {/* Tech stack badges */}
               <motion.div 
                 className="absolute -left-6 top-1/4 bg-background-secondary px-4 py-2 rounded-full shadow-lg flex items-center space-x-2"
                 animate={{
@@ -229,7 +220,6 @@ export default function HeroBannerSection(): ReactElement {
           </motion.div>
         </div>
         
-        {/* Contact details */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 lg:mt-20 py-6 border-t border-neutral-grey_3/20"
           initial={{ opacity: 0, y: 20 }}
