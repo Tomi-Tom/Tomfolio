@@ -15,13 +15,6 @@ export default function MiniAppPage(): ReactElement {
   
   const miniApps = [
     {
-      title: 'Love Timer',
-      description: 'A special countdown timer with floating heart animations for anticipating a reunion with a loved one.',
-      link: '/love',
-      images: ['/mini-apps/LoveTimer.png'],
-      category: 'timers'
-    },
-    {
       title: 'Game of Life',
       description: 'An interactive implementation of Conway\'s Game of Life with adjustable speed, patterns, and visualization.',
       link: '/lifegame',
@@ -50,13 +43,6 @@ export default function MiniAppPage(): ReactElement {
       category: 'timers'
     },
     {
-      title: 'ADHD Pomodoro Timer (WIP)',
-      description: 'Focus timer with distraction logging and reflection specifically designed for ADHD users.',
-      link: '/adhd-pomodoro',
-      images: ['/mini-apps/PomodoroTimer.png'],
-      category: 'adhd'
-    },
-    {
       title: 'Task Breaker (Prototype)',
       description: 'Break complex tasks into manageable steps with visual progress tracking for ADHD and executive function support.',
       link: '/task-breaker',
@@ -69,6 +55,13 @@ export default function MiniAppPage(): ReactElement {
       link: '/mood-tracker',
       images: ['/mini-apps/MoodAndEnergyTracker.png'],
       category: 'adhd'
+    },
+    {
+      title: 'Love Timer',
+      description: 'A special countdown timer with floating heart animations for anticipating a reunion with a loved one.',
+      link: '/love',
+      images: ['/mini-apps/LoveTimer.png'],
+      category: 'timers'
     }
   ]
 

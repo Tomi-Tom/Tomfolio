@@ -9,6 +9,7 @@ import SeoConsultantIcon from '../../assets/Icons/SEOConstultant.svg'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ServicesSection(): ReactElement {
   const sectionRef = useRef(null)
@@ -23,45 +24,51 @@ export default function ServicesSection(): ReactElement {
 
   const services = [
     {
-      name: 'Web Development',
+      name: 'Frontend Development',
       description:
-        'I will build your website from scratch using the latest technologies.',
+        'Building responsive, performant websites and applications with React, TypeScript, and modern frameworks.',
       icon: WebDevelopmentIcon,
+      color: 'primary',
     },
     {
-      name: 'Web Design',
+      name: 'UI/UX Design',
       description:
-        'I will design your website with the best user experience in mind.',
+        'Creating intuitive interfaces and engaging user experiences that focus on both aesthetics and functionality.',
       icon: WebDesignIcon,
+      color: 'accent',
     },
     {
-      name: 'Design Trend',
+      name: 'Modern Web Apps',
       description:
-        'I will keep your website up to date with the latest design trends.',
+        'Developing progressive web applications with cutting-edge technologies that work across all devices.',
       icon: DesignTrendIcon,
+      color: 'secondary',
     },
     {
-      name: 'Customer Support',
+      name: 'Animation & Interaction',
       description:
-        'I will provide you with the best customer support after the project is done.',
+        'Implementing smooth animations and micro-interactions that enhance user experience and engagement.',
       icon: CustomerSupportIcon,
+      color: 'warning',
     },
     {
-      name: 'Branding',
+      name: 'User-Centered Design',
       description:
-        'I will help you build your brand identity and make it stand out.',
+        'Applying design thinking and user research to create solutions that address real user needs and pain points.',
       icon: BrandingIcon,
+      color: 'accent',
     },
     {
-      name: 'SEO Consultant',
+      name: 'Code Quality & Performance',
       description:
-        'I will help you optimize your website for search engines and get more traffic.',
+        'Writing clean, maintainable code with best practices for optimal performance and future scalability.',
       icon: SeoConsultantIcon,
+      color: 'primary',
     },
   ]
   
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 50 },
     visible: {
       opacity: 1,
       transition: {
@@ -85,10 +92,10 @@ export default function ServicesSection(): ReactElement {
   }
 
   const titleVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
@@ -96,103 +103,144 @@ export default function ServicesSection(): ReactElement {
       }
     }
   }
+  
+  const getCardColor = (color) => {
+    const colors = {
+      primary: {
+        bg: 'bg-primary-500/5',
+        border: 'border-primary-500/20',
+        text: 'text-primary-500',
+        hover: 'group-hover:bg-primary-500',
+        glow: 'bg-primary-500/10',
+      },
+      accent: {
+        bg: 'bg-accent-500/5',
+        border: 'border-accent-500/20',
+        text: 'text-accent-500',
+        hover: 'group-hover:bg-accent-500',
+        glow: 'bg-accent-500/10',
+      },
+      secondary: {
+        bg: 'bg-secondary-500/5',
+        border: 'border-secondary-500/20',
+        text: 'text-secondary-500',
+        hover: 'group-hover:bg-secondary-500',
+        glow: 'bg-secondary-500/10',
+      },
+      warning: {
+        bg: 'bg-warning-500/5',
+        border: 'border-warning-500/20',
+        text: 'text-warning-500',
+        hover: 'group-hover:bg-warning-500',
+        glow: 'bg-warning-500/10',
+      },
+    };
+    
+    return colors[color] || colors.primary;
+  };
 
   return (
-    <section className={'flex select-none justify-center'} ref={sectionRef}>
-      <div
-        className="relative flex flex-col justify-between overflow-hidden px-32 py-24 text-neutral-white max-lg:items-center max-lg:justify-center max-lg:px-0 max-lg:pb-24 max-sm:pb-8"
-        style={{ width: '1440px' }}
-      >
-        <motion.img
-          src={Services}
-          alt="services"
-          className={'left-54 absolute top-14'}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={controls}
-          variants={{
-            visible: {
-              opacity: 0.15,
-              scale: 1,
-              transition: { duration: 0.8, ease: "easeOut" }
-            }
-          }}
-        />
-        <motion.h3 
-          className={'text-4xl font-bold relative z-10'}
+    <section className="py-24 bg-background-tertiary relative overflow-hidden" ref={sectionRef}>
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-100 mix-blend-soft-light" 
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}
+      />
+      
+      <div className="container max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
           initial="hidden"
           animate={controls}
           variants={titleVariants}
         >
-          My Services
-        </motion.h3>
-        <div className={'flex w-full items-center justify-center'}>
-          <motion.div
-            className={
-              'grid grid-cols-3 gap-8 py-32 max-xl:grid-cols-2 max-lg:pb-0 max-sm:grid-cols-1'
-            }
-            variants={containerVariants}
-            initial="hidden"
-            animate={controls}
-          >
-            {services.map((service, index) => (
+          <h2 className="text-accent-500 font-medium text-sm uppercase tracking-wider mb-2">What I Offer</h2>
+          <h3 className="text-heading-2 text-neutral-white font-bold mb-6">Services & Expertise</h3>
+          <p className="text-neutral-grey_1 text-body">
+            Combining technical skills with design thinking to deliver high-quality digital solutions that
+            exceed expectations and create meaningful impact.
+          </p>
+        </motion.div>
+        
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
+          {services.map((service, index) => {
+            const colorScheme = getCardColor(service.color);
+            
+            return (
               <motion.div
                 key={index}
-                className={
-                  'flex h-64 w-96 rounded-lg bg-background-secondary shadow-lg hover:shadow-orange-900/20 max-lg:w-80 overflow-hidden'
-                }
+                className={`group rounded-xl p-1 transition-all duration-300 hover:shadow-lg ${colorScheme.border} hover:shadow-${service.color}-500/10 relative overflow-hidden`}
                 variants={cardVariants}
-                whileHover={{ 
-                  y: -10, 
-                  backgroundColor: '#FF8F00',
-                  transition: { 
-                    type: "spring", 
-                    stiffness: 400, 
-                    damping: 10 
-                  }
-                }}
               >
-                <div
-                  className={
-                    'flex flex-col items-start justify-center p-12 w-full relative'
-                  }
-                >
-                  <motion.img 
-                    src={service.icon} 
-                    alt="icon" 
-                    width={78} 
-                    height={78}
-                    whileHover={{ 
-                      rotate: [0, -10, 10, -5, 0],
-                      transition: { duration: 0.5 }
-                    }}
-                  />
-                  <motion.h4 
-                    className={'body-bold-large mt-2'}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                  >
-                    {service.name}
-                  </motion.h4>
-                  <motion.p 
-                    className={'body-small pt-4'}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                  >
-                    {service.description}
-                  </motion.p>
-                  <motion.div 
-                    className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-orange-800/10"
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.4 }}
-                  />
+                <div className={`rounded-lg h-full ${colorScheme.bg} p-6 sm:p-8 relative z-10 transition-colors duration-300 bg-background-secondary group-hover:bg-background-primary/90`}>
+                  <div className="flex flex-col h-full">
+                    <div className="mb-6">
+                      <div className={`w-12 h-12 flex items-center justify-center rounded-md ${colorScheme.bg} mb-4`}>
+                        <motion.img 
+                          src={service.icon} 
+                          alt={service.name}
+                          className="w-6 h-6"
+                          whileHover={{ 
+                            rotate: [0, -10, 10, -5, 0],
+                            scale: [1, 1.1, 0.9, 1.05, 1],
+                            transition: { duration: 0.5 }
+                          }}
+                        />
+                      </div>
+                      <h4 className={`text-xl font-bold mb-2 ${colorScheme.text} transition-colors duration-300 group-hover:text-neutral-white`}>
+                        {service.name}
+                      </h4>
+                    </div>
+                    
+                    <p className="text-neutral-grey_1 text-body flex-grow mb-6 transition-colors duration-300 group-hover:text-neutral-grey_1">
+                      {service.description}
+                    </p>
+                    
+                    <Link 
+                      to="/contact" 
+                      className={`inline-flex items-center text-sm font-medium ${colorScheme.text} transition-all duration-300 group-hover:text-neutral-white`}
+                    >
+                      <span>Learn more</span>
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        className="h-4 w-4 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
+                
+                {/* Decorative background shapes */}
+                <div className={`absolute top-0 right-0 w-32 h-32 -mt-16 -mr-16 rounded-full ${colorScheme.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                <div className={`absolute bottom-0 left-0 w-24 h-24 -mb-12 -ml-12 rounded-full ${colorScheme.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100`}></div>
               </motion.div>
-            ))}
-          </motion.div>
-        </div>
+            );
+          })}
+        </motion.div>
+        
+        <motion.div 
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+        >
+          <Link to="/miniapps" className="inline-flex items-center py-3 px-6 rounded-lg bg-accent-500 text-white font-medium transition-transform hover:-translate-y-1">
+            <span>View my projects</span>
+            <svg className="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

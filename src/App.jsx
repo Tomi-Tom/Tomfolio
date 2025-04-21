@@ -9,7 +9,6 @@ import Contact from './pages/Contact'
 import MemoryGame from './pages/MemoryGame'
 import WeatherApp from './pages/WeatherApp'
 import PomodoroTimer from './pages/PomodoroTimer'
-import ADHDPomodoro from './pages/ADHDPomodoro'
 import TaskBreaker from './pages/TaskBreaker'
 import MoodTracker from './pages/MoodTracker'
 
@@ -25,7 +24,6 @@ export default function App() {
       <Route path="/memory" element={<MemoryGame />} />
       <Route path="/weather" element={<WeatherApp />} />
       <Route path="/pomodoro" element={<PomodoroTimer />} />
-      <Route path="/adhd-pomodoro" element={<ADHDPomodoro />} />
       <Route path="/task-breaker" element={<TaskBreaker />} />
       <Route path="/mood-tracker" element={<MoodTracker />} />
       <Route path="*" element={<NotFound />} />
