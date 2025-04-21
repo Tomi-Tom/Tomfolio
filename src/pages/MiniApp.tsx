@@ -8,9 +8,9 @@ export default function MiniAppPage(): ReactElement {
   const categories = [
     { id: 'all', name: 'All Apps' },
     { id: 'adhd', name: 'ADHD Tools' },
-    { id: 'timers', name: 'Timers' },
     { id: 'games', name: 'Games' },
-    { id: 'utility', name: 'Utility Apps' }
+    { id: 'utility', name: 'Utility Apps' },
+    { id: 'personal', name: 'Personal' }
   ]
   
   const miniApps = [
@@ -40,7 +40,7 @@ export default function MiniAppPage(): ReactElement {
       description: 'Boost your productivity with the Pomodoro Technique time management method.',
       link: '/pomodoro',
       images: ['/mini-apps/PomodoroTimer.png'],
-      category: 'timers'
+      category: 'utility'
     },
     {
       title: 'Task Breaker (Prototype)',
@@ -61,7 +61,7 @@ export default function MiniAppPage(): ReactElement {
       description: 'A special countdown timer with floating heart animations for anticipating a reunion with a loved one.',
       link: '/love',
       images: ['/mini-apps/LoveTimer.png'],
-      category: 'timers'
+      category: 'personal'
     }
   ]
 
@@ -97,7 +97,7 @@ export default function MiniAppPage(): ReactElement {
     switch(category) {
       case 'adhd':
         return 'border-accent-500/20 bg-accent-500/5 text-accent-500';
-      case 'timers':
+      case 'personal':
         return 'border-primary-500/20 bg-primary-500/5 text-primary-500';
       case 'games':
         return 'border-secondary-500/20 bg-secondary-500/5 text-secondary-500';
@@ -185,7 +185,7 @@ export default function MiniAppPage(): ReactElement {
                     <div className="absolute top-3 right-3">
                       <span className={`text-caption text-xs px-2 py-1 sm:px-3 sm:py-1 rounded-full border ${getCategoryColor(app.category)}`}>
                         {app.category === 'adhd' ? 'ADHD Tools' : 
-                          app.category === 'timers' ? 'Timer' : 
+                          app.category === 'personal' ? 'Personal' : 
                           app.category === 'games' ? 'Game' : 'Utility'}
                       </span>
                     </div>
