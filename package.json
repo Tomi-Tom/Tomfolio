@@ -18,7 +18,7 @@
     "react": "^18.2.0",
     "react-dom": "^19.1.0",
     "react-window": "^1.8.11",
-    "tailwind-merge": "^2.5.2"
+    "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
