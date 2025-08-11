@@ -1,6 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
 @import "tailwindcss";
 
+/* Custom color variables for Tailwind v4 */
+@theme {
+  --color-neutral-white: #FFFFFF;
+  --color-neutral-grey-1: #ADADAD;
+  --color-neutral-grey-2: #5C5C5C;
+  --color-neutral-black: #000000;
+  
+  --color-background-primary: #2A2A2A;
+  --color-background-secondary: #1A1A1A;
+  --color-background-tertiary: #101010;
+  
+  --color-orange-100: #FFECB3;
+  --color-orange-200: #FFE082;
+  --color-orange-300: #FFD54F;
+  --color-orange-400: #FFCA28;
+  --color-orange-500: #FFC107;
+  --color-orange-600: #FFB300;
+  --color-orange-700: #FFA000;
+  --color-orange-800: #FF8F00;
+  --color-orange-900: #FF6F00;
+  
+  --size-76: 304px;
+  --size-88: 352px;
+  --size-90: 360px;
+  --size-100: 400px;
+  --size-104: 416px;
+  --size-108: 432px;
+  --size-112: 448px;
+  --size-116: 464px;
+  --size-120: 480px;
+  --size-124: 496px;
+  --size-128: 512px;
+  --size-132: 528px;
+  --size-136: 544px;
+  --size-140: 560px;
+  --size-144: 576px;
+  --size-148: 592px;
+  --size-152: 608px;
+  --size-156: 624px;
+  --size-160: 640px;
+  --size-164: 656px;
+  --size-168: 672px;
+  --size-172: 688px;
+  --size-176: 704px;
+  --size-180: 720px;
+  --size-184: 736px;
+  --size-188: 752px;
+  --size-192: 768px;
+  --size-196: 784px;
+  --size-200: 800px;
+  --size-260: 1040px;
+  --size-310: 1240px;
+  --size-360: 1440px;
+}
+
 @layer components {
   .body-large {
     font-size: 24px;
