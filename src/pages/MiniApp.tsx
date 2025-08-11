@@ -55,13 +55,6 @@ export default function MiniAppPage(): ReactElement {
       link: '/mood-tracker',
       images: ['/mini-apps/MoodAndEnergyTracker.png'],
       category: 'adhd'
-    },
-    {
-      title: 'Love Timer',
-      description: 'A special countdown timer with floating heart animations for anticipating a reunion with a loved one.',
-      link: '/love',
-      images: ['/mini-apps/LoveTimer.png'],
-      category: 'personal'
     }
   ]
 
