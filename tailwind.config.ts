@@ -1,35 +1,36 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss'
+
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    fill: {
-      current: 'currentColor',
-    },
-    colors: {
-      neutral: {
-        white: '#FFFFFF',
-        grey_1: '#ADADAD',
-        grey_2: '#5C5C5C',
-        black: '#000000',
-      },
-      background: {
-        primary: '#2A2A2A',
-        secondary: '#1A1A1A',
-        tertiary: '#101010',
-      },
-      orange: {
-        100: '#FFECB3',
-        200: '#FFE082',
-        300: '#FFD54F',
-        400: '#FFCA28',
-        500: '#FFC107',
-        600: '#FFB300',
-        700: '#FFA000',
-        800: '#FF8F00',
-        900: '#FF6F00',
-      },
-    },
     extend: {
+      fill: {
+        current: 'currentColor',
+      },
+      colors: {
+        neutral: {
+          white: '#FFFFFF',
+          grey_1: '#ADADAD',
+          grey_2: '#5C5C5C',
+          black: '#000000',
+        },
+        background: {
+          primary: '#2A2A2A',
+          secondary: '#1A1A1A',
+          tertiary: '#101010',
+        },
+        orange: {
+          100: '#FFECB3',
+          200: '#FFE082',
+          300: '#FFD54F',
+          400: '#FFCA28',
+          500: '#FFC107',
+          600: '#FFB300',
+          700: '#FFA000',
+          800: '#FF8F00',
+          900: '#FF6F00',
+        },
+      },
       height: {
         76: '304px',
         88: '352px',
@@ -134,5 +135,4 @@ export default {
       },
     },
   },
-  plugins: [],
-}
+} satisfies Config
