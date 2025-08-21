@@ -195,95 +195,97 @@ export default function Contact(): ReactElement {
               </div>
             </motion.div>
 
-            <motion.div
-              className="overflow-hidden rounded-xl bg-background-secondary p-8 shadow-lg"
-              variants={itemVariants}
-            >
-              <h2 className="mb-6 text-2xl font-bold text-orange-500">Send Me a Message</h2>
-              
-              {formStatus && (
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`mb-6 rounded-lg p-4 ${
-                    formStatus.success ? 'bg-green-800/20 text-green-500' : 'bg-red-800/20 text-red-500'
-                  }`}
-                >
-                  {formStatus.message}
-                </motion.div>
-              )}
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div>
-                    <label htmlFor="name" className="mb-2 block text-sm font-medium">
-                      Your Name <span className="text-orange-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full rounded-lg border border-neutral-grey_1 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="mb-2 block text-sm font-medium">
-                      Your Email <span className="text-orange-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full rounded-lg border border-neutral-grey_1 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
-                      required
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="subject" className="mb-2 block text-sm font-medium">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full rounded-lg border border-neutral-grey_1 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="mb-2 block text-sm font-medium">
-                    Your Message <span className="text-orange-500">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className="w-full rounded-lg border border-neutral-grey_1 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
-                    required
-                  ></textarea>
-                </div>
-                
-                <motion.button
-                  type="submit"
-                  className="w-full rounded-lg bg-gradient-to-r from-orange-800 to-orange-500 py-3 font-medium text-white shadow-lg transition-all hover:shadow-orange-500/30"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Send Message
-                </motion.button>
-              </form>
-            </motion.div>
+            /**
+            **<motion.div
+            **  className="overflow-hidden rounded-xl bg-background-secondary p-8 shadow-lg"
+            **  variants={itemVariants}
+            **>
+            **  <h2 className="mb-6 text-2xl font-bold text-orange-500">Send Me a Message</h2>
+            **  
+            **  {formStatus && (
+            **    <motion.div
+            **      initial={{ opacity: 0, y: -20 }}
+            **      animate={{ opacity: 1, y: 0 }}
+            **      className={`mb-6 rounded-lg p-4 ${
+            **        formStatus.success ? 'bg-green-800/20 text-green-500' : 'bg-red-800/20 text-red-500'
+            **      }`}
+            **    >
+            **      {formStatus.message}
+            **    </motion.div>
+            **  )}
+            **  
+            **  <form onSubmit={handleSubmit} className="space-y-6">
+            **    <div className="grid gap-6 md:grid-cols-2">
+            **      <div>
+            **        <label htmlFor="name" className="mb-2 block text-sm font-medium">
+            **          Your Name <span className="text-orange-500">*</span>
+            **        </label>
+            **        <input
+            **          type="text"
+            **          id="name"
+            **          name="name"
+            **          value={formData.name}
+            **          onChange={handleChange}
+            **          className="w-full rounded-lg border border-neutral-grey_1 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            **          required
+            **        />
+            **      </div>
+            **      <div>
+            **        <label htmlFor="email" className="mb-2 block text-sm font-medium">
+            **          Your Email <span className="text-orange-500">*</span>
+            **        </label>
+            **        <input
+            **          type="email"
+            **          id="email"
+            **          name="email"
+            **          value={formData.email}
+            **          onChange={handleChange}
+            **          className="w-full rounded-lg border border-neutral-grey_1 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            **          required
+            **        />
+            **      </div>
+            **    </div>
+            **    
+            **    <div>
+            **      <label htmlFor="subject" className="mb-2 block text-sm font-medium">
+            **        Subject
+            **      </label>
+            **      <input
+            **        type="text"
+            **        id="subject"
+            **        name="subject"
+            **        value={formData.subject}
+            **        onChange={handleChange}
+            **        className="w-full rounded-lg border border-neutral-grey_1 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            **      />
+            **    </div>
+            **    
+            **    <div>
+            **      <label htmlFor="message" className="mb-2 block text-sm font-medium">
+            **        Your Message <span className="text-orange-500">*</span>
+            **      </label>
+            **      <textarea
+            **        id="message"
+            **        name="message"
+            **        value={formData.message}
+            **        onChange={handleChange}
+            **        rows={6}
+            **        className="w-full rounded-lg border border-neutral-grey_1 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            **        required
+            **      ></textarea>
+            **    </div>
+            **    
+            **    <motion.button
+            **      type="submit"
+            **      className="w-full rounded-lg bg-gradient-to-r from-orange-800 to-orange-500 py-3 font-medium text-white shadow-lg transition-all hover:shadow-orange-500/30"
+            **      whileHover={{ y: -5 }}
+            **      whileTap={{ scale: 0.98 }}
+            **    >
+            **      Send Message
+            **    </motion.button>
+            **  </form>
+            **</motion.div>
+            **/
           </div>
         </motion.div>
       </div>
