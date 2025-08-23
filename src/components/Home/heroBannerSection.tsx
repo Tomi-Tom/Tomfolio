@@ -255,7 +255,7 @@ export default function HeroBannerSection(): ReactElement {
             </div>
             <div>
               <p className="text-sm text-neutral-grey_1">Phone</p>
-              <p className="text-neutral-white font-medium">(+33) 6 67 57 06 24</p>
+              <p className="text-neutral-white font-medium">(+33) 7 59 65 55 78</p>
             </div>
           </motion.div>
           
