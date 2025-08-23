@@ -104,7 +104,7 @@ export default function HeroBannerSection(): ReactElement {
             </motion.h1>
             
             <motion.div variants={itemVariants}>
-              <h2 className="text-neutral-white font-medium mb-1 text-3xl">
+              <h2 className="text-neutral-white font-medium mb-1">
                 {typedText}<span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-orange-800`}>|</span>
               </h2>
               <p className="text-body-large text-neutral-grey_1 max-w-lg">
