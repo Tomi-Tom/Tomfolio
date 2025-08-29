@@ -2,36 +2,38 @@ import { ReactElement } from 'react'
 import { motion } from 'framer-motion'
 import Layout from '../components/Layout'
 import CV from '../assets/CV.png'
+import CV_file from '../assets/CV.pdf'
+
 
 
 export default function Resume(): ReactElement {
   const skills = [
-    { 
+    {
       name: 'Frontend Development',
       technologies: ['React', 'TypeScript', 'JavaScript', 'HTML/CSS'],
       description: 'Building responsive web interfaces with modern frameworks and best practices'
     },
-    { 
+    {
       name: 'UI/UX Design',
       technologies: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
       description: 'Creating user-centered designs focused on accessibility and intuitive interactions'
     },
-    { 
+    {
       name: 'Backend Development',
       technologies: ['Node.js', 'Express', 'MongoDB', 'REST APIs'],
       description: 'Developing scalable server-side applications and APIs'
     },
-    { 
+    {
       name: 'CSS Frameworks',
       technologies: ['Tailwind CSS', 'Bootstrap', 'SCSS', 'Styled Components'],
       description: 'Implementing responsive designs with modern CSS frameworks'
     },
-    { 
+    {
       name: 'Animation & Interaction',
       technologies: ['Framer Motion', 'GSAP', 'CSS Animations'],
       description: 'Creating engaging motion design and interactive elements'
     },
-    { 
+    {
       name: 'Version Control & Deployment',
       technologies: ['Git', 'GitHub', 'CI/CD', 'Vercel'],
       description: 'Managing code and deploying applications using modern workflows'
@@ -53,7 +55,7 @@ export default function Resume(): ReactElement {
       description: 'Developed core features of the SUNVER application. Represented the product at the Food Hotel Tech 2024',
       highlights: ['Core application development', 'Product representation at industry trade shows']
     },
-    
+
     {
       role: 'AER – Mentor and Evaluator',
       company: 'Ionis STM (ASTEK)',
@@ -127,16 +129,25 @@ export default function Resume(): ReactElement {
     }
   }
 
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = CV_file;
+    link.download = 'Tom_Bariteau_Peter_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <Layout>
       <div className="min-h-screen py-24">
-        <motion.div 
+        <motion.div
           className="container mx-auto px-4"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.div 
+          <motion.div
             className="mb-16 text-center"
             variants={itemVariants}
           >
@@ -154,7 +165,7 @@ export default function Resume(): ReactElement {
                 </h2>
                 <div className="space-y-8">
                   {experiences.map((exp, index) => (
-                    <motion.div 
+                    <motion.div
                       key={index}
                       className="rounded-lg bg-background-secondary p-6 shadow-lg transition-all duration-300 hover:shadow-orange-800/20"
                       variants={itemVariants}
@@ -169,16 +180,16 @@ export default function Resume(): ReactElement {
                       {exp.highlights && (
                         <div className="flex flex-wrap gap-2 mt-3">
                           {exp.highlights.map((highlight, i) => (
-                            <motion.span 
+                            <motion.span
                               key={i}
                               className="rounded-full bg-background-primary px-3 py-1 text-sm text-neutral-grey_1"
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
-                              transition={{ 
+                              transition={{
                                 type: "spring",
                                 stiffness: 300
                               }}
-                              whileHover={{ 
+                              whileHover={{
                                 scale: 1.1,
                                 backgroundColor: '#FF8F00',
                                 color: 'white'
@@ -200,7 +211,7 @@ export default function Resume(): ReactElement {
                 </h2>
                 <div className="space-y-8">
                   {education.map((edu, index) => (
-                    <motion.div 
+                    <motion.div
                       key={index}
                       className="rounded-lg bg-background-secondary p-6 shadow-lg transition-all duration-300 hover:shadow-orange-800/20"
                       variants={itemVariants}
@@ -225,11 +236,11 @@ export default function Resume(): ReactElement {
                 </h2>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   {skills.map((skill, index) => (
-                    <motion.div 
+                    <motion.div
                       key={index}
                       className="rounded-lg bg-background-secondary p-6 shadow-lg"
                       variants={itemVariants}
-                      whileHover={{ 
+                      whileHover={{
                         y: -5,
                         transition: { type: "spring", stiffness: 300 }
                       }}
@@ -238,16 +249,16 @@ export default function Resume(): ReactElement {
                       <p className="mb-4 text-sm text-neutral-grey_1">{skill.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {skill.technologies.map((tech, techIndex) => (
-                          <motion.span 
+                          <motion.span
                             key={techIndex}
                             className="rounded-full bg-background-primary px-3 py-1 text-sm"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ 
+                            transition={{
                               type: "spring",
                               stiffness: 300
                             }}
-                            whileHover={{ 
+                            whileHover={{
                               scale: 1.1,
                               backgroundColor: '#FF8F00',
                               color: 'white'
@@ -267,25 +278,22 @@ export default function Resume(): ReactElement {
                   Download CV
                 </h2>
                 <div className="flex justify-center">
-                  <motion.div 
+                  <motion.div
                     className="relative overflow-hidden rounded-lg shadow-xl"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <img 
-                      src={CV} 
-                      alt="CV Preview" 
-                      className="max-h-[600px] w-auto object-contain" 
+                    <img
+                      src={CV}
+                      alt="CV Preview"
+                      className="max-h-[600px] w-auto object-contain"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                      <motion.button 
+                      <motion.button
                         className="rounded-lg bg-gradient-to-r from-orange-800 to-orange-500 px-6 py-3 font-bold text-white shadow-lg"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          // This would typically be a download link for the CV
-                          alert('CV download functionality would be implemented here')
-                        }}
+                        onClick={handleDownloadCV}
                       >
                         Download CV
                       </motion.button>
