@@ -1,6 +1,7 @@
 import { ReactElement, useRef } from 'react'
 import Photo from '../../assets/PhotoPresentation.png'
 import CV from '../../assets/CV.png'
+import CV_file from '../../assets/CV.pdf'
 import Button from '../Custom/Button'
 import { motion, useInView, useAnimation } from 'framer-motion'
 import { useEffect } from 'react'
@@ -56,8 +57,8 @@ export default function PresentationSection(): ReactElement {
   
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = CV;
-    link.download = 'Tom_Bariteau_Peter_CV.png';
+    link.href = CV_file;
+    link.download = 'Tom_Bariteau_Peter_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
