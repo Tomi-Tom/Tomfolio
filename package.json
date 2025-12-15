@@ -16,14 +16,14 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react-dom": "^19.2.1",
     "react-window": "^2.2.3",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.16",
     "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.5",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.39.1",
