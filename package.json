@@ -18,7 +18,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.2.3",
     "react-window": "^2.2.3",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
