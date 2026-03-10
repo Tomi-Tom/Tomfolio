@@ -77,10 +77,10 @@ export default function HeroBannerSection(): ReactElement {
   }
 
   return (
-    <section className="w-full bg-gradient-to-b from-background-primary to-background-secondary relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5 mix-blend-soft-light pointer-events-none" 
+    <section className="w-full bg-gradient-to-b from-background-white to-background-light-gray relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5 mix-blend-soft-light pointer-events-none"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F05F1E' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}
       />
       
@@ -92,22 +92,22 @@ export default function HeroBannerSection(): ReactElement {
             initial="hidden"
             animate="visible"
           >
-            <motion.div className="inline-block px-4 py-1 rounded-full bg-accent-500/10 border border-accent-500/20" variants={itemVariants}>
-              <p className="text-accent-400 text-sm font-medium">Frontend Developer & UI Designer</p>
+            <motion.div className="inline-block px-4 py-1 rounded-full bg-orange-100 border border-primary-orange/20" variants={itemVariants}>
+              <p className="text-primary-orange text-sm font-medium">Frontend Developer & UI Designer</p>
             </motion.div>
-            
-            <motion.h1  
-              className="text-heading-1 sm:text-display-2 font-bold text-neutral-white leading-tight"
+
+            <motion.h1
+              className="text-heading-1 sm:text-display-2 font-bold text-text-dark leading-tight"
               variants={itemVariants}
             >
-              <span className="text-accent-400">Crafting</span> digital experiences with purpose
+              <span className="text-primary-orange">Crafting</span> digital experiences with purpose
             </motion.h1>
-            
+
             <motion.div variants={itemVariants}>
-              <h3 className="text-neutral-white font-medium mb-1">
-                {typedText}<span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-orange-800`}>|</span>
+              <h3 className="text-text-dark font-medium mb-1">
+                {typedText}<span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-primary-orange`}>|</span>
               </h3>
-              <p className="text-body-large text-neutral-grey_1 max-w-lg">
+              <p className="text-body-large text-text-secondary max-w-lg">
                 Turning complex ideas into elegant, user-friendly interfaces and applications. Making technology more human, one pixel at a time.
               </p>
             </motion.div>
@@ -128,17 +128,17 @@ export default function HeroBannerSection(): ReactElement {
               </Link>
             </motion.div>
             
-            <motion.div 
-              className="hidden md:flex items-center gap-2 pt-6 text-neutral-grey_1"
+            <motion.div
+              className="hidden md:flex items-center gap-2 pt-6 text-text-secondary"
               variants={itemVariants}
             >
               <div className="flex -space-x-2">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className={`w-10 h-10 rounded-full border-2 border-background-primary bg-accent-${i * 100 + 200}`}>
+                  <div key={i} className={`w-10 h-10 rounded-full border-2 border-background-white bg-orange-${i * 100 + 200}`}>
                   </div>
                 ))}
               </div>
-              <p className="text-sm">Trusted by teams at <span className="text-neutral-white font-medium">Epitech</span> and <span className="text-neutral-white font-medium">various clients</span></p>
+              <p className="text-sm">Trusted by teams at <span className="text-text-dark font-medium">Epitech</span> and <span className="text-text-dark font-medium">various clients</span></p>
             </motion.div>
           </motion.div>
           
@@ -148,10 +148,10 @@ export default function HeroBannerSection(): ReactElement {
             initial="hidden"
             animate="visible"
           >
-            <div className="absolute w-64 h-64 md:w-80 md:h-80 bg-accent-500/10 rounded-full -top-10 -right-10 blur-2xl"></div>
-            <div className="absolute w-72 h-72 md:w-96 md:h-96 bg-primary-500/15 rounded-full -bottom-20 -left-20 blur-3xl"></div>
-            
-            <motion.div 
+            <div className="absolute w-64 h-64 md:w-80 md:h-80 bg-orange-200/30 rounded-full -top-10 -right-10 blur-2xl"></div>
+            <div className="absolute w-72 h-72 md:w-96 md:h-96 bg-primary-orange/10 rounded-full -bottom-20 -left-20 blur-3xl"></div>
+
+            <motion.div
               className="relative z-10 w-full max-w-md mx-auto"
               animate={{
                 y: [0, -10, 0],
@@ -168,9 +168,9 @@ export default function HeroBannerSection(): ReactElement {
                 alt="Tom Bariteau-Peter"
                 className="w-full h-auto rounded-2xl object-cover shadow-xl"
               />
-              
-              <motion.div 
-                className="absolute -left-6 top-1/4 bg-background-secondary px-4 py-2 rounded-full shadow-lg flex items-center space-x-2"
+
+              <motion.div
+                className="absolute -left-6 top-1/4 bg-background-white border border-border-gray px-4 py-2 rounded-full shadow-lg flex items-center space-x-2"
                 animate={{
                   y: [0, 8, 0],
                 }}
@@ -181,12 +181,12 @@ export default function HeroBannerSection(): ReactElement {
                   delay: 1
                 }}
               >
-                <span className="w-3 h-3 bg-accent-500 rounded-full"></span>
-                <span className="text-neutral-white font-medium">React</span>
+                <span className="w-3 h-3 bg-primary-orange rounded-full"></span>
+                <span className="text-text-dark font-medium">React</span>
               </motion.div>
-              
-              <motion.div 
-                className="absolute -right-4 top-1/2 bg-background-secondary px-4 py-2 rounded-full shadow-lg flex items-center space-x-2"
+
+              <motion.div
+                className="absolute -right-4 top-1/2 bg-background-white border border-border-gray px-4 py-2 rounded-full shadow-lg flex items-center space-x-2"
                 animate={{
                   y: [0, -8, 0],
                 }}
@@ -197,12 +197,12 @@ export default function HeroBannerSection(): ReactElement {
                   delay: 0.5
                 }}
               >
-                <span className="w-3 h-3 bg-primary-500 rounded-full"></span>
-                <span className="text-neutral-white font-medium">TypeScript</span>
+                <span className="w-3 h-3 bg-primary-orange rounded-full"></span>
+                <span className="text-text-dark font-medium">TypeScript</span>
               </motion.div>
-              
-              <motion.div 
-                className="absolute left-1/3 -bottom-4 bg-background-secondary px-4 py-2 rounded-full shadow-lg flex items-center space-x-2"
+
+              <motion.div
+                className="absolute left-1/3 -bottom-4 bg-background-white border border-border-gray px-4 py-2 rounded-full shadow-lg flex items-center space-x-2"
                 animate={{
                   y: [0, 8, 0],
                 }}
@@ -213,65 +213,65 @@ export default function HeroBannerSection(): ReactElement {
                   delay: 1.5
                 }}
               >
-                <span className="w-3 h-3 bg-secondary-500 rounded-full"></span>
-                <span className="text-neutral-white font-medium">TailwindCSS</span>
+                <span className="w-3 h-3 bg-primary-orange rounded-full"></span>
+                <span className="text-text-dark font-medium">TailwindCSS</span>
               </motion.div>
             </motion.div>
           </motion.div>
         </div>
         
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 lg:mt-20 py-6 border-t border-neutral-grey_3/20"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 lg:mt-20 py-6 border-t border-border-gray"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
         >
-          <motion.div 
+          <motion.div
             className="flex items-center space-x-4"
-            whileHover={{ x: 5, color: "#FF8F00" }}
+            whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <div className="w-12 h-12 rounded-full bg-accent-500/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-accent-500" viewBox="0 0 20 20" fill="currentColor">
+            <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-orange" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
             </div>
             <div>
-              <p className="text-sm text-neutral-grey_1">Email</p>
-              <p className="text-neutral-white font-medium">bariteaupeter.tom@gmail.com</p>
+              <p className="text-sm text-text-secondary">Email</p>
+              <p className="text-text-dark font-medium">bariteaupeter.tom@gmail.com</p>
             </div>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="flex items-center space-x-4"
-            whileHover={{ x: 5, color: "#FF8F00" }}
+            whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <div className="w-12 h-12 rounded-full bg-primary-500/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-500" viewBox="0 0 20 20" fill="currentColor">
+            <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-orange" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
             </div>
             <div>
-              <p className="text-sm text-neutral-grey_1">Phone</p>
-              <p className="text-neutral-white font-medium">(+33) 7 59 65 55 78</p>
+              <p className="text-sm text-text-secondary">Phone</p>
+              <p className="text-text-dark font-medium">(+33) 7 59 65 55 78</p>
             </div>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="flex items-center space-x-4"
-            whileHover={{ x: 5, color: "#FF8F00" }}
+            whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <div className="w-12 h-12 rounded-full bg-secondary-500/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary-500" viewBox="0 0 20 20" fill="currentColor">
+            <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-orange" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
             </div>
             <div>
-              <p className="text-sm text-neutral-grey_1">Location</p>
-              <p className="text-neutral-white font-medium">Issy Les Moulineaux, France</p>
+              <p className="text-sm text-text-secondary">Location</p>
+              <p className="text-text-dark font-medium">Issy Les Moulineaux, France</p>
             </div>
           </motion.div>
         </motion.div>

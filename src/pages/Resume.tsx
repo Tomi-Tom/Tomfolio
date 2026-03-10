@@ -1,42 +1,27 @@
 import { ReactElement } from 'react'
 import { motion } from 'framer-motion'
 import Layout from '../components/Layout'
-import CV from '../assets/CV.png'
-import CV_file from '../assets/CV.pdf'
-
-
+import CV_file from '../assets/CV_TOM BARITEAU-PETER_EN.pdf'
+import Button from '../components/Custom/Button'
+import SceneResume from '../components/Three/SceneResume'
 
 export default function Resume(): ReactElement {
   const skills = [
     {
-      name: 'Frontend Development',
-      technologies: ['React', 'TypeScript', 'JavaScript', 'HTML/CSS'],
-      description: 'Building responsive web interfaces with modern frameworks and best practices'
+      category: 'Frontend',
+      items: ['React', 'TypeScript', 'JavaScript', 'HTML/CSS', 'Tailwind CSS', 'Framer Motion']
     },
     {
-      name: 'UI/UX Design',
-      technologies: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
-      description: 'Creating user-centered designs focused on accessibility and intuitive interactions'
+      category: 'Backend',
+      items: ['Node.js', 'Express', 'MongoDB', 'REST APIs']
     },
     {
-      name: 'Backend Development',
-      technologies: ['Node.js', 'Express', 'MongoDB', 'REST APIs'],
-      description: 'Developing scalable server-side applications and APIs'
+      category: 'Design',
+      items: ['Figma', 'Adobe XD', 'Photoshop', 'UI/UX', 'Responsive Design']
     },
     {
-      name: 'CSS Frameworks',
-      technologies: ['Tailwind CSS', 'Bootstrap', 'SCSS', 'Styled Components'],
-      description: 'Implementing responsive designs with modern CSS frameworks'
-    },
-    {
-      name: 'Animation & Interaction',
-      technologies: ['Framer Motion', 'GSAP', 'CSS Animations'],
-      description: 'Creating engaging motion design and interactive elements'
-    },
-    {
-      name: 'Version Control & Deployment',
-      technologies: ['Git', 'GitHub', 'CI/CD', 'Vercel'],
-      description: 'Managing code and deploying applications using modern workflows'
+      category: 'Tools',
+      items: ['Git', 'GitHub', 'CI/CD', 'Vercel', 'VS Code']
     }
   ]
 
@@ -45,64 +30,92 @@ export default function Resume(): ReactElement {
       role: 'Freelance Frontend Developer & Designer',
       company: 'LibertAI',
       period: '2024',
-      description: 'participate in the redesign of the company\'s wesbsite. Responsible for frontend development and UI/UX design.',
-      highlights: ['Landing page redesign', 'UI/UX design', 'Frontend development']
+      type: 'Freelance',
+      description: 'Participated in the redesign of the company\'s website with focus on frontend development and UI/UX design.',
+      achievements: [
+        'Landing page redesign',
+        'UI/UX design system implementation',
+        'Frontend development with modern frameworks'
+      ]
     },
     {
       role: 'Freelance Fullstack Developer',
       company: 'SUNVER',
       period: '2024',
-      description: 'Developed core features of the SUNVER application. Represented the product at the Food Hotel Tech 2024',
-      highlights: ['Core application development', 'Product representation at industry trade shows']
+      type: 'Freelance',
+      description: 'Developed core features of the SUNVER application and represented the product at Food Hotel Tech 2024.',
+      achievements: [
+        'Core application development',
+        'Product representation at industry events',
+        'Cross-functional collaboration'
+      ]
     },
-
     {
       role: 'AER – Mentor and Evaluator',
       company: 'Ionis STM (ASTEK)',
       period: '2023 - 2024',
-      description: 'Mentored and evaluated 1st and 2nd year students at Ionis STM. Provided guidance on software engineering projects and coursework.',
-      highlights: ['Student mentoring', 'Project evaluation', 'Technical guidance']
+      type: 'Part-time',
+      description: 'Mentored and evaluated 1st and 2nd year students, providing guidance on software engineering projects.',
+      achievements: [
+        'Student mentoring and guidance',
+        'Project evaluation and feedback',
+        'Technical skill development'
+      ]
     },
     {
       role: 'Fullstack Developer',
       company: 'Diabolocom',
       period: '2022',
-      description: 'Worked on the development and improvement of internal tools using React JS/TS. Built a custom plugin (Webcallback) and collaborated across multiple teams.',
-      highlights: ['React JS/TS development', 'Custom plugin creation', 'Cross-team collaboration']
+      type: 'Internship',
+      description: 'Worked on development and improvement of internal tools using React JS/TS, built custom Webcallback plugin.',
+      achievements: [
+        'React JS/TS development',
+        'Custom plugin creation',
+        'Cross-team collaboration'
+      ]
     },
     {
       role: 'Fundraising Recruiter',
       company: 'Trico',
       period: '2018 - 2019',
-      description: 'Recruited donors for various NGOs (e.g. Amnesty International, Croix-Rouge).',
-      highlights: ['Donor recruitment', 'NGO representation', 'Public engagement']
+      type: 'Part-time',
+      description: 'Recruited donors for various NGOs including Amnesty International and Croix-Rouge.',
+      achievements: [
+        'Donor recruitment campaigns',
+        'NGO representation',
+        'Public engagement'
+      ]
     }
   ]
 
   const education = [
     {
-      degree: 'Master\'s-level program in Software Engineering',
+      degree: 'Master\'s in Software Engineering',
       institution: 'Epitech Paris',
       year: '2021 - 2026',
+      status: 'In Progress',
       description: 'Advanced software engineering program with project-based learning approach.'
     },
     {
-      degree: 'Peer-to-peer programming school',
+      degree: 'Peer-to-peer Programming',
       institution: '42 Paris',
       year: '2019 - 2021',
-      description: 'Self-directed learning with a focus on software development and peer collaboration.'
+      status: 'Completed',
+      description: 'Self-directed learning with focus on software development and peer collaboration.'
     },
     {
-      degree: 'Preparatory year in Physics, Chemistry, and Engineering Sciences',
-      institution: 'Université Pierre et Marie Curie (Jussieu)',
+      degree: 'Preparatory Year in Sciences',
+      institution: 'Université Pierre et Marie Curie',
       year: '2017 - 2018',
-      description: 'Foundation studies in physical sciences and engineering principles.'
+      status: 'Completed',
+      description: 'Foundation in physics, chemistry, and engineering sciences.'
     },
     {
-      degree: 'Science Baccalauréat with specialization in Computer Science (ISN)',
+      degree: 'Science Baccalauréat (ISN)',
       institution: 'Lycée Eugène Ionesco',
       year: '2014 - 2017',
-      description: 'French High School Diploma with focus on computer science and programming.'
+      status: 'Completed',
+      description: 'French High School Diploma with computer science specialization.'
     }
   ]
 
@@ -111,7 +124,7 @@ export default function Resume(): ReactElement {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.08
       }
     }
   }
@@ -123,186 +136,235 @@ export default function Resume(): ReactElement {
       opacity: 1,
       transition: {
         type: 'spring',
-        stiffness: 100,
+        stiffness: 120,
         damping: 20
       }
     }
   }
 
   const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = CV_file;
-    link.download = 'Tom_Bariteau_Peter_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+    const link = document.createElement('a')
+    link.href = CV_file
+    link.download = 'Tom_Bariteau_Peter_CV.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   return (
     <Layout>
-      <div className="min-h-screen py-24">
+      {/* ── Three.js Hero ── */}
+      <section className="relative h-[55vh] min-h-[400px] flex items-center justify-center overflow-hidden" style={{ background: '#07070F' }}>
+        <SceneResume />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, rgba(7,7,15,0.75) 100%)', zIndex: 1 }}
+        />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, transparent, #07070F)', zIndex: 2 }}
+        />
         <motion.div
-          className="container mx-auto px-4"
+          className="relative text-center px-6 z-10"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 80, damping: 16, delay: 0.2 }}
+        >
+          <div className="text-xs font-semibold text-text-tertiary uppercase tracking-widest mb-3">Career Timeline</div>
+          <h1 className="mb-4 font-bold syne-display" style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)', color: '#EAE6FF' }}>
+            Professional <span className="brand-tt">Profile</span>
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed mb-8" style={{ color: '#8A85AA' }}>
+            UX/UI Designer &amp; Frontend Developer — design thinking meets technical craft.
+          </p>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button onClick={handleDownloadCV} variant="primary">
+              Download Full CV
+            </Button>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      <div className="bg-canvas">
+        <motion.div
+          className="container max-w-5xl mx-auto px-6 py-20"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.div
-            className="mb-16 text-center"
-            variants={itemVariants}
-          >
-            <h1 className="mb-4 text-4xl font-bold text-orange-800">My Resume</h1>
-            <p className="mx-auto max-w-2xl text-lg">
-              A summary of my professional experience, skills, and education.
-            </p>
-          </motion.div>
+          {/* spacer — header now in hero */}
 
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <motion.div variants={itemVariants}>
-              <div className="mb-12">
-                <h2 className="mb-6 border-b border-neutral-grey_1 pb-2 text-2xl font-bold text-orange-800">
-                  Professional Experience
-                </h2>
-                <div className="space-y-8">
-                  {experiences.map((exp, index) => (
-                    <motion.div
-                      key={index}
-                      className="rounded-lg bg-background-secondary p-6 shadow-lg transition-all duration-300 hover:shadow-orange-800/20"
-                      variants={itemVariants}
-                      whileHover={{ y: -5 }}
-                    >
-                      <h3 className="text-xl font-bold">{exp.role}</h3>
-                      <div className="mb-2 flex justify-between">
-                        <span className="text-orange-500">{exp.company}</span>
-                        <span className="text-neutral-grey_1">{exp.period}</span>
-                      </div>
-                      <p className="mb-3">{exp.description}</p>
-                      {exp.highlights && (
-                        <div className="flex flex-wrap gap-2 mt-3">
-                          {exp.highlights.map((highlight, i) => (
-                            <motion.span
-                              key={i}
-                              className="rounded-full bg-background-primary px-3 py-1 text-sm text-neutral-grey_1"
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{
-                                type: "spring",
-                                stiffness: 300
-                              }}
-                              whileHover={{
-                                scale: 1.1,
-                                backgroundColor: '#FF8F00',
-                                color: 'white'
-                              }}
-                            >
-                              {highlight}
-                            </motion.span>
-                          ))}
-                        </div>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h2 className="mb-6 border-b border-neutral-grey_1 pb-2 text-2xl font-bold text-orange-800">
-                  Education
-                </h2>
-                <div className="space-y-8">
-                  {education.map((edu, index) => (
-                    <motion.div
-                      key={index}
-                      className="rounded-lg bg-background-secondary p-6 shadow-lg transition-all duration-300 hover:shadow-orange-800/20"
-                      variants={itemVariants}
-                      whileHover={{ y: -5 }}
-                    >
-                      <h3 className="text-xl font-bold">{edu.degree}</h3>
-                      <div className="mb-2 flex justify-between">
-                        <span className="text-orange-500">{edu.institution}</span>
-                        <span className="text-neutral-grey_1">{edu.year}</span>
-                      </div>
-                      <p>{edu.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <div className="mb-12">
-                <h2 className="mb-6 border-b border-neutral-grey_1 pb-2 text-2xl font-bold text-orange-800">
-                  Skills
-                </h2>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={index}
-                      className="rounded-lg bg-background-secondary p-6 shadow-lg"
-                      variants={itemVariants}
-                      whileHover={{
-                        y: -5,
-                        transition: { type: "spring", stiffness: 300 }
-                      }}
-                    >
-                      <h3 className="mb-2 text-xl font-bold text-orange-500">{skill.name}</h3>
-                      <p className="mb-4 text-sm text-neutral-grey_1">{skill.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {skill.technologies.map((tech, techIndex) => (
-                          <motion.span
-                            key={techIndex}
-                            className="rounded-full bg-background-primary px-3 py-1 text-sm"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 300
-                            }}
-                            whileHover={{
-                              scale: 1.1,
-                              backgroundColor: '#FF8F00',
-                              color: 'white'
-                            }}
-                          >
-                            {tech}
-                          </motion.span>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h2 className="mb-6 border-b border-neutral-grey_1 pb-2 text-2xl font-bold text-orange-800">
-                  Download CV
-                </h2>
-                <div className="flex justify-center">
-                  <motion.div
-                    className="relative overflow-hidden rounded-lg shadow-xl"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                  >
-                    <img
-                      src={CV}
-                      alt="CV Preview"
-                      className="max-h-[600px] w-auto object-contain"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                      <motion.button
-                        className="rounded-lg bg-gradient-to-r from-orange-800 to-orange-500 px-6 py-3 font-bold text-white shadow-lg"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={handleDownloadCV}
+          {/* Skills Overview */}
+          <motion.section className="mb-20" variants={itemVariants}>
+            <h2 className="mb-8 text-2xl font-bold text-text-primary flex items-center gap-3">
+              <div className="w-1 h-6 gradient-primary rounded-full" />
+              Skills & Technologies
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {skills.map((skillGroup, index) => (
+                <motion.div
+                  key={index}
+                  className="surface-elevated rounded-xl p-5 border border-text-tertiary/10"
+                  whileHover={{ y: -4 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                >
+                  <h3 className="text-sm font-bold text-accent mb-3 uppercase tracking-wider">
+                    {skillGroup.category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {skillGroup.items.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="text-sm text-text-secondary px-2 py-1 bg-canvas rounded"
                       >
-                        Download CV
-                      </motion.button>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Experience */}
+          <motion.section className="mb-20" variants={itemVariants}>
+            <h2 className="mb-8 text-2xl font-bold text-text-primary flex items-center gap-3">
+              <div className="w-1 h-6 gradient-primary rounded-full" />
+              Professional Experience
+            </h2>
+            <div className="space-y-8 relative">
+              {/* Timeline line */}
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-accent/20 hidden md:block" />
+
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  className="relative pl-0 md:pl-8"
+                  variants={itemVariants}
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-[-4px] top-6 w-2 h-2 rounded-full bg-accent hidden md:block" />
+
+                  <div className="surface-elevated rounded-xl p-6 border border-text-tertiary/10">
+                    {/* Header row */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                      <div>
+                        <h3 className="text-xl font-bold text-text-primary mb-1">
+                          {exp.role}
+                        </h3>
+                        <div className="flex items-center gap-2 text-accent font-semibold">
+                          <span>{exp.company}</span>
+                          <span className="text-text-tertiary">•</span>
+                          <span className="text-sm text-text-secondary">{exp.type}</span>
+                        </div>
+                      </div>
+                      <span className="text-sm font-medium text-text-secondary bg-canvas px-3 py-1 rounded-full whitespace-nowrap">
+                        {exp.period}
+                      </span>
                     </div>
-                  </motion.div>
-                </div>
+
+                    {/* Description */}
+                    <p className="text-text-secondary mb-4 leading-relaxed">
+                      {exp.description}
+                    </p>
+
+                    {/* Achievements */}
+                    <div className="space-y-2">
+                      {exp.achievements.map((achievement, i) => (
+                        <div key={i} className="flex items-start gap-2 text-sm text-text-secondary">
+                          <svg className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{achievement}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Education */}
+          <motion.section className="mb-20" variants={itemVariants}>
+            <h2 className="mb-8 text-2xl font-bold text-text-primary flex items-center gap-3">
+              <div className="w-1 h-6 gradient-secondary rounded-full" />
+              Education
+            </h2>
+            <div className="space-y-6 relative">
+              {/* Timeline line */}
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-accent/20 hidden md:block" />
+
+              {education.map((edu, index) => (
+                <motion.div
+                  key={index}
+                  className="relative pl-0 md:pl-8"
+                  variants={itemVariants}
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-[-4px] top-6 w-2 h-2 rounded-full bg-accent hidden md:block" />
+
+                  <div className="surface-elevated rounded-xl p-6 border border-text-tertiary/10">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+                      <div>
+                        <h3 className="text-lg font-bold text-text-primary mb-1">
+                          {edu.degree}
+                        </h3>
+                        <p className="text-accent font-semibold">{edu.institution}</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                          edu.status === 'In Progress'
+                            ? 'bg-accent/10 text-accent'
+                            : 'bg-text-tertiary/10 text-text-secondary'
+                        }`}>
+                          {edu.status}
+                        </span>
+                        <span className="text-sm font-medium text-text-secondary">
+                          {edu.year}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-sm text-text-secondary leading-relaxed">
+                      {edu.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Contact CTA */}
+          <motion.section variants={itemVariants}>
+            <div className="surface-elevated rounded-2xl p-8 text-center border border-accent/20">
+              <h3 className="text-2xl font-bold text-text-primary mb-3">
+                Let's Work Together
+              </h3>
+              <p className="text-text-secondary mb-6 max-w-xl mx-auto">
+                Interested in collaborating? I'm available for freelance projects and full-time opportunities.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.a
+                  href="/contact"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button onClick={() => {}} variant="primary">
+                    Get in Touch
+                  </Button>
+                </motion.a>
+                <motion.a
+                  href="mailto:bariteaupeter.tom@gmail.com"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button onClick={() => {}} variant="outline">
+                    Email Me
+                  </Button>
+                </motion.a>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.section>
         </motion.div>
       </div>
     </Layout>
