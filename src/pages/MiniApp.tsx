@@ -1,236 +1,211 @@
-import { ReactElement, useState } from 'react'
-import { motion } from 'framer-motion'
+import { ReactElement, useCallback, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout'
+import SceneCarousel, { CAROUSEL_APPS } from '../components/Three/SceneCarousel'
 
 export default function MiniAppPage(): ReactElement {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  
-  const categories = [
-    { id: 'all', name: 'All Apps' },
-    { id: 'adhd', name: 'ADHD Tools' },
-    { id: 'games', name: 'Games' },
-    { id: 'utility', name: 'Utility Apps' },
-    { id: 'personal', name: 'Personal' }
-  ]
-  
-  const miniApps = [
-    {
-      title: 'Game of Life',
-      description: 'An interactive implementation of Conway\'s Game of Life with adjustable speed, patterns, and visualization.',
-      link: '/lifegame',
-      images: ['/mini-apps/GameOfLife.png'],
-      category: 'games'
-    },
-    {
-      title: 'Memory Game',
-      description: 'A card matching memory game with multiple difficulty levels and timed challenges.',
-      link: '/memory',
-      images: ['/mini-apps/MemoryGame.png'],
-      category: 'games'
-    },
-    {
-      title: 'Weather App',
-      description: 'Check current weather conditions around the world with this interactive demo application.',
-      link: '/weather',
-      images: ['/mini-apps/WeatherApp.png'],
-      category: 'utility'
-    },
-    {
-      title: 'Pomodoro Timer',
-      description: 'Boost your productivity with the Pomodoro Technique time management method.',
-      link: '/pomodoro',
-      images: ['/mini-apps/PomodoroTimer.png'],
-      category: 'utility'
-    },
-    {
-      title: 'Task Breaker (Prototype)',
-      description: 'Break complex tasks into manageable steps with visual progress tracking for ADHD and executive function support.',
-      link: '/task-breaker',
-      images: ['/mini-apps/TaskBreaker.png'],
-      category: 'adhd'
-    },
-    {
-      title: 'Mood & Energy Tracker (Prototype)',
-      description: 'Track emotional states and energy levels throughout the day with visual patterns and insights.',
-      link: '/mood-tracker',
-      images: ['/mini-apps/MoodAndEnergyTracker.png'],
-      category: 'adhd'
-    }
-  ]
+  const navigate      = useNavigate()
+  const [focused, setFocused] = useState(0)
+  const goToRef = useRef<((i: number) => void) | null>(null)
 
-  const filteredApps = activeCategory === 'all' || activeCategory === null
-    ? miniApps
-    : miniApps.filter(app => app.category === activeCategory)
+  const handleFocusChange = useCallback((i: number) => setFocused(i), [])
+  const handleSelect      = useCallback((link: string) => navigate(link), [navigate])
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
+  const prev = () => goToRef.current?.(focused - 1)
+  const next = () => goToRef.current?.(focused + 1)
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  }
-
-  const getCategoryColor = (category: string | undefined) => {
-    switch(category) {
-      case 'adhd':
-        return 'border-accent-500/20 bg-accent-500/5 text-accent-500';
-      case 'personal':
-        return 'border-primary-500/20 bg-primary-500/5 text-primary-500';
-      case 'games':
-        return 'border-secondary-500/20 bg-secondary-500/5 text-secondary-500';
-      case 'utility':
-        return 'border-warning-500/20 bg-warning-500/5 text-warning-500';
-      default:
-        return 'border-neutral-grey_3/20 bg-neutral-grey_3/5 text-neutral-grey_2';
-    }
-  }
+  const app = CAROUSEL_APPS[focused]
 
   return (
     <Layout>
-      <div className="relative bg-background-tertiary min-h-screen">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5 mix-blend-soft-light" 
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-          }}
+      {/* ── Full-viewport carousel stage ── */}
+      <div
+        className="relative overflow-hidden"
+        style={{ height: 'calc(100vh - 64px)', minHeight: 600, background: '#07070F' }}
+      >
+        {/* Three.js canvas fills everything */}
+        <SceneCarousel
+          onFocusChange={handleFocusChange}
+          onSelect={handleSelect}
+          goToRef={goToRef}
         />
-        
-        <div className="container-wide relative z-10 py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="space-y-16"
+
+        {/* ── Top vignette + header ── */}
+        <div
+          className="absolute inset-x-0 top-0 h-48 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, #07070F 30%, transparent)', zIndex: 10 }}
+        />
+        <motion.div
+          className="absolute inset-x-0 top-0 z-20 pt-6 text-center pointer-events-none"
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          <p
+            className="text-xs font-bold uppercase tracking-[0.25em] mb-1"
+            style={{ color: '#4A4668' }}
           >
-            {/* Header */}
-            <motion.div className="text-center space-y-4" variants={itemVariants}>
-              <h1 className="text-display-2 text-neutral-white">
-                Mini <span className="text-primary-500">Applications</span>
-              </h1>
-              <p className="text-body-large text-neutral-grey_1 max-w-2xl mx-auto">
-                Explore this collection of interactive web applications showcasing various skills and technologies.
-                Each mini-app demonstrates different aspects of design and development.
+            Interactive Showcase
+          </p>
+          <h1
+            className="font-bold syne-display leading-none"
+            style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', color: '#EAE6FF' }}
+          >
+            Mini <span className="brand-tt">Applications</span>
+          </h1>
+          <p className="text-xs mt-2" style={{ color: '#4A4668' }}>
+            Drag · Scroll · ← → to explore &nbsp;·&nbsp; Click to open
+          </p>
+        </motion.div>
+
+        {/* ── Left / Right navigation arrows ── */}
+        {(['prev', 'next'] as const).map((dir) => (
+          <motion.button
+            key={dir}
+            onClick={dir === 'prev' ? prev : next}
+            className="absolute top-1/2 -translate-y-1/2 z-30 flex items-center justify-center rounded-full border transition-colors"
+            style={{
+              [dir === 'prev' ? 'left' : 'right']: '1.5rem',
+              width: 48, height: 48,
+              background: 'rgba(10,10,26,0.7)',
+              borderColor: 'rgba(255,107,53,0.25)',
+              backdropFilter: 'blur(8px)',
+              color: '#FF6B35',
+            }}
+            whileHover={{ scale: 1.12, borderColor: 'rgba(255,107,53,0.6)', backgroundColor: 'rgba(255,107,53,0.12)' }}
+            whileTap={{ scale: 0.92 }}
+          >
+            <span className="text-lg font-bold select-none">
+              {dir === 'prev' ? '←' : '→'}
+            </span>
+          </motion.button>
+        ))}
+
+        {/* ── Bottom vignette + info panel ── */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-64 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #07070F 55%, transparent)', zIndex: 10 }}
+        />
+
+        <div className="absolute inset-x-0 bottom-0 z-20 pb-6 px-4">
+          {/* Animated app info */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={focused}
+              className="text-center mb-5"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.28, ease: 'easeOut' }}
+            >
+              {/* Category badge */}
+              <motion.span
+                className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-2"
+                style={{
+                  background: `${app.color}22`,
+                  border: `1px solid ${app.color}55`,
+                  color: app.color,
+                }}
+              >
+                {app.badge}
+              </motion.span>
+
+              {/* Title */}
+              <h2
+                className="font-bold syne-display leading-tight"
+                style={{ fontSize: 'clamp(1.4rem, 3.5vw, 2.2rem)', color: '#EAE6FF' }}
+              >
+                {app.title}
+              </h2>
+
+              {/* Description */}
+              <p className="text-sm mt-1" style={{ color: '#6B6890' }}>
+                {app.desc}
               </p>
             </motion.div>
+          </AnimatePresence>
 
-            {/* Category filters */}
-            <motion.div className="flex flex-wrap justify-center gap-2 sm:gap-3" variants={itemVariants}>
-              {categories.map(category => (
-                <motion.button
-                  key={category.id}
-                  className={`px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-lg border focus-ring transition-all ${
-                    activeCategory === category.id || (category.id === 'all' && activeCategory === null)
-                      ? 'bg-primary-500 border-primary-600 text-neutral-white'
-                      : 'bg-background-secondary border-background-secondary/50 text-neutral-grey_1 hover:border-primary-500/30'
-                  }`}
-                  onClick={() => setActiveCategory(category.id === 'all' ? null : category.id)}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  {category.name}
-                </motion.button>
-              ))}
-            </motion.div>
+          {/* Dot indicators */}
+          <div className="flex items-center justify-center gap-2 mb-5">
+            {CAROUSEL_APPS.map((a, i) => (
+              <motion.button
+                key={i}
+                onClick={() => goToRef.current?.(i)}
+                className="rounded-full transition-all duration-300 focus:outline-none"
+                style={{
+                  width:   i === focused ? 28 : 8,
+                  height:  8,
+                  background: i === focused ? a.color : 'rgba(255,255,255,0.15)',
+                  boxShadow: i === focused ? `0 0 8px ${a.color}88` : 'none',
+                }}
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 0.85 }}
+                aria-label={`Go to ${a.title}`}
+              />
+            ))}
+          </div>
 
-            {/* Apps grid */}
-            <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {filteredApps.map((app, index) => (
-                <motion.div
-                  key={index}
-                  className="card card-hover overflow-hidden border border-background-secondary/40 shadow-lg rounded-2xl bg-background-secondary/90"
-                  variants={itemVariants}
-                  whileHover={{ 
-                    y: -5, 
-                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
-                  }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                >
-                  <div className="relative h-48 sm:h-56 overflow-hidden">
-                    <motion.img
-                      src={app.images[0]}
-                      alt={app.title}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.4 }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background-secondary via-transparent to-transparent" />
-                    <div className="absolute top-3 right-3">
-                      <span className={`text-caption text-xs px-2 py-1 sm:px-3 sm:py-1 rounded-full border bg-background-primary hover:border-orange-800 hover:text-orange-800 transition-all ${getCategoryColor(app.category)}`}>
-                        {app.category === 'adhd' ? 'ADHD Tools' : 
-                          app.category === 'personal' ? 'Personal' : 
-                          app.category === 'games' ? 'Game' : 'Utility'}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
-                    <h2 className="text-heading-4 sm:text-heading-3 text-neutral-white">{app.title}</h2>
-                    <p className="text-sm sm:text-base text-neutral-grey_1 line-clamp-3">{app.description}</p>
-                    
-                    <motion.a
-                      href={app.link}
-                      className={`inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg space-x-2 text-sm sm:text-base font-medium ${
-                        app.category === 'adhd' ? 'bg-gradient-accent' : 
-                        app.category === 'timers' ? 'bg-gradient-primary' :
-                        app.category === 'games' ? 'bg-gradient-secondary' :
-                        'bg-gradient-primary'
-                      } text-neutral-white`}
-                      whileHover={{ y: -2, boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <span>Try it out</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </motion.a>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-            
-            {/* Empty state */}
-            {filteredApps.length === 0 && (
-              <motion.div 
-                className="text-center py-16 sm:py-20 px-4 mx-auto max-w-md"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
+          {/* Open App button */}
+          <div className="flex justify-center">
+            <AnimatePresence mode="wait">
+              <motion.button
+                key={`cta-${focused}`}
+                onClick={() => navigate(app.link)}
+                className="relative px-8 py-3 rounded-xl font-bold text-white overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, #FF6B35, #FF8C5A)',
+                  boxShadow: '0 6px 28px -4px rgba(255,107,53,0.45)',
+                  fontSize: '0.95rem',
+                }}
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.92 }}
+                transition={{ duration: 0.22 }}
+                whileHover={{
+                  scale: 1.06,
+                  boxShadow: '0 10px 36px -4px rgba(255,107,53,0.65)',
+                }}
+                whileTap={{ scale: 0.96 }}
               >
-                <svg 
-                  className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 text-neutral-grey_3/40" 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="text-heading-3 sm:text-heading-2 text-neutral-grey_2 mb-2 sm:mb-4">No applications found</h3>
-                <p className="text-body text-neutral-grey_1">Try selecting a different category or check back later for more apps!</p>
-              </motion.div>
-            )}
+                {/* Animated glow sweep */}
+                <motion.span
+                  className="absolute inset-0 rounded-xl"
+                  style={{ background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%)' }}
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: 'linear', repeatDelay: 1.2 }}
+                />
+                <span className="relative flex items-center gap-2">
+                  Open {app.title}
+                  <motion.span
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    →
+                  </motion.span>
+                </span>
+              </motion.button>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* ── App count indicator (top-right) ── */}
+        <div
+          className="absolute top-6 right-6 z-20 text-right pointer-events-none"
+        >
+          <motion.div
+            key={focused}
+            className="font-bold syne-display"
+            style={{ fontSize: '2.2rem', color: 'rgba(255,107,53,0.18)', lineHeight: 1 }}
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {String(focused + 1).padStart(2, '0')}
           </motion.div>
+          <div className="text-xs" style={{ color: '#2A2840' }}>
+            / {String(CAROUSEL_APPS.length).padStart(2, '0')}
+          </div>
         </div>
       </div>
     </Layout>
