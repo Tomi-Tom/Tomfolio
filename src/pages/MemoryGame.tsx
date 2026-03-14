@@ -1,6 +1,6 @@
 import { ReactElement, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Layout from '../components/Layout';
+import { PageLayout } from '../layouts/PageLayout';
 
 interface Card {
   id: number;
@@ -26,7 +26,7 @@ export default function MemoryGame(): ReactElement {
 
   const createCards = (difficulty: 'easy' | 'medium' | 'hard') => {
     let selectedIcons: string[];
-    
+
     switch(difficulty) {
       case 'easy':
         selectedIcons = icons.slice(0, 6);
@@ -40,7 +40,7 @@ export default function MemoryGame(): ReactElement {
       default:
         selectedIcons = icons.slice(0, 8);
     }
-    
+
     const cardPairs = [...selectedIcons, ...selectedIcons]
       .map((icon, index) => ({
         id: index,
@@ -48,10 +48,10 @@ export default function MemoryGame(): ReactElement {
         flipped: false,
         icon
       }));
-    
+
     const shuffledCards = cardPairs
       .sort(() => Math.random() - 0.5);
-    
+
     return shuffledCards;
   };
 
@@ -67,9 +67,9 @@ export default function MemoryGame(): ReactElement {
 
   const handleChoice = (card: Card) => {
     if (disabled || card.flipped || card.matched) return;
-    
+
     // Flip the card
-    const updatedCards = cards.map(c => 
+    const updatedCards = cards.map(c =>
       c.id === card.id ? { ...c, flipped: true } : c
     );
     setCards(updatedCards);
@@ -80,24 +80,24 @@ export default function MemoryGame(): ReactElement {
   useEffect(() => {
     if (firstChoice && secondChoice) {
       setDisabled(true);
-      
+
       if (firstChoice.icon === secondChoice.icon) {
         // We have a match
         setMatches(prev => prev + 1);
-        setCards(prevCards => 
-          prevCards.map(card => 
-            card.id === firstChoice.id || card.id === secondChoice.id 
-              ? { ...card, matched: true } 
+        setCards(prevCards =>
+          prevCards.map(card =>
+            card.id === firstChoice.id || card.id === secondChoice.id
+              ? { ...card, matched: true }
               : card
           )
         );
         resetTurn();
       } else {
         setTimeout(() => {
-          setCards(prevCards => 
-            prevCards.map(card => 
-              card.id === firstChoice.id || card.id === secondChoice.id 
-                ? { ...card, flipped: false } 
+          setCards(prevCards =>
+            prevCards.map(card =>
+              card.id === firstChoice.id || card.id === secondChoice.id
+                ? { ...card, flipped: false }
                 : card
             )
           );
@@ -126,24 +126,24 @@ export default function MemoryGame(): ReactElement {
   }, []);
 
   return (
-    <Layout>
-      <div className="flex min-h-screen flex-col items-center pt-24 pb-32">
-        <motion.div 
+    <PageLayout>
+      <div className="flex min-h-screen flex-col items-center pt-24 pb-32" style={{ background: 'var(--color-void)' }}>
+        <motion.div
           className="container mx-auto px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           <div className="mb-8 text-center">
-            <h1 className="mb-4 text-4xl font-bold text-orange-800">Memory Game</h1>
-            <p className="mx-auto max-w-2xl mb-8 text-lg text-neutral-grey_1">
+            <h1 className="mb-4 text-4xl font-bold text-gold">Memory Game</h1>
+            <p className="mx-auto max-w-2xl mb-8 text-lg text-secondary">
               Test your memory by matching pairs of cards. Click on a card to flip it and find its match.
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <motion.button
                 onClick={() => startNewGame('easy')}
-                className={`px-6 py-2 rounded-lg font-medium ${difficulty === 'easy' ? 'bg-orange-800 text-white' : 'bg-background-secondary text-neutral-grey_1'}`}
+                className={difficulty === 'easy' ? 'btn-gold' : 'btn-ghost-gold'}
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -151,7 +151,7 @@ export default function MemoryGame(): ReactElement {
               </motion.button>
               <motion.button
                 onClick={() => startNewGame('medium')}
-                className={`px-6 py-2 rounded-lg font-medium ${difficulty === 'medium' ? 'bg-orange-800 text-white' : 'bg-background-secondary text-neutral-grey_1'}`}
+                className={difficulty === 'medium' ? 'btn-gold' : 'btn-ghost-gold'}
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -159,57 +159,67 @@ export default function MemoryGame(): ReactElement {
               </motion.button>
               <motion.button
                 onClick={() => startNewGame('hard')}
-                className={`px-6 py-2 rounded-lg font-medium ${difficulty === 'hard' ? 'bg-orange-800 text-white' : 'bg-background-secondary text-neutral-grey_1'}`}
+                className={difficulty === 'hard' ? 'btn-gold' : 'btn-ghost-gold'}
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Hard
               </motion.button>
             </div>
-            
+
             <div className="flex justify-center gap-8 mb-8">
               <div className="text-center">
-                <h3 className="text-xl font-medium text-neutral-white">Turns</h3>
-                <p className="text-4xl font-bold text-orange-500">{turns}</p>
+                <h3 className="text-xl font-medium text-secondary">Turns</h3>
+                <p className="text-4xl font-bold text-gold">{turns}</p>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-medium text-neutral-white">Matches</h3>
-                <p className="text-4xl font-bold text-orange-500">{matches}</p>
+                <h3 className="text-xl font-medium text-secondary">Matches</h3>
+                <p className="text-4xl font-bold text-gold">{matches}</p>
               </div>
             </div>
           </div>
 
           <div className={`grid gap-4 mx-auto max-w-5xl
-            ${difficulty === 'easy' ? 'grid-cols-3 sm:grid-cols-4' : 
-            difficulty === 'medium' ? 'grid-cols-3 sm:grid-cols-4' : 
+            ${difficulty === 'easy' ? 'grid-cols-3 sm:grid-cols-4' :
+            difficulty === 'medium' ? 'grid-cols-3 sm:grid-cols-4' :
             'grid-cols-3 sm:grid-cols-4 md:grid-cols-6'}`}
           >
             {cards.map(card => (
-              <motion.div 
+              <motion.div
                 key={card.id}
                 onClick={() => handleChoice(card)}
-                className={`relative cursor-pointer bg-background-secondary aspect-square flex items-center justify-center rounded-xl text-4xl shadow-md overflow-hidden
-                  ${card.matched ? 'opacity-70' : ''}`}
+                className={`relative cursor-pointer aspect-square flex items-center justify-center rounded-xl text-4xl overflow-hidden ${card.matched ? 'opacity-70' : ''}`}
+                style={{
+                  background: 'var(--color-void-surface)',
+                  border: '1px solid var(--color-border)',
+                }}
                 whileHover={!card.flipped && !card.matched ? { scale: 1.05 } : {}}
                 whileTap={!card.flipped && !card.matched ? { scale: 0.95 } : {}}
               >
                 <div className="relative w-full h-full">
                   <motion.div
-                    className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-700 to-orange-900 rounded-xl"
+                    className="absolute inset-0 flex items-center justify-center rounded-xl"
+                    style={{
+                      background: 'linear-gradient(135deg, var(--color-void-elevated), var(--color-void-surface))',
+                      border: '1px solid var(--color-border-active)',
+                    }}
                     initial={{ rotateY: 0 }}
-                    animate={{ 
+                    animate={{
                       rotateY: card.flipped ? 180 : 0,
                       opacity: card.flipped ? 0 : 1
                     }}
                     transition={{ duration: 0.6, ease: "easeInOut" }}
                   >
-                    <span className="text-6xl text-orange-800">?</span>
+                    <span className="text-6xl text-gold-dim">?</span>
                   </motion.div>
-                  
+
                   <motion.div
-                    className="absolute inset-0 flex items-center justify-center bg-background-primary rounded-xl"
+                    className="absolute inset-0 flex items-center justify-center rounded-xl"
+                    style={{
+                      background: card.matched ? 'var(--color-gold-ghost)' : 'var(--color-void-elevated)',
+                    }}
                     initial={{ rotateY: 180 }}
-                    animate={{ 
+                    animate={{
                       rotateY: card.flipped ? 0 : 180,
                       opacity: card.flipped ? 1 : 0
                     }}
@@ -225,28 +235,29 @@ export default function MemoryGame(): ReactElement {
           <AnimatePresence>
             {gameWon && (
               <motion.div
-                className="fixed inset-0 flex items-center justify-center bg-black/60 z-50"
+                className="fixed inset-0 flex items-center justify-center z-50"
+                style={{ background: 'rgba(0, 0, 0, 0.8)' }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setGameWon(false)}
               >
-                <motion.div 
-                  className="bg-background-secondary p-8 rounded-xl shadow-2xl max-w-md text-center"
+                <motion.div
+                  className="void-panel p-8 rounded-xl max-w-md text-center"
                   initial={{ scale: 0.8, y: 20 }}
                   animate={{ scale: 1, y: 0 }}
                   exit={{ scale: 0.8, y: 20 }}
                   onClick={e => e.stopPropagation()}
                 >
-                  <h2 className="text-3xl font-bold text-orange-500 mb-4">Congratulations! 🎉</h2>
-                  <p className="text-xl mb-6">You completed the game in {turns} turns!</p>
+                  <h2 className="text-3xl font-bold text-gold mb-4">Congratulations!</h2>
+                  <p className="text-xl mb-6 text-secondary">You completed the game in <span className="text-gold">{turns}</span> turns!</p>
                   <div className="flex justify-center gap-4">
                     <motion.button
                       onClick={() => {
                         setGameWon(false);
                         startNewGame(difficulty);
                       }}
-                      className="px-6 py-3 bg-gradient-to-r from-orange-800 to-orange-500 text-white rounded-lg font-medium"
+                      className="btn-gold"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -254,7 +265,7 @@ export default function MemoryGame(): ReactElement {
                     </motion.button>
                     <motion.button
                       onClick={() => setGameWon(false)}
-                      className="px-6 py-3 bg-background-primary text-neutral-white rounded-lg font-medium"
+                      className="btn-ghost-gold"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -267,6 +278,6 @@ export default function MemoryGame(): ReactElement {
           </AnimatePresence>
         </motion.div>
       </div>
-    </Layout>
+    </PageLayout>
   );
 }

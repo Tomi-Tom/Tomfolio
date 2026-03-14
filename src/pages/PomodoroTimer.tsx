@@ -1,6 +1,6 @@
 import { ReactElement, useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Layout from '../components/Layout';
+import { PageLayout } from '../layouts/PageLayout';
 
 type TimerMode = 'pomodoro' | 'shortBreak' | 'longBreak';
 
@@ -25,7 +25,7 @@ export default function PomodoroTimer(): ReactElement {
   const [showSettings, setShowSettings] = useState(false);
   const [completedPomodoros, setCompletedPomodoros] = useState(0);
   const [formSettings, setFormSettings] = useState(defaultSettings);
-  
+
   // Refs for audio
   const startSoundRef = useRef<HTMLAudioElement | null>(null);
   const pauseSoundRef = useRef<HTMLAudioElement | null>(null);
@@ -44,7 +44,7 @@ export default function PomodoroTimer(): ReactElement {
   // Timer countdown
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
-    
+
     if (isActive && secondsLeft > 0) {
       interval = setInterval(() => {
         setSecondsLeft((prevSeconds) => prevSeconds - 1);
@@ -52,7 +52,7 @@ export default function PomodoroTimer(): ReactElement {
     } else if (isActive && secondsLeft === 0) {
       // Timer complete
       completeSoundRef.current?.play();
-      
+
       if (mode === 'pomodoro') {
         setCompletedPomodoros(prev => prev + 1);
         if (completedPomodoros % 4 === 3) {
@@ -65,10 +65,10 @@ export default function PomodoroTimer(): ReactElement {
         // After a break, start a new pomodoro
         setMode('pomodoro');
       }
-      
+
       setIsActive(false);
     }
-    
+
     return () => clearInterval(interval);
   }, [isActive, secondsLeft, mode, completedPomodoros]);
 
@@ -118,32 +118,24 @@ export default function PomodoroTimer(): ReactElement {
     setSecondsLeft(formSettings[mode] * 60);
   };
 
-  // Get background color based on current mode
-  const getBgColor = (): string => {
-    switch (mode) {
-      case 'pomodoro':
-        return 'bg-gradient-to-br from-red-800 to-red-600';
-      case 'shortBreak':
-        return 'bg-gradient-to-br from-green-800 to-green-600';
-      case 'longBreak':
-        return 'bg-gradient-to-br from-blue-800 to-blue-600';
-      default:
-        return 'bg-gradient-to-br from-orange-800 to-orange-600';
-    }
-  };
+  // Calculate progress for the circle
+  const totalSeconds = settings[mode] * 60;
+  const progress = totalSeconds > 0 ? secondsLeft / totalSeconds : 0;
+  const circumference = 2 * Math.PI * 140; // radius = 140
+  const strokeDashoffset = circumference * (1 - progress);
 
   return (
-    <Layout>
-      <div className="flex min-h-screen flex-col items-center pt-24 pb-32">
-        <motion.div 
+    <PageLayout>
+      <div className="flex min-h-screen flex-col items-center pt-24 pb-32" style={{ background: 'var(--color-void)' }}>
+        <motion.div
           className="container mx-auto px-4 max-w-4xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           <div className="mb-8 text-center">
-            <h1 className="mb-4 text-4xl font-bold text-orange-800">Pomodoro Timer</h1>
-            <p className="mx-auto max-w-2xl mb-6 text-lg text-neutral-grey_1">
+            <h1 className="mb-4 text-4xl font-bold text-gold">Pomodoro Timer</h1>
+            <p className="mx-auto max-w-2xl mb-6 text-lg text-secondary">
               Boost your productivity with the Pomodoro Technique. Work in focused intervals with short breaks in between.
             </p>
 
@@ -158,18 +150,14 @@ export default function PomodoroTimer(): ReactElement {
                 <motion.button
                   key={timerMode}
                   onClick={() => setMode(timerMode)}
-                  className={`px-6 py-3 rounded-lg font-medium ${
-                    mode === timerMode 
-                      ? 'bg-orange-800 text-white' 
-                      : 'bg-background-secondary text-neutral-grey_1'
-                  }`}
+                  className={mode === timerMode ? 'btn-gold' : 'btn-ghost-gold'}
                   whileHover={{ y: -3 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {timerMode === 'pomodoro' 
-                    ? 'Focus' 
-                    : timerMode === 'shortBreak' 
-                      ? 'Short Break' 
+                  {timerMode === 'pomodoro'
+                    ? 'Focus'
+                    : timerMode === 'shortBreak'
+                      ? 'Short Break'
                       : 'Long Break'
                   }
                 </motion.button>
@@ -178,9 +166,9 @@ export default function PomodoroTimer(): ReactElement {
 
             {/* Main Timer */}
             <div className="mb-12">
-              <motion.div 
-                className={`${getBgColor()} w-80 h-80 mx-auto rounded-full flex items-center justify-center shadow-xl mb-8`}
-                animate={{ 
+              <motion.div
+                className="w-80 h-80 mx-auto flex items-center justify-center mb-8 relative"
+                animate={{
                   scale: isActive ? [1, 1.02, 1] : 1,
                   transition: {
                     repeat: isActive ? Infinity : 0,
@@ -188,9 +176,38 @@ export default function PomodoroTimer(): ReactElement {
                   }
                 }}
               >
-                <div className="bg-background-primary bg-opacity-20 w-72 h-72 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <motion.div 
-                    className="text-white text-6xl font-bold"
+                {/* SVG circle timer */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
+                  {/* Background circle */}
+                  <circle
+                    cx="150"
+                    cy="150"
+                    r="140"
+                    fill="none"
+                    stroke="var(--color-void-surface)"
+                    strokeWidth="6"
+                  />
+                  {/* Progress circle with gold gradient */}
+                  <circle
+                    cx="150"
+                    cy="150"
+                    r="140"
+                    fill="none"
+                    stroke="var(--color-gold)"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    strokeDasharray={circumference}
+                    strokeDashoffset={strokeDashoffset}
+                    transform="rotate(-90 150 150)"
+                    style={{ transition: 'stroke-dashoffset 1s linear' }}
+                  />
+                </svg>
+                <div
+                  className="w-72 h-72 rounded-full flex items-center justify-center relative"
+                  style={{ background: 'var(--color-void-elevated)' }}
+                >
+                  <motion.div
+                    className="text-6xl font-bold text-gold"
                     animate={{ opacity: isActive ? [1, 0.8, 1] : 1 }}
                     transition={{ repeat: isActive ? Infinity : 0, duration: 2 }}
                   >
@@ -203,7 +220,7 @@ export default function PomodoroTimer(): ReactElement {
               <div className="flex justify-center gap-4">
                 <motion.button
                   onClick={toggleTimer}
-                  className="px-8 py-3 bg-gradient-to-r from-orange-800 to-orange-600 text-white rounded-lg font-medium"
+                  className="btn-gold"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -211,7 +228,7 @@ export default function PomodoroTimer(): ReactElement {
                 </motion.button>
                 <motion.button
                   onClick={resetTimer}
-                  className="px-8 py-3 bg-background-secondary text-white rounded-lg font-medium"
+                  className="btn-ghost-gold"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -219,7 +236,7 @@ export default function PomodoroTimer(): ReactElement {
                 </motion.button>
                 <motion.button
                   onClick={skipToNext}
-                  className="px-8 py-3 bg-background-secondary text-white rounded-lg font-medium"
+                  className="btn-ghost-gold"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -230,45 +247,46 @@ export default function PomodoroTimer(): ReactElement {
 
             {/* Stats and Settings */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div 
-                className="bg-background-secondary p-6 rounded-xl shadow-lg"
+              <motion.div
+                className="void-panel p-6 rounded-xl"
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-orange-500 mb-4">Stats</h3>
+                <h3 className="text-xl font-bold text-gold mb-4">Stats</h3>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-background-primary p-4 rounded-lg text-center">
-                    <p className="text-neutral-grey_1 text-sm">Completed</p>
-                    <p className="text-3xl font-bold text-white">{completedPomodoros}</p>
+                  <div className="p-4 rounded-lg text-center" style={{ background: 'var(--color-void-surface)' }}>
+                    <p className="text-dim text-sm">Completed</p>
+                    <p className="text-3xl font-bold text-gold">{completedPomodoros}</p>
                   </div>
-                  <div className="bg-background-primary p-4 rounded-lg text-center">
-                    <p className="text-neutral-grey_1 text-sm">Current Mode</p>
-                    <p className="text-xl font-bold text-white capitalize">
-                      {mode === 'pomodoro' 
-                        ? 'Focus' 
-                        : mode === 'shortBreak' 
-                          ? 'Short Break' 
+                  <div className="p-4 rounded-lg text-center" style={{ background: 'var(--color-void-surface)' }}>
+                    <p className="text-dim text-sm">Current Mode</p>
+                    <p className="text-xl font-bold capitalize" style={{ color: 'var(--color-text-primary)' }}>
+                      {mode === 'pomodoro'
+                        ? 'Focus'
+                        : mode === 'shortBreak'
+                          ? 'Short Break'
                           : 'Long Break'
                       }
                     </p>
                   </div>
-                  <div className="bg-background-primary p-4 rounded-lg text-center col-span-2">
-                    <p className="text-neutral-grey_1 text-sm">Total Time (estimated)</p>
-                    <p className="text-2xl font-bold text-white">
+                  <div className="p-4 rounded-lg text-center col-span-2" style={{ background: 'var(--color-void-surface)' }}>
+                    <p className="text-dim text-sm">Total Time (estimated)</p>
+                    <p className="text-2xl font-bold text-gold">
                       {Math.floor(completedPomodoros * settings.pomodoro / 60)} hours {completedPomodoros * settings.pomodoro % 60} min
                     </p>
                   </div>
                 </div>
               </motion.div>
 
-              <motion.div 
-                className="bg-background-secondary p-6 rounded-xl shadow-lg"
+              <motion.div
+                className="void-panel p-6 rounded-xl"
                 whileHover={{ y: -5 }}
               >
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold text-orange-500">Timer Settings</h3>
+                  <h3 className="text-xl font-bold text-gold">Timer Settings</h3>
                   <motion.button
                     onClick={() => setShowSettings(!showSettings)}
-                    className="p-2 bg-background-primary rounded-lg text-neutral-grey_1"
+                    className="p-2 rounded-lg text-secondary"
+                    style={{ background: 'var(--color-void-surface)' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -276,17 +294,17 @@ export default function PomodoroTimer(): ReactElement {
                   </motion.button>
                 </div>
                 <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="bg-background-primary p-4 rounded-lg">
-                    <p className="text-neutral-grey_1 text-sm">Focus</p>
-                    <p className="text-xl font-bold text-white">{settings.pomodoro} min</p>
+                  <div className="p-4 rounded-lg" style={{ background: 'var(--color-void-surface)' }}>
+                    <p className="text-dim text-sm">Focus</p>
+                    <p className="text-xl font-bold text-gold">{settings.pomodoro} min</p>
                   </div>
-                  <div className="bg-background-primary p-4 rounded-lg">
-                    <p className="text-neutral-grey_1 text-sm">Short Break</p>
-                    <p className="text-xl font-bold text-white">{settings.shortBreak} min</p>
+                  <div className="p-4 rounded-lg" style={{ background: 'var(--color-void-surface)' }}>
+                    <p className="text-dim text-sm">Short Break</p>
+                    <p className="text-xl font-bold text-gold">{settings.shortBreak} min</p>
                   </div>
-                  <div className="bg-background-primary p-4 rounded-lg">
-                    <p className="text-neutral-grey_1 text-sm">Long Break</p>
-                    <p className="text-xl font-bold text-white">{settings.longBreak} min</p>
+                  <div className="p-4 rounded-lg" style={{ background: 'var(--color-void-surface)' }}>
+                    <p className="text-dim text-sm">Long Break</p>
+                    <p className="text-xl font-bold text-gold">{settings.longBreak} min</p>
                   </div>
                 </div>
               </motion.div>
@@ -298,24 +316,25 @@ export default function PomodoroTimer(): ReactElement {
         <AnimatePresence>
           {showSettings && (
             <motion.div
-              className="fixed inset-0 flex items-center justify-center bg-black/60 z-50"
+              className="fixed inset-0 flex items-center justify-center z-50"
+              style={{ background: 'rgba(0, 0, 0, 0.8)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowSettings(false)}
             >
-              <motion.div 
-                className="bg-background-secondary p-8 rounded-xl shadow-2xl max-w-md w-full"
+              <motion.div
+                className="void-panel p-8 rounded-xl max-w-md w-full"
                 initial={{ scale: 0.8, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.8, y: 20 }}
                 onClick={e => e.stopPropagation()}
               >
-                <h2 className="text-2xl font-bold text-orange-500 mb-6">Timer Settings</h2>
-                
+                <h2 className="text-2xl font-bold text-gold mb-6">Timer Settings</h2>
+
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-neutral-grey_1 mb-2">
+                    <label className="block text-secondary mb-2">
                       Focus Duration (minutes)
                     </label>
                     <input
@@ -325,12 +344,12 @@ export default function PomodoroTimer(): ReactElement {
                       onChange={handleSettingsChange}
                       min="1"
                       max="60"
-                      className="w-full rounded-lg border border-neutral-grey_2 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none"
+                      className="input-void w-full"
                     />
                   </div>
-                  
+
                   <div>
-                    <label className="block text-neutral-grey_1 mb-2">
+                    <label className="block text-secondary mb-2">
                       Short Break Duration (minutes)
                     </label>
                     <input
@@ -340,12 +359,12 @@ export default function PomodoroTimer(): ReactElement {
                       onChange={handleSettingsChange}
                       min="1"
                       max="30"
-                      className="w-full rounded-lg border border-neutral-grey_2 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none"
+                      className="input-void w-full"
                     />
                   </div>
-                  
+
                   <div>
-                    <label className="block text-neutral-grey_1 mb-2">
+                    <label className="block text-secondary mb-2">
                       Long Break Duration (minutes)
                     </label>
                     <input
@@ -355,14 +374,14 @@ export default function PomodoroTimer(): ReactElement {
                       onChange={handleSettingsChange}
                       min="1"
                       max="60"
-                      className="w-full rounded-lg border border-neutral-grey_2 bg-background-primary p-3 text-white focus:border-orange-500 focus:outline-none"
+                      className="input-void w-full"
                     />
                   </div>
-                  
+
                   <div className="flex justify-end gap-4 pt-4">
                     <motion.button
                       onClick={() => setShowSettings(false)}
-                      className="px-6 py-3 bg-background-primary text-neutral-white rounded-lg font-medium"
+                      className="btn-ghost-gold"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -370,7 +389,7 @@ export default function PomodoroTimer(): ReactElement {
                     </motion.button>
                     <motion.button
                       onClick={saveSettings}
-                      className="px-6 py-3 bg-gradient-to-r from-orange-800 to-orange-500 text-white rounded-lg font-medium"
+                      className="btn-gold"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -383,6 +402,6 @@ export default function PomodoroTimer(): ReactElement {
           )}
         </AnimatePresence>
       </div>
-    </Layout>
+    </PageLayout>
   );
 }

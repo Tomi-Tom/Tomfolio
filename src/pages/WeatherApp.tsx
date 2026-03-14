@@ -1,6 +1,6 @@
 import { ReactElement, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Layout from '../components/Layout';
+import { PageLayout } from '../layouts/PageLayout';
 
 type WeatherData = {
   city: string;
@@ -191,48 +191,23 @@ export default function WeatherApp(): ReactElement {
   };
 
   const removeLocation = (locationToRemove: WeatherData) => {
-    setSavedLocations(savedLocations.filter(location => 
+    setSavedLocations(savedLocations.filter(location =>
       location.city !== locationToRemove.city
     ));
   };
 
-  // Determine background gradient based on weather and time
-  const getBackgroundGradient = (weather?: string, isDay?: boolean) => {
-    if (!weather || isDay === undefined) return 'from-blue-900 to-blue-700';
-    
-    if (!isDay) return 'from-blue-900 to-indigo-900'; // Night
-    
-    switch(weather.toLowerCase()) {
-      case 'sunny':
-      case 'clear':
-        return 'from-blue-500 to-sky-300';
-      case 'partly cloudy':
-        return 'from-blue-600 to-blue-400';
-      case 'cloudy':
-        return 'from-gray-500 to-gray-400';
-      case 'rainy':
-        return 'from-blue-700 to-gray-600';
-      case 'foggy':
-        return 'from-gray-400 to-gray-300';
-      case 'snowy':
-        return 'from-gray-300 to-blue-200';
-      default:
-        return 'from-blue-600 to-blue-400';
-    }
-  };
-
   return (
-    <Layout>
-      <div className="flex min-h-screen flex-col items-center pt-24 pb-32">
-        <motion.div 
+    <PageLayout>
+      <div className="flex min-h-screen flex-col items-center pt-24 pb-32" style={{ background: 'var(--color-void)' }}>
+        <motion.div
           className="container mx-auto px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           <div className="mb-8 text-center">
-            <h1 className="mb-4 text-4xl font-bold text-orange-800">Weather App</h1>
-            <p className="mx-auto max-w-2xl mb-6 text-lg text-neutral-grey_1">
+            <h1 className="mb-4 text-4xl font-bold text-gold">Weather App</h1>
+            <p className="mx-auto max-w-2xl mb-6 text-lg text-secondary">
               Check current weather conditions around the world. Search for a city to get started.
             </p>
 
@@ -244,49 +219,51 @@ export default function WeatherApp(): ReactElement {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Search for a city..."
-                  className="w-full px-4 py-2 rounded-l-lg bg-background-secondary border border-neutral-grey_2 text-white focus:outline-none focus:border-orange-500"
+                  className="input-void w-full rounded-l-lg rounded-r-none"
                 />
                 <motion.button
                   onClick={handleSearch}
-                  className="px-4 py-2 bg-orange-800 rounded-r-lg text-white"
+                  className="btn-gold rounded-l-none"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Search
                 </motion.button>
               </div>
-              
+
               {/* Error message */}
               {error && (
-                <motion.p 
-                  className="text-red-500 text-sm mt-2"
+                <motion.p
+                  className="text-sm mt-2"
+                  style={{ color: '#ef4444' }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
                   {error}
                 </motion.p>
               )}
-              
+
               {/* Suggestions Dropdown */}
               <AnimatePresence>
                 {showSuggestions && suggestions.length > 0 && (
-                  <motion.div 
-                    className="absolute z-10 mt-1 w-full bg-background-secondary rounded-lg border border-neutral-grey_2 shadow-lg"
+                  <motion.div
+                    className="absolute z-10 mt-1 w-full void-panel rounded-lg"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                   >
                     <ul>
                       {suggestions.map((suggestion, index) => (
-                        <motion.li 
+                        <motion.li
                           key={index}
-                          className="px-4 py-2 hover:bg-background-primary cursor-pointer flex items-center"
+                          className="px-4 py-2 cursor-pointer flex items-center text-secondary"
+                          style={{ borderBottom: '1px solid var(--color-border)' }}
                           onClick={() => selectLocation(suggestion)}
-                          whileHover={{ x: 5 }}
+                          whileHover={{ x: 5, color: 'var(--color-gold)' }}
                         >
                           <span className="mr-2">{suggestion.weatherIcon}</span>
                           <span>{suggestion.city}, {suggestion.country}</span>
-                          <span className="ml-auto">{suggestion.temperature}°C</span>
+                          <span className="ml-auto text-gold">{suggestion.temperature}°C</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -300,26 +277,35 @@ export default function WeatherApp(): ReactElement {
             {/* Current Weather Display */}
             <div className="lg:col-span-2">
               {currentWeather && (
-                <motion.div 
-                  className={`bg-gradient-to-br ${getBackgroundGradient(currentWeather.weather, currentWeather.isDay)} rounded-xl p-8 text-white shadow-xl`}
+                <motion.div
+                  className="void-panel rounded-xl p-8"
+                  style={{
+                    background: currentWeather.isDay
+                      ? 'linear-gradient(135deg, var(--color-void-surface), var(--color-void-elevated))'
+                      : 'linear-gradient(135deg, var(--color-void), var(--color-void-surface))',
+                  }}
                   initial={{ scale: 0.95, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <h2 className="text-3xl font-bold mb-1">{currentWeather.city}</h2>
-                      <p className="text-xl opacity-90">{currentWeather.country}</p>
-                      <p className="opacity-75 mt-1">{currentWeather.time}</p>
+                      <h2 className="text-3xl font-bold mb-1" style={{ color: 'var(--color-text-primary)' }}>{currentWeather.city}</h2>
+                      <p className="text-xl text-gold-dim">{currentWeather.country}</p>
+                      <p className="text-dim mt-1">{currentWeather.time}</p>
                     </div>
                     <motion.button
                       onClick={() => saveLocation(currentWeather)}
-                      className="p-2 bg-white/20 rounded-full hover:bg-white/30"
+                      className="p-2 rounded-full"
+                      style={{
+                        background: 'var(--color-gold-ghost)',
+                        color: savedLocations.some(saved => saved.city === currentWeather.city) ? 'var(--color-gold)' : 'var(--color-gold-dim)',
+                      }}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       disabled={savedLocations.some(saved => saved.city === currentWeather.city)}
                     >
-                      {savedLocations.some(saved => saved.city === currentWeather.city) ? 
+                      {savedLocations.some(saved => saved.city === currentWeather.city) ?
                         '★' : '☆'}
                     </motion.button>
                   </div>
@@ -328,18 +314,18 @@ export default function WeatherApp(): ReactElement {
                     <div className="flex items-center">
                       <span className="text-7xl mr-4">{currentWeather.weatherIcon}</span>
                       <div>
-                        <h3 className="text-5xl font-bold">{currentWeather.temperature}°C</h3>
-                        <p className="text-xl">{currentWeather.weather}</p>
+                        <h3 className="text-5xl font-bold text-gold">{currentWeather.temperature}°C</h3>
+                        <p className="text-xl text-secondary">{currentWeather.weather}</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 gap-4">
-                      <div className="bg-white/20 px-4 py-2 rounded-lg">
-                        <p className="opacity-80">Humidity</p>
-                        <p className="text-xl font-bold">{currentWeather.humidity}%</p>
+                      <div className="px-4 py-2 rounded-lg" style={{ background: 'var(--color-gold-ghost)', border: '1px solid var(--color-border)' }}>
+                        <p className="text-dim">Humidity</p>
+                        <p className="text-xl font-bold text-gold">{currentWeather.humidity}%</p>
                       </div>
-                      <div className="bg-white/20 px-4 py-2 rounded-lg">
-                        <p className="opacity-80">Wind</p>
-                        <p className="text-xl font-bold">{currentWeather.wind} km/h</p>
+                      <div className="px-4 py-2 rounded-lg" style={{ background: 'var(--color-gold-ghost)', border: '1px solid var(--color-border)' }}>
+                        <p className="text-dim">Wind</p>
+                        <p className="text-xl font-bold text-gold">{currentWeather.wind} km/h</p>
                       </div>
                     </div>
                   </div>
@@ -349,16 +335,16 @@ export default function WeatherApp(): ReactElement {
 
             {/* Saved Locations */}
             <div>
-              <h3 className="text-2xl font-bold text-orange-800 mb-4">Saved Locations</h3>
+              <h3 className="text-2xl font-bold text-gold mb-4">Saved Locations</h3>
               {savedLocations.length === 0 ? (
-                <p className="text-neutral-grey_1">No saved locations yet. Search for a city and save it to add it here.</p>
+                <p className="text-secondary">No saved locations yet. Search for a city and save it to add it here.</p>
               ) : (
                 <div className="space-y-3">
                   <AnimatePresence>
                     {savedLocations.map((location, index) => (
-                      <motion.div 
+                      <motion.div
                         key={location.city}
-                        className={`bg-gradient-to-r ${getBackgroundGradient(location.weather, location.isDay)} rounded-lg p-4 text-white flex justify-between items-center`}
+                        className="void-panel rounded-lg p-4 flex justify-between items-center"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
@@ -368,15 +354,16 @@ export default function WeatherApp(): ReactElement {
                         <div className="flex items-center cursor-pointer" onClick={() => selectLocation(location)}>
                           <span className="text-3xl mr-3">{location.weatherIcon}</span>
                           <div>
-                            <h4 className="font-bold">{location.city}</h4>
-                            <p className="text-sm opacity-90">{location.weather}</p>
+                            <h4 className="font-bold" style={{ color: 'var(--color-text-primary)' }}>{location.city}</h4>
+                            <p className="text-sm text-secondary">{location.weather}</p>
                           </div>
-                          <p className="ml-8 text-2xl font-bold">{location.temperature}°C</p>
+                          <p className="ml-8 text-2xl font-bold text-gold">{location.temperature}°C</p>
                         </div>
                         <motion.button
                           onClick={() => removeLocation(location)}
-                          className="p-1 bg-white/20 rounded-full hover:bg-white/30"
-                          whileHover={{ scale: 1.1 }}
+                          className="p-1 rounded-full text-dim"
+                          style={{ background: 'var(--color-gold-ghost)' }}
+                          whileHover={{ scale: 1.1, color: 'var(--color-gold)' }}
                           whileTap={{ scale: 0.9 }}
                         >
                           ✕
@@ -390,6 +377,6 @@ export default function WeatherApp(): ReactElement {
           </div>
         </motion.div>
       </div>
-    </Layout>
+    </PageLayout>
   );
 }
