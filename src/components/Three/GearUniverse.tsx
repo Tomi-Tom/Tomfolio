@@ -85,6 +85,14 @@ const GEAR_CONFIGS: GearConfig[] = [
   [30,  -25, -600,  5, 3.5, 1.2, 10, 0.7, 0.65, -1],
   [-10, -30, -650, 12, 9,   3.0, 16, 1.5, 0.70,  1],
   [50,   20, -700,  3, 2,   0.7,  8, 0.5, 0.55, -1],
+  [-35,  15, -780,  6, 4.2, 1.4, 12, 0.8, 0.50,  1],
+  [25,  -18, -840,  4, 2.8, 1.0, 10, 0.6, 0.45, -1],
+  [-20, -25, -900,  9, 6.5, 2.0, 14, 1.1, 0.55,  1],
+  [40,   10, -960,  5, 3.5, 1.2, 10, 0.7, 0.48, -1],
+  [-30,  20, -1020, 7, 5,   1.5, 12, 0.9, 0.42,  1],
+  [15,  -30, -1080, 4, 2.8, 0.9,  8, 0.6, 0.38, -1],
+  [-45,  -5, -1140, 10, 7,  2.0, 16, 1.2, 0.35,  1],
+  [35,   25, -1200, 3, 2,   0.7,  8, 0.5, 0.30, -1],
 ]
 
 interface GearEntry {
@@ -128,7 +136,7 @@ function buildParticles(count: number): { points: THREE.Points; drifts: Float32A
   for (let i = 0; i < count; i++) {
     positions[i * 3]     = (Math.random() - 0.5) * 600
     positions[i * 3 + 1] = (Math.random() - 0.5) * 400
-    positions[i * 3 + 2] = -Math.random() * 900
+    positions[i * 3 + 2] = -Math.random() * 1300
     drifts[i * 3]        = (Math.random() - 0.5) * 0.04
     drifts[i * 3 + 1]    = (Math.random() - 0.5) * 0.04
     drifts[i * 3 + 2]    = 0
@@ -226,7 +234,7 @@ export function GearUniverse() {
 
     const gearEntries = buildGears(isMobile)
     const depthRings = buildDepthRings()
-    const particleCount = isMobile ? 400 : 800
+    const particleCount = isMobile ? 500 : 1000
     const { points: particlePoints, drifts } = buildParticles(particleCount)
 
     scene.add(depthRings)

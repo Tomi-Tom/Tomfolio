@@ -1,17 +1,20 @@
 // src/context/ChapterContext.tsx
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react'
 
-export const CHAPTER_COUNT = 5
+export const CHAPTER_COUNT = 8
 
 export const CHAPTER_LABELS = [
   { num: '01', name: 'Intro' },
   { num: '02', name: 'About' },
   { num: '03', name: 'Skills' },
-  { num: '04', name: 'Projects' },
-  { num: '05', name: 'Contact' },
+  { num: '04', name: 'Experience' },
+  { num: '05', name: 'Projects' },
+  { num: '06', name: 'Playground' },
+  { num: '07', name: 'Contact' },
+  { num: '08', name: 'End' },
 ] as const
 
-export const CHAPTER_Z_POSITIONS = [-50, -200, -350, -500, -650] as const
+export const CHAPTER_Z_POSITIONS = [-50, -200, -350, -500, -650, -800, -950, -1100] as const
 
 interface ChapterContextValue {
   chapterIndex: number

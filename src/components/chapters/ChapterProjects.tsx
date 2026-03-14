@@ -10,10 +10,9 @@ const fadeUp = {
 }
 
 const projects = [
-  { year: '2025', title: 'Task Breaker', description: 'ADHD-friendly task management app with focus timers, sub-task decomposition, and dopamine-driven progress tracking.', role: 'Design + Dev', stack: ['React', 'TypeScript', 'Tailwind'], href: '/task-breaker' },
-  { year: '2025', title: 'Weather App', description: 'Real-time weather forecast with 5-day outlook, location search, and animated condition icons.', role: 'Full Stack', stack: ['React', 'OpenWeather API', 'Framer Motion'], href: '/weather' },
-  { year: '2024', title: 'Memory Game', description: 'Interactive card-matching game with smooth flip animations, score tracking, and responsive grid.', role: 'Design + Dev', stack: ['React', 'TypeScript', 'CSS'], href: '/memory' },
-  { year: '2024', title: 'Pomodoro Timer', description: 'Focus timer with work/break cycles, session logging, and minimal distraction-free interface.', role: 'Design + Dev', stack: ['React', 'TypeScript'], href: '/pomodoro' },
+  { year: '2024', title: 'Personal Portfolio', description: 'Modern portfolio with horizontal scroll, Three.js wireframe gears, and Void & Gold aesthetic.', role: 'Full-Stack Developer & Designer', stack: ['React', 'TypeScript', 'Three.js', 'Tailwind CSS'], href: 'https://www.tombp.fr/' },
+  { year: '2024', title: 'IsoMaker', description: 'Interactive isometric pixel art creator with real-time preview, color picker, and export.', role: 'Lead Developer & UX Designer', stack: ['JavaScript', 'Canvas', 'Pixel Art'], href: 'https://www.isomaker.fr/' },
+  { year: '2023', title: 'LibertAI', description: 'Corporate website redesign for an AI company — modern brand presence, responsive, accessible.', role: 'Freelance Frontend Dev & Designer', stack: ['React', 'UI/UX', 'Accessibility'], href: 'https://libertai.io/' },
 ]
 
 export function ChapterProjects() {
@@ -21,7 +20,7 @@ export function ChapterProjects() {
     <div className="chapter-content" style={{ display: 'flex', padding: '0 60px', paddingTop: '36px', paddingBottom: '40px', gap: '48px', alignItems: 'flex-start' }}>
       <div style={{ flex: '0 0 30%', maxWidth: '30%', paddingTop: '4px' }}>
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible">
-          <span className="section-label" style={{ display: 'block', marginBottom: '14px' }}>04 — Projects</span>
+          <span className="section-label" style={{ display: 'block', marginBottom: '14px' }}>05 — Projects</span>
           <h2 style={{ marginBottom: '16px' }}>
             <span className="font-300 text-half" style={{ display: 'block' }}>Selected</span>
             <span className="font-700" style={{ display: 'block' }}>Work</span>
@@ -29,8 +28,8 @@ export function ChapterProjects() {
           <p style={{ fontSize: '0.85rem', marginBottom: '24px' }}>
             Interactive applications spanning design, development, and user experience.
           </p>
-          <a href="/miniapps" style={{ fontFamily: 'var(--font-display)', fontSize: '0.65rem', fontWeight: 600, color: 'var(--color-gold-dim)', letterSpacing: '0.15em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-            Interactive Experiments →
+          <a href="/projects" style={{ fontFamily: 'var(--font-display)', fontSize: '0.65rem', fontWeight: 600, color: 'var(--color-gold-dim)', letterSpacing: '0.15em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            View All Projects →
           </a>
         </motion.div>
       </div>

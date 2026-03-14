@@ -6,15 +6,21 @@ import { useChapter, CHAPTER_COUNT } from '../context/ChapterContext'
 import { ChapterHero } from '../components/chapters/ChapterHero'
 import { ChapterAbout } from '../components/chapters/ChapterAbout'
 import { ChapterSkills } from '../components/chapters/ChapterSkills'
+import { ChapterExperience } from '../components/chapters/ChapterExperience'
 import { ChapterProjects } from '../components/chapters/ChapterProjects'
+import { ChapterMiniApps } from '../components/chapters/ChapterMiniApps'
 import { ChapterContact } from '../components/chapters/ChapterContact'
+import { ChapterFinalCTA } from '../components/chapters/ChapterFinalCTA'
 
 const CHAPTER_COMPONENTS = [
   ChapterHero,
   ChapterAbout,
   ChapterSkills,
+  ChapterExperience,
   ChapterProjects,
+  ChapterMiniApps,
   ChapterContact,
+  ChapterFinalCTA,
 ]
 
 function ChaptersContainer() {

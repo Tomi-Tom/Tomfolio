@@ -31,7 +31,7 @@ export function ChapterContact() {
     <div className="chapter-content" style={{ display: 'flex', alignItems: 'center', padding: '0 60px', paddingTop: '36px', paddingBottom: '40px', gap: '60px' }}>
       <div style={{ flex: '0 0 38%', maxWidth: '38%' }}>
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible">
-          <span className="section-label" style={{ display: 'block', marginBottom: '14px' }}>05 — Contact</span>
+          <span className="section-label" style={{ display: 'block', marginBottom: '14px' }}>07 — Contact</span>
           <h2 style={{ marginBottom: '20px' }}>
             <span className="font-300 text-half" style={{ display: 'block' }}>Let&apos;s Build</span>
             <span className="font-700" style={{ display: 'block' }}>Something</span>
