@@ -1,8 +1,7 @@
 import { ReactElement } from 'react'
 import { motion } from 'framer-motion'
-import Layout from '../components/Layout'
+import { PageLayout } from '../layouts/PageLayout'
 import CV_file from '../assets/CV_TOM BARITEAU-PETER_EN.pdf'
-import Button from '../components/Custom/Button'
 import SceneResume from '../components/Three/SceneResume'
 
 export default function Resume(): ReactElement {
@@ -152,17 +151,17 @@ export default function Resume(): ReactElement {
   }
 
   return (
-    <Layout>
+    <PageLayout>
       {/* ── Three.js Hero ── */}
-      <section className="relative h-[55vh] min-h-[400px] flex items-center justify-center overflow-hidden" style={{ background: '#07070F' }}>
+      <section className="relative h-[55vh] min-h-[400px] flex items-center justify-center overflow-hidden" style={{ background: 'var(--color-void)' }}>
         <SceneResume />
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, rgba(7,7,15,0.75) 100%)', zIndex: 1 }}
+          style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, rgba(0,0,0,0.75) 100%)', zIndex: 1 }}
         />
         <div
           className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, #07070F)', zIndex: 2 }}
+          style={{ background: 'linear-gradient(to bottom, transparent, var(--color-void))', zIndex: 2 }}
         />
         <motion.div
           className="relative text-center px-6 z-10"
@@ -170,52 +169,51 @@ export default function Resume(): ReactElement {
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 80, damping: 16, delay: 0.2 }}
         >
-          <div className="text-xs font-semibold text-text-tertiary uppercase tracking-widest mb-3">Career Timeline</div>
-          <h1 className="mb-4 font-bold syne-display" style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)', color: '#EAE6FF' }}>
-            Professional <span className="brand-tt">Profile</span>
+          <div className="section-label mb-3">Career Timeline</div>
+          <h1 className="mb-4 font-bold display-text" style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)' }}>
+            Professional <span className="text-gold">Profile</span>
           </h1>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed mb-8" style={{ color: '#8A85AA' }}>
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed mb-8 text-secondary">
             UX/UI Designer &amp; Frontend Developer — design thinking meets technical craft.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button onClick={handleDownloadCV} variant="primary">
+            <button onClick={handleDownloadCV} className="btn-gold">
               Download Full CV
-            </Button>
+            </button>
           </motion.div>
         </motion.div>
       </section>
 
-      <div className="bg-canvas">
+      <div style={{ background: 'var(--color-void)' }}>
         <motion.div
           className="container max-w-5xl mx-auto px-6 py-20"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* spacer — header now in hero */}
-
           {/* Skills Overview */}
           <motion.section className="mb-20" variants={itemVariants}>
-            <h2 className="mb-8 text-2xl font-bold text-text-primary flex items-center gap-3">
-              <div className="w-1 h-6 gradient-primary rounded-full" />
+            <h2 className="mb-8 text-2xl font-bold text-white flex items-center gap-3">
+              <div className="w-1 h-6 rounded-full" style={{ background: 'var(--color-gold)' }} />
               Skills & Technologies
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {skills.map((skillGroup, index) => (
                 <motion.div
                   key={index}
-                  className="surface-elevated rounded-xl p-5 border border-text-tertiary/10"
+                  className="void-panel rounded-xl p-5"
                   whileHover={{ y: -4 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 >
-                  <h3 className="text-sm font-bold text-accent mb-3 uppercase tracking-wider">
+                  <h3 className="text-sm font-bold text-gold mb-3 uppercase tracking-wider">
                     {skillGroup.category}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {skillGroup.items.map((skill, i) => (
                       <span
                         key={i}
-                        className="text-sm text-text-secondary px-2 py-1 bg-canvas rounded"
+                        className="text-sm px-2 py-1 rounded"
+                        style={{ color: 'var(--color-text-secondary)', background: 'var(--color-gold-ghost)' }}
                       >
                         {skill}
                       </span>
@@ -228,13 +226,13 @@ export default function Resume(): ReactElement {
 
           {/* Experience */}
           <motion.section className="mb-20" variants={itemVariants}>
-            <h2 className="mb-8 text-2xl font-bold text-text-primary flex items-center gap-3">
-              <div className="w-1 h-6 gradient-primary rounded-full" />
+            <h2 className="mb-8 text-2xl font-bold text-white flex items-center gap-3">
+              <div className="w-1 h-6 rounded-full" style={{ background: 'var(--color-gold)' }} />
               Professional Experience
             </h2>
             <div className="space-y-8 relative">
               {/* Timeline line */}
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-accent/20 hidden md:block" />
+              <div className="absolute left-0 top-0 bottom-0 w-px hidden md:block" style={{ background: 'var(--color-gold-dim)' }} />
 
               {experiences.map((exp, index) => (
                 <motion.div
@@ -243,36 +241,39 @@ export default function Resume(): ReactElement {
                   variants={itemVariants}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-[-4px] top-6 w-2 h-2 rounded-full bg-accent hidden md:block" />
+                  <div className="absolute left-[-4px] top-6 w-2 h-2 rounded-full hidden md:block" style={{ background: 'var(--color-gold)' }} />
 
-                  <div className="surface-elevated rounded-xl p-6 border border-text-tertiary/10">
+                  <div className="void-panel rounded-xl p-6">
                     {/* Header row */}
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                       <div>
-                        <h3 className="text-xl font-bold text-text-primary mb-1">
+                        <h3 className="text-xl font-bold text-white mb-1">
                           {exp.role}
                         </h3>
-                        <div className="flex items-center gap-2 text-accent font-semibold">
+                        <div className="flex items-center gap-2 text-gold font-semibold">
                           <span>{exp.company}</span>
-                          <span className="text-text-tertiary">•</span>
-                          <span className="text-sm text-text-secondary">{exp.type}</span>
+                          <span className="text-dim">·</span>
+                          <span className="text-sm text-secondary">{exp.type}</span>
                         </div>
                       </div>
-                      <span className="text-sm font-medium text-text-secondary bg-canvas px-3 py-1 rounded-full whitespace-nowrap">
+                      <span
+                        className="text-sm font-medium px-3 py-1 rounded-full whitespace-nowrap"
+                        style={{ color: 'var(--color-text-secondary)', background: 'var(--color-void-surface)' }}
+                      >
                         {exp.period}
                       </span>
                     </div>
 
                     {/* Description */}
-                    <p className="text-text-secondary mb-4 leading-relaxed">
+                    <p className="text-secondary mb-4 leading-relaxed">
                       {exp.description}
                     </p>
 
                     {/* Achievements */}
                     <div className="space-y-2">
                       {exp.achievements.map((achievement, i) => (
-                        <div key={i} className="flex items-start gap-2 text-sm text-text-secondary">
-                          <svg className="w-4 h-4 mt-0.5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div key={i} className="flex items-start gap-2 text-sm text-secondary">
+                          <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                           <span>{achievement}</span>
@@ -287,13 +288,13 @@ export default function Resume(): ReactElement {
 
           {/* Education */}
           <motion.section className="mb-20" variants={itemVariants}>
-            <h2 className="mb-8 text-2xl font-bold text-text-primary flex items-center gap-3">
-              <div className="w-1 h-6 gradient-secondary rounded-full" />
+            <h2 className="mb-8 text-2xl font-bold text-white flex items-center gap-3">
+              <div className="w-1 h-6 rounded-full" style={{ background: 'var(--color-gold)' }} />
               Education
             </h2>
             <div className="space-y-6 relative">
               {/* Timeline line */}
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-accent/20 hidden md:block" />
+              <div className="absolute left-0 top-0 bottom-0 w-px hidden md:block" style={{ background: 'var(--color-gold-dim)' }} />
 
               {education.map((edu, index) => (
                 <motion.div
@@ -302,30 +303,32 @@ export default function Resume(): ReactElement {
                   variants={itemVariants}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-[-4px] top-6 w-2 h-2 rounded-full bg-accent hidden md:block" />
+                  <div className="absolute left-[-4px] top-6 w-2 h-2 rounded-full hidden md:block" style={{ background: 'var(--color-gold)' }} />
 
-                  <div className="surface-elevated rounded-xl p-6 border border-text-tertiary/10">
+                  <div className="void-panel rounded-xl p-6">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
                       <div>
-                        <h3 className="text-lg font-bold text-text-primary mb-1">
+                        <h3 className="text-lg font-bold text-white mb-1">
                           {edu.degree}
                         </h3>
-                        <p className="text-accent font-semibold">{edu.institution}</p>
+                        <p className="text-gold font-semibold">{edu.institution}</p>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                          edu.status === 'In Progress'
-                            ? 'bg-accent/10 text-accent'
-                            : 'bg-text-tertiary/10 text-text-secondary'
-                        }`}>
+                        <span
+                          className="text-xs font-medium px-2 py-1 rounded-full"
+                          style={edu.status === 'In Progress'
+                            ? { background: 'var(--color-gold-ghost)', color: 'var(--color-gold)' }
+                            : { background: 'var(--color-void-surface)', color: 'var(--color-text-secondary)' }
+                          }
+                        >
                           {edu.status}
                         </span>
-                        <span className="text-sm font-medium text-text-secondary">
+                        <span className="text-sm font-medium text-secondary">
                           {edu.year}
                         </span>
                       </div>
                     </div>
-                    <p className="text-sm text-text-secondary leading-relaxed">
+                    <p className="text-sm text-secondary leading-relaxed">
                       {edu.description}
                     </p>
                   </div>
@@ -336,11 +339,11 @@ export default function Resume(): ReactElement {
 
           {/* Contact CTA */}
           <motion.section variants={itemVariants}>
-            <div className="surface-elevated rounded-2xl p-8 text-center border border-accent/20">
-              <h3 className="text-2xl font-bold text-text-primary mb-3">
+            <div className="void-panel rounded-2xl p-8 text-center" style={{ borderColor: 'var(--color-border-active)' }}>
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Let's Work Together
               </h3>
-              <p className="text-text-secondary mb-6 max-w-xl mx-auto">
+              <p className="text-secondary mb-6 max-w-xl mx-auto">
                 Interested in collaborating? I'm available for freelance projects and full-time opportunities.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -349,24 +352,24 @@ export default function Resume(): ReactElement {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button onClick={() => {}} variant="primary">
+                  <button className="btn-gold">
                     Get in Touch
-                  </Button>
+                  </button>
                 </motion.a>
                 <motion.a
                   href="mailto:bariteaupeter.tom@gmail.com"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button onClick={() => {}} variant="outline">
+                  <button className="btn-ghost-gold">
                     Email Me
-                  </Button>
+                  </button>
                 </motion.a>
               </div>
             </div>
           </motion.section>
         </motion.div>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }
