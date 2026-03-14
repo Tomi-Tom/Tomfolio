@@ -3,8 +3,8 @@ import * as THREE from 'three'
 
 // ── App definitions (exported so MiniApp.tsx can read them) ──
 export const CAROUSEL_APPS = [
-  { title: 'Game of Life',   desc: "Conway's cellular automaton",  badge: 'Game',      color: '#34D399', image: '/mini-apps/GameOfLife.png',           link: '/lifegame'     },
-  { title: 'Memory Game',    desc: 'Card-matching challenge',       badge: 'Game',      color: '#34D399', image: '/mini-apps/MemoryGame.png',           link: '/memory'       },
+  { title: 'Game of Life',   desc: "Conway's cellular automaton",  badge: 'Game',      color: '#d4af37', image: '/mini-apps/GameOfLife.png',           link: '/lifegame'     },
+  { title: 'Memory Game',    desc: 'Card-matching challenge',       badge: 'Game',      color: '#d4af37', image: '/mini-apps/MemoryGame.png',           link: '/memory'       },
   { title: 'Weather App',    desc: 'Live weather worldwide',        badge: 'Utility',   color: '#d4af37', image: '/mini-apps/WeatherApp.png',           link: '/weather'      },
   { title: 'Pomodoro Timer', desc: 'Focus time management',         badge: 'Utility',   color: '#d4af37', image: '/mini-apps/PomodoroTimer.png',        link: '/pomodoro'     },
   { title: 'Task Breaker',   desc: 'Break tasks into steps',        badge: 'ADHD Tool', color: '#d4af37', image: '/mini-apps/TaskBreaker.png',          link: '/task-breaker' },
