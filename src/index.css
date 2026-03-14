@@ -18,13 +18,13 @@
 }
 
 :root {
-  --color-gold-dim:         rgba(212, 175, 55, 0.4);
-  --color-gold-ghost:       rgba(212, 175, 55, 0.06);
+  --color-gold-dim:         rgba(212, 175, 55, 0.55);
+  --color-gold-ghost:       rgba(212, 175, 55, 0.08);
   --color-text-primary:     #ffffff;
-  --color-text-secondary:   rgba(232, 228, 217, 0.5);
-  --color-text-dim:         rgba(232, 228, 217, 0.2);
-  --color-border:           rgba(212, 175, 55, 0.08);
-  --color-border-active:    rgba(212, 175, 55, 0.25);
+  --color-text-secondary:   rgba(232, 228, 217, 0.7);
+  --color-text-dim:         rgba(232, 228, 217, 0.35);
+  --color-border:           rgba(212, 175, 55, 0.12);
+  --color-border-active:    rgba(212, 175, 55, 0.35);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -75,7 +75,7 @@ a:hover { opacity: 0.75; }
 .text-gold-dim      { color: var(--color-gold-dim); }
 .text-secondary     { color: var(--color-text-secondary); }
 .text-dim           { color: var(--color-text-dim); }
-.text-half          { color: rgba(255, 255, 255, 0.5); }
+.text-half          { color: rgba(255, 255, 255, 0.6); }
 
 .section-label {
   font-family: var(--font-display);

@@ -26,9 +26,12 @@ export function PageLayout({ children }: PageLayoutProps) {
           gap: '16px',
         }}
       >
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.65rem', color: 'var(--color-gold-dim)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-            &larr; Back
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', padding: '4px 12px', border: '1px solid var(--color-border-active)', borderRadius: '4px', transition: 'border-color 0.2s, background 0.2s' }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--color-gold)'; e.currentTarget.style.background = 'var(--color-gold-ghost)' }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--color-border-active)'; e.currentTarget.style.background = 'transparent' }}
+        >
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.7rem', color: 'var(--color-gold)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+            &larr; Home
           </span>
         </Link>
         <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-gold)', letterSpacing: '0.15em', textTransform: 'uppercase', marginLeft: 'auto' }}>
