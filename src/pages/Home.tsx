@@ -84,8 +84,8 @@ function ChaptersContainer() {
       style={{
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
-        width: isMobile ? '100vw' : `${CHAPTER_COUNT * 100}vw`,
-        height: isMobile ? `${CHAPTER_COUNT * 100}dvh` : '100vh',
+        width: '100vw',
+        height: '100vh',
         overflowX: isMobile ? 'hidden' : 'scroll',
         overflowY: isMobile ? 'scroll' : 'hidden',
         scrollSnapType: isMobile ? 'y mandatory' : 'x mandatory',
