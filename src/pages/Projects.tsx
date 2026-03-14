@@ -1,6 +1,6 @@
 import { ReactElement, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import Layout from '../components/Layout'
+import { PageLayout } from '../layouts/PageLayout'
 import SceneProjectsHero from '../components/Three/SceneProjectsHero'
 
 const projects = [
@@ -47,19 +47,19 @@ const projects = [
 
 export default function Projects(): ReactElement {
   return (
-    <Layout>
+    <PageLayout>
       {/* ── Three.js Hero Header ── */}
       <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden"
-        style={{ background: '#07070F' }}>
+        style={{ background: 'var(--color-void)' }}>
         <SceneProjectsHero />
 
         {/* Vignette */}
         <div className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(7,7,15,0.9) 100%)', zIndex: 1 }} />
+          style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(0,0,0,0.9) 100%)', zIndex: 1 }} />
 
         {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, #0B0B12)', zIndex: 2 }} />
+          style={{ background: 'linear-gradient(to bottom, transparent, var(--color-void))', zIndex: 2 }} />
 
         <motion.div
           className="relative text-center px-6 max-w-4xl mx-auto"
@@ -70,33 +70,34 @@ export default function Projects(): ReactElement {
         >
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/25 mb-8"
-            style={{ background: 'rgba(255,107,53,0.07)' }}
-            animate={{ borderColor: ['rgba(255,107,53,0.25)', 'rgba(255,107,53,0.55)', 'rgba(255,107,53,0.25)'] }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
+            style={{ background: 'var(--color-gold-ghost)', border: '1px solid var(--color-border-active)' }}
+            animate={{ borderColor: ['rgba(212,175,55,0.25)', 'rgba(212,175,55,0.55)', 'rgba(212,175,55,0.25)'] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
             <motion.div
-              className="w-2 h-2 rounded-full bg-accent"
+              className="w-2 h-2 rounded-full"
+              style={{ background: 'var(--color-gold)' }}
               animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
               transition={{ duration: 1.8, repeat: Infinity }}
             />
-            <span className="text-sm font-semibold text-accent">{projects.length} Featured Projects</span>
+            <span className="text-sm font-semibold text-gold">{projects.length} Featured Projects</span>
           </motion.div>
 
           <h1 className="font-bold leading-tight mb-6"
-            style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)', color: '#EAE6FF', letterSpacing: '-0.03em' }}>
+            style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)', color: '#ffffff', letterSpacing: '-0.03em' }}>
             Selected
-            {' '}<span className="brand-tt">Work</span>
+            {' '}<span className="text-gold">Work</span>
           </h1>
 
-          <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#8A85AA' }}>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-secondary">
             A selection of client work, personal projects, and creative experiments showcasing my approach to design and development.
           </p>
         </motion.div>
       </section>
 
       {/* ── Project list ── */}
-      <div className="bg-canvas py-24">
+      <div className="py-24" style={{ background: 'var(--color-void)' }}>
         <div className="container max-w-6xl mx-auto px-6">
           <div className="space-y-40">
             {projects.map((project, index) => (
@@ -117,26 +118,28 @@ export default function Projects(): ReactElement {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="surface-elevated border border-accent/15 rounded-3xl p-14 text-center relative overflow-hidden">
+            <div className="void-panel rounded-3xl p-14 text-center relative overflow-hidden">
               {/* Ambient glow */}
               <motion.div
-                className="absolute inset-0 gradient-primary opacity-5 pointer-events-none"
-                animate={{ opacity: [0.04, 0.09, 0.04] }}
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.06), transparent 70%)' }}
+                animate={{ opacity: [0.4, 0.9, 0.4] }}
                 transition={{ duration: 4, repeat: Infinity }}
               />
 
               <motion.div
-                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-6 relative z-10"
+                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 relative z-10"
+                style={{ background: 'linear-gradient(135deg, var(--color-gold), #b8942e)' }}
                 animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.04, 1] }}
                 transition={{ duration: 4, repeat: Infinity }}
               >
-                <span className="text-2xl font-bold text-white">TT</span>
+                <span className="text-2xl font-bold" style={{ color: 'var(--color-void)' }}>TT</span>
               </motion.div>
 
-              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4 relative z-10" style={{ letterSpacing: '-0.02em' }}>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10" style={{ letterSpacing: '-0.02em' }}>
                 Have a project<br />in mind?
               </h2>
-              <p className="text-text-secondary mb-10 max-w-xl mx-auto text-lg leading-relaxed relative z-10">
+              <p className="text-secondary mb-10 max-w-xl mx-auto text-lg leading-relaxed relative z-10">
                 I'm available for freelance work and collaborations. Let's create something remarkable together.
               </p>
               <motion.a
@@ -146,11 +149,12 @@ export default function Projects(): ReactElement {
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div
-                  className="absolute inset-0 gradient-primary blur-xl opacity-60 rounded-xl"
-                  animate={{ scale: [1, 1.15, 1], opacity: [0.6, 0.85, 0.6] }}
+                  className="absolute inset-0 blur-xl rounded-xl"
+                  style={{ background: 'var(--color-gold)' }}
+                  animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
                   transition={{ duration: 2.5, repeat: Infinity }}
                 />
-                <span className="relative px-10 py-4 rounded-xl gradient-primary text-white font-bold text-base shadow-accent-strong inline-flex items-center gap-3">
+                <span className="btn-gold relative px-10 py-4 rounded-xl font-bold text-base inline-flex items-center gap-3">
                   Get in Touch
                   <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
                 </span>
@@ -159,7 +163,7 @@ export default function Projects(): ReactElement {
           </motion.div>
         </div>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }
 
@@ -185,21 +189,24 @@ function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactEle
       {/* Image */}
       <div className={`relative group ${isReversed ? 'lg:col-start-2' : ''}`}>
         <motion.div
-          className="relative aspect-video rounded-2xl overflow-hidden border border-text-tertiary/10"
+          className="relative aspect-video rounded-2xl overflow-hidden"
+          style={{ border: '1px solid var(--color-border)' }}
           whileHover={{ scale: 1.025 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
           <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-canvas/50 to-transparent" />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
           {/* Hover overlay */}
           <motion.div
-            className="absolute inset-0 gradient-primary opacity-0 group-hover:opacity-8 transition-opacity duration-500"
+            className="absolute inset-0 opacity-0 group-hover:opacity-8 transition-opacity duration-500"
+            style={{ background: 'var(--color-gold)' }}
           />
         </motion.div>
 
         {/* Number badge */}
         <motion.div
-          className="absolute -top-5 -right-5 w-12 h-12 gradient-primary rounded-xl flex items-center justify-center text-white font-bold shadow-accent-strong"
+          className="absolute -top-5 -right-5 w-12 h-12 rounded-xl flex items-center justify-center font-bold"
+          style={{ background: 'linear-gradient(135deg, var(--color-gold), #b8942e)', color: 'var(--color-void)', boxShadow: '0 4px 20px rgba(212,175,55,0.3)' }}
           initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
           animate={inView ? { opacity: 1, scale: 1, rotate: 6 } : {}}
           transition={{ delay: 0.4, type: 'spring', stiffness: 280 }}
@@ -208,39 +215,43 @@ function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactEle
         </motion.div>
 
         {/* Year tag */}
-        <div className="absolute -bottom-4 left-6 bg-surface-elevated border border-text-tertiary/10 rounded-lg px-3 py-1.5">
-          <span className="text-xs font-semibold text-text-secondary">{project.year}</span>
+        <div className="absolute -bottom-4 left-6 rounded-lg px-3 py-1.5"
+          style={{ background: 'var(--color-void-elevated)', border: '1px solid var(--color-border)' }}>
+          <span className="text-xs font-semibold text-secondary">{project.year}</span>
         </div>
       </div>
 
       {/* Content */}
       <div className={isReversed ? 'lg:col-start-1 lg:row-start-1' : ''}>
         <div className="flex items-center gap-2 mb-5">
-          <span className="text-xs font-bold text-accent bg-accent/10 px-3 py-1.5 rounded-full uppercase tracking-wider">
+          <span className="text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider"
+            style={{ color: 'var(--color-gold)', background: 'var(--color-gold-ghost)', border: '1px solid var(--color-border-active)' }}>
             {project.status}
           </span>
-          <span className="text-xs font-medium text-text-secondary surface-elevated px-3 py-1.5 rounded-full">
+          <span className="text-xs font-medium text-secondary px-3 py-1.5 rounded-full"
+            style={{ background: 'var(--color-void-elevated)', border: '1px solid var(--color-border)' }}>
             {project.type}
           </span>
         </div>
 
-        <h2 className="font-bold text-text-primary mb-3 leading-tight"
+        <h2 className="font-bold text-white mb-3 leading-tight"
           style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.8rem)', letterSpacing: '-0.02em' }}>
           {project.title}
         </h2>
 
-        <p className="text-accent font-semibold mb-5 text-sm uppercase tracking-wider">{project.role}</p>
+        <p className="text-gold font-semibold mb-5 text-sm uppercase tracking-wider">{project.role}</p>
 
-        <p className="text-text-secondary leading-relaxed mb-7 text-base">
+        <p className="text-secondary leading-relaxed mb-7 text-base">
           {project.description}
         </p>
 
         {/* Competencies */}
         <div className="mb-7">
-          <p className="text-xs font-bold text-text-primary mb-3 uppercase tracking-widest">Key Competencies</p>
+          <p className="hud-caption mb-3">Key Competencies</p>
           <div className="flex flex-wrap gap-2">
             {project.competencies.map((c, i) => (
-              <span key={i} className="text-sm text-text-secondary surface-elevated px-3 py-1.5 rounded-lg border border-text-tertiary/10">
+              <span key={i} className="text-sm text-secondary px-3 py-1.5 rounded-lg"
+                style={{ background: 'var(--color-void-elevated)', border: '1px solid var(--color-border)' }}>
                 {c}
               </span>
             ))}
@@ -249,13 +260,14 @@ function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactEle
 
         {/* Tags */}
         <div className="mb-9">
-          <p className="text-xs font-bold text-text-primary mb-3 uppercase tracking-widest">Stack</p>
+          <p className="hud-caption mb-3">Stack</p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag, i) => (
               <motion.span
                 key={i}
-                className="text-sm text-accent bg-accent/8 border border-accent/20 px-3 py-1.5 rounded-lg font-medium"
-                whileHover={{ scale: 1.05, borderColor: 'rgba(255,107,53,0.5)' }}
+                className="text-sm font-medium px-3 py-1.5 rounded-lg"
+                style={{ color: 'var(--color-gold)', background: 'var(--color-gold-ghost)', border: '1px solid var(--color-border-active)' }}
+                whileHover={{ scale: 1.05, borderColor: 'rgba(212,175,55,0.5)' }}
               >
                 {tag}
               </motion.span>
@@ -271,11 +283,12 @@ function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactEle
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
         >
-          <motion.div className="absolute inset-0 gradient-primary blur-lg opacity-50 rounded-xl"
-            animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
+          <motion.div className="absolute inset-0 blur-lg rounded-xl"
+            style={{ background: 'var(--color-gold)' }}
+            animate={{ scale: [1, 1.1, 1], opacity: [0.25, 0.4, 0.25] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <span className="relative px-8 py-3.5 rounded-xl gradient-primary text-white font-bold text-sm shadow-accent inline-flex items-center gap-2">
+          <span className="btn-gold relative px-8 py-3.5 rounded-xl font-bold text-sm inline-flex items-center gap-2">
             {project.linkText}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
