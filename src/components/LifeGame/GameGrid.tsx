@@ -38,7 +38,7 @@ const GameGrid: React.FC<GameGridProps> = ({
     // Draw cells
     gridcells.forEach((row, rowIndex) => {
       row.forEach((cell, colIndex) => {
-        ctx.fillStyle = cell ? '#f5f5f5' : '#666'
+        ctx.fillStyle = cell ? '#d4af37' : '#080808'
         ctx.fillRect(
           colIndex * (cellSize + 0.2),
           rowIndex * (cellSize + 0.2),
@@ -68,7 +68,7 @@ const GameGrid: React.FC<GameGridProps> = ({
         width={canvasWidth}
         height={canvasWidth}
         onClick={handleCanvasClick}
-        style={{ border: '2px solid' }}
+        style={{ border: '1px solid var(--color-border-active)' }}
       />
     </>
   )

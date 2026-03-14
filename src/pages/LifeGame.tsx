@@ -1,6 +1,6 @@
 // LifeGamePage.tsx
 import React, { ReactElement, useEffect, useState } from 'react'
-import Layout from '../components/Layout'
+import { PageLayout } from '../layouts/PageLayout'
 import GameGrid from '../components/LifeGame/GameGrid'
 import Controls from '../components/LifeGame/Controls'
 import Stats from '../components/LifeGame/Stats'
@@ -172,8 +172,8 @@ export default function LifeGamePage(): ReactElement {
   }
 
   return (
-    <Layout>
-      <div className="mb-24 mt-36 flex h-screen flex-col items-center justify-center gap-4">
+    <PageLayout>
+      <div className="mb-24 mt-36 flex h-screen flex-col items-center justify-center gap-4" style={{ background: 'var(--color-void)' }}>
         <div className="flex flex-row gap-4 max-lg:flex-col">
           <div className="flex flex-col gap-4">
             <GameGrid
@@ -198,6 +198,6 @@ export default function LifeGamePage(): ReactElement {
           <Stats generations={generations} population={population} />
         </div>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }
