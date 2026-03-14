@@ -1,9 +1,8 @@
 import { ReactElement, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate, Link } from 'react-router-dom'
-import Layout from '../components/Layout'
+import { PageLayout } from '../layouts/PageLayout'
 import { useAuth } from '../context/AuthContext'
-import Button from '../components/Custom/Button'
 import SceneAuth from '../components/Three/SceneAuth'
 
 export default function Signup(): ReactElement {
@@ -80,8 +79,11 @@ export default function Signup(): ReactElement {
   }
 
   return (
-    <Layout>
-      <div className="min-h-screen py-24 flex items-center justify-center relative overflow-hidden" style={{ background: '#07070F' }}>
+    <PageLayout>
+      <div
+        className="min-h-screen py-24 flex items-center justify-center relative overflow-hidden"
+        style={{ background: 'var(--color-void)' }}
+      >
         <SceneAuth />
         <motion.div
           className="container max-w-md mx-auto px-6 relative z-10"
@@ -91,22 +93,20 @@ export default function Signup(): ReactElement {
         >
           {/* Header */}
           <motion.div className="mb-8 text-center" variants={itemVariants}>
-            <h1 className="mb-2 text-4xl md:text-5xl font-bold text-text-primary">
-              Create <span className="brand-tt">Account</span>
+            <h1 className="mb-2 text-4xl md:text-5xl font-bold text-white">
+              Create <span className="text-gold">Account</span>
             </h1>
-            <p className="text-text-secondary">Join to access exclusive features</p>
+            <p className="text-secondary">Join to access exclusive features</p>
           </motion.div>
 
           {/* Signup Form */}
-          <motion.div
-            className="surface-elevated rounded-2xl p-8 border border-text-tertiary/10"
-            variants={itemVariants}
-          >
+          <motion.div className="void-panel rounded-2xl p-8" variants={itemVariants}>
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Error Message */}
               {error && (
                 <motion.div
-                  className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg"
+                  className="border border-red-500/30 text-red-400 px-4 py-3 rounded-lg"
+                  style={{ background: 'rgba(239, 68, 68, 0.08)' }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
@@ -117,7 +117,7 @@ export default function Signup(): ReactElement {
               {/* Name Fields */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-bold text-text-primary mb-2">
+                  <label htmlFor="firstName" className="block text-sm font-bold text-white mb-2">
                     First Name
                   </label>
                   <input
@@ -127,12 +127,12 @@ export default function Signup(): ReactElement {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-text-tertiary/20 bg-canvas text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                    className="input-void w-full"
                     placeholder="John"
                   />
                 </div>
                 <div>
-                  <label htmlFor="lastName" className="block text-sm font-bold text-text-primary mb-2">
+                  <label htmlFor="lastName" className="block text-sm font-bold text-white mb-2">
                     Last Name
                   </label>
                   <input
@@ -142,7 +142,7 @@ export default function Signup(): ReactElement {
                     value={formData.lastName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-text-tertiary/20 bg-canvas text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                    className="input-void w-full"
                     placeholder="Doe"
                   />
                 </div>
@@ -150,7 +150,7 @@ export default function Signup(): ReactElement {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-bold text-text-primary mb-2">
+                <label htmlFor="email" className="block text-sm font-bold text-white mb-2">
                   Email Address
                 </label>
                 <input
@@ -160,15 +160,15 @@ export default function Signup(): ReactElement {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-text-tertiary/20 bg-canvas text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                  className="input-void w-full"
                   placeholder="your.email@example.com"
                 />
               </div>
 
               {/* Company (Optional) */}
               <div>
-                <label htmlFor="company" className="block text-sm font-bold text-text-primary mb-2">
-                  Company <span className="text-text-secondary font-normal">(Optional)</span>
+                <label htmlFor="company" className="block text-sm font-bold text-white mb-2">
+                  Company <span className="text-dim font-normal">(Optional)</span>
                 </label>
                 <input
                   type="text"
@@ -176,14 +176,14 @@ export default function Signup(): ReactElement {
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-text-tertiary/20 bg-canvas text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                  className="input-void w-full"
                   placeholder="Your Company"
                 />
               </div>
 
               {/* Password */}
               <div>
-                <label htmlFor="password" className="block text-sm font-bold text-text-primary mb-2">
+                <label htmlFor="password" className="block text-sm font-bold text-white mb-2">
                   Password
                 </label>
                 <input
@@ -194,17 +194,17 @@ export default function Signup(): ReactElement {
                   onChange={handleChange}
                   required
                   minLength={8}
-                  className="w-full px-4 py-3 rounded-lg border border-text-tertiary/20 bg-canvas text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                  className="input-void w-full"
                   placeholder="••••••••"
                 />
-                <p className="mt-1 text-xs text-text-secondary">Must be at least 8 characters</p>
+                <p className="mt-1 text-xs text-dim">Must be at least 8 characters</p>
               </div>
 
               {/* Confirm Password */}
               <div>
                 <label
                   htmlFor="confirmPassword"
-                  className="block text-sm font-bold text-text-primary mb-2"
+                  className="block text-sm font-bold text-white mb-2"
                 >
                   Confirm Password
                 </label>
@@ -215,31 +215,36 @@ export default function Signup(): ReactElement {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-text-tertiary/20 bg-canvas text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                  className="input-void w-full"
                   placeholder="••••••••"
                 />
               </div>
 
               {/* Submit Button */}
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Button
-                  onClick={() => {}}
-                  variant="primary"
-                  className="w-full"
+                <button
+                  type="submit"
+                  className="btn-gold w-full"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Creating account...' : 'Create Account'}
-                </Button>
+                </button>
               </motion.div>
             </form>
 
             {/* Divider */}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-text-tertiary/20"></div>
+                <div
+                  className="w-full border-t"
+                  style={{ borderColor: 'var(--color-gold-ghost)' }}
+                ></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-surface-elevated text-text-secondary">
+                <span
+                  className="px-2 text-secondary"
+                  style={{ background: 'var(--color-void-elevated)' }}
+                >
                   Already have an account?
                 </span>
               </div>
@@ -248,9 +253,9 @@ export default function Signup(): ReactElement {
             {/* Login Link */}
             <Link to="/login">
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Button onClick={() => {}} variant="outline" className="w-full">
+                <button type="button" className="btn-ghost-gold w-full">
                   Sign In
-                </Button>
+                </button>
               </motion.div>
             </Link>
           </motion.div>
@@ -259,13 +264,13 @@ export default function Signup(): ReactElement {
           <motion.div className="mt-6 text-center" variants={itemVariants}>
             <Link
               to="/"
-              className="text-sm text-text-secondary hover:text-accent transition-colors"
+              className="text-sm text-secondary hover:text-gold transition-colors"
             >
-              ← Back to Home
+              &larr; Back to Home
             </Link>
           </motion.div>
         </motion.div>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }
