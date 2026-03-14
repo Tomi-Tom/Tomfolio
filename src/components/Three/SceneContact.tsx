@@ -38,43 +38,42 @@ export default function SceneContact() {
       cx.fillStyle = g; cx.fillRect(0, 0, 64, 64)
       return new THREE.CanvasTexture(c)
     }
-    const glowOrange = makeGlow('255,107,53')
-    const glowAmber  = makeGlow('255,184,77')
-    const glowMuted  = makeGlow('138,133,170')
-    toDispose.push(glowOrange, glowAmber, glowMuted)
+    const glowGold   = makeGlow('212,175,55')
+    const glowMuted  = makeGlow('102,88,51')
+    toDispose.push(glowGold, glowMuted)
 
     // ── Central hub (represents Tom / the portfolio) ──
     const hubGeo = new THREE.SphereGeometry(0.55, 20, 20)
-    const hubMat = new THREE.MeshBasicMaterial({ color: 0xFF6B35, transparent: true, opacity: 0.85 })
+    const hubMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.85 })
     const hub = new THREE.Mesh(hubGeo, hubMat)
     scene.add(hub)
     toDispose.push(hubGeo, hubMat)
 
     // Hub halo
     const halo1Geo = new THREE.SphereGeometry(1.1, 16, 16)
-    const halo1Mat = new THREE.MeshBasicMaterial({ color: 0xFF6B35, transparent: true, opacity: 0.12, side: THREE.BackSide })
+    const halo1Mat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.12, side: THREE.BackSide })
     scene.add(new THREE.Mesh(halo1Geo, halo1Mat))
     toDispose.push(halo1Geo, halo1Mat)
 
     const halo2Geo = new THREE.SphereGeometry(2.0, 16, 16)
-    const halo2Mat = new THREE.MeshBasicMaterial({ color: 0xFF8C35, transparent: true, opacity: 0.03, side: THREE.BackSide })
+    const halo2Mat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.03, side: THREE.BackSide })
     scene.add(new THREE.Mesh(halo2Geo, halo2Mat))
     toDispose.push(halo2Geo, halo2Mat)
 
     // ── Satellite nodes ──
     // Each satellite: angle, radius, z-depth, color, size
     const satellites = [
-      { angle: 0,               r: isMobile ? 4.5 : 5.5, z:  0.5, color: 0xFF6B35, size: 0.22, label: 'Email',    glowTex: glowOrange },
-      { angle: Math.PI * 0.5,   r: isMobile ? 4.0 : 5.0, z: -0.5, color: 0xFFB84D, size: 0.20, label: 'GitHub',   glowTex: glowAmber },
-      { angle: Math.PI,         r: isMobile ? 4.5 : 5.5, z:  0.5, color: 0xFF6B35, size: 0.22, label: 'LinkedIn', glowTex: glowOrange },
-      { angle: Math.PI * 1.5,   r: isMobile ? 3.8 : 4.5, z: -0.5, color: 0xB8A0CC, size: 0.18, label: 'Location', glowTex: glowMuted },
+      { angle: 0,               r: isMobile ? 4.5 : 5.5, z:  0.5, color: 0xd4af37, size: 0.22, label: 'Email',    glowTex: glowGold },
+      { angle: Math.PI * 0.5,   r: isMobile ? 4.0 : 5.0, z: -0.5, color: 0xd4af37, size: 0.20, label: 'GitHub',   glowTex: glowGold },
+      { angle: Math.PI,         r: isMobile ? 4.5 : 5.5, z:  0.5, color: 0xd4af37, size: 0.22, label: 'LinkedIn', glowTex: glowGold },
+      { angle: Math.PI * 1.5,   r: isMobile ? 3.8 : 4.5, z: -0.5, color: 0x665833, size: 0.18, label: 'Location', glowTex: glowMuted },
     ]
 
     // Plus two smaller decorative satellites
     const extraSatellites = [
-      { angle: Math.PI * 0.3,  r: isMobile ? 3.0 : 3.5, z: -1, color: 0xFFB84D, size: 0.12 },
-      { angle: Math.PI * 1.2,  r: isMobile ? 3.2 : 3.8, z:  1, color: 0xFF6B35, size: 0.10 },
-      { angle: Math.PI * 0.75, r: isMobile ? 2.8 : 3.2, z:  0, color: 0xB8A0CC, size: 0.09 },
+      { angle: Math.PI * 0.3,  r: isMobile ? 3.0 : 3.5, z: -1, color: 0xd4af37, size: 0.12 },
+      { angle: Math.PI * 1.2,  r: isMobile ? 3.2 : 3.8, z:  1, color: 0xd4af37, size: 0.10 },
+      { angle: Math.PI * 0.75, r: isMobile ? 2.8 : 3.2, z:  0, color: 0x665833, size: 0.09 },
     ]
 
     interface SatMesh {
@@ -148,7 +147,7 @@ export default function SceneContact() {
       geo.setAttribute('position', new THREE.BufferAttribute(posArr, 3))
       const mat = new THREE.PointsMaterial({
         size: 0.28,
-        map: glowOrange,
+        map: glowGold,
         color: 0xFFFFFF,
         transparent: true,
         blending: THREE.AdditiveBlending,
@@ -168,7 +167,7 @@ export default function SceneContact() {
     }
     const ringGeo = new THREE.BufferGeometry()
     ringGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(ringPoints), 3))
-    const ringMat = new THREE.LineBasicMaterial({ color: 0xFF6B35, transparent: true, opacity: 0.05, blending: THREE.AdditiveBlending, depthWrite: false })
+    const ringMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.05, blending: THREE.AdditiveBlending, depthWrite: false })
     toDispose.push(ringGeo, ringMat)
     scene.add(new THREE.Line(ringGeo, ringMat))
 
@@ -182,7 +181,7 @@ export default function SceneContact() {
     }
     const bgGeo = new THREE.BufferGeometry()
     bgGeo.setAttribute('position', new THREE.BufferAttribute(bgPos, 3))
-    const bgMat = new THREE.PointsMaterial({ size: 0.06, map: glowMuted, color: 0x4A4668, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false })
+    const bgMat = new THREE.PointsMaterial({ size: 0.06, map: glowMuted, color: 0x332c1a, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false })
     toDispose.push(bgGeo, bgMat)
     scene.add(new THREE.Points(bgGeo, bgMat))
 

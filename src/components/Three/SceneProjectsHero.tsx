@@ -35,7 +35,7 @@ export default function SceneProjectsHero() {
       starPos[i * 3 + 2] = (Math.random() - 0.5) * 1200 - 200
       // Mostly white/lavender, some orange
       if (Math.random() < 0.15) {
-        starCol[i * 3]     = 1.0; starCol[i * 3 + 1] = 0.55; starCol[i * 3 + 2] = 0.2
+        starCol[i * 3]     = 0.83; starCol[i * 3 + 1] = 0.69; starCol[i * 3 + 2] = 0.22
       } else {
         const v = 0.6 + Math.random() * 0.4
         starCol[i * 3]     = v * 0.9; starCol[i * 3 + 1] = v * 0.88; starCol[i * 3 + 2] = v
@@ -72,9 +72,9 @@ export default function SceneProjectsHero() {
 
     // ── Floating project screen frames (3) ──
     const screenDefs = [
-      { w: 180, h: 110, pos: [-280, 60,  -300], rotY:  0.25, color: 0xFF6B35 },
-      { w: 200, h: 120, pos: [0,    20,  -500], rotY:  0.00, color: 0xFFB84D },
-      { w: 180, h: 110, pos: [280,  60,  -300], rotY: -0.25, color: 0xFF6B35 },
+      { w: 180, h: 110, pos: [-280, 60,  -300], rotY:  0.25, color: 0xd4af37 },
+      { w: 200, h: 120, pos: [0,    20,  -500], rotY:  0.00, color: 0xd4af37 },
+      { w: 180, h: 110, pos: [280,  60,  -300], rotY: -0.25, color: 0xd4af37 },
     ]
 
     const frameTex = (() => {
@@ -82,7 +82,7 @@ export default function SceneProjectsHero() {
       c.width = c.height = 32
       const cx = c.getContext('2d')!
       const g = cx.createRadialGradient(16, 16, 0, 16, 16, 16)
-      g.addColorStop(0, 'rgba(255,107,53,1)')
+      g.addColorStop(0, 'rgba(212,175,55,1)')
       g.addColorStop(1, 'rgba(0,0,0,0)')
       cx.fillStyle = g; cx.fillRect(0, 0, 32, 32)
       return new THREE.CanvasTexture(c)
@@ -142,7 +142,7 @@ export default function SceneProjectsHero() {
 
     // ── Nebula glow (large blurred sphere) ──
     const nebulaGeo = new THREE.SphereGeometry(400, 8, 8)
-    const nebulaMat = new THREE.MeshBasicMaterial({ color: 0xFF6B35, transparent: true, opacity: 0.018, side: THREE.BackSide })
+    const nebulaMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.018, side: THREE.BackSide })
     toDispose.push(nebulaGeo, nebulaMat)
     scene.add(new THREE.Mesh(nebulaGeo, nebulaMat))
 

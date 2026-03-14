@@ -38,20 +38,19 @@ export default function SceneMiniApps() {
       cx.fillStyle = g; cx.fillRect(0, 0, 64, 64)
       return new THREE.CanvasTexture(c)
     }
-    const glowOrange  = makeGlow('255,107,53')
-    const glowAmber   = makeGlow('255,184,77')
+    const glowGold    = makeGlow('212,175,55')
     const glowTeal    = makeGlow('52,211,153')
-    const glowMuted   = makeGlow('138,133,170')
-    toDispose.push(glowOrange, glowAmber, glowTeal, glowMuted)
+    const glowMuted   = makeGlow('102,88,51')
+    toDispose.push(glowGold, glowTeal, glowMuted)
 
     // ── App nodes — 6 apps in a loose constellation ──
     const nodeConfigs = [
       { pos: [-5.0,  2.5, 0.5], color: 0x34D399, glow: glowTeal,   size: 0.24, label: 'Game of Life'  },
       { pos: [ 4.5,  3.0, -0.5], color: 0x34D399, glow: glowTeal,   size: 0.22, label: 'Memory Game'  },
-      { pos: [-3.5, -2.8, 0.3], color: 0xFFB84D, glow: glowAmber,  size: 0.22, label: 'Weather'       },
-      { pos: [ 5.0, -2.0, -0.8], color: 0xFFB84D, glow: glowAmber,  size: 0.20, label: 'Pomodoro'     },
-      { pos: [-1.0,  0.5, 1.0], color: 0xFF6B35, glow: glowOrange, size: 0.26, label: 'Task Breaker'  },
-      { pos: [ 1.5, -3.5, -0.5], color: 0xFF6B35, glow: glowOrange, size: 0.24, label: 'Mood Tracker' },
+      { pos: [-3.5, -2.8, 0.3], color: 0xd4af37, glow: glowGold,   size: 0.22, label: 'Weather'       },
+      { pos: [ 5.0, -2.0, -0.8], color: 0xd4af37, glow: glowGold,   size: 0.20, label: 'Pomodoro'     },
+      { pos: [-1.0,  0.5, 1.0], color: 0xd4af37, glow: glowGold,   size: 0.26, label: 'Task Breaker'  },
+      { pos: [ 1.5, -3.5, -0.5], color: 0xd4af37, glow: glowGold,   size: 0.24, label: 'Mood Tracker' },
     ]
 
     interface AppNode {
@@ -105,7 +104,7 @@ export default function SceneMiniApps() {
       const geo = new THREE.BufferGeometry()
       geo.setAttribute('position', new THREE.BufferAttribute(posArr, 3))
       const mat = new THREE.LineBasicMaterial({
-        color: 0xFF6B35,
+        color: 0xd4af37,
         transparent: true,
         opacity: 0.10,
         blending: THREE.AdditiveBlending,
@@ -129,7 +128,7 @@ export default function SceneMiniApps() {
       const posArr = new Float32Array(3)
       const geo = new THREE.BufferGeometry()
       geo.setAttribute('position', new THREE.BufferAttribute(posArr, 3))
-      const glows = [glowOrange, glowAmber, glowTeal]
+      const glows = [glowGold, glowGold, glowTeal]
       const mat = new THREE.PointsMaterial({
         size: 0.22,
         map: glows[ci % glows.length],
@@ -162,7 +161,7 @@ export default function SceneMiniApps() {
           const mat = new THREE.PointsMaterial({
             size: 0.09,
             map: glowMuted,
-            color: 0x8A85AA,
+            color: 0x665833,
             transparent: true,
             opacity: 0.5,
             blending: THREE.AdditiveBlending,
@@ -193,7 +192,7 @@ export default function SceneMiniApps() {
     const bgGeo = new THREE.BufferGeometry()
     bgGeo.setAttribute('position', new THREE.BufferAttribute(bgPos, 3))
     const bgMat = new THREE.PointsMaterial({
-      size: 0.06, map: glowMuted, color: 0x4A4668,
+      size: 0.06, map: glowMuted, color: 0x332c1a,
       transparent: true, opacity: 0.35,
       blending: THREE.AdditiveBlending, depthWrite: false,
     })

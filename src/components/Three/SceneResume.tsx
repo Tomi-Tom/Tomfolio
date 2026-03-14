@@ -56,10 +56,10 @@ export default function SceneResume() {
       cx.fillStyle = g; cx.fillRect(0, 0, 64, 64)
       return new THREE.CanvasTexture(c)
     }
-    const glowOrange = makeGlow('rgb(255,107,53)')
-    const glowAmber  = makeGlow('rgb(255,184,77)')
-    const glowWhite  = makeGlow('rgb(220,214,255)')
-    toDispose.push(glowOrange, glowAmber, glowWhite)
+    const glowGold   = makeGlow('rgb(212,175,55)')
+    const glowGoldBright = makeGlow('rgb(212,175,55)')
+    const glowWhite  = makeGlow('rgb(212,175,55)')
+    toDispose.push(glowGold, glowGoldBright, glowWhite)
 
     // ── Smooth helix spine (curved line through milestones) ──
     const SPINE_SEGS = 80
@@ -73,7 +73,7 @@ export default function SceneResume() {
     const spineGeo = new THREE.BufferGeometry()
     spineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spinePoints), 3))
     const spineMat = new THREE.LineBasicMaterial({
-      color: 0xFF6B35,
+      color: 0xd4af37,
       transparent: true,
       opacity: 0.18,
       blending: THREE.AdditiveBlending,
@@ -86,7 +86,7 @@ export default function SceneResume() {
     const spine2Geo = new THREE.BufferGeometry()
     spine2Geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spinePoints), 3))
     const spine2Mat = new THREE.LineBasicMaterial({
-      color: 0xFFB84D,
+      color: 0xd4af37,
       transparent: true,
       opacity: 0.06,
       blending: THREE.AdditiveBlending,
@@ -96,7 +96,7 @@ export default function SceneResume() {
     scene.add(new THREE.Line(spine2Geo, spine2Mat))
 
     // ── Milestone node spheres ──
-    const nodeColors = [0xFF6B35, 0xFFB84D, 0xFF6B35, 0xFFB84D, 0xFF6B35, 0xFFB84D, 0xFF6B35, 0xFFB84D]
+    const nodeColors = [0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37]
     const nodeMeshes: { mesh: THREE.Mesh; mat: THREE.MeshBasicMaterial; phase: number }[] = []
 
     milestonePositions.forEach((pos, i) => {
@@ -168,8 +168,8 @@ export default function SceneResume() {
     partGeo.setAttribute('position', new THREE.BufferAttribute(partPos, 3))
     const partMat = new THREE.PointsMaterial({
       size: 0.07,
-      map: glowOrange,
-      color: 0x4A4668,
+      map: glowGold,
+      color: 0x332c1a,
       transparent: true,
       opacity: 0.35,
       blending: THREE.AdditiveBlending,

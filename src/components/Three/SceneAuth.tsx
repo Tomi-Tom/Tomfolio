@@ -31,8 +31,8 @@ export default function SceneAuth() {
       c.width = c.height = 32
       const cx = c.getContext('2d')!
       const g = cx.createRadialGradient(16, 16, 0, 16, 16, 16)
-      g.addColorStop(0, 'rgba(255,107,53,1)')
-      g.addColorStop(0.4, 'rgba(255,107,53,0.4)')
+      g.addColorStop(0, 'rgba(212,175,55,1)')
+      g.addColorStop(0.4, 'rgba(212,175,55,0.4)')
       g.addColorStop(1, 'rgba(0,0,0,0)')
       cx.fillStyle = g; cx.fillRect(0, 0, 32, 32)
       return new THREE.CanvasTexture(c)
@@ -64,7 +64,7 @@ export default function SceneAuth() {
         const mat = new THREE.PointsMaterial({
           size: isAccent ? 0.07 : 0.04,
           map: glowTex,
-          color: isAccent ? 0xFF6B35 : 0x4A4668,
+          color: isAccent ? 0xd4af37 : 0x332c1a,
           transparent: true,
           opacity: 0.0,
           blending: THREE.AdditiveBlending,
@@ -93,7 +93,7 @@ export default function SceneAuth() {
       const geo = new THREE.BufferGeometry()
       geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(pts), 3))
       const mat = new THREE.LineBasicMaterial({
-        color: 0xFF6B35,
+        color: 0xd4af37,
         transparent: true,
         opacity: 0.03,
         blending: THREE.AdditiveBlending,
@@ -105,12 +105,12 @@ export default function SceneAuth() {
 
     // ── Central lock/key glow orb ──
     const orbGeo = new THREE.SphereGeometry(0.28, 12, 12)
-    const orbMat = new THREE.MeshBasicMaterial({ color: 0xFF6B35, transparent: true, opacity: 0.12 })
+    const orbMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.12 })
     toDispose.push(orbGeo, orbMat)
     scene.add(new THREE.Mesh(orbGeo, orbMat))
 
     const haloGeo = new THREE.SphereGeometry(0.7, 10, 10)
-    const haloMat = new THREE.MeshBasicMaterial({ color: 0xFF6B35, transparent: true, opacity: 0.04, side: THREE.BackSide })
+    const haloMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.04, side: THREE.BackSide })
     toDispose.push(haloGeo, haloMat)
     scene.add(new THREE.Mesh(haloGeo, haloMat))
 

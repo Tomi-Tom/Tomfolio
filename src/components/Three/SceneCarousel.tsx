@@ -5,10 +5,10 @@ import * as THREE from 'three'
 export const CAROUSEL_APPS = [
   { title: 'Game of Life',   desc: "Conway's cellular automaton",  badge: 'Game',      color: '#34D399', image: '/mini-apps/GameOfLife.png',           link: '/lifegame'     },
   { title: 'Memory Game',    desc: 'Card-matching challenge',       badge: 'Game',      color: '#34D399', image: '/mini-apps/MemoryGame.png',           link: '/memory'       },
-  { title: 'Weather App',    desc: 'Live weather worldwide',        badge: 'Utility',   color: '#FFB84D', image: '/mini-apps/WeatherApp.png',           link: '/weather'      },
-  { title: 'Pomodoro Timer', desc: 'Focus time management',         badge: 'Utility',   color: '#FFB84D', image: '/mini-apps/PomodoroTimer.png',        link: '/pomodoro'     },
-  { title: 'Task Breaker',   desc: 'Break tasks into steps',        badge: 'ADHD Tool', color: '#FF6B35', image: '/mini-apps/TaskBreaker.png',          link: '/task-breaker' },
-  { title: 'Mood Tracker',   desc: 'Energy & mood insights',        badge: 'ADHD Tool', color: '#FF6B35', image: '/mini-apps/MoodAndEnergyTracker.png', link: '/mood-tracker' },
+  { title: 'Weather App',    desc: 'Live weather worldwide',        badge: 'Utility',   color: '#d4af37', image: '/mini-apps/WeatherApp.png',           link: '/weather'      },
+  { title: 'Pomodoro Timer', desc: 'Focus time management',         badge: 'Utility',   color: '#d4af37', image: '/mini-apps/PomodoroTimer.png',        link: '/pomodoro'     },
+  { title: 'Task Breaker',   desc: 'Break tasks into steps',        badge: 'ADHD Tool', color: '#d4af37', image: '/mini-apps/TaskBreaker.png',          link: '/task-breaker' },
+  { title: 'Mood Tracker',   desc: 'Energy & mood insights',        badge: 'ADHD Tool', color: '#d4af37', image: '/mini-apps/MoodAndEnergyTracker.png', link: '/mood-tracker' },
 ]
 
 interface Props {
@@ -300,15 +300,15 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       toDispose.push(geo, mat)
       scene.add(new THREE.Line(geo, mat))
     }
-    makeRing(RADIUS,        0xFF6B35, 0.09)
-    makeRing(RADIUS * 0.91, 0xFFB84D, 0.04)
+    makeRing(RADIUS,        0xd4af37, 0.09)
+    makeRing(RADIUS * 0.91, 0xd4af37, 0.04)
 
     // ── Ambient particles ──
     const glowTex = (() => {
       const c = document.createElement('canvas'); c.width = c.height = 32
       const cx = c.getContext('2d')!
       const g = cx.createRadialGradient(16, 16, 0, 16, 16, 16)
-      g.addColorStop(0, 'rgba(255,107,53,0.8)'); g.addColorStop(1, 'rgba(0,0,0,0)')
+      g.addColorStop(0, 'rgba(212,175,55,0.8)'); g.addColorStop(1, 'rgba(0,0,0,0)')
       cx.fillStyle = g; cx.fillRect(0, 0, 32, 32)
       return new THREE.CanvasTexture(c)
     })()
@@ -323,7 +323,7 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
     }
     const pGeo = new THREE.BufferGeometry()
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3))
-    const pMat = new THREE.PointsMaterial({ size: 0.06, map: glowTex, color: 0x8A85AA, transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending, depthWrite: false })
+    const pMat = new THREE.PointsMaterial({ size: 0.06, map: glowTex, color: 0x665833, transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending, depthWrite: false })
     toDispose.push(pGeo, pMat)
     scene.add(new THREE.Points(pGeo, pMat))
 
@@ -338,7 +338,7 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
     }
     const spotGeo = new THREE.BufferGeometry()
     spotGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spotPts), 3))
-    const spotMat = new THREE.LineBasicMaterial({ color: 0xFF6B35, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false })
+    const spotMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false })
     toDispose.push(spotGeo, spotMat)
     const spotLine = new THREE.Line(spotGeo, spotMat)
     spotLine.position.set(0, 0, RADIUS + 0.1)   // always at front of circle
