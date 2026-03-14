@@ -6,7 +6,7 @@ interface Meteor {
   y: number
   size: number
   speed: number
-  color: string
+  hue: number
   angle: number
 }
 
@@ -19,9 +19,9 @@ export default function NotFound(): ReactElement {
     const speed = 2 + Math.random() * 8
     const x = Math.random() * window.innerWidth - size
     const y = Math.random() * window.innerHeight - size
-    const color = `hsl(${Math.random() * 360}, 100%, ${50 + Math.random() * 50}%)`
+    const hue = 38 + Math.random() * 12 // gold hue range (38-50)
     const angle = (Math.random() * Math.PI * 2)
-    setMeteors([...meteors, { x, y, size, speed, color, angle }])
+    setMeteors([...meteors, { x, y, size, speed, hue, angle }])
   }
 
   // Auto-create a few meteors at start
@@ -62,8 +62,14 @@ export default function NotFound(): ReactElement {
     return () => clearInterval(interval)
   }, [])
 
+  const meteorColor = (hue: number) => `hsl(${hue}, 80%, 55%)`
+  const meteorGlow  = (hue: number, size: number) => `0 0 ${size * 2}px hsl(${hue}, 80%, 55%)`
+
   return (
-    <div className="text-text-2 relative flex min-h-screen w-full select-none flex-col items-center justify-center bg-background-tertiary text-neutral-white">
+    <div
+      className="relative flex min-h-screen w-full select-none flex-col items-center justify-center"
+      style={{ background: 'var(--color-void)', color: 'var(--color-text-primary)' }}
+    >
       <AnimatePresence>
         {meteors.map((meteor, index) => (
           <motion.div
@@ -78,29 +84,30 @@ export default function NotFound(): ReactElement {
               top: meteor.y,
               width: meteor.size,
               height: meteor.size,
-              backgroundColor: meteor.color,
+              backgroundColor: meteorColor(meteor.hue),
               borderRadius: '50%',
-              boxShadow: `0 0 ${meteor.size * 2}px ${meteor.color}`,
+              boxShadow: meteorGlow(meteor.hue, meteor.size),
             }}
           />
         ))}
       </AnimatePresence>
-      
-      <motion.div 
+
+      <motion.div
         className="mx-auto mb-12 flex max-w-screen-xl flex-row justify-between space-x-4"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
       >
-        <motion.h1 
-          className="text-9xl font-extrabold"
-          whileHover={{ scale: 1.1, rotateZ: -5, color: '#FF8F00' }}
+        <motion.h1
+          className="text-9xl font-extrabold text-gold"
+          whileHover={{ scale: 1.1, rotateZ: -5 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
           4
         </motion.h1>
         <motion.h1
-          className={`text-9xl font-extrabold transition-all duration-500 ${showEasterEgg ? 'animate-pulse cursor-pointer text-orange-500' : ''}`}
+          className="text-9xl font-extrabold text-gold"
+          style={showEasterEgg ? { animation: 'gold-pulse 2s ease-in-out infinite', cursor: 'pointer' } : undefined}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={showEasterEgg ? () => {
@@ -109,44 +116,46 @@ export default function NotFound(): ReactElement {
         >
           0
         </motion.h1>
-        <motion.h1 
-          className="text-9xl font-extrabold"
-          whileHover={{ scale: 1.1, rotateZ: 5, color: '#FF8F00' }}
+        <motion.h1
+          className="text-9xl font-extrabold text-gold"
+          whileHover={{ scale: 1.1, rotateZ: 5 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
           4
         </motion.h1>
       </motion.div>
-      
-      <motion.h2 
+
+      <motion.h2
         className="text-4xl font-bold"
+        style={{ color: 'var(--color-text-primary)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
         Page Not Found
       </motion.h2>
-      
-      <motion.div 
+
+      <motion.div
         className="mt-12 flex flex-row items-center justify-center space-x-4 rounded-md"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.8, type: 'spring' }}
       >
         <motion.button
-          className="transform cursor-pointer rounded-md bg-gradient-to-r from-orange-800 to-orange-600 px-6 py-3 font-medium text-white shadow-lg transition"
-          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(255, 143, 0, 0.4)' }}
+          className="btn-gold cursor-pointer px-6 py-3"
+          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(212, 175, 55, 0.4)' }}
           whileTap={{ scale: 0.95 }}
           onClick={() => window.location.replace('/')}
         >
           Go Home
         </motion.button>
-        
-        <h1 className="text-2xl">Or</h1>
-        
+
+        <h1 className="text-2xl text-secondary" style={{ fontSize: '1.5rem' }}>Or</h1>
+
         <motion.button
-          className="transform cursor-pointer rounded-md bg-gradient-to-r from-orange-800 to-orange-600 px-6 py-3 font-medium text-white shadow-lg transition"
-          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(255, 143, 0, 0.4)' }}
+          className="btn-ghost-gold cursor-pointer px-6 py-3"
+          style={{ border: '1px solid var(--color-border-active)', padding: '10px 24px' }}
+          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(212, 175, 55, 0.25)' }}
           whileTap={{ scale: 0.95 }}
           onClick={
             showEasterEgg
@@ -157,7 +166,7 @@ export default function NotFound(): ReactElement {
           }
         >
           Launch {meteors.length > 0 ? `: ${meteors.length}` : ''}
-          {showEasterEgg && '🚀'}
+          {showEasterEgg && ' *'}
         </motion.button>
       </motion.div>
     </div>
