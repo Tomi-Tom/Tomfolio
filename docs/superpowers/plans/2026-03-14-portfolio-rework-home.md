@@ -19,6 +19,7 @@
 ## Chunk 1: Design System Foundation
 
 Files changed:
+
 - Modify: `index.html` — replace Google Fonts link
 - Rewrite: `src/index.css` — Void & Gold design system
 - Rewrite: `src/components/Custom/Button.tsx` — gold/ghost-gold variants
@@ -29,6 +30,7 @@ Files changed:
 ### Task 1: Update fonts in index.html
 
 **Files:**
+
 - Modify: `index.html`
 
 - [ ] **Step 1: Replace the Google Fonts import**
@@ -62,6 +64,7 @@ Open `index.html`. Replace the entire `<head>` block with:
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && npm run build 2>&1 | tail -5
 ```
+
 Expected: build succeeds (exit 0).
 
 - [ ] **Step 3: Commit**
@@ -76,12 +79,13 @@ git commit -m "feat: switch fonts to Space Grotesk + DM Sans"
 ### Task 2: Rewrite src/index.css with Void & Gold design system
 
 **Files:**
+
 - Rewrite: `src/index.css`
 
 - [ ] **Step 1: Replace the entire file**
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* ═══════════════════════════════════════════════
    VOID & GOLD DESIGN SYSTEM — Tomfolio v4
@@ -90,37 +94,39 @@ git commit -m "feat: switch fonts to Space Grotesk + DM Sans"
 
 @theme {
   /* ── Core Void palette (solid — Tailwind generates utilities) ── */
-  --color-void:          #000000;
-  --color-void-deep:     #030303;
-  --color-void-surface:  #080808;
+  --color-void: #000000;
+  --color-void-deep: #030303;
+  --color-void-surface: #080808;
   --color-void-elevated: #0d0d0d;
-  --color-gold:          #d4af37;
+  --color-gold: #d4af37;
 
   /* ── Font families ── */
   --font-display: 'Space Grotesk', sans-serif;
-  --font-body:    'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
 
   /* ── Easing ── */
-  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 /* ── Alpha variants (not in @theme — rgba doesn't work there) ── */
 :root {
-  --color-gold-dim:         rgba(212, 175, 55, 0.4);
-  --color-gold-ghost:       rgba(212, 175, 55, 0.06);
-  --color-text-primary:     #ffffff;
-  --color-text-secondary:   rgba(232, 228, 217, 0.5);
-  --color-text-dim:         rgba(232, 228, 217, 0.2);
-  --color-border:           rgba(212, 175, 55, 0.08);
-  --color-border-active:    rgba(212, 175, 55, 0.25);
+  --color-gold-dim: rgba(212, 175, 55, 0.4);
+  --color-gold-ghost: rgba(212, 175, 55, 0.06);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(232, 228, 217, 0.5);
+  --color-text-dim: rgba(232, 228, 217, 0.2);
+  --color-border: rgba(212, 175, 55, 0.08);
+  --color-border-active: rgba(212, 175, 55, 0.25);
 }
 
 /* ═══════════════════════════════════════════════
    BASE
 ═══════════════════════════════════════════════ */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -144,7 +150,12 @@ body {
    TYPOGRAPHY
 ═══════════════════════════════════════════════ */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   color: var(--color-text-primary);
   line-height: 1;
@@ -198,15 +209,29 @@ a:hover {
 }
 
 /* Weight helpers */
-.font-300 { font-weight: 300; }
-.font-700 { font-weight: 700; }
+.font-300 {
+  font-weight: 300;
+}
+.font-700 {
+  font-weight: 700;
+}
 
 /* Colour helpers */
-.text-gold          { color: var(--color-gold); }
-.text-gold-dim      { color: var(--color-gold-dim); }
-.text-secondary     { color: var(--color-text-secondary); }
-.text-dim           { color: var(--color-text-dim); }
-.text-half          { color: rgba(255, 255, 255, 0.5); }
+.text-gold {
+  color: var(--color-gold);
+}
+.text-gold-dim {
+  color: var(--color-gold-dim);
+}
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+.text-dim {
+  color: var(--color-text-dim);
+}
+.text-half {
+  color: rgba(255, 255, 255, 0.5);
+}
 
 /* Section label */
 .section-label {
@@ -257,7 +282,9 @@ a:hover {
   position: relative;
   outline: 1px solid transparent;
   outline-offset: 3px;
-  transition: outline-color 0.2s, transform 0.15s;
+  transition:
+    outline-color 0.2s,
+    transform 0.15s;
   text-decoration: none;
 }
 .btn-gold:hover {
@@ -300,34 +327,91 @@ a:hover {
   z-index: 50;
   pointer-events: none;
 }
-.hud-corner-tl { top: 48px;   left: 16px;  }
-.hud-corner-tr { top: 48px;   right: 16px; }
-.hud-corner-bl { bottom: 52px; left: 16px;  }
-.hud-corner-br { bottom: 52px; right: 16px; }
+.hud-corner-tl {
+  top: 48px;
+  left: 16px;
+}
+.hud-corner-tr {
+  top: 48px;
+  right: 16px;
+}
+.hud-corner-bl {
+  bottom: 52px;
+  left: 16px;
+}
+.hud-corner-br {
+  bottom: 52px;
+  right: 16px;
+}
 
-.hud-corner-tl::before, .hud-corner-tr::before,
-.hud-corner-bl::before, .hud-corner-br::before,
-.hud-corner-tl::after,  .hud-corner-tr::after,
-.hud-corner-bl::after,  .hud-corner-br::after {
+.hud-corner-tl::before,
+.hud-corner-tr::before,
+.hud-corner-bl::before,
+.hud-corner-br::before,
+.hud-corner-tl::after,
+.hud-corner-tr::after,
+.hud-corner-bl::after,
+.hud-corner-br::after {
   content: '';
   position: absolute;
   background: var(--color-gold);
 }
 /* Horizontal arm */
-.hud-corner-tl::before { top: 0;    left: 0;  width: 100%; height: 1px; }
-.hud-corner-tr::before { top: 0;    right: 0; width: 100%; height: 1px; }
-.hud-corner-bl::before { bottom: 0; left: 0;  width: 100%; height: 1px; }
-.hud-corner-br::before { bottom: 0; right: 0; width: 100%; height: 1px; }
+.hud-corner-tl::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+.hud-corner-tr::before {
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+}
+.hud-corner-bl::before {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+.hud-corner-br::before {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+}
 /* Vertical arm */
-.hud-corner-tl::after { top: 0;    left: 0;  width: 1px; height: 100%; }
-.hud-corner-tr::after { top: 0;    right: 0; width: 1px; height: 100%; }
-.hud-corner-bl::after { bottom: 0; left: 0;  width: 1px; height: 100%; }
-.hud-corner-br::after { bottom: 0; right: 0; width: 1px; height: 100%; }
+.hud-corner-tl::after {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+}
+.hud-corner-tr::after {
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+}
+.hud-corner-bl::after {
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+}
+.hud-corner-br::after {
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+}
 
 /* ── Scan line ── */
 .scan-line {
   position: absolute;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   height: 1px;
   background: linear-gradient(
     90deg,
@@ -341,16 +425,25 @@ a:hover {
 
 /* ── Gold glow pulse animation ── */
 @keyframes gold-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 .gold-pulse {
   animation: gold-pulse 2s ease-in-out infinite;
 }
 
 /* ── Scrollbar hiding utility ── */
-.no-scrollbar { scrollbar-width: none; }
-.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 /* ── Chapter content entrance ── (used by Framer Motion as base) */
 .chapter-content {
@@ -401,6 +494,7 @@ a:hover {
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && npm run build 2>&1 | tail -10
 ```
+
 Expected: build succeeds. Any existing component references to removed CSS classes (like `gradient-primary`, `surface-elevated`, etc.) will cause visual breakage but not build failure — that's expected and will be fixed in subsequent tasks.
 
 - [ ] **Step 3: Commit**
@@ -415,6 +509,7 @@ git commit -m "feat: replace design system with Void & Gold"
 ### Task 3: Rewrite Button.tsx
 
 **Files:**
+
 - Rewrite: `src/components/Custom/Button.tsx`
 
 - [ ] **Step 1: Replace the file**
@@ -470,6 +565,7 @@ export function Button({
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && npm run lint src/components/Custom/Button.tsx 2>&1 | tail -5
 ```
+
 Expected: no errors.
 
 - [ ] **Step 3: Commit**
@@ -484,6 +580,7 @@ git commit -m "feat: rewrite Button with gold/ghost-gold variants"
 ### Task 4: Create ChapterContext.tsx
 
 **Files:**
+
 - Create: `src/context/ChapterContext.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -564,6 +661,7 @@ git commit -m "feat: add ChapterContext with chapter index and Z positions"
 ## Chunk 2: GearUniverse Three.js Scene
 
 Files changed:
+
 - Create: `src/components/Three/GearUniverse.tsx`
 
 ---
@@ -571,6 +669,7 @@ Files changed:
 ### Task 5: Create GearUniverse.tsx — gear geometry helpers
 
 **Files:**
+
 - Create: `src/components/Three/GearUniverse.tsx`
 
 This is the single Three.js canvas. It mounts once, lives behind all content, and the camera lerps between Z positions as `chapterIndex` changes.
@@ -925,6 +1024,7 @@ export function GearUniverse() {
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && npm run build 2>&1 | tail -10
 ```
+
 Expected: build succeeds with no errors.
 
 - [ ] **Step 3: Commit**
@@ -939,6 +1039,7 @@ git commit -m "feat: add GearUniverse Three.js scene with gear fly-through"
 ## Chunk 3: Layout Shell Components
 
 Files changed:
+
 - Create: `src/components/Layout/StatusBar.tsx`
 - Create: `src/components/Layout/ChapterBar.tsx`
 - Create: `src/components/Layout/HUDFrame.tsx`
@@ -950,6 +1051,7 @@ Files changed:
 ### Task 6: Create StatusBar.tsx
 
 **Files:**
+
 - Create: `src/components/Layout/StatusBar.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -1023,6 +1125,7 @@ git commit -m "feat: add StatusBar HUD component"
 ### Task 7: Create ChapterBar.tsx
 
 **Files:**
+
 - Create: `src/components/Layout/ChapterBar.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -1106,6 +1209,7 @@ git commit -m "feat: add ChapterBar bottom navigation"
 ### Task 8: Create HUDFrame.tsx
 
 **Files:**
+
 - Create: `src/components/Layout/HUDFrame.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -1137,6 +1241,7 @@ git commit -m "feat: add HUDFrame corner bracket component"
 ### Task 9: Create src/layouts/HomeLayout.tsx
 
 **Files:**
+
 - Create: `src/layouts/HomeLayout.tsx`
 
 - [ ] **Step 1: Create the layouts directory and file**
@@ -1188,6 +1293,7 @@ git commit -m "feat: add HomeLayout with GearUniverse and HUD overlays"
 ### Task 10: Create src/layouts/PageLayout.tsx
 
 **Files:**
+
 - Create: `src/layouts/PageLayout.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -1277,6 +1383,7 @@ git commit -m "feat: add PageLayout for sub-pages with back nav"
 ## Chunk 4: Chapter Content Components
 
 Files changed:
+
 - Create: `src/components/Custom/ProjectCard.tsx`
 - Create: `src/components/chapters/ChapterHero.tsx`
 - Create: `src/components/chapters/ChapterAbout.tsx`
@@ -1289,6 +1396,7 @@ Files changed:
 ### Task 11: Create ProjectCard.tsx
 
 **Files:**
+
 - Create: `src/components/Custom/ProjectCard.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -1397,6 +1505,7 @@ git commit -m "feat: add ProjectCard component"
 ### Task 12: Create ChapterHero.tsx
 
 **Files:**
+
 - Create: `src/components/chapters/ChapterHero.tsx`
 
 - [ ] **Step 1: Create the chapters directory and file**
@@ -1575,6 +1684,7 @@ git commit -m "feat: add ChapterHero with name, CTA, and data readout"
 ### Task 13: Create ChapterAbout.tsx
 
 **Files:**
+
 - Create: `src/components/chapters/ChapterAbout.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -1752,6 +1862,7 @@ git commit -m "feat: add ChapterAbout with photo, bio, and stats"
 ### Task 14: Create ChapterSkills.tsx
 
 **Files:**
+
 - Create: `src/components/chapters/ChapterSkills.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -1972,6 +2083,7 @@ git commit -m "feat: add ChapterSkills with 3-column grid and LevelDots"
 ### Task 15: Create ChapterProjects.tsx
 
 **Files:**
+
 - Create: `src/components/chapters/ChapterProjects.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -2112,6 +2224,7 @@ git commit -m "feat: add ChapterProjects with scrollable project cards"
 ### Task 16: Create ChapterContact.tsx
 
 **Files:**
+
 - Create: `src/components/chapters/ChapterContact.tsx`
 
 - [ ] **Step 1: Create the file**
@@ -2378,6 +2491,7 @@ git commit -m "feat: add ChapterContact with form and info panel"
 ## Chunk 5: Home Page Assembly & App Wiring
 
 Files changed:
+
 - Rewrite: `src/pages/Home.tsx`
 - Modify: `src/App.jsx`
 
@@ -2386,6 +2500,7 @@ Files changed:
 ### Task 17: Rewrite Home.tsx
 
 **Files:**
+
 - Rewrite: `src/pages/Home.tsx`
 
 - [ ] **Step 1: Replace the file**
@@ -2533,6 +2648,7 @@ export default function Home() {
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && npm run build 2>&1 | tail -15
 ```
+
 Expected: build succeeds. If there are TypeScript errors, fix them before continuing.
 
 - [ ] **Step 3: Commit**
@@ -2547,6 +2663,7 @@ git commit -m "feat: rewrite Home page with horizontal chapter scroll"
 ### Task 18: Update App.jsx — use HomeLayout/PageLayout, remove CursorGlow
 
 **Files:**
+
 - Modify: `src/App.jsx`
 
 - [ ] **Step 1: Replace App.jsx**
@@ -2610,6 +2727,7 @@ export default function App() {
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && npm run build 2>&1 && npm run lint 2>&1 | tail -10
 ```
+
 Expected: build succeeds, lint passes (or only shows pre-existing warnings in untouched files).
 
 - [ ] **Step 3: Visual check**
@@ -2617,7 +2735,9 @@ Expected: build succeeds, lint passes (or only shows pre-existing warnings in un
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && npm run dev
 ```
+
 Open `http://localhost:5173`. Verify:
+
 - Pure black background
 - Gold `TBP.DEV` status bar at top
 - Chapter bar at bottom (01 Intro active)
@@ -2639,6 +2759,7 @@ git commit -m "feat: update App routing, remove orange CursorGlow"
 ## Chunk 6: Cleanup
 
 Files changed:
+
 - Delete: old components no longer imported anywhere
 
 ---
@@ -2646,6 +2767,7 @@ Files changed:
 ### Task 19: Remove dead code — old home components and unused Three.js scenes
 
 **Files:**
+
 - Delete: `src/components/Home/DynamicHero.tsx`
 - Delete: `src/components/Home/PresentationSection.tsx`
 - Delete: `src/components/Home/SkillsShowcase.tsx`
@@ -2668,13 +2790,14 @@ Files changed:
 - **Do NOT delete** `src/components/Layout/Footer.tsx` — same reason
 - **Do NOT delete** `src/components/Layout/Navbar.tsx` — same reason
 - **Do NOT delete** `src/components/Layout.tsx` — same reason
-All Layout/* files are deferred to the sub-pages rework plan.
+  All Layout/\* files are deferred to the sub-pages rework plan.
 
 - [ ] **Step 1: Verify none of the above are imported by any page other than Home (which has been rewritten)**
 
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && grep -r "DynamicHero\|PresentationSection\|SkillsShowcase\|ServicesSection\|ProjectsCTA\|FinalCTA\|heroBannerSection\|ThreeBackground\|AnimatedCard\|GeometricShape\|FloatingParticles\|MiniAppPresentation\|SceneAbout\|SceneSkills\|SceneServices\|SceneProjects\|SceneFinalCTA\|ModernFooter\|from.*Layout/Footer\|from.*Layout/Navbar\|from.*components/Layout'" src/ --include="*.tsx" --include="*.jsx" --include="*.ts" -l 2>&1
 ```
+
 Only proceed with deletion for files that appear in zero results (other than their own definition file).
 
 - [ ] **Step 2: Delete the confirmed-unused files**
@@ -2712,6 +2835,7 @@ cp "/home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend/src/assets/CV_TOM BARITEAU
    "/home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend/public/assets/CV_TOM BARITEAU-PETER_FR.pdf"
 ls /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend/public/assets/
 ```
+
 Expected: both PDF files listed.
 
 - [ ] **Step 4: Verify build still passes after deletions**
@@ -2719,6 +2843,7 @@ Expected: both PDF files listed.
 ```bash
 cd /home/tomi-tom/Desktop/Tomfolio/tomfolio-frontend && npm run build 2>&1 | tail -10
 ```
+
 Expected: build succeeds.
 
 - [ ] **Step 5: Final commit**

@@ -1,4 +1,5 @@
 # Portfolio Rework — Design Spec
+
 **Date:** 2026-03-14
 **Project:** Tomfolio (Tom Bariteau-Peter personal portfolio)
 **Status:** Approved by user — ready for implementation planning
@@ -17,20 +18,20 @@ A complete visual and architectural rework of the portfolio. The new design is a
 
 ### 2.1 Color Palette
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--color-void` | `#000000` | Primary background — pure black |
-| `--color-void-deep` | `#030303` | Page background |
-| `--color-void-surface` | `#080808` | Card / panel surfaces |
-| `--color-void-elevated` | `#0d0d0d` | Active / hover states |
-| `--color-gold` | `#d4af37` | Primary accent — all highlights, CTAs, gear strokes |
-| `--color-gold-dim` | `rgba(212,175,55,0.4)` | Secondary gold — tags, labels |
-| `--color-gold-ghost` | `rgba(212,175,55,0.06)` | Background glows, fills |
-| `--color-text-primary` | `#ffffff` | Headings |
-| `--color-text-secondary` | `rgba(232,228,217,0.5)` | Body copy |
-| `--color-text-dim` | `rgba(232,228,217,0.2)` | Captions, labels |
-| `--color-border` | `rgba(212,175,55,0.08)` | Subtle borders |
-| `--color-border-active` | `rgba(212,175,55,0.25)` | Hover borders |
+| Token                    | Value                   | Usage                                               |
+| ------------------------ | ----------------------- | --------------------------------------------------- |
+| `--color-void`           | `#000000`               | Primary background — pure black                     |
+| `--color-void-deep`      | `#030303`               | Page background                                     |
+| `--color-void-surface`   | `#080808`               | Card / panel surfaces                               |
+| `--color-void-elevated`  | `#0d0d0d`               | Active / hover states                               |
+| `--color-gold`           | `#d4af37`               | Primary accent — all highlights, CTAs, gear strokes |
+| `--color-gold-dim`       | `rgba(212,175,55,0.4)`  | Secondary gold — tags, labels                       |
+| `--color-gold-ghost`     | `rgba(212,175,55,0.06)` | Background glows, fills                             |
+| `--color-text-primary`   | `#ffffff`               | Headings                                            |
+| `--color-text-secondary` | `rgba(232,228,217,0.5)` | Body copy                                           |
+| `--color-text-dim`       | `rgba(232,228,217,0.2)` | Captions, labels                                    |
+| `--color-border`         | `rgba(212,175,55,0.08)` | Subtle borders                                      |
+| `--color-border-active`  | `rgba(212,175,55,0.25)` | Hover borders                                       |
 
 **Remove entirely:** orange (#FF6B35), emerald, purple palette, canvas (#0B0B12), all existing gradient utilities.
 
@@ -38,23 +39,24 @@ A complete visual and architectural rework of the portfolio. The new design is a
 
 **Fonts to load:** Space Grotesk (300, 400, 500, 600, 700) + DM Sans (200, 300, 400, 500) via Google Fonts. Remove: Syne, Montserrat.
 
-| Element | Font | Weight | Size | Letter-spacing |
-|---------|------|--------|------|----------------|
-| Display / Hero name | Space Grotesk | 700 | clamp(3.5rem, 8vw, 7rem) | -0.04em |
-| H1 | Space Grotesk | 700 | clamp(2.8rem, 5vw, 5rem) | -0.03em |
-| H2 | Space Grotesk | 700 | clamp(2rem, 3.5vw, 3.5rem) | -0.03em |
-| H3 | Space Grotesk | 600 | clamp(1.3rem, 2vw, 1.8rem) | -0.02em |
-| Section labels | Space Grotesk | 600 | 0.65rem | 0.2em (uppercase) |
-| Chapter numbers | Space Grotesk | 700 | varies | -0.02em |
-| Body | DM Sans | 300 | 0.9rem–1rem | 0.02em |
-| Body bold | DM Sans | 500 | 0.9rem–1rem | 0.01em |
-| Captions / HUD data | Space Grotesk | 500 | 0.58–0.65rem | 0.12em (uppercase) |
+| Element             | Font          | Weight | Size                       | Letter-spacing     |
+| ------------------- | ------------- | ------ | -------------------------- | ------------------ |
+| Display / Hero name | Space Grotesk | 700    | clamp(3.5rem, 8vw, 7rem)   | -0.04em            |
+| H1                  | Space Grotesk | 700    | clamp(2.8rem, 5vw, 5rem)   | -0.03em            |
+| H2                  | Space Grotesk | 700    | clamp(2rem, 3.5vw, 3.5rem) | -0.03em            |
+| H3                  | Space Grotesk | 600    | clamp(1.3rem, 2vw, 1.8rem) | -0.02em            |
+| Section labels      | Space Grotesk | 600    | 0.65rem                    | 0.2em (uppercase)  |
+| Chapter numbers     | Space Grotesk | 700    | varies                     | -0.02em            |
+| Body                | DM Sans       | 300    | 0.9rem–1rem                | 0.02em             |
+| Body bold           | DM Sans       | 500    | 0.9rem–1rem                | 0.01em             |
+| Captions / HUD data | Space Grotesk | 500    | 0.58–0.65rem               | 0.12em (uppercase) |
 
 **Weight contrast principle:** Headings alternate between 700 (bold) and 300 (light) within the same text block. Example: "Tom" (300) + "Bariteau." (700) + "Peter" (300).
 
 ### 2.3 Removed Utilities
 
 Remove all existing custom utility classes from `index.css`:
+
 - All `gradient-*` utilities
 - All `surface-*` classes
 - `section-dark`, `card-interactive`, `card-glow`
@@ -76,35 +78,92 @@ Remove all existing custom utility classes from `index.css`:
   z-index: 50;
   pointer-events: none;
 }
-.hud-corner-tl { top: 48px; left: 16px; }  /* below status bar */
-.hud-corner-tr { top: 48px; right: 16px; }
-.hud-corner-bl { bottom: 52px; left: 16px; } /* above chapter bar */
-.hud-corner-br { bottom: 52px; right: 16px; }
+.hud-corner-tl {
+  top: 48px;
+  left: 16px;
+} /* below status bar */
+.hud-corner-tr {
+  top: 48px;
+  right: 16px;
+}
+.hud-corner-bl {
+  bottom: 52px;
+  left: 16px;
+} /* above chapter bar */
+.hud-corner-br {
+  bottom: 52px;
+  right: 16px;
+}
 
 /* Each corner uses ::before (horizontal arm) and ::after (vertical arm) */
-.hud-corner-tl::before, .hud-corner-tr::before,
-.hud-corner-bl::before, .hud-corner-br::before,
-.hud-corner-tl::after, .hud-corner-tr::after,
-.hud-corner-bl::after, .hud-corner-br::after {
+.hud-corner-tl::before,
+.hud-corner-tr::before,
+.hud-corner-bl::before,
+.hud-corner-br::before,
+.hud-corner-tl::after,
+.hud-corner-tr::after,
+.hud-corner-bl::after,
+.hud-corner-br::after {
   content: '';
   position: absolute;
   background: var(--color-gold);
 }
 /* Horizontal arm */
-.hud-corner-tl::before { top: 0; left: 0; width: 100%; height: 1px; }
-.hud-corner-tr::before { top: 0; right: 0; width: 100%; height: 1px; }
-.hud-corner-bl::before { bottom: 0; left: 0; width: 100%; height: 1px; }
-.hud-corner-br::before { bottom: 0; right: 0; width: 100%; height: 1px; }
+.hud-corner-tl::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+.hud-corner-tr::before {
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+}
+.hud-corner-bl::before {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+.hud-corner-br::before {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+}
 /* Vertical arm */
-.hud-corner-tl::after { top: 0; left: 0; width: 1px; height: 100%; }
-.hud-corner-tr::after { top: 0; right: 0; width: 1px; height: 100%; }
-.hud-corner-bl::after { bottom: 0; left: 0; width: 1px; height: 100%; }
-.hud-corner-br::after { bottom: 0; right: 0; width: 1px; height: 100%; }
+.hud-corner-tl::after {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+}
+.hud-corner-tr::after {
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+}
+.hud-corner-bl::after {
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+}
+.hud-corner-br::after {
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+}
 
 /* Scan line — single 1px horizontal element */
 .scan-line {
   position: absolute;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   height: 1px;
   background: linear-gradient(
     90deg,
@@ -117,8 +176,12 @@ Remove all existing custom utility classes from `index.css`:
 }
 
 /* Gold text */
-.text-gold { color: var(--color-gold); }
-.text-gold-dim { color: var(--color-gold-dim); }
+.text-gold {
+  color: var(--color-gold);
+}
+.text-gold-dim {
+  color: var(--color-gold-dim);
+}
 
 /* Void panels */
 .void-panel {
@@ -145,9 +208,11 @@ Remove all existing custom utility classes from `index.css`:
   border: none;
   cursor: pointer;
   position: relative;
-  outline: 1px solid transparent;       /* default: invisible outer ring */
+  outline: 1px solid transparent; /* default: invisible outer ring */
   outline-offset: 3px;
-  transition: outline-color 0.2s, transform 0.15s;
+  transition:
+    outline-color 0.2s,
+    transform 0.15s;
 }
 .btn-gold:hover {
   outline-color: rgba(212, 175, 55, 0.45); /* outer ring brightens on hover */
@@ -170,7 +235,9 @@ Remove all existing custom utility classes from `index.css`:
   cursor: pointer;
   transition: color 0.2s;
 }
-.btn-ghost-gold:hover { color: #fff; }
+.btn-ghost-gold:hover {
+  color: #fff;
+}
 ```
 
 ---
@@ -184,6 +251,7 @@ A **single persistent Three.js scene** that spans the entire page. The camera li
 ### 3.2 Scene Contents
 
 **Gear objects (THREE.Group per gear):**
+
 - Each gear = `THREE.TorusGeometry` outer ring + custom `THREE.BufferGeometry` for teeth (extruded rects around the circumference) + inner rings + spokes + center hub
 - Gear sizes: large (r=8–12), medium (r=4–6), small (r=1.5–3)
 - All use `THREE.LineSegments` with `LineBasicMaterial({ color: 0xd4af37, opacity: <per-gear>, transparent: true })` — gold, line-drawn, no fill
@@ -192,17 +260,20 @@ A **single persistent Three.js scene** that spans the entire page. The camera li
 - Gears at different Z depths have different opacity (far = 0.08–0.15, mid = 0.3–0.5, near = 0.6–0.8)
 
 **Circuit traces:**
+
 - `THREE.Line` paths (L-shaped routes between gear positions)
 - Gold, opacity 0.15–0.25, thickness via `LineDashedMaterial`
 - Small node dots at endpoints (tiny `SphereGeometry`)
 
 **Particle field:**
+
 - 800 particles (400 mobile) scattered in the void (X: ±300, Y: ±200, Z: 0 to -900)
 - Each particle = 1–2px point, gold, opacity 0.1–0.4
 - Very slow drift (no physics, just gentle float)
 - `PointsMaterial` with glow canvas texture, additive blending
 
 **Depth rings (vanishing point):**
+
 - 5 concentric circles at Z=-50 (the "horizon"), X=0, Y=0
 - Radii 20, 40, 80, 160, 320
 - Gold, opacity 0.03–0.08 — barely visible, purely atmospheric
@@ -211,13 +282,13 @@ A **single persistent Three.js scene** that spans the entire page. The camera li
 
 Z positions per chapter (camera animates between these on chapter transition):
 
-| Chapter | Z position | Feel |
-|---------|------------|------|
-| 01 Hero | -50 | Near start — gears large around you |
-| 02 About | -200 | Diving in — mid gears fill view |
-| 03 Skills | -350 | Deep — dense gear cluster |
-| 04 Projects | -500 | Very deep — geometry becomes abstract |
-| 05 Contact | -650 | Innermost void — sparse, focused |
+| Chapter     | Z position | Feel                                  |
+| ----------- | ---------- | ------------------------------------- |
+| 01 Hero     | -50        | Near start — gears large around you   |
+| 02 About    | -200       | Diving in — mid gears fill view       |
+| 03 Skills   | -350       | Deep — dense gear cluster             |
+| 04 Projects | -500       | Very deep — geometry becomes abstract |
+| 05 Contact  | -650       | Innermost void — sparse, focused      |
 
 Camera animation: **No GSAP** — use a `targetZ` ref + lerp inside the existing `requestAnimationFrame` loop. On chapter change: set `targetZ = chapterZPositions[index]`. Each frame: `camera.position.z += (targetZ - camera.position.z) * 0.05` (lerp factor 0.05 gives ~1.4s convergence). Camera also has subtle Y drift (+/- 2 units) based on mouse Y (`targetY` lerp 0.03), and gentle X drift based on mouse X (`targetX` lerp 0.03).
 
@@ -261,6 +332,7 @@ Mouse wheel vertical scroll translates to horizontal scroll via a JS wheel event
 ### 4.2 Chapter Bar (Bottom)
 
 Persistent across all chapters. Fixed position, bottom 0. Contains:
+
 - 5 chapter slots, each with chapter number (01–05) and name
 - Active chapter: gold top border accent line + bright label
 - Click to jump to chapter
@@ -269,6 +341,7 @@ Persistent across all chapters. Fixed position, bottom 0. Contains:
 ### 4.3 Status Bar (Top)
 
 Persistent across all chapters. Fixed position, top 0. Contains:
+
 - Left: `TBP.DEV` logo in gold
 - Center: pulsing availability dot + "Available" label
 - Right: portfolio version + year
@@ -306,6 +379,7 @@ On screens < 768px: revert to **vertical scroll** with `scroll-snap-type: y mand
 **Layout:** Left 55% content, right 45% Three.js gear cluster focal point (CSS overlay, not separate canvas)
 
 **Content:**
+
 - Gold tag: `UX Designer & Developer` (with left line accent)
 - Hero name: `Tom` (300 light, white 50%) / `Bariteau.` (700 bold, white 100%, period in gold) / `Peter` (300 light, white 50%)
 - Body: one-sentence positioning statement
@@ -319,6 +393,7 @@ On screens < 768px: revert to **vertical scroll** with `scroll-snap-type: y mand
 **Layout:** Left 45% photo + stats, right 55% text
 
 **Content:**
+
 - Section label: `02 — About`
 - Photo: grayscale `PhotoPresentation.png` with 1px gold border + subtle gold bottom glow
 - H2: `Who` (300 light) + `I Am` (700 bold)
@@ -333,6 +408,7 @@ On screens < 768px: revert to **vertical scroll** with `scroll-snap-type: y mand
 **Layout:** Left 40% section title + intro + currently-exploring ticker, right 60% skills grid
 
 **Content:**
+
 - Section label: `03 — Skills`
 - H2: `Craft &` (300 light) / `Expertise` (700 bold)
 - 3-column grid (Frontend / Design / Backend & Tools), each skill with `LevelDots` (4-dot scale, gold filled dots)
@@ -345,6 +421,7 @@ On screens < 768px: revert to **vertical scroll** with `scroll-snap-type: y mand
 **Layout:** Left 35% title + filter, right 65% project cards in a vertical-scrollable column (`overflow-y: auto`, `touch-action: pan-y` on the card column; outer `ChaptersContainer` has `touch-action: pan-x` to prevent scroll conflict on touch devices). On mobile (vertical layout), the card column is full-height with no inner scroll — all cards shown in full.
 
 **Content:**
+
 - Section label: `04 — Projects`
 - H2: `Selected` (300 light) / `Work` (700 bold)
 - 3–4 project cards, each containing:
@@ -363,6 +440,7 @@ On screens < 768px: revert to **vertical scroll** with `scroll-snap-type: y mand
 **Layout:** Full-width centered, two columns: left info, right form
 
 **Content:**
+
 - Section label: `05 — Contact`
 - H2: `Let's Build` (300 light) / `Something` (700 bold)
 - Contact info: email, location, social links (GitHub, LinkedIn)
@@ -378,13 +456,13 @@ On screens < 768px: revert to **vertical scroll** with `scroll-snap-type: y mand
 
 These pages retain the Void & Gold system but use **vertical scroll** (not horizontal chapters).
 
-| Page | Three.js Scene | Notes |
-|------|---------------|-------|
-| Projects | `SceneProjectsHero.tsx` (reworked) — gold particle starfield + 3 gear-framed wireframe cards in void/gold palette | Full project details |
-| Resume | SceneResume — single large gear + particle field | Downloadable CV section |
-| Contact | SceneContact — circuit trace web | Mirrors Chapter 05 |
-| MiniApp | SceneMiniApps — small gear cluster | App grid |
-| Login / Signup | SceneAuth — minimal gear, clean focus | Form-focused |
+| Page           | Three.js Scene                                                                                                    | Notes                   |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| Projects       | `SceneProjectsHero.tsx` (reworked) — gold particle starfield + 3 gear-framed wireframe cards in void/gold palette | Full project details    |
+| Resume         | SceneResume — single large gear + particle field                                                                  | Downloadable CV section |
+| Contact        | SceneContact — circuit trace web                                                                                  | Mirrors Chapter 05      |
+| MiniApp        | SceneMiniApps — small gear cluster                                                                                | App grid                |
+| Login / Signup | SceneAuth — minimal gear, clean focus                                                                             | Form-focused            |
 
 All page-specific scenes inherit the same gold/void palette and gear language.
 
@@ -393,39 +471,42 @@ All page-specific scenes inherit the same gold/void palette and gear language.
 ## 7. Reusable Components
 
 ### New / Rewritten
-| Component | Description |
-|-----------|-------------|
-| `GearUniverse.tsx` | Single persistent Three.js canvas, camera controlled by chapter index |
-| `ChapterBar.tsx` | Bottom navigation bar, 5 chapters, active state |
-| `StatusBar.tsx` | Top HUD bar, logo + availability + version |
-| `HUDFrame.tsx` | Four corner brackets, applied per chapter |
-| `ChaptersContainer.tsx` | Horizontal snap-scroll wrapper, wheel→horizontal translation |
-| `Button.tsx` | Rewritten: `gold` and `ghost-gold` variants only |
-| `LevelDots.tsx` | Keep as-is (4-dot scale) |
-| `ProjectCard.tsx` | Void panel + year tag + stack pills |
+
+| Component               | Description                                                           |
+| ----------------------- | --------------------------------------------------------------------- |
+| `GearUniverse.tsx`      | Single persistent Three.js canvas, camera controlled by chapter index |
+| `ChapterBar.tsx`        | Bottom navigation bar, 5 chapters, active state                       |
+| `StatusBar.tsx`         | Top HUD bar, logo + availability + version                            |
+| `HUDFrame.tsx`          | Four corner brackets, applied per chapter                             |
+| `ChaptersContainer.tsx` | Horizontal snap-scroll wrapper, wheel→horizontal translation          |
+| `Button.tsx`            | Rewritten: `gold` and `ghost-gold` variants only                      |
+| `LevelDots.tsx`         | Keep as-is (4-dot scale)                                              |
+| `ProjectCard.tsx`       | Void panel + year tag + stack pills                                   |
 
 ### Removed
-| Component | Reason |
-|-----------|--------|
-| `ThreeBackground.tsx` | Replaced by `GearUniverse.tsx` |
-| `SceneAbout.tsx`, `SceneSkills.tsx`, `SceneServices.tsx`, `SceneProjects.tsx`, `SceneFinalCTA.tsx`, `SceneProjectsHero.tsx` | Replaced by one unified scene |
-| `GeometricShape.tsx` | Design system removed |
-| `FloatingParticles.tsx` | Handled inside GearUniverse |
-| `AnimatedCard.tsx` | Replaced by ProjectCard / void-panel system |
-| `MiniAppPresentation.tsx` | Replaced by simpler void-panel card |
-| `SceneCarousel.tsx` | Not used in new design — delete |
-| `FinalCTA.tsx`, `ServicesSection.tsx`, `SkillsShowcase.tsx`, `PresentationSection.tsx`, `DynamicHero.tsx`, `ProjectsCTA.tsx` | Replaced by chapter components |
-| `ModernFooter.tsx` | Replaced by ChapterBar + Contact chapter |
+
+| Component                                                                                                                    | Reason                                      |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `ThreeBackground.tsx`                                                                                                        | Replaced by `GearUniverse.tsx`              |
+| `SceneAbout.tsx`, `SceneSkills.tsx`, `SceneServices.tsx`, `SceneProjects.tsx`, `SceneFinalCTA.tsx`, `SceneProjectsHero.tsx`  | Replaced by one unified scene               |
+| `GeometricShape.tsx`                                                                                                         | Design system removed                       |
+| `FloatingParticles.tsx`                                                                                                      | Handled inside GearUniverse                 |
+| `AnimatedCard.tsx`                                                                                                           | Replaced by ProjectCard / void-panel system |
+| `MiniAppPresentation.tsx`                                                                                                    | Replaced by simpler void-panel card         |
+| `SceneCarousel.tsx`                                                                                                          | Not used in new design — delete             |
+| `FinalCTA.tsx`, `ServicesSection.tsx`, `SkillsShowcase.tsx`, `PresentationSection.tsx`, `DynamicHero.tsx`, `ProjectsCTA.tsx` | Replaced by chapter components              |
+| `ModernFooter.tsx`                                                                                                           | Replaced by ChapterBar + Contact chapter    |
 
 ### Kept / Adapted
-| Component | Changes |
-|-----------|---------|
-| `Navbar.tsx` | Replaced by StatusBar (no traditional nav on home — ChapterBar handles it). On sub-pages: minimal top bar with TBP.DEV logo + back arrow |
-| `Layout.tsx` | Split into two components: `HomeLayout.tsx` (no navbar, renders `StatusBar` + `ChapterBar` + `HUDFrame` + `GearUniverse`) and `PageLayout.tsx` (minimal top bar with `TBP.DEV` logo + back arrow, standard vertical scroll). `App.jsx` uses `HomeLayout` for `/` and `PageLayout` for all other routes. |
-| `ProtectedRoute.tsx` | No changes |
-| `AuthContext.tsx` | No changes |
-| `api.ts` | No changes |
-| `cn.ts` | No changes |
+
+| Component            | Changes                                                                                                                                                                                                                                                                                                 |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Navbar.tsx`         | Replaced by StatusBar (no traditional nav on home — ChapterBar handles it). On sub-pages: minimal top bar with TBP.DEV logo + back arrow                                                                                                                                                                |
+| `Layout.tsx`         | Split into two components: `HomeLayout.tsx` (no navbar, renders `StatusBar` + `ChapterBar` + `HUDFrame` + `GearUniverse`) and `PageLayout.tsx` (minimal top bar with `TBP.DEV` logo + back arrow, standard vertical scroll). `App.jsx` uses `HomeLayout` for `/` and `PageLayout` for all other routes. |
+| `ProtectedRoute.tsx` | No changes                                                                                                                                                                                                                                                                                              |
+| `AuthContext.tsx`    | No changes                                                                                                                                                                                                                                                                                              |
+| `api.ts`             | No changes                                                                                                                                                                                                                                                                                              |
+| `cn.ts`              | No changes                                                                                                                                                                                                                                                                                              |
 
 ---
 
@@ -492,16 +573,16 @@ src/
 
 ## 11. Content Inventory (What Carries Over)
 
-| Content | Source | Status |
-|---------|--------|--------|
-| Name, role, bio | Existing components | Carry over, may need copy refresh |
-| Photo | `src/assets/PhotoPresentation.png` | Keep, apply grayscale filter |
-| CV PDFs | `src/assets/CV_TOM BARITEAU-PETER_EN.pdf` + `_FR.pdf` | Keep |
-| Skills data | `SkillsShowcase.tsx` | Extract and reuse |
-| Projects data | `Projects.tsx` | Extract and reuse |
-| Mini-apps data | `MiniApp.tsx` | Extract and reuse |
-| Social/contact info | `Contact.tsx` | Extract and reuse |
-| Icons | `src/assets/Icons/*.svg` | May retire in favor of inline SVG/gold tint |
+| Content             | Source                                                | Status                                      |
+| ------------------- | ----------------------------------------------------- | ------------------------------------------- |
+| Name, role, bio     | Existing components                                   | Carry over, may need copy refresh           |
+| Photo               | `src/assets/PhotoPresentation.png`                    | Keep, apply grayscale filter                |
+| CV PDFs             | `src/assets/CV_TOM BARITEAU-PETER_EN.pdf` + `_FR.pdf` | Keep                                        |
+| Skills data         | `SkillsShowcase.tsx`                                  | Extract and reuse                           |
+| Projects data       | `Projects.tsx`                                        | Extract and reuse                           |
+| Mini-apps data      | `MiniApp.tsx`                                         | Extract and reuse                           |
+| Social/contact info | `Contact.tsx`                                         | Extract and reuse                           |
+| Icons               | `src/assets/Icons/*.svg`                              | May retire in favor of inline SVG/gold tint |
 
 ---
 
