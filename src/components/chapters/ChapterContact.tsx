@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { messageAPI } from '../../services/api'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -19,7 +18,12 @@ export function ChapterContact() {
     e.preventDefault()
     setStatus('loading')
     try {
-      await messageAPI.create(form)
+      const res = await fetch(`https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('Failed to send')
       setStatus('success')
       setForm({ name: '', email: '', subject: 'Portfolio contact', message: '' })
     } catch {

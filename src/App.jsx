@@ -8,10 +8,6 @@ import LoveTimerPage from './pages/LoveTimer'
 import Resume from './pages/Resume'
 import Contact from './pages/Contact'
 import Projects from './pages/Projects'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import Dashboard from './pages/Dashboard'
-import ProtectedRoute from './components/Auth/ProtectedRoute'
 import MemoryGame from './pages/MemoryGame'
 import WeatherApp from './pages/WeatherApp'
 import PomodoroTimer from './pages/PomodoroTimer'
@@ -26,16 +22,6 @@ export default function App() {
       <Route path="/miniapps" element={<MiniAppPage />} />
       <Route path="/resume" element={<Resume />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
       <Route path="/love" element={<LoveTimerPage />} />
       <Route path="/lifegame" element={<LifeGame />} />
       <Route path="/memory" element={<MemoryGame />} />

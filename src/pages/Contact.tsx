@@ -25,7 +25,7 @@ export default function Contact(): ReactElement {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if (!formData.name || !formData.email || !formData.message) {
@@ -39,15 +39,26 @@ export default function Contact(): ReactElement {
     setIsSubmitting(true)
     setFormStatus(null)
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      const res = await fetch(`https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      if (!res.ok) throw new Error('Failed to send')
       setFormStatus({
         success: true,
         message: "Thank you for your message! I'll get back to you as soon as possible.",
       })
       setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 1200)
+    } catch {
+      setFormStatus({
+        success: false,
+        message: 'Something went wrong. Please try again or email me directly.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const containerVariants = {
