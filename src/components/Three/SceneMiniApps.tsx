@@ -24,7 +24,8 @@ export default function SceneMiniApps() {
     camera.position.set(0, 0, 16)
     camera.lookAt(0, 0, 0)
 
-    const toDispose: (THREE.BufferGeometry | THREE.Material | THREE.Texture)[] = []
+    const toDispose: (THREE.BufferGeometry | THREE.Material | THREE.Texture)[] =
+      []
 
     // Glow canvas texture
     const makeGlow = (rgb: string) => {
@@ -35,22 +36,59 @@ export default function SceneMiniApps() {
       g.addColorStop(0, `rgba(${rgb},1)`)
       g.addColorStop(0.35, `rgba(${rgb},0.5)`)
       g.addColorStop(1, `rgba(${rgb},0)`)
-      cx.fillStyle = g; cx.fillRect(0, 0, 64, 64)
+      cx.fillStyle = g
+      cx.fillRect(0, 0, 64, 64)
       return new THREE.CanvasTexture(c)
     }
-    const glowGold    = makeGlow('212,175,55')
-    const glowTeal    = makeGlow('52,211,153')
-    const glowMuted   = makeGlow('102,88,51')
+    const glowGold = makeGlow('212,175,55')
+    const glowTeal = makeGlow('52,211,153')
+    const glowMuted = makeGlow('102,88,51')
     toDispose.push(glowGold, glowTeal, glowMuted)
 
     // ── App nodes — 6 apps in a loose constellation ──
     const nodeConfigs = [
-      { pos: [-5.0,  2.5, 0.5], color: 0x34D399, glow: glowTeal,   size: 0.24, label: 'Game of Life'  },
-      { pos: [ 4.5,  3.0, -0.5], color: 0x34D399, glow: glowTeal,   size: 0.22, label: 'Memory Game'  },
-      { pos: [-3.5, -2.8, 0.3], color: 0xd4af37, glow: glowGold,   size: 0.22, label: 'Weather'       },
-      { pos: [ 5.0, -2.0, -0.8], color: 0xd4af37, glow: glowGold,   size: 0.20, label: 'Pomodoro'     },
-      { pos: [-1.0,  0.5, 1.0], color: 0xd4af37, glow: glowGold,   size: 0.26, label: 'Task Breaker'  },
-      { pos: [ 1.5, -3.5, -0.5], color: 0xd4af37, glow: glowGold,   size: 0.24, label: 'Mood Tracker' },
+      {
+        pos: [-5.0, 2.5, 0.5],
+        color: 0x34d399,
+        glow: glowTeal,
+        size: 0.24,
+        label: 'Game of Life',
+      },
+      {
+        pos: [4.5, 3.0, -0.5],
+        color: 0x34d399,
+        glow: glowTeal,
+        size: 0.22,
+        label: 'Memory Game',
+      },
+      {
+        pos: [-3.5, -2.8, 0.3],
+        color: 0xd4af37,
+        glow: glowGold,
+        size: 0.22,
+        label: 'Weather',
+      },
+      {
+        pos: [5.0, -2.0, -0.8],
+        color: 0xd4af37,
+        glow: glowGold,
+        size: 0.2,
+        label: 'Pomodoro',
+      },
+      {
+        pos: [-1.0, 0.5, 1.0],
+        color: 0xd4af37,
+        glow: glowGold,
+        size: 0.26,
+        label: 'Task Breaker',
+      },
+      {
+        pos: [1.5, -3.5, -0.5],
+        color: 0xd4af37,
+        glow: glowGold,
+        size: 0.24,
+        label: 'Mood Tracker',
+      },
     ]
 
     interface AppNode {
@@ -64,7 +102,11 @@ export default function SceneMiniApps() {
 
     nodeConfigs.forEach((cfg, ni) => {
       const geo = new THREE.SphereGeometry(cfg.size, 14, 14)
-      const mat = new THREE.MeshBasicMaterial({ color: cfg.color, transparent: true, opacity: 0.85 })
+      const mat = new THREE.MeshBasicMaterial({
+        color: cfg.color,
+        transparent: true,
+        opacity: 0.85,
+      })
       toDispose.push(geo, mat)
       const mesh = new THREE.Mesh(geo, mat)
       mesh.position.set(...(cfg.pos as [number, number, number]))
@@ -72,7 +114,12 @@ export default function SceneMiniApps() {
 
       // Halo
       const haloGeo = new THREE.SphereGeometry(cfg.size * 2.8, 10, 10)
-      const haloMat = new THREE.MeshBasicMaterial({ color: cfg.color, transparent: true, opacity: 0.05, side: THREE.BackSide })
+      const haloMat = new THREE.MeshBasicMaterial({
+        color: cfg.color,
+        transparent: true,
+        opacity: 0.05,
+        side: THREE.BackSide,
+      })
       toDispose.push(haloGeo, haloMat)
       const halo = new THREE.Mesh(haloGeo, haloMat)
       halo.position.copy(mesh.position)
@@ -89,8 +136,14 @@ export default function SceneMiniApps() {
 
     // ── Connection lines between neighboring nodes ──
     const connectionPairs = [
-      [0, 2], [0, 4], [1, 3], [1, 4],
-      [2, 5], [3, 5], [4, 5], [0, 1],
+      [0, 2],
+      [0, 4],
+      [1, 3],
+      [1, 4],
+      [2, 5],
+      [3, 5],
+      [4, 5],
+      [0, 1],
     ]
 
     interface Connection {
@@ -106,7 +159,7 @@ export default function SceneMiniApps() {
       const mat = new THREE.LineBasicMaterial({
         color: 0xd4af37,
         transparent: true,
-        opacity: 0.10,
+        opacity: 0.1,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       })
@@ -132,14 +185,21 @@ export default function SceneMiniApps() {
       const mat = new THREE.PointsMaterial({
         size: 0.22,
         map: glows[ci % glows.length],
-        color: 0xFFFFFF,
+        color: 0xffffff,
         transparent: true,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       })
       toDispose.push(geo, mat)
       scene.add(new THREE.Points(geo, mat))
-      return { t: ci / connectionPairs.length, speed: 0.009 + Math.random() * 0.007, connIndex: ci, posArr, geo, mat }
+      return {
+        t: ci / connectionPairs.length,
+        speed: 0.009 + Math.random() * 0.007,
+        connIndex: ci,
+        posArr,
+        geo,
+        mat,
+      }
     })
 
     // ── Small orbiting mini-particles around each node ──
@@ -185,16 +245,20 @@ export default function SceneMiniApps() {
     const BGCOUNT = isMobile ? 30 : 65
     const bgPos = new Float32Array(BGCOUNT * 3)
     for (let i = 0; i < BGCOUNT; i++) {
-      bgPos[i * 3]     = (Math.random() - 0.5) * 24
+      bgPos[i * 3] = (Math.random() - 0.5) * 24
       bgPos[i * 3 + 1] = (Math.random() - 0.5) * 18
       bgPos[i * 3 + 2] = (Math.random() - 0.5) * 6 - 3
     }
     const bgGeo = new THREE.BufferGeometry()
     bgGeo.setAttribute('position', new THREE.BufferAttribute(bgPos, 3))
     const bgMat = new THREE.PointsMaterial({
-      size: 0.06, map: glowMuted, color: 0x332c1a,
-      transparent: true, opacity: 0.35,
-      blending: THREE.AdditiveBlending, depthWrite: false,
+      size: 0.06,
+      map: glowMuted,
+      color: 0x332c1a,
+      transparent: true,
+      opacity: 0.35,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
     })
     toDispose.push(bgGeo, bgMat)
     scene.add(new THREE.Points(bgGeo, bgMat))
@@ -203,10 +267,13 @@ export default function SceneMiniApps() {
     let frameId = 0
     let time = 0
     let running = true
-    let mouseNX = 0, mouseNY = 0, targetNX = 0, targetNY = 0
+    let mouseNX = 0,
+      mouseNY = 0,
+      targetNX = 0,
+      targetNY = 0
 
     const onMouseMove = (e: MouseEvent) => {
-      targetNX = e.clientX / window.innerWidth  - 0.5
+      targetNX = e.clientX / window.innerWidth - 0.5
       targetNY = e.clientY / window.innerHeight - 0.5
     }
     window.addEventListener('mousemove', onMouseMove)
@@ -221,8 +288,11 @@ export default function SceneMiniApps() {
 
       // Float nodes
       appNodes.forEach((node) => {
-        node.mesh.position.x = node.basePos.x + Math.sin(time * 0.35 + node.phase) * node.floatAmp
-        node.mesh.position.y = node.basePos.y + Math.cos(time * 0.28 + node.phase * 1.3) * node.floatAmp
+        node.mesh.position.x =
+          node.basePos.x + Math.sin(time * 0.35 + node.phase) * node.floatAmp
+        node.mesh.position.y =
+          node.basePos.y +
+          Math.cos(time * 0.28 + node.phase * 1.3) * node.floatAmp
         node.mat.opacity = 0.7 + Math.sin(time * 2.2 + node.phase) * 0.2
       })
 
@@ -230,8 +300,12 @@ export default function SceneMiniApps() {
       connections.forEach(({ geo, posArr, a, b }) => {
         const pa = appNodes[a].mesh.position
         const pb = appNodes[b].mesh.position
-        posArr[0] = pa.x; posArr[1] = pa.y; posArr[2] = pa.z
-        posArr[3] = pb.x; posArr[4] = pb.y; posArr[5] = pb.z
+        posArr[0] = pa.x
+        posArr[1] = pa.y
+        posArr[2] = pa.z
+        posArr[3] = pb.x
+        posArr[4] = pb.y
+        posArr[5] = pb.z
         geo.attributes.position.needsUpdate = true
       })
 
@@ -268,19 +342,26 @@ export default function SceneMiniApps() {
       renderer.render(scene, camera)
     }
 
-    const observer = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        if (!running) { running = true; tick() }
-      } else {
-        running = false
-        cancelAnimationFrame(frameId)
-      }
-    }, { threshold: 0.01 })
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          if (!running) {
+            running = true
+            tick()
+          }
+        } else {
+          running = false
+          cancelAnimationFrame(frameId)
+        }
+      },
+      { threshold: 0.01 }
+    )
     observer.observe(mount)
     tick()
 
     const onResize = () => {
-      const w = mount.clientWidth, h = mount.clientHeight
+      const w = mount.clientWidth,
+        h = mount.clientHeight
       camera.aspect = w / h
       camera.updateProjectionMatrix()
       renderer.setSize(w, h)
@@ -293,11 +374,18 @@ export default function SceneMiniApps() {
       observer.disconnect()
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('resize', onResize)
-      toDispose.forEach(d => d.dispose())
+      toDispose.forEach((d) => d.dispose())
       renderer.dispose()
-      if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement)
+      if (mount.contains(renderer.domElement))
+        mount.removeChild(renderer.domElement)
     }
   }, [])
 
-  return <div ref={mountRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }} />
+  return (
+    <div
+      ref={mountRef}
+      className="pointer-events-none absolute inset-0"
+      style={{ zIndex: 0 }}
+    />
+  )
 }

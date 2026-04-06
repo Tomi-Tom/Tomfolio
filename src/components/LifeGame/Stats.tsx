@@ -7,9 +7,7 @@ interface StatsProps {
 
 const Stats: React.FC<StatsProps> = ({ generations, population }) => {
   return (
-    <div
-      className="void-panel flex w-full flex-col gap-4 rounded-2xl"
-    >
+    <div className="void-panel flex w-full flex-col gap-4 rounded-2xl">
       <div
         className="w-full items-center justify-center rounded-t-2xl p-4 pb-6"
         style={{ background: 'var(--color-void-elevated)' }}

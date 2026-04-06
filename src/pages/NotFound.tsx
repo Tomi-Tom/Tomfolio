@@ -20,7 +20,7 @@ export default function NotFound(): ReactElement {
     const x = Math.random() * window.innerWidth - size
     const y = Math.random() * window.innerHeight - size
     const hue = 38 + Math.random() * 12 // gold hue range (38-50)
-    const angle = (Math.random() * Math.PI * 2)
+    const angle = Math.random() * Math.PI * 2
     setMeteors([...meteors, { x, y, size, speed, hue, angle }])
   }
 
@@ -63,12 +63,16 @@ export default function NotFound(): ReactElement {
   }, [])
 
   const meteorColor = (hue: number) => `hsl(${hue}, 80%, 55%)`
-  const meteorGlow  = (hue: number, size: number) => `0 0 ${size * 2}px hsl(${hue}, 80%, 55%)`
+  const meteorGlow = (hue: number, size: number) =>
+    `0 0 ${size * 2}px hsl(${hue}, 80%, 55%)`
 
   return (
     <div
-      className="relative flex min-h-screen w-full select-none flex-col items-center justify-center"
-      style={{ background: 'var(--color-void)', color: 'var(--color-text-primary)' }}
+      className="relative flex min-h-screen w-full flex-col items-center justify-center select-none"
+      style={{
+        background: 'var(--color-void)',
+        color: 'var(--color-text-primary)',
+      }}
     >
       <AnimatePresence>
         {meteors.map((meteor, index) => (
@@ -99,25 +103,37 @@ export default function NotFound(): ReactElement {
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
       >
         <motion.h1
-          className="text-9xl font-extrabold text-gold"
+          className="text-gold text-9xl font-extrabold"
           whileHover={{ scale: 1.1, rotateZ: -5 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
           4
         </motion.h1>
         <motion.h1
-          className="text-9xl font-extrabold text-gold"
-          style={showEasterEgg ? { animation: 'gold-pulse 2s ease-in-out infinite', cursor: 'pointer' } : undefined}
+          className="text-gold text-9xl font-extrabold"
+          style={
+            showEasterEgg
+              ? {
+                  animation: 'gold-pulse 2s ease-in-out infinite',
+                  cursor: 'pointer',
+                }
+              : undefined
+          }
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={showEasterEgg ? () => {
-            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-          } : createMeteor}
+          onClick={
+            showEasterEgg
+              ? () => {
+                  window.location.href =
+                    'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                }
+              : createMeteor
+          }
         >
           0
         </motion.h1>
         <motion.h1
-          className="text-9xl font-extrabold text-gold"
+          className="text-gold text-9xl font-extrabold"
           whileHover={{ scale: 1.1, rotateZ: 5 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
@@ -143,24 +159,36 @@ export default function NotFound(): ReactElement {
       >
         <motion.button
           className="btn-gold cursor-pointer px-6 py-3"
-          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(212, 175, 55, 0.4)' }}
+          whileHover={{
+            y: -5,
+            boxShadow: '0 10px 25px -5px rgba(212, 175, 55, 0.4)',
+          }}
           whileTap={{ scale: 0.95 }}
           onClick={() => window.location.replace('/')}
         >
           Go Home
         </motion.button>
 
-        <h1 className="text-2xl text-secondary" style={{ fontSize: '1.5rem' }}>Or</h1>
+        <h1 className="text-secondary text-2xl" style={{ fontSize: '1.5rem' }}>
+          Or
+        </h1>
 
         <motion.button
           className="btn-ghost-gold cursor-pointer px-6 py-3"
-          style={{ border: '1px solid var(--color-border-active)', padding: '10px 24px' }}
-          whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(212, 175, 55, 0.25)' }}
+          style={{
+            border: '1px solid var(--color-border-active)',
+            padding: '10px 24px',
+          }}
+          whileHover={{
+            y: -5,
+            boxShadow: '0 10px 25px -5px rgba(212, 175, 55, 0.25)',
+          }}
           whileTap={{ scale: 0.95 }}
           onClick={
             showEasterEgg
               ? () => {
-                  window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                  window.location.href =
+                    'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
                 }
               : createMeteor
           }

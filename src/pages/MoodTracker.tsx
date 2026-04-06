@@ -1,24 +1,24 @@
-import { ReactElement, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { PageLayout } from '../layouts/PageLayout';
+import { ReactElement, useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { PageLayout } from '../layouts/PageLayout'
 
 type MoodEntry = {
-  id: string;
-  date: string;
-  mood: number; // 1-5 scale
-  energy: number; // 1-5 scale
-  focus: number; // 1-5 scale
-  notes: string;
-  tags: string[];
-  activities: string[];
-};
+  id: string
+  date: string
+  mood: number // 1-5 scale
+  energy: number // 1-5 scale
+  focus: number // 1-5 scale
+  notes: string
+  tags: string[]
+  activities: string[]
+}
 
 type DateData = {
-  date: string;
-  dayName: string;
-  shortDate: string;
-  isToday: boolean;
-};
+  date: string
+  dayName: string
+  shortDate: string
+  isToday: boolean
+}
 
 // Activity categories with emojis
 const activityOptions = [
@@ -34,55 +34,138 @@ const activityOptions = [
   { id: 'sleep', label: 'Good Sleep', emoji: '😴' },
   { id: 'meds', label: 'Medication', emoji: '💊' },
   { id: 'nutrition', label: 'Nutrition', emoji: '🥗' },
-];
+]
 
 // Mood level descriptions
 const moodLevels = [
-  { value: 1, label: 'Very Low', emoji: '😢', color: 'from-blue-700 to-blue-500' },
+  {
+    value: 1,
+    label: 'Very Low',
+    emoji: '😢',
+    color: 'from-blue-700 to-blue-500',
+  },
   { value: 2, label: 'Low', emoji: '😟', color: 'from-blue-500 to-blue-300' },
-  { value: 3, label: 'Neutral', emoji: '😐', color: 'from-gray-500 to-gray-400' },
-  { value: 4, label: 'Good', emoji: '🙂', color: 'from-green-500 to-green-300' },
-  { value: 5, label: 'Great', emoji: '😄', color: 'from-green-700 to-green-500' },
-];
+  {
+    value: 3,
+    label: 'Neutral',
+    emoji: '😐',
+    color: 'from-gray-500 to-gray-400',
+  },
+  {
+    value: 4,
+    label: 'Good',
+    emoji: '🙂',
+    color: 'from-green-500 to-green-300',
+  },
+  {
+    value: 5,
+    label: 'Great',
+    emoji: '😄',
+    color: 'from-green-700 to-green-500',
+  },
+]
 
 // Energy level descriptions
 const energyLevels = [
-  { value: 1, label: 'Exhausted', emoji: '🔋', color: 'from-red-700 to-red-500' },
-  { value: 2, label: 'Low', emoji: '🔋🔋', color: 'from-orange-700 to-orange-500' },
-  { value: 3, label: 'Moderate', emoji: '🔋🔋🔋', color: 'from-yellow-700 to-yellow-500' },
-  { value: 4, label: 'Energetic', emoji: '🔋🔋🔋🔋', color: 'from-lime-700 to-lime-500' },
-  { value: 5, label: 'Very High', emoji: '🔋🔋🔋🔋🔋', color: 'from-green-700 to-green-500' },
-];
+  {
+    value: 1,
+    label: 'Exhausted',
+    emoji: '🔋',
+    color: 'from-red-700 to-red-500',
+  },
+  {
+    value: 2,
+    label: 'Low',
+    emoji: '🔋🔋',
+    color: 'from-orange-700 to-orange-500',
+  },
+  {
+    value: 3,
+    label: 'Moderate',
+    emoji: '🔋🔋🔋',
+    color: 'from-yellow-700 to-yellow-500',
+  },
+  {
+    value: 4,
+    label: 'Energetic',
+    emoji: '🔋🔋🔋🔋',
+    color: 'from-lime-700 to-lime-500',
+  },
+  {
+    value: 5,
+    label: 'Very High',
+    emoji: '🔋🔋🔋🔋🔋',
+    color: 'from-green-700 to-green-500',
+  },
+]
 
 // Focus level descriptions
 const focusLevels = [
-  { value: 1, label: 'Very Distracted', emoji: '🧠', color: 'from-red-700 to-red-500' },
-  { value: 2, label: 'Distracted', emoji: '🧠🧠', color: 'from-orange-700 to-orange-500' },
-  { value: 3, label: 'Moderate', emoji: '🧠🧠🧠', color: 'from-yellow-700 to-yellow-500' },
-  { value: 4, label: 'Focused', emoji: '🧠🧠🧠🧠', color: 'from-blue-700 to-blue-500' },
-  { value: 5, label: 'Hyper-focused', emoji: '🧠🧠🧠🧠🧠', color: 'from-indigo-700 to-indigo-500' },
-];
+  {
+    value: 1,
+    label: 'Very Distracted',
+    emoji: '🧠',
+    color: 'from-red-700 to-red-500',
+  },
+  {
+    value: 2,
+    label: 'Distracted',
+    emoji: '🧠🧠',
+    color: 'from-orange-700 to-orange-500',
+  },
+  {
+    value: 3,
+    label: 'Moderate',
+    emoji: '🧠🧠🧠',
+    color: 'from-yellow-700 to-yellow-500',
+  },
+  {
+    value: 4,
+    label: 'Focused',
+    emoji: '🧠🧠🧠🧠',
+    color: 'from-blue-700 to-blue-500',
+  },
+  {
+    value: 5,
+    label: 'Hyper-focused',
+    emoji: '🧠🧠🧠🧠🧠',
+    color: 'from-indigo-700 to-indigo-500',
+  },
+]
 
 // Tag options
 const tagOptions = [
-  'Overwhelmed', 'Anxious', 'Creative', 'Productive', 'Calm',
-  'Frustrated', 'Motivated', 'Tired', 'Hyperfocus', 'Distracted',
-  'Procrastinating', 'Happy', 'Stressed', 'Excited'
-];
+  'Overwhelmed',
+  'Anxious',
+  'Creative',
+  'Productive',
+  'Calm',
+  'Frustrated',
+  'Motivated',
+  'Tired',
+  'Hyperfocus',
+  'Distracted',
+  'Procrastinating',
+  'Happy',
+  'Stressed',
+  'Excited',
+]
 
 export default function MoodTracker(): ReactElement {
   // Local storage key
-  const ENTRIES_STORAGE_KEY = 'adhd-mood-tracker-entries';
+  const ENTRIES_STORAGE_KEY = 'adhd-mood-tracker-entries'
 
   // State
-  const [entries, setEntries] = useState<MoodEntry[]>([]);
-  const [showEntryForm, setShowEntryForm] = useState(false);
-  const [editingEntry, setEditingEntry] = useState<MoodEntry | null>(null);
-  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
-  const [currentView, setCurrentView] = useState<'calendar' | 'insights'>('calendar');
+  const [entries, setEntries] = useState<MoodEntry[]>([])
+  const [showEntryForm, setShowEntryForm] = useState(false)
+  const [editingEntry, setEditingEntry] = useState<MoodEntry | null>(null)
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null)
+  const [currentView, setCurrentView] = useState<'calendar' | 'insights'>(
+    'calendar'
+  )
   const [selectedDate, setSelectedDate] = useState<string>(
     new Date().toISOString().split('T')[0]
-  );
+  )
 
   // New entry form state
   const emptyEntry: MoodEntry = {
@@ -94,162 +177,182 @@ export default function MoodTracker(): ReactElement {
     notes: '',
     tags: [],
     activities: [],
-  };
-  const [newEntry, setNewEntry] = useState<MoodEntry>(emptyEntry);
+  }
+  const [newEntry, setNewEntry] = useState<MoodEntry>(emptyEntry)
 
   // Fetch entries from local storage
   useEffect(() => {
-    const savedEntries = localStorage.getItem(ENTRIES_STORAGE_KEY);
+    const savedEntries = localStorage.getItem(ENTRIES_STORAGE_KEY)
     if (savedEntries) {
-      setEntries(JSON.parse(savedEntries));
+      setEntries(JSON.parse(savedEntries))
     }
-  }, []);
+  }, [])
 
   // Save entries to local storage
   useEffect(() => {
-    localStorage.setItem(ENTRIES_STORAGE_KEY, JSON.stringify(entries));
-  }, [entries]);
+    localStorage.setItem(ENTRIES_STORAGE_KEY, JSON.stringify(entries))
+  }, [entries])
 
   // Generate array of dates for the calendar (current week)
   const getDates = (): DateData[] => {
-    const dates: DateData[] = [];
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const dates: DateData[] = []
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
 
     // Start from 6 days ago
-    const startDate = new Date(today);
-    startDate.setDate(today.getDate() - 6);
+    const startDate = new Date(today)
+    startDate.setDate(today.getDate() - 6)
 
     for (let i = 0; i < 13; i++) {
-      const date = new Date(startDate);
-      date.setDate(startDate.getDate() + i);
+      const date = new Date(startDate)
+      date.setDate(startDate.getDate() + i)
 
-      const dateString = date.toISOString().split('T')[0];
-      const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(date);
-      const shortDate = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(date);
+      const dateString = date.toISOString().split('T')[0]
+      const dayName = new Intl.DateTimeFormat('en-US', {
+        weekday: 'short',
+      }).format(date)
+      const shortDate = new Intl.DateTimeFormat('en-US', {
+        day: 'numeric',
+      }).format(date)
 
       dates.push({
         date: dateString,
         dayName,
         shortDate,
-        isToday: date.getTime() === today.getTime()
-      });
+        isToday: date.getTime() === today.getTime(),
+      })
     }
 
-    return dates;
-  };
+    return dates
+  }
 
   // Get dates for calendar
-  const dates = getDates();
+  const dates = getDates()
 
   // Functions for managing entries
   const saveEntry = () => {
     if (editingEntry) {
       // Update existing entry
-      setEntries(entries.map(e =>
-        e.id === editingEntry.id ? { ...newEntry, id: editingEntry.id } : e
-      ));
+      setEntries(
+        entries.map((e) =>
+          e.id === editingEntry.id ? { ...newEntry, id: editingEntry.id } : e
+        )
+      )
     } else {
       // Create new entry
-      const entryId = Date.now().toString();
-      setEntries([...entries, { ...newEntry, id: entryId }]);
+      const entryId = Date.now().toString()
+      setEntries([...entries, { ...newEntry, id: entryId }])
     }
 
-    setShowEntryForm(false);
-    setEditingEntry(null);
-    setNewEntry(emptyEntry);
-  };
+    setShowEntryForm(false)
+    setEditingEntry(null)
+    setNewEntry(emptyEntry)
+  }
 
   const startEditEntry = (entry: MoodEntry) => {
-    setEditingEntry(entry);
-    setNewEntry(entry);
-    setShowEntryForm(true);
-  };
+    setEditingEntry(entry)
+    setNewEntry(entry)
+    setShowEntryForm(true)
+  }
 
   const deleteEntry = (id: string) => {
-    setEntries(entries.filter(e => e.id !== id));
-    setDeleteConfirmId(null);
-  };
+    setEntries(entries.filter((e) => e.id !== id))
+    setDeleteConfirmId(null)
+  }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setNewEntry({ ...newEntry, [name]: value });
-  };
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    setNewEntry({ ...newEntry, [name]: value })
+  }
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setNewEntry({ ...newEntry, [name]: parseInt(value, 10) });
-  };
+    const { name, value } = e.target
+    setNewEntry({ ...newEntry, [name]: parseInt(value, 10) })
+  }
 
   const toggleTag = (tag: string) => {
-    const currentTags = [...newEntry.tags];
+    const currentTags = [...newEntry.tags]
     if (currentTags.includes(tag)) {
-      setNewEntry({ ...newEntry, tags: currentTags.filter(t => t !== tag) });
+      setNewEntry({ ...newEntry, tags: currentTags.filter((t) => t !== tag) })
     } else {
-      setNewEntry({ ...newEntry, tags: [...currentTags, tag] });
+      setNewEntry({ ...newEntry, tags: [...currentTags, tag] })
     }
-  };
+  }
 
   const toggleActivity = (activityId: string) => {
-    const currentActivities = [...newEntry.activities];
+    const currentActivities = [...newEntry.activities]
     if (currentActivities.includes(activityId)) {
-      setNewEntry({ ...newEntry, activities: currentActivities.filter(a => a !== activityId) });
+      setNewEntry({
+        ...newEntry,
+        activities: currentActivities.filter((a) => a !== activityId),
+      })
     } else {
-      setNewEntry({ ...newEntry, activities: [...currentActivities, activityId] });
+      setNewEntry({
+        ...newEntry,
+        activities: [...currentActivities, activityId],
+      })
     }
-  };
+  }
 
   // Get entry for selected date
   const getEntryForDate = (date: string) => {
-    return entries.find(entry => entry.date === date);
-  };
+    return entries.find((entry) => entry.date === date)
+  }
 
-  const selectedDateEntry = getEntryForDate(selectedDate);
+  const selectedDateEntry = getEntryForDate(selectedDate)
 
   // Calculate average mood, energy and focus for insights
   const calculateAverages = () => {
-    if (entries.length === 0) return { mood: 0, energy: 0, focus: 0 };
+    if (entries.length === 0) return { mood: 0, energy: 0, focus: 0 }
 
-    const totals = entries.reduce((acc, entry) => ({
-      mood: acc.mood + entry.mood,
-      energy: acc.energy + entry.energy,
-      focus: acc.focus + entry.focus
-    }), { mood: 0, energy: 0, focus: 0 });
+    const totals = entries.reduce(
+      (acc, entry) => ({
+        mood: acc.mood + entry.mood,
+        energy: acc.energy + entry.energy,
+        focus: acc.focus + entry.focus,
+      }),
+      { mood: 0, energy: 0, focus: 0 }
+    )
 
     return {
       mood: Math.round((totals.mood / entries.length) * 100) / 100,
       energy: Math.round((totals.energy / entries.length) * 100) / 100,
-      focus: Math.round((totals.focus / entries.length) * 100) / 100
-    };
-  };
+      focus: Math.round((totals.focus / entries.length) * 100) / 100,
+    }
+  }
 
-  const averages = calculateAverages();
+  const averages = calculateAverages()
 
   // Calculate correlation between activities and metrics
   const calculateActivityImpact = () => {
-    const impacts: Record<string, { count: number, mood: number, energy: number, focus: number }> = {};
+    const impacts: Record<
+      string,
+      { count: number; mood: number; energy: number; focus: number }
+    > = {}
 
     // Initialize impacts object
-    activityOptions.forEach(activity => {
-      impacts[activity.id] = { count: 0, mood: 0, energy: 0, focus: 0 };
-    });
+    activityOptions.forEach((activity) => {
+      impacts[activity.id] = { count: 0, mood: 0, energy: 0, focus: 0 }
+    })
 
     // Sum up metrics for each activity
-    entries.forEach(entry => {
-      entry.activities.forEach(activityId => {
+    entries.forEach((entry) => {
+      entry.activities.forEach((activityId) => {
         if (impacts[activityId]) {
-          impacts[activityId].count++;
-          impacts[activityId].mood += entry.mood;
-          impacts[activityId].energy += entry.energy;
-          impacts[activityId].focus += entry.focus;
+          impacts[activityId].count++
+          impacts[activityId].mood += entry.mood
+          impacts[activityId].energy += entry.energy
+          impacts[activityId].focus += entry.focus
         }
-      });
-    });
+      })
+    })
 
     // Calculate averages
-    const result = Object.keys(impacts).map(activityId => {
-      const impact = impacts[activityId];
-      const activity = activityOptions.find(a => a.id === activityId);
+    const result = Object.keys(impacts).map((activityId) => {
+      const impact = impacts[activityId]
+      const activity = activityOptions.find((a) => a.id === activityId)
 
       if (impact.count === 0) {
         return {
@@ -259,8 +362,8 @@ export default function MoodTracker(): ReactElement {
           count: 0,
           mood: 0,
           energy: 0,
-          focus: 0
-        };
+          focus: 0,
+        }
       }
 
       return {
@@ -270,110 +373,138 @@ export default function MoodTracker(): ReactElement {
         count: impact.count,
         mood: Math.round((impact.mood / impact.count) * 100) / 100,
         energy: Math.round((impact.energy / impact.count) * 100) / 100,
-        focus: Math.round((impact.focus / impact.count) * 100) / 100
-      };
-    });
+        focus: Math.round((impact.focus / impact.count) * 100) / 100,
+      }
+    })
 
     // Sort by count, descending
-    return result.sort((a, b) => b.count - a.count);
-  };
+    return result.sort((a, b) => b.count - a.count)
+  }
 
-  const activityImpacts = calculateActivityImpact();
+  const activityImpacts = calculateActivityImpact()
 
   // Get color for mood/energy/focus level
   const getLevelInfo = (type: 'mood' | 'energy' | 'focus', value: number) => {
-    const levels = type === 'mood'
-      ? moodLevels
-      : type === 'energy'
-        ? energyLevels
-        : focusLevels;
+    const levels =
+      type === 'mood'
+        ? moodLevels
+        : type === 'energy'
+          ? energyLevels
+          : focusLevels
 
-    return levels.find(level => level.value === value) || levels[2]; // Default to middle value
-  };
+    return levels.find((level) => level.value === value) || levels[2] // Default to middle value
+  }
 
   // Get gold intensity based on value (1-5)
   const getGoldOpacity = (value: number): string => {
-    const opacities = ['0.15', '0.3', '0.5', '0.7', '1'];
-    return opacities[value - 1] || '0.5';
-  };
+    const opacities = ['0.15', '0.3', '0.5', '0.7', '1']
+    return opacities[value - 1] || '0.5'
+  }
 
   // Get pattern insights based on data
   const getPatternInsights = () => {
-    if (entries.length < 3) return ['Add more entries to see patterns and insights'];
+    if (entries.length < 3)
+      return ['Add more entries to see patterns and insights']
 
-    const insights: string[] = [];
+    const insights: string[] = []
 
     // Check for most frequent tags
-    const tagCounts: Record<string, number> = {};
-    entries.forEach(entry => {
-      entry.tags.forEach(tag => {
-        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
-      });
-    });
+    const tagCounts: Record<string, number> = {}
+    entries.forEach((entry) => {
+      entry.tags.forEach((tag) => {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1
+      })
+    })
 
     const mostFrequentTags = Object.entries(tagCounts)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 2)
-      .map(([tag]) => tag);
+      .map(([tag]) => tag)
 
     if (mostFrequentTags.length > 0) {
-      insights.push(`Your most common states are: ${mostFrequentTags.join(', ')}`);
+      insights.push(
+        `Your most common states are: ${mostFrequentTags.join(', ')}`
+      )
     }
 
     // Check for relationship between activities and mood/energy/focus
     const positiveActivities = activityImpacts
-      .filter(a => a.count >= 2 && (a.mood > averages.mood || a.energy > averages.energy || a.focus > averages.focus))
-      .slice(0, 3);
+      .filter(
+        (a) =>
+          a.count >= 2 &&
+          (a.mood > averages.mood ||
+            a.energy > averages.energy ||
+            a.focus > averages.focus)
+      )
+      .slice(0, 3)
 
     if (positiveActivities.length > 0) {
       const activityList = positiveActivities
-        .map(a => `${a.emoji} ${a.label}`)
-        .join(', ');
+        .map((a) => `${a.emoji} ${a.label}`)
+        .join(', ')
 
-      insights.push(`Activities that seem to improve your well-being: ${activityList}`);
+      insights.push(
+        `Activities that seem to improve your well-being: ${activityList}`
+      )
     }
 
     // Check for patterns in energy levels
-    const lowEnergyDays = entries.filter(e => e.energy <= 2).length;
-    const highEnergyDays = entries.filter(e => e.energy >= 4).length;
+    const lowEnergyDays = entries.filter((e) => e.energy <= 2).length
+    const highEnergyDays = entries.filter((e) => e.energy >= 4).length
 
     if (lowEnergyDays > highEnergyDays && lowEnergyDays >= 3) {
-      insights.push('You appear to have more low-energy days. Consider energy management strategies.');
+      insights.push(
+        'You appear to have more low-energy days. Consider energy management strategies.'
+      )
     }
 
     // Check for focus patterns
     if (averages.focus < 3) {
-      insights.push('Your focus scores tend to be on the lower side. Explore strategies to support your attention.');
+      insights.push(
+        'Your focus scores tend to be on the lower side. Explore strategies to support your attention.'
+      )
     }
 
     // Add generic insights if we don't have enough specific ones
     if (insights.length < 2) {
-      insights.push('Consistent tracking will reveal more patterns and insights over time');
+      insights.push(
+        'Consistent tracking will reveal more patterns and insights over time'
+      )
     }
 
-    return insights;
-  };
+    return insights
+  }
 
   return (
     <PageLayout>
-      <div className="flex min-h-screen flex-col items-center pt-24 pb-32" style={{ background: 'var(--color-void)' }}>
+      <div
+        className="flex min-h-screen flex-col items-center pt-24 pb-32"
+        style={{ background: 'var(--color-void)' }}
+      >
         <motion.div
-          className="container mx-auto px-4 max-w-5xl"
+          className="container mx-auto max-w-5xl px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           <div className="mb-8 text-center">
-            <h1 className="section-label mb-4 text-4xl font-bold text-gold">Mood & Energy Tracker</h1>
-            <p className="mx-auto max-w-2xl mb-6 text-lg text-secondary">
-              Track your daily mood, energy, and focus levels to identify patterns and gain insights that can help manage ADHD symptoms.
+            <h1 className="section-label text-gold mb-4 text-4xl font-bold">
+              Mood & Energy Tracker
+            </h1>
+            <p className="text-secondary mx-auto mb-6 max-w-2xl text-lg">
+              Track your daily mood, energy, and focus levels to identify
+              patterns and gain insights that can help manage ADHD symptoms.
             </p>
 
             {/* View Selector */}
-            <div className="flex justify-center gap-4 mb-8">
+            <div className="mb-8 flex justify-center gap-4">
               <motion.button
                 onClick={() => setCurrentView('calendar')}
-                className={currentView === 'calendar' ? 'btn-gold px-6 py-3' : 'btn-ghost-gold px-6 py-3'}
+                className={
+                  currentView === 'calendar'
+                    ? 'btn-gold px-6 py-3'
+                    : 'btn-ghost-gold px-6 py-3'
+                }
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -381,7 +512,11 @@ export default function MoodTracker(): ReactElement {
               </motion.button>
               <motion.button
                 onClick={() => setCurrentView('insights')}
-                className={currentView === 'insights' ? 'btn-gold px-6 py-3' : 'btn-ghost-gold px-6 py-3'}
+                className={
+                  currentView === 'insights'
+                    ? 'btn-gold px-6 py-3'
+                    : 'btn-ghost-gold px-6 py-3'
+                }
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -392,67 +527,78 @@ export default function MoodTracker(): ReactElement {
 
           {/* Calendar View */}
           {currentView === 'calendar' && (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="lg:col-span-3">
                 {/* Date Selector */}
-                <div className="void-panel rounded-xl p-4 mb-8 overflow-x-auto">
-                  <div className="flex space-x-2 min-w-max">
+                <div className="void-panel mb-8 overflow-x-auto rounded-xl p-4">
+                  <div className="flex min-w-max space-x-2">
                     {dates.map((date) => {
-                      const entry = getEntryForDate(date.date);
-                      const isSelected = selectedDate === date.date;
+                      const entry = getEntryForDate(date.date)
+                      const isSelected = selectedDate === date.date
 
                       return (
                         <motion.button
                           key={date.date}
                           onClick={() => setSelectedDate(date.date)}
-                          className="flex flex-col items-center p-3 rounded-lg min-w-[70px] transition-colors"
+                          className="flex min-w-[70px] flex-col items-center rounded-lg p-3 transition-colors"
                           style={{
                             background: isSelected
                               ? 'var(--color-gold)'
                               : entry
                                 ? 'var(--color-void-elevated)'
                                 : 'var(--color-void-surface)',
-                            color: isSelected ? '#000' : 'var(--color-text-secondary)',
-                            border: date.isToday ? '2px solid var(--color-gold-dim)' : '1px solid var(--color-border)',
+                            color: isSelected
+                              ? '#000'
+                              : 'var(--color-text-secondary)',
+                            border: date.isToday
+                              ? '2px solid var(--color-gold-dim)'
+                              : '1px solid var(--color-border)',
                           }}
                           whileHover={{ y: -3 }}
                           whileTap={{ scale: 0.95 }}
                         >
                           <span className="text-xs">{date.dayName}</span>
-                          <span className="text-xl font-bold">{date.shortDate}</span>
+                          <span className="text-xl font-bold">
+                            {date.shortDate}
+                          </span>
                           {entry && (
-                            <div className="flex mt-1 space-x-1">
-                              <span className="text-lg">{moodLevels.find(m => m.value === entry.mood)?.emoji}</span>
+                            <div className="mt-1 flex space-x-1">
+                              <span className="text-lg">
+                                {
+                                  moodLevels.find((m) => m.value === entry.mood)
+                                    ?.emoji
+                                }
+                              </span>
                             </div>
                           )}
                         </motion.button>
-                      );
+                      )
                     })}
                   </div>
                 </div>
 
                 {/* Selected Date Display */}
                 <div className="mb-8">
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-bold text-gold">
+                  <div className="mb-4 flex items-center justify-between">
+                    <h2 className="text-gold text-xl font-bold">
                       {new Date(selectedDate).toLocaleDateString('en-US', {
                         weekday: 'long',
                         year: 'numeric',
                         month: 'long',
-                        day: 'numeric'
+                        day: 'numeric',
                       })}
                     </h2>
                     <motion.button
                       onClick={() => {
                         if (selectedDateEntry) {
-                          startEditEntry(selectedDateEntry);
+                          startEditEntry(selectedDateEntry)
                         } else {
-                          setEditingEntry(null);
+                          setEditingEntry(null)
                           setNewEntry({
                             ...emptyEntry,
-                            date: selectedDate
-                          });
-                          setShowEntryForm(true);
+                            date: selectedDate,
+                          })
+                          setShowEntryForm(true)
                         }
                       }}
                       className="btn-gold px-4 py-2"
@@ -465,7 +611,7 @@ export default function MoodTracker(): ReactElement {
 
                   {selectedDateEntry ? (
                     <motion.div
-                      className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                      className="grid grid-cols-1 gap-4 md:grid-cols-3"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ staggerChildren: 0.1 }}
@@ -473,15 +619,28 @@ export default function MoodTracker(): ReactElement {
                       {/* Mood Card */}
                       <motion.div
                         className="void-panel rounded-xl p-6"
-                        style={{ borderLeft: `3px solid rgba(212, 175, 55, ${getGoldOpacity(selectedDateEntry.mood)})` }}
+                        style={{
+                          borderLeft: `3px solid rgba(212, 175, 55, ${getGoldOpacity(selectedDateEntry.mood)})`,
+                        }}
                         whileHover={{ y: -5 }}
                       >
-                        <h3 className="text-lg font-semibold mb-2 text-gold-dim">Mood</h3>
+                        <h3 className="text-gold-dim mb-2 text-lg font-semibold">
+                          Mood
+                        </h3>
                         <div className="flex items-center">
-                          <span className="text-4xl mr-3">{getLevelInfo('mood', selectedDateEntry.mood).emoji}</span>
+                          <span className="mr-3 text-4xl">
+                            {getLevelInfo('mood', selectedDateEntry.mood).emoji}
+                          </span>
                           <div>
-                            <p className="text-2xl font-bold text-gold">{getLevelInfo('mood', selectedDateEntry.mood).label}</p>
-                            <p className="text-sm text-secondary">Level {selectedDateEntry.mood}/5</p>
+                            <p className="text-gold text-2xl font-bold">
+                              {
+                                getLevelInfo('mood', selectedDateEntry.mood)
+                                  .label
+                              }
+                            </p>
+                            <p className="text-secondary text-sm">
+                              Level {selectedDateEntry.mood}/5
+                            </p>
                           </div>
                         </div>
                       </motion.div>
@@ -489,15 +648,28 @@ export default function MoodTracker(): ReactElement {
                       {/* Energy Card */}
                       <motion.div
                         className="void-panel rounded-xl p-6"
-                        style={{ borderLeft: `3px solid rgba(212, 175, 55, ${getGoldOpacity(selectedDateEntry.energy)})` }}
+                        style={{
+                          borderLeft: `3px solid rgba(212, 175, 55, ${getGoldOpacity(selectedDateEntry.energy)})`,
+                        }}
                         whileHover={{ y: -5 }}
                       >
-                        <h3 className="text-lg font-semibold mb-2 text-gold-dim">Energy</h3>
+                        <h3 className="text-gold-dim mb-2 text-lg font-semibold">
+                          Energy
+                        </h3>
                         <div className="flex items-center">
-                          <span className="text-4xl mr-3">{selectedDateEntry.energy >=3 ? '⚡' : '🔋'}</span>
+                          <span className="mr-3 text-4xl">
+                            {selectedDateEntry.energy >= 3 ? '⚡' : '🔋'}
+                          </span>
                           <div>
-                            <p className="text-2xl font-bold text-gold">{getLevelInfo('energy', selectedDateEntry.energy).label}</p>
-                            <p className="text-sm text-secondary">Level {selectedDateEntry.energy}/5</p>
+                            <p className="text-gold text-2xl font-bold">
+                              {
+                                getLevelInfo('energy', selectedDateEntry.energy)
+                                  .label
+                              }
+                            </p>
+                            <p className="text-secondary text-sm">
+                              Level {selectedDateEntry.energy}/5
+                            </p>
                           </div>
                         </div>
                       </motion.div>
@@ -505,38 +677,59 @@ export default function MoodTracker(): ReactElement {
                       {/* Focus Card */}
                       <motion.div
                         className="void-panel rounded-xl p-6"
-                        style={{ borderLeft: `3px solid rgba(212, 175, 55, ${getGoldOpacity(selectedDateEntry.focus)})` }}
+                        style={{
+                          borderLeft: `3px solid rgba(212, 175, 55, ${getGoldOpacity(selectedDateEntry.focus)})`,
+                        }}
                         whileHover={{ y: -5 }}
                       >
-                        <h3 className="text-lg font-semibold mb-2 text-gold-dim">Focus</h3>
+                        <h3 className="text-gold-dim mb-2 text-lg font-semibold">
+                          Focus
+                        </h3>
                         <div className="flex items-center">
-                          <span className="text-4xl mr-3">{selectedDateEntry.focus >= 3 ? '🎯' : '🧠'}</span>
+                          <span className="mr-3 text-4xl">
+                            {selectedDateEntry.focus >= 3 ? '🎯' : '🧠'}
+                          </span>
                           <div>
-                            <p className="text-2xl font-bold text-gold">{getLevelInfo('focus', selectedDateEntry.focus).label}</p>
-                            <p className="text-sm text-secondary">Level {selectedDateEntry.focus}/5</p>
+                            <p className="text-gold text-2xl font-bold">
+                              {
+                                getLevelInfo('focus', selectedDateEntry.focus)
+                                  .label
+                              }
+                            </p>
+                            <p className="text-secondary text-sm">
+                              Level {selectedDateEntry.focus}/5
+                            </p>
                           </div>
                         </div>
                       </motion.div>
 
                       {/* Notes & Tags */}
                       <motion.div
-                        className="md:col-span-2 void-panel rounded-xl p-6"
+                        className="void-panel rounded-xl p-6 md:col-span-2"
                         whileHover={{ y: -5 }}
                       >
-                        <h3 className="text-lg font-semibold mb-2 text-gold-dim">Notes</h3>
-                        <p className="mb-4 text-secondary">
+                        <h3 className="text-gold-dim mb-2 text-lg font-semibold">
+                          Notes
+                        </h3>
+                        <p className="text-secondary mb-4">
                           {selectedDateEntry.notes || 'No notes for this day.'}
                         </p>
 
                         {selectedDateEntry.tags.length > 0 && (
                           <div>
-                            <h4 className="font-medium mb-2 text-gold-dim">Tags:</h4>
+                            <h4 className="text-gold-dim mb-2 font-medium">
+                              Tags:
+                            </h4>
                             <div className="flex flex-wrap gap-2">
-                              {selectedDateEntry.tags.map(tag => (
+                              {selectedDateEntry.tags.map((tag) => (
                                 <span
                                   key={tag}
-                                  className="px-3 py-1 rounded-full text-sm"
-                                  style={{ background: 'var(--color-gold-ghost)', color: 'var(--color-gold)', border: '1px solid var(--color-border)' }}
+                                  className="rounded-full px-3 py-1 text-sm"
+                                  style={{
+                                    background: 'var(--color-gold-ghost)',
+                                    color: 'var(--color-gold)',
+                                    border: '1px solid var(--color-border)',
+                                  }}
                                 >
                                   {tag}
                                 </span>
@@ -551,34 +744,51 @@ export default function MoodTracker(): ReactElement {
                         className="void-panel rounded-xl p-6"
                         whileHover={{ y: -5 }}
                       >
-                        <h3 className="text-lg font-semibold mb-2 text-gold-dim">Activities</h3>
+                        <h3 className="text-gold-dim mb-2 text-lg font-semibold">
+                          Activities
+                        </h3>
                         {selectedDateEntry.activities.length === 0 ? (
-                          <p className="text-secondary">No activities recorded for this day.</p>
+                          <p className="text-secondary">
+                            No activities recorded for this day.
+                          </p>
                         ) : (
                           <div className="flex flex-wrap gap-2">
-                            {selectedDateEntry.activities.map(activityId => {
-                              const activity = activityOptions.find(a => a.id === activityId);
+                            {selectedDateEntry.activities.map((activityId) => {
+                              const activity = activityOptions.find(
+                                (a) => a.id === activityId
+                              )
                               return (
                                 <div
                                   key={activityId}
-                                  className="px-3 py-1 rounded-full text-sm flex items-center"
-                                  style={{ background: 'var(--color-gold-ghost)', color: 'var(--color-gold)', border: '1px solid var(--color-border)' }}
+                                  className="flex items-center rounded-full px-3 py-1 text-sm"
+                                  style={{
+                                    background: 'var(--color-gold-ghost)',
+                                    color: 'var(--color-gold)',
+                                    border: '1px solid var(--color-border)',
+                                  }}
                                 >
-                                  <span className="mr-1">{activity?.emoji}</span>
+                                  <span className="mr-1">
+                                    {activity?.emoji}
+                                  </span>
                                   <span>{activity?.label}</span>
                                 </div>
-                              );
+                              )
                             })}
                           </div>
                         )}
                       </motion.div>
 
                       {/* Action Buttons */}
-                      <div className="md:col-span-3 flex justify-end space-x-3 mt-2">
+                      <div className="mt-2 flex justify-end space-x-3 md:col-span-3">
                         <motion.button
-                          onClick={() => setDeleteConfirmId(selectedDateEntry.id)}
-                          className="text-sm px-4 py-2 rounded-lg"
-                          style={{ background: 'rgba(220, 38, 38, 0.15)', color: '#ef4444' }}
+                          onClick={() =>
+                            setDeleteConfirmId(selectedDateEntry.id)
+                          }
+                          className="rounded-lg px-4 py-2 text-sm"
+                          style={{
+                            background: 'rgba(220, 38, 38, 0.15)',
+                            color: '#ef4444',
+                          }}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
@@ -593,12 +803,12 @@ export default function MoodTracker(): ReactElement {
                       </p>
                       <motion.button
                         onClick={() => {
-                          setEditingEntry(null);
+                          setEditingEntry(null)
                           setNewEntry({
                             ...emptyEntry,
-                            date: selectedDate
-                          });
-                          setShowEntryForm(true);
+                            date: selectedDate,
+                          })
+                          setShowEntryForm(true)
                         }}
                         className="btn-gold px-4 py-2"
                         whileHover={{ scale: 1.05 }}
@@ -615,7 +825,7 @@ export default function MoodTracker(): ReactElement {
 
           {/* Insights View */}
           {currentView === 'insights' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {/* Averages */}
               <motion.div
                 className="void-panel rounded-xl p-6"
@@ -624,7 +834,9 @@ export default function MoodTracker(): ReactElement {
                 transition={{ delay: 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-gold mb-4">Your Averages</h3>
+                <h3 className="text-gold mb-4 text-xl font-bold">
+                  Your Averages
+                </h3>
 
                 {entries.length === 0 ? (
                   <p className="text-secondary">
@@ -634,11 +846,16 @@ export default function MoodTracker(): ReactElement {
                   <div className="space-y-6">
                     {/* Mood Average */}
                     <div>
-                      <div className="flex justify-between mb-1">
+                      <div className="mb-1 flex justify-between">
                         <span className="text-secondary">Average Mood</span>
-                        <span className="text-gold">{averages.mood.toFixed(1)}/5</span>
+                        <span className="text-gold">
+                          {averages.mood.toFixed(1)}/5
+                        </span>
                       </div>
-                      <div className="h-2 rounded-full overflow-hidden" style={{ background: 'var(--color-void-elevated)' }}>
+                      <div
+                        className="h-2 overflow-hidden rounded-full"
+                        style={{ background: 'var(--color-void-elevated)' }}
+                      >
                         <motion.div
                           className="h-full rounded-full"
                           style={{ background: 'var(--color-gold)' }}
@@ -647,7 +864,7 @@ export default function MoodTracker(): ReactElement {
                           transition={{ duration: 1 }}
                         />
                       </div>
-                      <div className="flex justify-between text-xs mt-1 text-dim">
+                      <div className="text-dim mt-1 flex justify-between text-xs">
                         <span>Low</span>
                         <span>Neutral</span>
                         <span>High</span>
@@ -656,11 +873,16 @@ export default function MoodTracker(): ReactElement {
 
                     {/* Energy Average */}
                     <div>
-                      <div className="flex justify-between mb-1">
+                      <div className="mb-1 flex justify-between">
                         <span className="text-secondary">Average Energy</span>
-                        <span className="text-gold">{averages.energy.toFixed(1)}/5</span>
+                        <span className="text-gold">
+                          {averages.energy.toFixed(1)}/5
+                        </span>
                       </div>
-                      <div className="h-2 rounded-full overflow-hidden" style={{ background: 'var(--color-void-elevated)' }}>
+                      <div
+                        className="h-2 overflow-hidden rounded-full"
+                        style={{ background: 'var(--color-void-elevated)' }}
+                      >
                         <motion.div
                           className="h-full rounded-full"
                           style={{ background: 'var(--color-gold-dim)' }}
@@ -669,7 +891,7 @@ export default function MoodTracker(): ReactElement {
                           transition={{ duration: 1, delay: 0.2 }}
                         />
                       </div>
-                      <div className="flex justify-between text-xs mt-1 text-dim">
+                      <div className="text-dim mt-1 flex justify-between text-xs">
                         <span>Low</span>
                         <span>Moderate</span>
                         <span>High</span>
@@ -678,11 +900,16 @@ export default function MoodTracker(): ReactElement {
 
                     {/* Focus Average */}
                     <div>
-                      <div className="flex justify-between mb-1">
+                      <div className="mb-1 flex justify-between">
                         <span className="text-secondary">Average Focus</span>
-                        <span className="text-gold">{averages.focus.toFixed(1)}/5</span>
+                        <span className="text-gold">
+                          {averages.focus.toFixed(1)}/5
+                        </span>
                       </div>
-                      <div className="h-2 rounded-full overflow-hidden" style={{ background: 'var(--color-void-elevated)' }}>
+                      <div
+                        className="h-2 overflow-hidden rounded-full"
+                        style={{ background: 'var(--color-void-elevated)' }}
+                      >
                         <motion.div
                           className="h-full rounded-full"
                           style={{ background: 'var(--color-gold)' }}
@@ -691,7 +918,7 @@ export default function MoodTracker(): ReactElement {
                           transition={{ duration: 1, delay: 0.4 }}
                         />
                       </div>
-                      <div className="flex justify-between text-xs mt-1 text-dim">
+                      <div className="text-dim mt-1 flex justify-between text-xs">
                         <span>Distracted</span>
                         <span>Moderate</span>
                         <span>Focused</span>
@@ -709,22 +936,24 @@ export default function MoodTracker(): ReactElement {
                 transition={{ delay: 0.2 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-gold mb-4">Patterns & Insights</h3>
+                <h3 className="text-gold mb-4 text-xl font-bold">
+                  Patterns & Insights
+                </h3>
 
                 {entries.length < 3 ? (
-                  <div className="flex flex-col items-center justify-center h-40">
-                    <p className="mb-4 text-center text-secondary">
+                  <div className="flex h-40 flex-col items-center justify-center">
+                    <p className="text-secondary mb-4 text-center">
                       Add at least 3 entries to see patterns and insights.
                     </p>
                     <motion.button
                       onClick={() => {
-                        setCurrentView('calendar');
-                        setEditingEntry(null);
+                        setCurrentView('calendar')
+                        setEditingEntry(null)
                         setNewEntry({
                           ...emptyEntry,
-                          date: selectedDate
-                        });
-                        setShowEntryForm(true);
+                          date: selectedDate,
+                        })
+                        setShowEntryForm(true)
                       }}
                       className="btn-gold px-4 py-2"
                       whileHover={{ scale: 1.05 }}
@@ -753,85 +982,133 @@ export default function MoodTracker(): ReactElement {
 
               {/* Activity Impact */}
               <motion.div
-                className="md:col-span-2 void-panel rounded-xl p-6"
+                className="void-panel rounded-xl p-6 md:col-span-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-gold mb-4">Activity Impact</h3>
+                <h3 className="text-gold mb-4 text-xl font-bold">
+                  Activity Impact
+                </h3>
 
                 {entries.length === 0 ? (
                   <p className="text-secondary">
-                    No entries yet. Add some daily records with activities to see their impact.
+                    No entries yet. Add some daily records with activities to
+                    see their impact.
                   </p>
                 ) : (
                   <div className="overflow-x-auto">
                     <table className="w-full min-w-max">
                       <thead>
-                        <tr style={{ borderBottom: '1px solid var(--color-border)' }}>
-                          <th className="text-left pb-3 font-medium text-gold-dim">Activity</th>
-                          <th className="text-center pb-3 font-medium text-gold-dim">Occurrences</th>
-                          <th className="text-center pb-3 font-medium text-gold-dim">Mood</th>
-                          <th className="text-center pb-3 font-medium text-gold-dim">Energy</th>
-                          <th className="text-center pb-3 font-medium text-gold-dim">Focus</th>
+                        <tr
+                          style={{
+                            borderBottom: '1px solid var(--color-border)',
+                          }}
+                        >
+                          <th className="text-gold-dim pb-3 text-left font-medium">
+                            Activity
+                          </th>
+                          <th className="text-gold-dim pb-3 text-center font-medium">
+                            Occurrences
+                          </th>
+                          <th className="text-gold-dim pb-3 text-center font-medium">
+                            Mood
+                          </th>
+                          <th className="text-gold-dim pb-3 text-center font-medium">
+                            Energy
+                          </th>
+                          <th className="text-gold-dim pb-3 text-center font-medium">
+                            Focus
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
                         {activityImpacts
-                          .filter(impact => impact.count > 0)
-                          .map(impact => (
-                            <tr key={impact.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
+                          .filter((impact) => impact.count > 0)
+                          .map((impact) => (
+                            <tr
+                              key={impact.id}
+                              style={{
+                                borderBottom: '1px solid var(--color-border)',
+                              }}
+                            >
                               <td className="py-3">
                                 <div className="flex items-center">
-                                  <span className="text-2xl mr-2">{impact.emoji}</span>
-                                  <span className="text-secondary">{impact.label}</span>
+                                  <span className="mr-2 text-2xl">
+                                    {impact.emoji}
+                                  </span>
+                                  <span className="text-secondary">
+                                    {impact.label}
+                                  </span>
                                 </div>
                               </td>
-                              <td className="text-center py-3 text-gold">{impact.count}</td>
-                              <td className="text-center py-3">
-                                <span className="px-2 py-1 rounded-full text-sm" style={{
-                                  background: impact.mood > averages.mood
-                                    ? 'var(--color-gold-ghost)'
-                                    : 'var(--color-void-elevated)',
-                                  color: impact.mood > averages.mood
-                                    ? 'var(--color-gold)'
-                                    : 'var(--color-text-secondary)'
-                                }}>
+                              <td className="text-gold py-3 text-center">
+                                {impact.count}
+                              </td>
+                              <td className="py-3 text-center">
+                                <span
+                                  className="rounded-full px-2 py-1 text-sm"
+                                  style={{
+                                    background:
+                                      impact.mood > averages.mood
+                                        ? 'var(--color-gold-ghost)'
+                                        : 'var(--color-void-elevated)',
+                                    color:
+                                      impact.mood > averages.mood
+                                        ? 'var(--color-gold)'
+                                        : 'var(--color-text-secondary)',
+                                  }}
+                                >
                                   {impact.mood.toFixed(1)}
                                 </span>
                               </td>
-                              <td className="text-center py-3">
-                                <span className="px-2 py-1 rounded-full text-sm" style={{
-                                  background: impact.energy > averages.energy
-                                    ? 'var(--color-gold-ghost)'
-                                    : 'var(--color-void-elevated)',
-                                  color: impact.energy > averages.energy
-                                    ? 'var(--color-gold)'
-                                    : 'var(--color-text-secondary)'
-                                }}>
+                              <td className="py-3 text-center">
+                                <span
+                                  className="rounded-full px-2 py-1 text-sm"
+                                  style={{
+                                    background:
+                                      impact.energy > averages.energy
+                                        ? 'var(--color-gold-ghost)'
+                                        : 'var(--color-void-elevated)',
+                                    color:
+                                      impact.energy > averages.energy
+                                        ? 'var(--color-gold)'
+                                        : 'var(--color-text-secondary)',
+                                  }}
+                                >
                                   {impact.energy.toFixed(1)}
                                 </span>
                               </td>
-                              <td className="text-center py-3">
-                                <span className="px-2 py-1 rounded-full text-sm" style={{
-                                  background: impact.focus > averages.focus
-                                    ? 'var(--color-gold-ghost)'
-                                    : 'var(--color-void-elevated)',
-                                  color: impact.focus > averages.focus
-                                    ? 'var(--color-gold)'
-                                    : 'var(--color-text-secondary)'
-                                }}>
+                              <td className="py-3 text-center">
+                                <span
+                                  className="rounded-full px-2 py-1 text-sm"
+                                  style={{
+                                    background:
+                                      impact.focus > averages.focus
+                                        ? 'var(--color-gold-ghost)'
+                                        : 'var(--color-void-elevated)',
+                                    color:
+                                      impact.focus > averages.focus
+                                        ? 'var(--color-gold)'
+                                        : 'var(--color-text-secondary)',
+                                  }}
+                                >
                                   {impact.focus.toFixed(1)}
                                 </span>
                               </td>
                             </tr>
                           ))}
 
-                        {activityImpacts.filter(impact => impact.count > 0).length === 0 && (
+                        {activityImpacts.filter((impact) => impact.count > 0)
+                          .length === 0 && (
                           <tr>
-                            <td colSpan={5} className="py-8 text-center text-secondary">
-                              No activities recorded yet. Add entries with activities to see their impact.
+                            <td
+                              colSpan={5}
+                              className="text-secondary py-8 text-center"
+                            >
+                              No activities recorded yet. Add entries with
+                              activities to see their impact.
                             </td>
                           </tr>
                         )}
@@ -848,7 +1125,7 @@ export default function MoodTracker(): ReactElement {
         <AnimatePresence>
           {showEntryForm && (
             <motion.div
-              className="fixed inset-0 flex items-center justify-center z-50"
+              className="fixed inset-0 z-50 flex items-center justify-center"
               style={{ background: 'rgba(0, 0, 0, 0.8)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -856,33 +1133,39 @@ export default function MoodTracker(): ReactElement {
               onClick={() => setShowEntryForm(false)}
             >
               <motion.div
-                className="void-panel p-8 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                className="void-panel max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl p-8"
                 style={{ boxShadow: '0 0 40px rgba(212, 175, 55, 0.1)' }}
                 initial={{ scale: 0.8, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.8, y: 20 }}
-                onClick={e => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
               >
-                <h2 className="text-2xl font-bold text-gold mb-4">
-                  {editingEntry ? 'Edit Entry' : 'New Entry'} for {new Date(newEntry.date).toLocaleDateString()}
+                <h2 className="text-gold mb-4 text-2xl font-bold">
+                  {editingEntry ? 'Edit Entry' : 'New Entry'} for{' '}
+                  {new Date(newEntry.date).toLocaleDateString()}
                 </h2>
                 <div className="scan-line mb-6" />
 
                 <div className="space-y-8">
                   {/* Mood Slider */}
                   <div>
-                    <label className="block text-gold-dim mb-4">
-                      Mood
-                    </label>
-                    <div className="flex justify-between mb-2">
-                      {moodLevels.map(level => (
+                    <label className="text-gold-dim mb-4 block">Mood</label>
+                    <div className="mb-2 flex justify-between">
+                      {moodLevels.map((level) => (
                         <div
                           key={level.value}
                           className="flex flex-col items-center"
-                          style={{ color: newEntry.mood === level.value ? 'var(--color-gold)' : 'var(--color-text-secondary)' }}
+                          style={{
+                            color:
+                              newEntry.mood === level.value
+                                ? 'var(--color-gold)'
+                                : 'var(--color-text-secondary)',
+                          }}
                         >
                           <span className="text-2xl">{level.emoji}</span>
-                          <span className="text-xs mt-1 text-center">{level.label}</span>
+                          <span className="mt-1 text-center text-xs">
+                            {level.label}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -894,25 +1177,30 @@ export default function MoodTracker(): ReactElement {
                       step="1"
                       value={newEntry.mood}
                       onChange={handleSliderChange}
-                      className="w-full h-2 rounded-full appearance-none"
+                      className="h-2 w-full appearance-none rounded-full"
                       style={{ background: 'var(--color-void-elevated)' }}
                     />
                   </div>
 
                   {/* Energy Slider */}
                   <div>
-                    <label className="block text-gold-dim mb-4">
-                      Energy
-                    </label>
-                    <div className="flex justify-between mb-2">
-                      {energyLevels.map(level => (
+                    <label className="text-gold-dim mb-4 block">Energy</label>
+                    <div className="mb-2 flex justify-between">
+                      {energyLevels.map((level) => (
                         <div
                           key={level.value}
                           className="flex flex-col items-center"
-                          style={{ color: newEntry.energy === level.value ? 'var(--color-gold)' : 'var(--color-text-secondary)' }}
+                          style={{
+                            color:
+                              newEntry.energy === level.value
+                                ? 'var(--color-gold)'
+                                : 'var(--color-text-secondary)',
+                          }}
                         >
                           <span className="text-2xl">{level.emoji}</span>
-                          <span className="text-xs mt-1 text-center">{level.label}</span>
+                          <span className="mt-1 text-center text-xs">
+                            {level.label}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -924,25 +1212,30 @@ export default function MoodTracker(): ReactElement {
                       step="1"
                       value={newEntry.energy}
                       onChange={handleSliderChange}
-                      className="w-full h-2 rounded-full appearance-none"
+                      className="h-2 w-full appearance-none rounded-full"
                       style={{ background: 'var(--color-void-elevated)' }}
                     />
                   </div>
 
                   {/* Focus Slider */}
                   <div>
-                    <label className="block text-gold-dim mb-4">
-                      Focus
-                    </label>
-                    <div className="flex justify-between mb-2">
-                      {focusLevels.map(level => (
+                    <label className="text-gold-dim mb-4 block">Focus</label>
+                    <div className="mb-2 flex justify-between">
+                      {focusLevels.map((level) => (
                         <div
                           key={level.value}
                           className="flex flex-col items-center"
-                          style={{ color: newEntry.focus === level.value ? 'var(--color-gold)' : 'var(--color-text-secondary)' }}
+                          style={{
+                            color:
+                              newEntry.focus === level.value
+                                ? 'var(--color-gold)'
+                                : 'var(--color-text-secondary)',
+                          }}
                         >
                           <span className="text-2xl">{level.emoji}</span>
-                          <span className="text-xs mt-1 text-center">{level.label}</span>
+                          <span className="mt-1 text-center text-xs">
+                            {level.label}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -954,26 +1247,34 @@ export default function MoodTracker(): ReactElement {
                       step="1"
                       value={newEntry.focus}
                       onChange={handleSliderChange}
-                      className="w-full h-2 rounded-full appearance-none"
+                      className="h-2 w-full appearance-none rounded-full"
                       style={{ background: 'var(--color-void-elevated)' }}
                     />
                   </div>
 
                   {/* Tags */}
                   <div>
-                    <label className="block text-gold-dim mb-2">
+                    <label className="text-gold-dim mb-2 block">
                       Tags - How did you feel today?
                     </label>
                     <div className="flex flex-wrap gap-2">
-                      {tagOptions.map(tag => (
+                      {tagOptions.map((tag) => (
                         <button
                           key={tag}
                           type="button"
                           onClick={() => toggleTag(tag)}
-                          className="px-3 py-1 rounded-full text-sm transition-colors"
-                          style={newEntry.tags.includes(tag)
-                            ? { background: 'var(--color-gold)', color: '#000' }
-                            : { background: 'var(--color-void-elevated)', color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }
+                          className="rounded-full px-3 py-1 text-sm transition-colors"
+                          style={
+                            newEntry.tags.includes(tag)
+                              ? {
+                                  background: 'var(--color-gold)',
+                                  color: '#000',
+                                }
+                              : {
+                                  background: 'var(--color-void-elevated)',
+                                  color: 'var(--color-text-secondary)',
+                                  border: '1px solid var(--color-border)',
+                                }
                           }
                         >
                           {tag}
@@ -984,22 +1285,30 @@ export default function MoodTracker(): ReactElement {
 
                   {/* Activities */}
                   <div>
-                    <label className="block text-gold-dim mb-2">
+                    <label className="text-gold-dim mb-2 block">
                       Activities - What did you do today?
                     </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                      {activityOptions.map(activity => (
+                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+                      {activityOptions.map((activity) => (
                         <button
                           key={activity.id}
                           type="button"
                           onClick={() => toggleActivity(activity.id)}
-                          className="px-3 py-2 rounded-lg text-sm flex items-center transition-colors"
-                          style={newEntry.activities.includes(activity.id)
-                            ? { background: 'var(--color-gold)', color: '#000' }
-                            : { background: 'var(--color-void-elevated)', color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }
+                          className="flex items-center rounded-lg px-3 py-2 text-sm transition-colors"
+                          style={
+                            newEntry.activities.includes(activity.id)
+                              ? {
+                                  background: 'var(--color-gold)',
+                                  color: '#000',
+                                }
+                              : {
+                                  background: 'var(--color-void-elevated)',
+                                  color: 'var(--color-text-secondary)',
+                                  border: '1px solid var(--color-border)',
+                                }
                           }
                         >
-                          <span className="text-xl mr-2">{activity.emoji}</span>
+                          <span className="mr-2 text-xl">{activity.emoji}</span>
                           <span>{activity.label}</span>
                         </button>
                       ))}
@@ -1008,7 +1317,7 @@ export default function MoodTracker(): ReactElement {
 
                   {/* Notes */}
                   <div>
-                    <label className="block text-gold-dim mb-2">
+                    <label className="text-gold-dim mb-2 block">
                       Notes (optional)
                     </label>
                     <textarea
@@ -1016,7 +1325,7 @@ export default function MoodTracker(): ReactElement {
                       value={newEntry.notes}
                       onChange={handleInputChange}
                       placeholder="Any additional thoughts about your day..."
-                      className="input-void w-full h-24 resize-none"
+                      className="input-void h-24 w-full resize-none"
                     />
                   </div>
 
@@ -1048,7 +1357,7 @@ export default function MoodTracker(): ReactElement {
         <AnimatePresence>
           {deleteConfirmId && (
             <motion.div
-              className="fixed inset-0 flex items-center justify-center z-50"
+              className="fixed inset-0 z-50 flex items-center justify-center"
               style={{ background: 'rgba(0, 0, 0, 0.8)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1056,17 +1365,20 @@ export default function MoodTracker(): ReactElement {
               onClick={() => setDeleteConfirmId(null)}
             >
               <motion.div
-                className="void-panel p-8 rounded-xl max-w-md w-full"
+                className="void-panel w-full max-w-md rounded-xl p-8"
                 style={{ boxShadow: '0 0 40px rgba(212, 175, 55, 0.1)' }}
                 initial={{ scale: 0.8, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.8, y: 20 }}
-                onClick={e => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
               >
-                <h2 className="text-2xl font-bold mb-4 text-gold">Delete Entry?</h2>
+                <h2 className="text-gold mb-4 text-2xl font-bold">
+                  Delete Entry?
+                </h2>
                 <div className="scan-line mb-4" />
                 <p className="text-secondary mb-6">
-                  Are you sure you want to delete this entry? This action cannot be undone.
+                  Are you sure you want to delete this entry? This action cannot
+                  be undone.
                 </p>
 
                 <div className="flex justify-end gap-4">
@@ -1080,8 +1392,11 @@ export default function MoodTracker(): ReactElement {
                   </motion.button>
                   <motion.button
                     onClick={() => deleteEntry(deleteConfirmId)}
-                    className="px-6 py-3 rounded-lg font-medium"
-                    style={{ background: 'rgba(220, 38, 38, 0.3)', color: '#ef4444' }}
+                    className="rounded-lg px-6 py-3 font-medium"
+                    style={{
+                      background: 'rgba(220, 38, 38, 0.3)',
+                      color: '#ef4444',
+                    }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -1094,5 +1409,5 @@ export default function MoodTracker(): ReactElement {
         </AnimatePresence>
       </div>
     </PageLayout>
-  );
+  )
 }

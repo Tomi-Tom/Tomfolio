@@ -30,8 +30,13 @@ export function ChapterBar() {
               flex: 1,
               background: 'none',
               border: 'none',
-              borderRight: i < CHAPTER_LABELS.length - 1 ? '1px solid var(--color-border)' : 'none',
-              borderTop: isActive ? '1px solid var(--color-gold)' : '1px solid transparent',
+              borderRight:
+                i < CHAPTER_LABELS.length - 1
+                  ? '1px solid var(--color-border)'
+                  : 'none',
+              borderTop: isActive
+                ? '1px solid var(--color-gold)'
+                : '1px solid transparent',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -41,10 +46,23 @@ export function ChapterBar() {
               transition: 'background 0.2s',
             }}
           >
-            <span className="hud-caption" style={{ color: isActive ? 'var(--color-gold)' : 'var(--color-text-dim)' }}>
+            <span
+              className="hud-caption"
+              style={{
+                color: isActive ? 'var(--color-gold)' : 'var(--color-text-dim)',
+              }}
+            >
               {ch.num}
             </span>
-            <span className="hud-caption" style={{ color: isActive ? 'rgba(212,175,55,0.8)' : 'var(--color-text-dim)', letterSpacing: '0.1em' }}>
+            <span
+              className="hud-caption"
+              style={{
+                color: isActive
+                  ? 'rgba(212,175,55,0.8)'
+                  : 'var(--color-text-dim)',
+                letterSpacing: '0.1em',
+              }}
+            >
               {ch.name}
             </span>
           </button>

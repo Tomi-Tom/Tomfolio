@@ -28,7 +28,7 @@ const Controls: React.FC<ControlsProps> = ({
       <div
         className={'flex flex-row gap-4 max-lg:flex-col max-lg:items-center'}
       >
-        <div className={'flex flex-row gap-4 '}>
+        <div className={'flex flex-row gap-4'}>
           <button
             className={'btn-ghost-gold px-4 py-2'}
             onClick={handleNextStep}
@@ -50,22 +50,13 @@ const Controls: React.FC<ControlsProps> = ({
           </button>
         </div>
         <div className={'flex flex-row gap-4'}>
-          <button
-            className={'btn-gold px-4 py-2'}
-            onClick={handlePlay}
-          >
+          <button className={'btn-gold px-4 py-2'} onClick={handlePlay}>
             {playing ? 'Pause' : 'Play'}
           </button>
-          <button
-            className={'btn-ghost-gold px-4 py-2'}
-            onClick={handleReset}
-          >
+          <button className={'btn-ghost-gold px-4 py-2'} onClick={handleReset}>
             Reset
           </button>
-          <button
-            className={'btn-ghost-gold px-4 py-2'}
-            onClick={handleSoup}
-          >
+          <button className={'btn-ghost-gold px-4 py-2'} onClick={handleSoup}>
             Soup
           </button>
         </div>

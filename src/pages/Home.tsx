@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { HomeLayout } from '../layouts/HomeLayout'
-import { useChapter, CHAPTER_COUNT } from '../context/ChapterContext'
+import { useChapter } from '../context/ChapterContext'
 import { ChapterHero } from '../components/chapters/ChapterHero'
 import { ChapterAbout } from '../components/chapters/ChapterAbout'
 import { ChapterSkills } from '../components/chapters/ChapterSkills'
@@ -33,11 +33,19 @@ function ChaptersContainer() {
     if (!el) return
     isScrollingProgrammatically.current = true
     if (isMobile) {
-      el.scrollTo({ top: chapterIndex * window.innerHeight, behavior: 'smooth' })
+      el.scrollTo({
+        top: chapterIndex * window.innerHeight,
+        behavior: 'smooth',
+      })
     } else {
-      el.scrollTo({ left: chapterIndex * window.innerWidth, behavior: 'smooth' })
+      el.scrollTo({
+        left: chapterIndex * window.innerWidth,
+        behavior: 'smooth',
+      })
     }
-    const t = setTimeout(() => { isScrollingProgrammatically.current = false }, 1000)
+    const t = setTimeout(() => {
+      isScrollingProgrammatically.current = false
+    }, 1000)
     return () => clearTimeout(t)
   }, [chapterIndex, isMobile])
 
@@ -70,8 +78,8 @@ function ChaptersContainer() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') setChapterIndex(chapterIndex + 1)
-      if (e.key === 'ArrowLeft')  setChapterIndex(chapterIndex - 1)
-      if (e.key === 'Escape')     setChapterIndex(0)
+      if (e.key === 'ArrowLeft') setChapterIndex(chapterIndex - 1)
+      if (e.key === 'Escape') setChapterIndex(0)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -109,7 +117,9 @@ function ChaptersContainer() {
         >
           <motion.div
             initial={i === 0 ? { opacity: 0, y: 20 } : { opacity: 0.3, y: 0 }}
-            animate={chapterIndex === i ? { opacity: 1, y: 0 } : { opacity: 0.3, y: 0 }}
+            animate={
+              chapterIndex === i ? { opacity: 1, y: 0 } : { opacity: 0.3, y: 0 }
+            }
             transition={{ duration: 0.6, ease: [0.65, 0, 0.35, 1] }}
             style={{ width: '100%', height: '100%' }}
           >

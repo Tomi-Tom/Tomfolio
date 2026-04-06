@@ -173,7 +173,10 @@ export default function LifeGamePage(): ReactElement {
 
   return (
     <PageLayout>
-      <div className="mb-24 mt-36 flex h-screen flex-col items-center justify-center gap-4" style={{ background: 'var(--color-void)' }}>
+      <div
+        className="mt-36 mb-24 flex h-screen flex-col items-center justify-center gap-4"
+        style={{ background: 'var(--color-void)' }}
+      >
         <div className="flex flex-row gap-4 max-lg:flex-col">
           <div className="flex flex-col gap-4">
             <GameGrid

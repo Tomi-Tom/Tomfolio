@@ -1,5 +1,12 @@
 // src/context/ChapterContext.tsx
-import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+  type ReactNode,
+} from 'react'
 
 export const CHAPTER_COUNT = 8
 
@@ -14,7 +21,9 @@ export const CHAPTER_LABELS = [
   { num: '08', name: 'End' },
 ] as const
 
-export const CHAPTER_Z_POSITIONS = [-50, -200, -350, -500, -650, -800, -950, -1100] as const
+export const CHAPTER_Z_POSITIONS = [
+  -50, -200, -350, -500, -650, -800, -950, -1100,
+] as const
 
 interface ChapterContextValue {
   chapterIndex: number
@@ -43,7 +52,9 @@ export function ChapterProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <ChapterContext.Provider value={{ chapterIndex, setChapterIndex, isMobile }}>
+    <ChapterContext.Provider
+      value={{ chapterIndex, setChapterIndex, isMobile }}
+    >
       {children}
     </ChapterContext.Provider>
   )

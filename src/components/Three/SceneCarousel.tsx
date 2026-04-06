@@ -3,27 +3,70 @@ import * as THREE from 'three'
 
 // ── App definitions (exported so MiniApp.tsx can read them) ──
 export const CAROUSEL_APPS = [
-  { title: 'Game of Life',   desc: "Conway's cellular automaton",  badge: 'Game',      color: '#d4af37', image: '/mini-apps/GameOfLife.png',           link: '/lifegame'     },
-  { title: 'Memory Game',    desc: 'Card-matching challenge',       badge: 'Game',      color: '#d4af37', image: '/mini-apps/MemoryGame.png',           link: '/memory'       },
-  { title: 'Weather App',    desc: 'Live weather worldwide',        badge: 'Utility',   color: '#d4af37', image: '/mini-apps/WeatherApp.png',           link: '/weather'      },
-  { title: 'Pomodoro Timer', desc: 'Focus time management',         badge: 'Utility',   color: '#d4af37', image: '/mini-apps/PomodoroTimer.png',        link: '/pomodoro'     },
-  { title: 'Task Breaker',   desc: 'Break tasks into steps',        badge: 'ADHD Tool', color: '#d4af37', image: '/mini-apps/TaskBreaker.png',          link: '/task-breaker' },
-  { title: 'Mood Tracker',   desc: 'Energy & mood insights',        badge: 'ADHD Tool', color: '#d4af37', image: '/mini-apps/MoodAndEnergyTracker.png', link: '/mood-tracker' },
+  {
+    title: 'Game of Life',
+    desc: "Conway's cellular automaton",
+    badge: 'Game',
+    color: '#d4af37',
+    image: '/mini-apps/GameOfLife.png',
+    link: '/lifegame',
+  },
+  {
+    title: 'Memory Game',
+    desc: 'Card-matching challenge',
+    badge: 'Game',
+    color: '#d4af37',
+    image: '/mini-apps/MemoryGame.png',
+    link: '/memory',
+  },
+  {
+    title: 'Weather App',
+    desc: 'Live weather worldwide',
+    badge: 'Utility',
+    color: '#d4af37',
+    image: '/mini-apps/WeatherApp.png',
+    link: '/weather',
+  },
+  {
+    title: 'Pomodoro Timer',
+    desc: 'Focus time management',
+    badge: 'Utility',
+    color: '#d4af37',
+    image: '/mini-apps/PomodoroTimer.png',
+    link: '/pomodoro',
+  },
+  {
+    title: 'Task Breaker',
+    desc: 'Break tasks into steps',
+    badge: 'ADHD Tool',
+    color: '#d4af37',
+    image: '/mini-apps/TaskBreaker.png',
+    link: '/task-breaker',
+  },
+  {
+    title: 'Mood Tracker',
+    desc: 'Energy & mood insights',
+    badge: 'ADHD Tool',
+    color: '#d4af37',
+    image: '/mini-apps/MoodAndEnergyTracker.png',
+    link: '/mood-tracker',
+  },
 ]
 
 interface Props {
   onFocusChange: (index: number) => void
-  onSelect:      (link: string)  => void
-  goToRef:       React.MutableRefObject<((i: number) => void) | null>
+  onSelect: (link: string) => void
+  goToRef: React.MutableRefObject<((i: number) => void) | null>
 }
 
 // ── Scene constants ──
-const N       = CAROUSEL_APPS.length
-const RADIUS  = 9.0
-const CARD_W  = 5.5
-const CARD_H  = 3.5
-const STEP    = (Math.PI * 2) / N   // radians between cards
-const CW = 1100, CH = 700           // card canvas resolution
+const N = CAROUSEL_APPS.length
+const RADIUS = 9.0
+const CARD_W = 5.5
+const CARD_H = 3.5
+const STEP = (Math.PI * 2) / N // radians between cards
+const CW = 1100,
+  CH = 700 // card canvas resolution
 
 // ── Canvas helper: hex #rrggbb → 'rgba(r,g,b,a)' ──
 function hexRgba(hex: string, a: number) {
@@ -35,11 +78,12 @@ function hexRgba(hex: string, a: number) {
 
 // ── Draw a card canvas texture ──
 function drawCardCanvas(
-  app: typeof CAROUSEL_APPS[0],
-  screenImg: HTMLImageElement | null,
+  app: (typeof CAROUSEL_APPS)[0],
+  screenImg: HTMLImageElement | null
 ): THREE.CanvasTexture {
   const canvas = document.createElement('canvas')
-  canvas.width = CW; canvas.height = CH
+  canvas.width = CW
+  canvas.height = CH
   const ctx = canvas.getContext('2d')!
   const imgH = 432
 
@@ -48,10 +92,10 @@ function drawCardCanvas(
   ctx.save()
   ctx.beginPath()
   ctx.moveTo(CR, 0)
-  ctx.arcTo(CW, 0,  CW, CH, CR)
-  ctx.arcTo(CW, CH, 0,  CH, CR)
-  ctx.arcTo(0,  CH, 0,  0,  CR)
-  ctx.arcTo(0,  0,  CW, 0,  CR)
+  ctx.arcTo(CW, 0, CW, CH, CR)
+  ctx.arcTo(CW, CH, 0, CH, CR)
+  ctx.arcTo(0, CH, 0, 0, CR)
+  ctx.arcTo(0, 0, CW, 0, CR)
   ctx.closePath()
   ctx.clip()
 
@@ -66,34 +110,51 @@ function drawCardCanvas(
     const bAR = CW / imgH
     let sw, sh, sx, sy
     if (iAR > bAR) {
-      sh = screenImg.naturalHeight; sw = sh * bAR
-      sx = (screenImg.naturalWidth - sw) / 2; sy = 0
+      sh = screenImg.naturalHeight
+      sw = sh * bAR
+      sx = (screenImg.naturalWidth - sw) / 2
+      sy = 0
     } else {
-      sw = screenImg.naturalWidth; sh = sw / bAR
-      sx = 0; sy = (screenImg.naturalHeight - sh) / 2
+      sw = screenImg.naturalWidth
+      sh = sw / bAR
+      sx = 0
+      sy = (screenImg.naturalHeight - sh) / 2
     }
     ctx.drawImage(screenImg, sx, sy, sw, sh, 0, 0, CW, imgH)
   } else {
     // Stylised placeholder
     const pg = ctx.createLinearGradient(0, 0, CW, imgH)
-    pg.addColorStop(0,   hexRgba(app.color, 0.28))
+    pg.addColorStop(0, hexRgba(app.color, 0.28))
     pg.addColorStop(0.6, hexRgba(app.color, 0.08))
-    pg.addColorStop(1,   '#07070F')
+    pg.addColorStop(1, '#07070F')
     ctx.fillStyle = pg
     ctx.fillRect(0, 0, CW, imgH)
 
     // Subtle grid
-    ctx.strokeStyle = hexRgba(app.color, 0.10)
+    ctx.strokeStyle = hexRgba(app.color, 0.1)
     ctx.lineWidth = 1
-    for (let x = 0; x <= CW; x += 60) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, imgH); ctx.stroke() }
-    for (let y = 0; y <= imgH; y += 60) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(CW, y); ctx.stroke() }
+    for (let x = 0; x <= CW; x += 60) {
+      ctx.beginPath()
+      ctx.moveTo(x, 0)
+      ctx.lineTo(x, imgH)
+      ctx.stroke()
+    }
+    for (let y = 0; y <= imgH; y += 60) {
+      ctx.beginPath()
+      ctx.moveTo(0, y)
+      ctx.lineTo(CW, y)
+      ctx.stroke()
+    }
 
     // Center initial glyph
     ctx.fillStyle = hexRgba(app.color, 0.12)
-    ctx.beginPath(); ctx.arc(CW / 2, imgH / 2, 96, 0, Math.PI * 2); ctx.fill()
+    ctx.beginPath()
+    ctx.arc(CW / 2, imgH / 2, 96, 0, Math.PI * 2)
+    ctx.fill()
     ctx.fillStyle = hexRgba(app.color, 0.85)
     ctx.font = 'bold 80px monospace'
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
     ctx.fillText(app.title[0].toUpperCase(), CW / 2, imgH / 2)
   }
 
@@ -101,25 +162,32 @@ function drawCardCanvas(
   const imgFade = ctx.createLinearGradient(0, imgH - 130, 0, imgH)
   imgFade.addColorStop(0, 'rgba(10,10,26,0)')
   imgFade.addColorStop(1, 'rgba(10,10,26,1)')
-  ctx.fillStyle = imgFade; ctx.fillRect(0, imgH - 130, CW, 130)
+  ctx.fillStyle = imgFade
+  ctx.fillRect(0, imgH - 130, CW, 130)
 
   // ── Category badge (top-left) ──
   ctx.font = 'bold 16px sans-serif'
   const badgeTxt = app.badge.toUpperCase()
   const bW = ctx.measureText(badgeTxt).width + 32
-  const bH = 36, bX = 22, bY = 20, bR = 18
+  const bH = 36,
+    bX = 22,
+    bY = 20,
+    bR = 18
   ctx.fillStyle = hexRgba(app.color, 0.22)
-  ctx.strokeStyle = hexRgba(app.color, 0.60)
+  ctx.strokeStyle = hexRgba(app.color, 0.6)
   ctx.lineWidth = 2
   ctx.beginPath()
   ctx.moveTo(bX + bR, bY)
-  ctx.arcTo(bX + bW, bY,  bX + bW, bY + bH, bR)
+  ctx.arcTo(bX + bW, bY, bX + bW, bY + bH, bR)
   ctx.arcTo(bX + bW, bY + bH, bX, bY + bH, bR)
   ctx.arcTo(bX, bY + bH, bX, bY, bR)
   ctx.arcTo(bX, bY, bX + bW, bY, bR)
-  ctx.closePath(); ctx.fill(); ctx.stroke()
+  ctx.closePath()
+  ctx.fill()
+  ctx.stroke()
   ctx.fillStyle = app.color
-  ctx.textAlign = 'left'; ctx.textBaseline = 'middle'
+  ctx.textAlign = 'left'
+  ctx.textBaseline = 'middle'
   ctx.fillText(badgeTxt, bX + 16, bY + bH / 2)
 
   // ── Info area ──
@@ -128,16 +196,18 @@ function drawCardCanvas(
 
   // Separator line (gradient, color-coded)
   const lineGrad = ctx.createLinearGradient(0, 0, CW, 0)
-  lineGrad.addColorStop(0,   'rgba(0,0,0,0)')
+  lineGrad.addColorStop(0, 'rgba(0,0,0,0)')
   lineGrad.addColorStop(0.15, hexRgba(app.color, 0.7))
   lineGrad.addColorStop(0.85, hexRgba(app.color, 0.7))
-  lineGrad.addColorStop(1,   'rgba(0,0,0,0)')
-  ctx.fillStyle = lineGrad; ctx.fillRect(0, imgH, CW, 2)
+  lineGrad.addColorStop(1, 'rgba(0,0,0,0)')
+  ctx.fillStyle = lineGrad
+  ctx.fillRect(0, imgH, CW, 2)
 
   // Title
   ctx.fillStyle = '#EAE6FF'
   ctx.font = 'bold 54px sans-serif'
-  ctx.textAlign = 'left'; ctx.textBaseline = 'top'
+  ctx.textAlign = 'left'
+  ctx.textBaseline = 'top'
   ctx.fillText(app.title, 32, imgH + 22)
 
   // Description
@@ -158,7 +228,8 @@ function drawCardCanvas(
   const sheen = ctx.createLinearGradient(0, 0, CW * 0.5, CH * 0.3)
   sheen.addColorStop(0, 'rgba(255,255,255,0.055)')
   sheen.addColorStop(1, 'rgba(255,255,255,0)')
-  ctx.fillStyle = sheen; ctx.fillRect(0, 0, CW, CH)
+  ctx.fillStyle = sheen
+  ctx.fillRect(0, 0, CW, CH)
 
   ctx.restore()
   return new THREE.CanvasTexture(canvas)
@@ -166,82 +237,93 @@ function drawCardCanvas(
 
 // ── Radial glow texture for card halos ──
 function makeHaloTex(color: string): THREE.CanvasTexture {
-  const c = document.createElement('canvas'); c.width = c.height = 512
+  const c = document.createElement('canvas')
+  c.width = c.height = 512
   const ctx = c.getContext('2d')!
   const g = ctx.createRadialGradient(256, 256, 0, 256, 256, 256)
-  g.addColorStop(0,    hexRgba(color, 0.50))
-  g.addColorStop(0.30, hexRgba(color, 0.22))
+  g.addColorStop(0, hexRgba(color, 0.5))
+  g.addColorStop(0.3, hexRgba(color, 0.22))
   g.addColorStop(0.65, hexRgba(color, 0.06))
-  g.addColorStop(1,    'rgba(0,0,0,0)')
-  ctx.fillStyle = g; ctx.fillRect(0, 0, 512, 512)
+  g.addColorStop(1, 'rgba(0,0,0,0)')
+  ctx.fillStyle = g
+  ctx.fillRect(0, 0, 512, 512)
   return new THREE.CanvasTexture(c)
 }
 
-export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Props) {
-  const mountRef    = useRef<HTMLDivElement>(null)
+export default function SceneCarousel({
+  onFocusChange,
+  onSelect,
+  goToRef,
+}: Props) {
+  const mountRef = useRef<HTMLDivElement>(null)
   // Keep callbacks current without re-triggering the main effect
-  const focusCbRef  = useRef(onFocusChange)
+  const focusCbRef = useRef(onFocusChange)
   const selectCbRef = useRef(onSelect)
-  useEffect(() => { focusCbRef.current  = onFocusChange }, [onFocusChange])
-  useEffect(() => { selectCbRef.current = onSelect      }, [onSelect])
+  useEffect(() => {
+    focusCbRef.current = onFocusChange
+  }, [onFocusChange])
+  useEffect(() => {
+    selectCbRef.current = onSelect
+  }, [onSelect])
 
   useEffect(() => {
     const mount = mountRef.current
     if (!mount) return
 
-    const W = mount.clientWidth  || window.innerWidth
+    const W = mount.clientWidth || window.innerWidth
     const H = mount.clientHeight || window.innerHeight
 
     // ── Renderer ──
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
     renderer.setSize(W, H)
-    renderer.setClearColor(0x07070F, 1)
+    renderer.setClearColor(0x07070f, 1)
     mount.appendChild(renderer.domElement)
 
     // ── Scene & Camera ──
-    const scene  = new THREE.Scene()
+    const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 200)
     camera.position.set(0, 1.5, 13)
     camera.lookAt(0, 0, 0)
 
-    const toDispose: (THREE.BufferGeometry | THREE.Material | THREE.Texture)[] = []
+    const toDispose: (THREE.BufferGeometry | THREE.Material | THREE.Texture)[] =
+      []
 
     // ── Carousel state ──
-    let currentAngle  = 0
-    let targetAngle   = 0
-    let focusedIndex  = 0
-    let isDragging    = false
-    let dragStartX    = 0
-    let dragStartAngle= 0
-    let mouseNX       = 0
-    let mouseNY       = 0
+    let currentAngle = 0
+    let targetAngle = 0
+    let focusedIndex = 0
+    let isDragging = false
+    let dragStartX = 0
+    let dragStartAngle = 0
+    let mouseNX = 0
+    let mouseNY = 0
 
     // ── GoTo (snap to index, shortest-path wrap) ──
     const goTo = (rawIndex: number) => {
       const idx = ((rawIndex % N) + N) % N
       // Find equivalent target angle closest to currentAngle
       let raw = -idx * STEP
-      while (raw - currentAngle >  Math.PI) raw -= Math.PI * 2
+      while (raw - currentAngle > Math.PI) raw -= Math.PI * 2
       while (raw - currentAngle < -Math.PI) raw += Math.PI * 2
-      targetAngle  = raw
+      targetAngle = raw
       focusedIndex = idx
       focusCbRef.current(idx)
     }
     goToRef.current = goTo
-    focusCbRef.current(0)   // announce initial
+    focusCbRef.current(0) // announce initial
 
     // ── Card groups ──
     interface CardObj {
-      outer:        THREE.Group
-      inner:        THREE.Group
-      cardMesh:     THREE.Mesh
-      cardMat:      THREE.MeshBasicMaterial
-      haloMesh:     THREE.Mesh
-      haloMat:      THREE.MeshBasicMaterial
-      curScale:     number
-      tiltX:        number
-      tiltY:        number
+      outer: THREE.Group
+      inner: THREE.Group
+      cardMesh: THREE.Mesh
+      cardMat: THREE.MeshBasicMaterial
+      haloMesh: THREE.Mesh
+      haloMat: THREE.MeshBasicMaterial
+      curScale: number
+      tiltX: number
+      tiltY: number
     }
     const cardTextures: THREE.CanvasTexture[] = []
 
@@ -250,7 +332,12 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       const tex = drawCardCanvas(app, null)
       cardTextures.push(tex)
       const cardGeo = new THREE.PlaneGeometry(CARD_W, CARD_H)
-      const cardMat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: 1.0, depthWrite: true })
+      const cardMat = new THREE.MeshBasicMaterial({
+        map: tex,
+        transparent: true,
+        opacity: 1.0,
+        depthWrite: true,
+      })
       toDispose.push(cardGeo, cardMat)
       const cardMesh = new THREE.Mesh(cardGeo, cardMat)
 
@@ -258,7 +345,13 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       const hTex = makeHaloTex(app.color)
       toDispose.push(hTex)
       const hGeo = new THREE.PlaneGeometry(CARD_W * 2.2, CARD_H * 2.2)
-      const hMat = new THREE.MeshBasicMaterial({ map: hTex, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false })
+      const hMat = new THREE.MeshBasicMaterial({
+        map: hTex,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      })
       toDispose.push(hGeo, hMat)
       const haloMesh = new THREE.Mesh(hGeo, hMat)
       haloMesh.position.z = -0.06
@@ -270,7 +363,17 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       outer.add(inner)
       scene.add(outer)
 
-      return { outer, inner, cardMesh, cardMat, haloMesh, haloMat: hMat, curScale: 1, tiltX: 0, tiltY: 0 }
+      return {
+        outer,
+        inner,
+        cardMesh,
+        cardMat,
+        haloMesh,
+        haloMat: hMat,
+        curScale: 1,
+        tiltX: 0,
+        tiltY: 0,
+      }
     })
 
     // ── Load real images asynchronously ──
@@ -280,7 +383,7 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       img.onload = () => {
         const newTex = drawCardCanvas(app, img)
         cardTextures[i].dispose()
-        cardTextures[i]   = newTex
+        cardTextures[i] = newTex
         cards[i].cardMat.map = newTex
         cards[i].cardMat.needsUpdate = true
       }
@@ -295,21 +398,33 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
         pts.push(Math.sin(θ) * r, -1.8, Math.cos(θ) * r)
       }
       const geo = new THREE.BufferGeometry()
-      geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(pts), 3))
-      const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false })
+      geo.setAttribute(
+        'position',
+        new THREE.BufferAttribute(new Float32Array(pts), 3)
+      )
+      const mat = new THREE.LineBasicMaterial({
+        color,
+        transparent: true,
+        opacity,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      })
       toDispose.push(geo, mat)
       scene.add(new THREE.Line(geo, mat))
     }
-    makeRing(RADIUS,        0xd4af37, 0.09)
+    makeRing(RADIUS, 0xd4af37, 0.09)
     makeRing(RADIUS * 0.91, 0xd4af37, 0.04)
 
     // ── Ambient particles ──
     const glowTex = (() => {
-      const c = document.createElement('canvas'); c.width = c.height = 32
+      const c = document.createElement('canvas')
+      c.width = c.height = 32
       const cx = c.getContext('2d')!
       const g = cx.createRadialGradient(16, 16, 0, 16, 16, 16)
-      g.addColorStop(0, 'rgba(212,175,55,0.8)'); g.addColorStop(1, 'rgba(0,0,0,0)')
-      cx.fillStyle = g; cx.fillRect(0, 0, 32, 32)
+      g.addColorStop(0, 'rgba(212,175,55,0.8)')
+      g.addColorStop(1, 'rgba(0,0,0,0)')
+      cx.fillStyle = g
+      cx.fillRect(0, 0, 32, 32)
       return new THREE.CanvasTexture(c)
     })()
     toDispose.push(glowTex)
@@ -317,13 +432,21 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
     const PCOUNT = 55
     const pPos = new Float32Array(PCOUNT * 3)
     for (let i = 0; i < PCOUNT; i++) {
-      pPos[i * 3]     = (Math.random() - 0.5) * 30
+      pPos[i * 3] = (Math.random() - 0.5) * 30
       pPos[i * 3 + 1] = (Math.random() - 0.5) * 14
       pPos[i * 3 + 2] = (Math.random() - 0.5) * 12 - 2
     }
     const pGeo = new THREE.BufferGeometry()
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3))
-    const pMat = new THREE.PointsMaterial({ size: 0.06, map: glowTex, color: 0x665833, transparent: true, opacity: 0.28, blending: THREE.AdditiveBlending, depthWrite: false })
+    const pMat = new THREE.PointsMaterial({
+      size: 0.06,
+      map: glowTex,
+      color: 0x665833,
+      transparent: true,
+      opacity: 0.28,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
     toDispose.push(pGeo, pMat)
     scene.add(new THREE.Points(pGeo, pMat))
 
@@ -337,16 +460,25 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       spotPts.push(rx, ry, 0)
     }
     const spotGeo = new THREE.BufferGeometry()
-    spotGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spotPts), 3))
-    const spotMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false })
+    spotGeo.setAttribute(
+      'position',
+      new THREE.BufferAttribute(new Float32Array(spotPts), 3)
+    )
+    const spotMat = new THREE.LineBasicMaterial({
+      color: 0xd4af37,
+      transparent: true,
+      opacity: 0.18,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
     toDispose.push(spotGeo, spotMat)
     const spotLine = new THREE.Line(spotGeo, spotMat)
-    spotLine.position.set(0, 0, RADIUS + 0.1)   // always at front of circle
+    spotLine.position.set(0, 0, RADIUS + 0.1) // always at front of circle
     scene.add(spotLine)
 
     // ── Raycaster ──
     const raycaster = new THREE.Raycaster()
-    const pointer   = new THREE.Vector2()
+    const pointer = new THREE.Vector2()
 
     // ── Input ──
     const cvs = renderer.domElement
@@ -368,8 +500,8 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
 
     const onMouseMove = (e: MouseEvent) => {
       const rect = cvs.getBoundingClientRect()
-      mouseNX = (e.clientX - rect.left)  / rect.width  - 0.5
-      mouseNY = (e.clientY - rect.top)   / rect.height - 0.5
+      mouseNX = (e.clientX - rect.left) / rect.width - 0.5
+      mouseNY = (e.clientY - rect.top) / rect.height - 0.5
       if (isDragging) targetAngle = getAngle(e.clientX)
     }
 
@@ -381,12 +513,12 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       if (dx < 6) {
         // Treat as click — raycast
         const rect = cvs.getBoundingClientRect()
-        pointer.x = ((e.clientX - rect.left) / rect.width)  * 2 - 1
-        pointer.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1
+        pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1
+        pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
         raycaster.setFromCamera(pointer, camera)
-        const hits = raycaster.intersectObjects(cards.map(c => c.cardMesh))
+        const hits = raycaster.intersectObjects(cards.map((c) => c.cardMesh))
         if (hits.length > 0) {
-          const hi = cards.findIndex(c => c.cardMesh === hits[0].object)
+          const hi = cards.findIndex((c) => c.cardMesh === hits[0].object)
           if (hi === focusedIndex) selectCbRef.current(CAROUSEL_APPS[hi].link)
           else goTo(hi)
         }
@@ -396,13 +528,17 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
     }
 
     const onMouseLeave = () => {
-      if (isDragging) { isDragging = false; mount.style.cursor = 'grab'; snapNearest() }
+      if (isDragging) {
+        isDragging = false
+        mount.style.cursor = 'grab'
+        snapNearest()
+      }
     }
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
       if (e.deltaY > 0) goTo(focusedIndex + 1)
-      else              goTo(focusedIndex - 1)
+      else goTo(focusedIndex - 1)
     }
 
     // Touch
@@ -415,7 +551,10 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       e.preventDefault()
       targetAngle = getAngle(e.touches[0].clientX)
     }
-    const onTouchEnd = () => { isDragging = false; snapNearest() }
+    const onTouchEnd = () => {
+      isDragging = false
+      snapNearest()
+    }
 
     // Keyboard
     const onKeyDown = (e: KeyboardEvent) => {
@@ -423,19 +562,19 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       else if (e.key === 'ArrowLeft') goTo(focusedIndex - 1)
     }
 
-    cvs.addEventListener('mousedown',  onMouseDown)
+    cvs.addEventListener('mousedown', onMouseDown)
     window.addEventListener('mousemove', onMouseMove)
-    window.addEventListener('mouseup',   onMouseUp)
+    window.addEventListener('mouseup', onMouseUp)
     cvs.addEventListener('mouseleave', onMouseLeave)
-    cvs.addEventListener('wheel',      onWheel,      { passive: false })
-    cvs.addEventListener('touchstart', onTouchStart, { passive: true  })
-    cvs.addEventListener('touchmove',  onTouchMove,  { passive: false })
-    cvs.addEventListener('touchend',   onTouchEnd)
+    cvs.addEventListener('wheel', onWheel, { passive: false })
+    cvs.addEventListener('touchstart', onTouchStart, { passive: true })
+    cvs.addEventListener('touchmove', onTouchMove, { passive: false })
+    cvs.addEventListener('touchend', onTouchEnd)
     window.addEventListener('keydown', onKeyDown)
 
     // ── Animation ──
     let frameId = 0
-    let time    = 0
+    let time = 0
     let running = true
 
     const tick = () => {
@@ -448,26 +587,26 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
 
       // Update each card
       cards.forEach((card, i) => {
-        const angle   = i * STEP + currentAngle
-        const x       = Math.sin(angle) * RADIUS
-        const z       = Math.cos(angle) * RADIUS
-        const cosA    = Math.cos(angle)           // -1 (back) → +1 (front)
-        const t       = (cosA + 1) * 0.5          //  0       →  1
+        const angle = i * STEP + currentAngle
+        const x = Math.sin(angle) * RADIUS
+        const z = Math.cos(angle) * RADIUS
+        const cosA = Math.cos(angle) // -1 (back) → +1 (front)
+        const t = (cosA + 1) * 0.5 //  0       →  1
 
         // Position + face outward (cards look away from circle center, toward camera)
         card.outer.position.set(x, Math.sin(time * 0.7 + i * 1.0) * 0.07, z)
         card.outer.rotation.y = angle
 
         // Depth-driven scale
-        const isFront   = i === focusedIndex
-        const depthSc   = 0.42 + t * 0.58
-        const focusBost = isFront ? 1.10 : 1.0
-        const tgtSc     = depthSc * focusBost
-        card.curScale  += (tgtSc - card.curScale) * 0.08
+        const isFront = i === focusedIndex
+        const depthSc = 0.42 + t * 0.58
+        const focusBost = isFront ? 1.1 : 1.0
+        const tgtSc = depthSc * focusBost
+        card.curScale += (tgtSc - card.curScale) * 0.08
         card.outer.scale.setScalar(card.curScale)
 
         // Depth-driven opacity
-        const tgtOp = isFront ? 1.0 : Math.max(0.10, 0.10 + t * 0.82)
+        const tgtOp = isFront ? 1.0 : Math.max(0.1, 0.1 + t * 0.82)
         card.cardMat.opacity += (tgtOp - card.cardMat.opacity) * 0.08
 
         // Render order so front cards draw on top
@@ -475,12 +614,12 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
         card.haloMesh.renderOrder = Math.round(cosA * 100) - 1
 
         // Halo glow on focused card only
-        const tgtHalo = isFront ? 0.80 : 0
+        const tgtHalo = isFront ? 0.8 : 0
         card.haloMat.opacity += (tgtHalo - card.haloMat.opacity) * 0.08
 
         // Mouse tilt (focused card only)
         const tgtTiltX = isFront ? -mouseNY * 0.15 : 0
-        const tgtTiltY = isFront ?  mouseNX * 0.22 : 0
+        const tgtTiltY = isFront ? mouseNX * 0.22 : 0
         card.tiltX += (tgtTiltX - card.tiltX) * 0.08
         card.tiltY += (tgtTiltY - card.tiltY) * 0.08
         card.inner.rotation.x = card.tiltX
@@ -488,25 +627,36 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       })
 
       // Spotlight ring orbits at front
-      spotLine.rotation.y  += (0 - spotLine.rotation.y) * 0.03
+      spotLine.rotation.y += (0 - spotLine.rotation.y) * 0.03
       spotMat.opacity = 0.12 + Math.sin(time * 2.5) * 0.06
 
       // Camera gentle bob
-      camera.position.y = 1.5 + Math.sin(time * 0.35) * 0.10
+      camera.position.y = 1.5 + Math.sin(time * 0.35) * 0.1
       camera.lookAt(0, 0, 0)
 
       renderer.render(scene, camera)
     }
 
-    const observer = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { if (!running) { running = true; tick() } }
-      else { running = false; cancelAnimationFrame(frameId) }
-    }, { threshold: 0.01 })
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          if (!running) {
+            running = true
+            tick()
+          }
+        } else {
+          running = false
+          cancelAnimationFrame(frameId)
+        }
+      },
+      { threshold: 0.01 }
+    )
     observer.observe(mount)
     tick()
 
     const onResize = () => {
-      const w = mount.clientWidth, h = mount.clientHeight
+      const w = mount.clientWidth,
+        h = mount.clientHeight
       camera.aspect = w / h
       camera.updateProjectionMatrix()
       renderer.setSize(w, h)
@@ -517,22 +667,22 @@ export default function SceneCarousel({ onFocusChange, onSelect, goToRef }: Prop
       running = false
       cancelAnimationFrame(frameId)
       observer.disconnect()
-      cvs.removeEventListener('mousedown',  onMouseDown)
+      cvs.removeEventListener('mousedown', onMouseDown)
       window.removeEventListener('mousemove', onMouseMove)
-      window.removeEventListener('mouseup',   onMouseUp)
+      window.removeEventListener('mouseup', onMouseUp)
       cvs.removeEventListener('mouseleave', onMouseLeave)
-      cvs.removeEventListener('wheel',      onWheel)
+      cvs.removeEventListener('wheel', onWheel)
       cvs.removeEventListener('touchstart', onTouchStart)
-      cvs.removeEventListener('touchmove',  onTouchMove)
-      cvs.removeEventListener('touchend',   onTouchEnd)
+      cvs.removeEventListener('touchmove', onTouchMove)
+      cvs.removeEventListener('touchend', onTouchEnd)
       window.removeEventListener('keydown', onKeyDown)
-      window.removeEventListener('resize',  onResize)
-      toDispose.forEach(d => d.dispose())
-      cardTextures.forEach(t => t.dispose())
+      window.removeEventListener('resize', onResize)
+      toDispose.forEach((d) => d.dispose())
+      cardTextures.forEach((t) => t.dispose())
       renderer.dispose()
       if (mount.contains(cvs)) mount.removeChild(cvs)
     }
-  }, [goToRef])   // goToRef is a stable ref — effect runs once
+  }, [goToRef]) // goToRef is a stable ref — effect runs once
 
   return (
     <div

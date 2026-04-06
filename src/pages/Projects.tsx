@@ -6,10 +6,18 @@ import SceneProjectsHero from '../components/Three/SceneProjectsHero'
 const projects = [
   {
     title: 'Personal Portfolio — tombp.fr',
-    description: 'Modern portfolio website showcasing design and development work. Built with React and Framer Motion, featuring smooth animations, interactive elements, and a clean, minimalist aesthetic. Emphasizes user experience with intuitive navigation and responsive design across all devices.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    description:
+      'Modern portfolio website showcasing design and development work. Built with React and Framer Motion, featuring smooth animations, interactive elements, and a clean, minimalist aesthetic. Emphasizes user experience with intuitive navigation and responsive design across all devices.',
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
     role: 'Full-Stack Developer & Designer',
-    competencies: ['UI/UX Design', 'React Development', 'Animation', 'Responsive Design', 'Branding'],
+    competencies: [
+      'UI/UX Design',
+      'React Development',
+      'Animation',
+      'Responsive Design',
+      'Branding',
+    ],
     tags: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'Vite'],
     status: 'Live',
     type: 'Personal',
@@ -19,10 +27,18 @@ const projects = [
   },
   {
     title: 'IsoMaker — 3D Pixel Art Creator',
-    description: 'Interactive web application for creating isometric pixel art. Features intuitive controls, real-time preview, color picker, and export functionality. Designed to make 3D pixel art creation accessible and enjoyable for both beginners and experienced artists.',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
+    description:
+      'Interactive web application for creating isometric pixel art. Features intuitive controls, real-time preview, color picker, and export functionality. Designed to make 3D pixel art creation accessible and enjoyable for both beginners and experienced artists.',
+    image:
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
     role: 'Lead Developer & UX Designer',
-    competencies: ['Canvas API', 'Interactive Design', 'Algorithm Development', 'User Testing', 'Performance Optimization'],
+    competencies: [
+      'Canvas API',
+      'Interactive Design',
+      'Algorithm Development',
+      'User Testing',
+      'Performance Optimization',
+    ],
     tags: ['JavaScript', 'Canvas', 'Pixel Art', 'Web Graphics', 'Interactive'],
     status: 'Live',
     type: 'Tool',
@@ -32,10 +48,18 @@ const projects = [
   },
   {
     title: 'LibertAI — AI Platform',
-    description: 'Corporate website redesign for an AI technology company. Focused on creating a modern, trustworthy brand presence with clear communication of complex AI concepts. Implemented responsive design patterns and accessibility standards to ensure broad reach and usability.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+    description:
+      'Corporate website redesign for an AI technology company. Focused on creating a modern, trustworthy brand presence with clear communication of complex AI concepts. Implemented responsive design patterns and accessibility standards to ensure broad reach and usability.',
+    image:
+      'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
     role: 'Freelance Frontend Developer & Designer',
-    competencies: ['Corporate Branding', 'Frontend Development', 'Accessibility', 'SEO Optimization', 'Stakeholder Communication'],
+    competencies: [
+      'Corporate Branding',
+      'Frontend Development',
+      'Accessibility',
+      'SEO Optimization',
+      'Stakeholder Communication',
+    ],
     tags: ['React', 'UI/UX', 'Branding', 'Accessibility', 'B2B'],
     status: 'Live',
     type: 'Client Work',
@@ -49,20 +73,34 @@ export default function Projects(): ReactElement {
   return (
     <PageLayout>
       {/* ── Three.js Hero Header ── */}
-      <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden"
-        style={{ background: 'var(--color-void)' }}>
+      <section
+        className="relative flex min-h-[55vh] items-center justify-center overflow-hidden"
+        style={{ background: 'var(--color-void)' }}
+      >
         <SceneProjectsHero />
 
         {/* Vignette */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(0,0,0,0.9) 100%)', zIndex: 1 }} />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(0,0,0,0.9) 100%)',
+            zIndex: 1,
+          }}
+        />
 
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, var(--color-void))', zIndex: 2 }} />
+        <div
+          className="pointer-events-none absolute right-0 bottom-0 left-0 h-32"
+          style={{
+            background:
+              'linear-gradient(to bottom, transparent, var(--color-void))',
+            zIndex: 2,
+          }}
+        />
 
         <motion.div
-          className="relative text-center px-6 max-w-4xl mx-auto"
+          className="relative mx-auto max-w-4xl px-6 text-center"
           style={{ zIndex: 3 }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -70,35 +108,52 @@ export default function Projects(): ReactElement {
         >
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
-            style={{ background: 'var(--color-gold-ghost)', border: '1px solid var(--color-border-active)' }}
-            animate={{ borderColor: ['rgba(212,175,55,0.25)', 'rgba(212,175,55,0.55)', 'rgba(212,175,55,0.25)'] }}
+            className="mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2"
+            style={{
+              background: 'var(--color-gold-ghost)',
+              border: '1px solid var(--color-border-active)',
+            }}
+            animate={{
+              borderColor: [
+                'rgba(212,175,55,0.25)',
+                'rgba(212,175,55,0.55)',
+                'rgba(212,175,55,0.25)',
+              ],
+            }}
             transition={{ duration: 3, repeat: Infinity }}
           >
             <motion.div
-              className="w-2 h-2 rounded-full"
+              className="h-2 w-2 rounded-full"
               style={{ background: 'var(--color-gold)' }}
               animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
               transition={{ duration: 1.8, repeat: Infinity }}
             />
-            <span className="text-sm font-semibold text-gold">{projects.length} Featured Projects</span>
+            <span className="text-gold text-sm font-semibold">
+              {projects.length} Featured Projects
+            </span>
           </motion.div>
 
-          <h1 className="font-bold leading-tight mb-6"
-            style={{ fontSize: 'clamp(2.8rem, 8vw, 6rem)', color: '#ffffff', letterSpacing: '-0.03em' }}>
-            Selected
-            {' '}<span className="text-gold">Work</span>
+          <h1
+            className="mb-6 leading-tight font-bold"
+            style={{
+              fontSize: 'clamp(2.8rem, 8vw, 6rem)',
+              color: '#ffffff',
+              letterSpacing: '-0.03em',
+            }}
+          >
+            Selected <span className="text-gold">Work</span>
           </h1>
 
-          <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-secondary">
-            A selection of client work, personal projects, and creative experiments showcasing my approach to design and development.
+          <p className="text-secondary mx-auto max-w-2xl text-lg leading-relaxed md:text-xl">
+            A selection of client work, personal projects, and creative
+            experiments showcasing my approach to design and development.
           </p>
         </motion.div>
       </section>
 
       {/* ── Project list ── */}
       <div className="py-24" style={{ background: 'var(--color-void)' }}>
-        <div className="container max-w-6xl mx-auto px-6">
+        <div className="container mx-auto max-w-6xl px-6">
           <div className="space-y-40">
             {projects.map((project, index) => (
               <ProjectCard
@@ -112,51 +167,73 @@ export default function Projects(): ReactElement {
 
           {/* ── Footer CTA ── */}
           <motion.div
-            className="mt-40 relative rounded-3xl overflow-hidden"
+            className="relative mt-40 overflow-hidden rounded-3xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="void-panel rounded-3xl p-14 text-center relative overflow-hidden">
+            <div className="void-panel relative overflow-hidden rounded-3xl p-14 text-center">
               {/* Ambient glow */}
               <motion.div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.06), transparent 70%)' }}
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.06), transparent 70%)',
+                }}
                 animate={{ opacity: [0.4, 0.9, 0.4] }}
                 transition={{ duration: 4, repeat: Infinity }}
               />
 
               <motion.div
-                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 relative z-10"
-                style={{ background: 'linear-gradient(135deg, var(--color-gold), #b8942e)' }}
+                className="relative z-10 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl"
+                style={{
+                  background:
+                    'linear-gradient(135deg, var(--color-gold), #b8942e)',
+                }}
                 animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.04, 1] }}
                 transition={{ duration: 4, repeat: Infinity }}
               >
-                <span className="text-2xl font-bold" style={{ color: 'var(--color-void)' }}>TT</span>
+                <span
+                  className="text-2xl font-bold"
+                  style={{ color: 'var(--color-void)' }}
+                >
+                  TT
+                </span>
               </motion.div>
 
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10" style={{ letterSpacing: '-0.02em' }}>
-                Have a project<br />in mind?
+              <h2
+                className="relative z-10 mb-4 text-4xl font-bold text-white md:text-5xl"
+                style={{ letterSpacing: '-0.02em' }}
+              >
+                Have a project
+                <br />
+                in mind?
               </h2>
-              <p className="text-secondary mb-10 max-w-xl mx-auto text-lg leading-relaxed relative z-10">
-                I'm available for freelance work and collaborations. Let's create something remarkable together.
+              <p className="text-secondary relative z-10 mx-auto mb-10 max-w-xl text-lg leading-relaxed">
+                I'm available for freelance work and collaborations. Let's
+                create something remarkable together.
               </p>
               <motion.a
                 href="/contact"
-                className="relative inline-block z-10"
+                className="relative z-10 inline-block"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div
-                  className="absolute inset-0 blur-xl rounded-xl"
+                  className="absolute inset-0 rounded-xl blur-xl"
                   style={{ background: 'var(--color-gold)' }}
                   animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
                   transition={{ duration: 2.5, repeat: Infinity }}
                 />
-                <span className="btn-gold relative px-10 py-4 rounded-xl font-bold text-base inline-flex items-center gap-3">
+                <span className="btn-gold relative inline-flex items-center gap-3 rounded-xl px-10 py-4 text-base font-bold">
                   Get in Touch
-                  <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
                 </span>
               </motion.a>
             </div>
@@ -169,44 +246,62 @@ export default function Projects(): ReactElement {
 
 // ── Project card component ──
 interface ProjectCardProps {
-  project: typeof projects[0]
+  project: (typeof projects)[0]
   index: number
   isReversed: boolean
 }
 
-function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactElement {
+function ProjectCard({
+  project,
+  index,
+  isReversed,
+}: ProjectCardProps): ReactElement {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.25 })
 
   return (
     <motion.section
       ref={ref}
-      className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${isReversed ? 'lg:grid-flow-dense' : ''}`}
+      className={`grid grid-cols-1 items-center gap-14 lg:grid-cols-2 ${isReversed ? 'lg:grid-flow-dense' : ''}`}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
       {/* Image */}
-      <div className={`relative group ${isReversed ? 'lg:col-start-2' : ''}`}>
+      <div className={`group relative ${isReversed ? 'lg:col-start-2' : ''}`}>
         <motion.div
-          className="relative aspect-video rounded-2xl overflow-hidden"
+          className="relative aspect-video overflow-hidden rounded-2xl"
           style={{ border: '1px solid var(--color-border)' }}
           whileHover={{ scale: 1.025 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
-          <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
+          <img
+            src={project.image}
+            alt={project.title}
+            className="h-full w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to top, rgba(0,0,0,0.5), transparent)',
+            }}
+          />
           {/* Hover overlay */}
           <motion.div
-            className="absolute inset-0 opacity-0 group-hover:opacity-8 transition-opacity duration-500"
+            className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-8"
             style={{ background: 'var(--color-gold)' }}
           />
         </motion.div>
 
         {/* Number badge */}
         <motion.div
-          className="absolute -top-5 -right-5 w-12 h-12 rounded-xl flex items-center justify-center font-bold"
-          style={{ background: 'linear-gradient(135deg, var(--color-gold), #b8942e)', color: 'var(--color-void)', boxShadow: '0 4px 20px rgba(212,175,55,0.3)' }}
+          className="absolute -top-5 -right-5 flex h-12 w-12 items-center justify-center rounded-xl font-bold"
+          style={{
+            background: 'linear-gradient(135deg, var(--color-gold), #b8942e)',
+            color: 'var(--color-void)',
+            boxShadow: '0 4px 20px rgba(212,175,55,0.3)',
+          }}
           initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
           animate={inView ? { opacity: 1, scale: 1, rotate: 6 } : {}}
           transition={{ delay: 0.4, type: 'spring', stiffness: 280 }}
@@ -215,33 +310,58 @@ function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactEle
         </motion.div>
 
         {/* Year tag */}
-        <div className="absolute -bottom-4 left-6 rounded-lg px-3 py-1.5"
-          style={{ background: 'var(--color-void-elevated)', border: '1px solid var(--color-border)' }}>
-          <span className="text-xs font-semibold text-secondary">{project.year}</span>
+        <div
+          className="absolute -bottom-4 left-6 rounded-lg px-3 py-1.5"
+          style={{
+            background: 'var(--color-void-elevated)',
+            border: '1px solid var(--color-border)',
+          }}
+        >
+          <span className="text-secondary text-xs font-semibold">
+            {project.year}
+          </span>
         </div>
       </div>
 
       {/* Content */}
       <div className={isReversed ? 'lg:col-start-1 lg:row-start-1' : ''}>
-        <div className="flex items-center gap-2 mb-5">
-          <span className="text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider"
-            style={{ color: 'var(--color-gold)', background: 'var(--color-gold-ghost)', border: '1px solid var(--color-border-active)' }}>
+        <div className="mb-5 flex items-center gap-2">
+          <span
+            className="rounded-full px-3 py-1.5 text-xs font-bold tracking-wider uppercase"
+            style={{
+              color: 'var(--color-gold)',
+              background: 'var(--color-gold-ghost)',
+              border: '1px solid var(--color-border-active)',
+            }}
+          >
             {project.status}
           </span>
-          <span className="text-xs font-medium text-secondary px-3 py-1.5 rounded-full"
-            style={{ background: 'var(--color-void-elevated)', border: '1px solid var(--color-border)' }}>
+          <span
+            className="text-secondary rounded-full px-3 py-1.5 text-xs font-medium"
+            style={{
+              background: 'var(--color-void-elevated)',
+              border: '1px solid var(--color-border)',
+            }}
+          >
             {project.type}
           </span>
         </div>
 
-        <h2 className="font-bold text-white mb-3 leading-tight"
-          style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.8rem)', letterSpacing: '-0.02em' }}>
+        <h2
+          className="mb-3 leading-tight font-bold text-white"
+          style={{
+            fontSize: 'clamp(1.7rem, 3.5vw, 2.8rem)',
+            letterSpacing: '-0.02em',
+          }}
+        >
           {project.title}
         </h2>
 
-        <p className="text-gold font-semibold mb-5 text-sm uppercase tracking-wider">{project.role}</p>
+        <p className="text-gold mb-5 text-sm font-semibold tracking-wider uppercase">
+          {project.role}
+        </p>
 
-        <p className="text-secondary leading-relaxed mb-7 text-base">
+        <p className="text-secondary mb-7 text-base leading-relaxed">
           {project.description}
         </p>
 
@@ -250,8 +370,14 @@ function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactEle
           <p className="hud-caption mb-3">Key Competencies</p>
           <div className="flex flex-wrap gap-2">
             {project.competencies.map((c, i) => (
-              <span key={i} className="text-sm text-secondary px-3 py-1.5 rounded-lg"
-                style={{ background: 'var(--color-void-elevated)', border: '1px solid var(--color-border)' }}>
+              <span
+                key={i}
+                className="text-secondary rounded-lg px-3 py-1.5 text-sm"
+                style={{
+                  background: 'var(--color-void-elevated)',
+                  border: '1px solid var(--color-border)',
+                }}
+              >
                 {c}
               </span>
             ))}
@@ -265,9 +391,16 @@ function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactEle
             {project.tags.map((tag, i) => (
               <motion.span
                 key={i}
-                className="text-sm font-medium px-3 py-1.5 rounded-lg"
-                style={{ color: 'var(--color-gold)', background: 'var(--color-gold-ghost)', border: '1px solid var(--color-border-active)' }}
-                whileHover={{ scale: 1.05, borderColor: 'rgba(212,175,55,0.5)' }}
+                className="rounded-lg px-3 py-1.5 text-sm font-medium"
+                style={{
+                  color: 'var(--color-gold)',
+                  background: 'var(--color-gold-ghost)',
+                  border: '1px solid var(--color-border-active)',
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  borderColor: 'rgba(212,175,55,0.5)',
+                }}
               >
                 {tag}
               </motion.span>
@@ -283,15 +416,26 @@ function ProjectCard({ project, index, isReversed }: ProjectCardProps): ReactEle
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
         >
-          <motion.div className="absolute inset-0 blur-lg rounded-xl"
+          <motion.div
+            className="absolute inset-0 rounded-xl blur-lg"
             style={{ background: 'var(--color-gold)' }}
             animate={{ scale: [1, 1.1, 1], opacity: [0.25, 0.4, 0.25] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <span className="btn-gold relative px-8 py-3.5 rounded-xl font-bold text-sm inline-flex items-center gap-2">
+          <span className="btn-gold relative inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold">
             {project.linkText}
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
             </svg>
           </span>
         </motion.a>

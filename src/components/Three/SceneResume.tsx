@@ -24,7 +24,8 @@ export default function SceneResume() {
     camera.position.set(8, 2, 10)
     camera.lookAt(0, 0, 0)
 
-    const toDispose: (THREE.BufferGeometry | THREE.Material | THREE.Texture)[] = []
+    const toDispose: (THREE.BufferGeometry | THREE.Material | THREE.Texture)[] =
+      []
 
     // ── Timeline helix path ──
     // 8 milestones arranged along a helix (y = time axis)
@@ -37,11 +38,13 @@ export default function SceneResume() {
       const t = i / (MILESTONES - 1)
       const angle = t * Math.PI * 3 // 1.5 full turns
       const y = t * HELIX_HEIGHT - HELIX_HEIGHT / 2
-      milestonePositions.push(new THREE.Vector3(
-        HELIX_R * Math.cos(angle),
-        y,
-        HELIX_R * Math.sin(angle),
-      ))
+      milestonePositions.push(
+        new THREE.Vector3(
+          HELIX_R * Math.cos(angle),
+          y,
+          HELIX_R * Math.sin(angle)
+        )
+      )
     }
 
     // Glow textures
@@ -51,14 +54,18 @@ export default function SceneResume() {
       const cx = c.getContext('2d')!
       const g = cx.createRadialGradient(32, 32, 0, 32, 32, 32)
       g.addColorStop(0, colorStr.replace(')', ', 1)').replace('rgb', 'rgba'))
-      g.addColorStop(0.4, colorStr.replace(')', ', 0.5)').replace('rgb', 'rgba'))
+      g.addColorStop(
+        0.4,
+        colorStr.replace(')', ', 0.5)').replace('rgb', 'rgba')
+      )
       g.addColorStop(1, 'rgba(0,0,0,0)')
-      cx.fillStyle = g; cx.fillRect(0, 0, 64, 64)
+      cx.fillStyle = g
+      cx.fillRect(0, 0, 64, 64)
       return new THREE.CanvasTexture(c)
     }
-    const glowGold   = makeGlow('rgb(212,175,55)')
+    const glowGold = makeGlow('rgb(212,175,55)')
     const glowGoldBright = makeGlow('rgb(212,175,55)')
-    const glowWhite  = makeGlow('rgb(212,175,55)')
+    const glowWhite = makeGlow('rgb(212,175,55)')
     toDispose.push(glowGold, glowGoldBright, glowWhite)
 
     // ── Smooth helix spine (curved line through milestones) ──
@@ -71,7 +78,10 @@ export default function SceneResume() {
       spinePoints.push(HELIX_R * Math.cos(angle), y, HELIX_R * Math.sin(angle))
     }
     const spineGeo = new THREE.BufferGeometry()
-    spineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spinePoints), 3))
+    spineGeo.setAttribute(
+      'position',
+      new THREE.BufferAttribute(new Float32Array(spinePoints), 3)
+    )
     const spineMat = new THREE.LineBasicMaterial({
       color: 0xd4af37,
       transparent: true,
@@ -84,7 +94,10 @@ export default function SceneResume() {
 
     // ── Secondary thinner spine ──
     const spine2Geo = new THREE.BufferGeometry()
-    spine2Geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spinePoints), 3))
+    spine2Geo.setAttribute(
+      'position',
+      new THREE.BufferAttribute(new Float32Array(spinePoints), 3)
+    )
     const spine2Mat = new THREE.LineBasicMaterial({
       color: 0xd4af37,
       transparent: true,
@@ -96,8 +109,15 @@ export default function SceneResume() {
     scene.add(new THREE.Line(spine2Geo, spine2Mat))
 
     // ── Milestone node spheres ──
-    const nodeColors = [0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37]
-    const nodeMeshes: { mesh: THREE.Mesh; mat: THREE.MeshBasicMaterial; phase: number }[] = []
+    const nodeColors = [
+      0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37, 0xd4af37,
+      0xd4af37,
+    ]
+    const nodeMeshes: {
+      mesh: THREE.Mesh
+      mat: THREE.MeshBasicMaterial
+      phase: number
+    }[] = []
 
     milestonePositions.forEach((pos, i) => {
       const isMain = i % 2 === 0
@@ -129,7 +149,10 @@ export default function SceneResume() {
       // Spoke line from helix center to each node
       const spokePoints = [0, pos.y, 0, pos.x, pos.y, pos.z]
       const spokeGeo = new THREE.BufferGeometry()
-      spokeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spokePoints), 3))
+      spokeGeo.setAttribute(
+        'position',
+        new THREE.BufferAttribute(new Float32Array(spokePoints), 3)
+      )
       const spokeMat = new THREE.LineBasicMaterial({
         color: nodeColors[i % nodeColors.length],
         transparent: true,
@@ -148,7 +171,7 @@ export default function SceneResume() {
     const pulseMat = new THREE.PointsMaterial({
       size: 0.55,
       map: glowWhite,
-      color: 0xFFFFFF,
+      color: 0xffffff,
       transparent: true,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
@@ -160,7 +183,7 @@ export default function SceneResume() {
     const PARTS = isMobile ? 30 : 70
     const partPos = new Float32Array(PARTS * 3)
     for (let i = 0; i < PARTS; i++) {
-      partPos[i * 3]     = (Math.random() - 0.5) * 20
+      partPos[i * 3] = (Math.random() - 0.5) * 20
       partPos[i * 3 + 1] = (Math.random() - 0.5) * 15
       partPos[i * 3 + 2] = (Math.random() - 0.5) * 8 - 2
     }
@@ -213,19 +236,26 @@ export default function SceneResume() {
       renderer.render(scene, camera)
     }
 
-    const observer = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        if (!running) { running = true; tick() }
-      } else {
-        running = false
-        cancelAnimationFrame(frameId)
-      }
-    }, { threshold: 0.01 })
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          if (!running) {
+            running = true
+            tick()
+          }
+        } else {
+          running = false
+          cancelAnimationFrame(frameId)
+        }
+      },
+      { threshold: 0.01 }
+    )
     observer.observe(mount)
     tick()
 
     const onResize = () => {
-      const w = mount.clientWidth, h = mount.clientHeight
+      const w = mount.clientWidth,
+        h = mount.clientHeight
       camera.aspect = w / h
       camera.updateProjectionMatrix()
       renderer.setSize(w, h)
@@ -237,11 +267,18 @@ export default function SceneResume() {
       cancelAnimationFrame(frameId)
       observer.disconnect()
       window.removeEventListener('resize', onResize)
-      toDispose.forEach(d => d.dispose())
+      toDispose.forEach((d) => d.dispose())
       renderer.dispose()
-      if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement)
+      if (mount.contains(renderer.domElement))
+        mount.removeChild(renderer.domElement)
     }
   }, [])
 
-  return <div ref={mountRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }} />
+  return (
+    <div
+      ref={mountRef}
+      className="pointer-events-none absolute inset-0"
+      style={{ zIndex: 0 }}
+    />
+  )
 }

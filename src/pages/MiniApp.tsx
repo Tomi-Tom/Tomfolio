@@ -5,12 +5,12 @@ import { PageLayout } from '../layouts/PageLayout'
 import SceneCarousel, { CAROUSEL_APPS } from '../components/Three/SceneCarousel'
 
 export default function MiniAppPage(): ReactElement {
-  const navigate      = useNavigate()
+  const navigate = useNavigate()
   const [focused, setFocused] = useState(0)
   const goToRef = useRef<((i: number) => void) | null>(null)
 
   const handleFocusChange = useCallback((i: number) => setFocused(i), [])
-  const handleSelect      = useCallback((link: string) => navigate(link), [navigate])
+  const handleSelect = useCallback((link: string) => navigate(link), [navigate])
 
   const prev = () => goToRef.current?.(focused - 1)
   const next = () => goToRef.current?.(focused + 1)
@@ -22,7 +22,11 @@ export default function MiniAppPage(): ReactElement {
       {/* ── Full-viewport carousel stage ── */}
       <div
         className="relative overflow-hidden"
-        style={{ height: 'calc(100vh - 64px)', minHeight: 600, background: 'var(--color-void)' }}
+        style={{
+          height: 'calc(100vh - 64px)',
+          minHeight: 600,
+          background: 'var(--color-void)',
+        }}
       >
         {/* Three.js canvas fills everything */}
         <SceneCarousel
@@ -33,20 +37,22 @@ export default function MiniAppPage(): ReactElement {
 
         {/* ── Top vignette + header ── */}
         <div
-          className="absolute inset-x-0 top-0 h-48 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, var(--color-void) 30%, transparent)', zIndex: 10 }}
+          className="pointer-events-none absolute inset-x-0 top-0 h-48"
+          style={{
+            background:
+              'linear-gradient(to bottom, var(--color-void) 30%, transparent)',
+            zIndex: 10,
+          }}
         />
         <motion.div
-          className="absolute inset-x-0 top-0 z-20 pt-6 text-center pointer-events-none"
+          className="pointer-events-none absolute inset-x-0 top-0 z-20 pt-6 text-center"
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <p className="section-label mb-1">
-            Interactive Showcase
-          </p>
+          <p className="section-label mb-1">Interactive Showcase</p>
           <h1
-            className="font-bold leading-none"
+            className="leading-none font-bold"
             style={{ fontSize: 'clamp(1.6rem, 4vw, 2.8rem)' }}
           >
             Mini <span className="text-gold">Applications</span>
@@ -61,16 +67,21 @@ export default function MiniAppPage(): ReactElement {
           <motion.button
             key={dir}
             onClick={dir === 'prev' ? prev : next}
-            className="absolute top-1/2 -translate-y-1/2 z-30 flex items-center justify-center rounded-full border transition-colors"
+            className="absolute top-1/2 z-30 flex -translate-y-1/2 items-center justify-center rounded-full border transition-colors"
             style={{
               [dir === 'prev' ? 'left' : 'right']: '1.5rem',
-              width: 48, height: 48,
+              width: 48,
+              height: 48,
               background: 'rgba(0,0,0,0.7)',
               borderColor: 'var(--color-border-active)',
               backdropFilter: 'blur(8px)',
               color: 'var(--color-gold)',
             }}
-            whileHover={{ scale: 1.12, borderColor: 'rgba(212,175,55,0.6)', backgroundColor: 'rgba(212,175,55,0.12)' }}
+            whileHover={{
+              scale: 1.12,
+              borderColor: 'rgba(212,175,55,0.6)',
+              backgroundColor: 'rgba(212,175,55,0.12)',
+            }}
             whileTap={{ scale: 0.92 }}
           >
             <span className="text-lg font-bold select-none">
@@ -81,16 +92,20 @@ export default function MiniAppPage(): ReactElement {
 
         {/* ── Bottom vignette + info panel ── */}
         <div
-          className="absolute inset-x-0 bottom-0 h-64 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, var(--color-void) 55%, transparent)', zIndex: 10 }}
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-64"
+          style={{
+            background:
+              'linear-gradient(to top, var(--color-void) 55%, transparent)',
+            zIndex: 10,
+          }}
         />
 
-        <div className="absolute inset-x-0 bottom-0 z-20 pb-6 px-4">
+        <div className="absolute inset-x-0 bottom-0 z-20 px-4 pb-6">
           {/* Animated app info */}
           <AnimatePresence mode="wait">
             <motion.div
               key={focused}
-              className="text-center mb-5"
+              className="mb-5 text-center"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -98,7 +113,7 @@ export default function MiniAppPage(): ReactElement {
             >
               {/* Category badge */}
               <motion.span
-                className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-2"
+                className="mb-2 inline-block rounded-full px-3 py-1 text-xs font-bold tracking-widest uppercase"
                 style={{
                   background: 'var(--color-gold-ghost)',
                   border: '1px solid var(--color-border-active)',
@@ -110,31 +125,33 @@ export default function MiniAppPage(): ReactElement {
 
               {/* Title */}
               <h2
-                className="font-bold leading-tight"
+                className="leading-tight font-bold"
                 style={{ fontSize: 'clamp(1.4rem, 3.5vw, 2.2rem)' }}
               >
                 {app.title}
               </h2>
 
               {/* Description */}
-              <p className="text-sm mt-1 text-secondary">
-                {app.desc}
-              </p>
+              <p className="text-secondary mt-1 text-sm">{app.desc}</p>
             </motion.div>
           </AnimatePresence>
 
           {/* Dot indicators */}
-          <div className="flex items-center justify-center gap-2 mb-5">
+          <div className="mb-5 flex items-center justify-center gap-2">
             {CAROUSEL_APPS.map((_, i) => (
               <motion.button
                 key={i}
                 onClick={() => goToRef.current?.(i)}
                 className="rounded-full transition-all duration-300 focus:outline-none"
                 style={{
-                  width:   i === focused ? 28 : 8,
-                  height:  8,
-                  background: i === focused ? 'var(--color-gold)' : 'var(--color-text-dim)',
-                  boxShadow: i === focused ? '0 0 8px var(--color-gold-dim)' : 'none',
+                  width: i === focused ? 28 : 8,
+                  height: 8,
+                  background:
+                    i === focused
+                      ? 'var(--color-gold)'
+                      : 'var(--color-text-dim)',
+                  boxShadow:
+                    i === focused ? '0 0 8px var(--color-gold-dim)' : 'none',
                 }}
                 whileHover={{ scale: 1.3 }}
                 whileTap={{ scale: 0.85 }}
@@ -149,7 +166,7 @@ export default function MiniAppPage(): ReactElement {
               <motion.button
                 key={`cta-${focused}`}
                 onClick={() => navigate(app.link)}
-                className="btn-gold relative px-8 py-3 overflow-hidden"
+                className="btn-gold relative overflow-hidden px-8 py-3"
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.92 }}
@@ -163,15 +180,27 @@ export default function MiniAppPage(): ReactElement {
                 {/* Animated glow sweep */}
                 <motion.span
                   className="absolute inset-0"
-                  style={{ background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%)' }}
+                  style={{
+                    background:
+                      'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%)',
+                  }}
                   animate={{ x: ['-100%', '100%'] }}
-                  transition={{ duration: 2.2, repeat: Infinity, ease: 'linear', repeatDelay: 1.2 }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: 'linear',
+                    repeatDelay: 1.2,
+                  }}
                 />
                 <span className="relative flex items-center gap-2">
                   Open {app.title}
                   <motion.span
                     animate={{ x: [0, 4, 0] }}
-                    transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                    transition={{
+                      duration: 1.4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
                   >
                     →
                   </motion.span>
@@ -182,13 +211,16 @@ export default function MiniAppPage(): ReactElement {
         </div>
 
         {/* ── App count indicator (top-right) ── */}
-        <div
-          className="absolute top-6 right-6 z-20 text-right pointer-events-none"
-        >
+        <div className="pointer-events-none absolute top-6 right-6 z-20 text-right">
           <motion.div
             key={focused}
             className="font-bold"
-            style={{ fontSize: '2.2rem', color: 'var(--color-text-dim)', lineHeight: 1, fontFamily: 'var(--font-display)' }}
+            style={{
+              fontSize: '2.2rem',
+              color: 'var(--color-text-dim)',
+              lineHeight: 1,
+              fontFamily: 'var(--font-display)',
+            }}
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
